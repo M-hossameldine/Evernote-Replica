@@ -3,8 +3,10 @@ import SideNavBar from '../../SideNavBar/SideNavBar';
 const Layout: React.FC = (props) => {
   return (
     <>
-      <SideNavBar />
-      <main>{props.children}</main>
+      <div className='flex'>
+        <SideNavBar />
+        <main className='grow'>{props.children}</main>
+      </div>
     </>
   );
 };
