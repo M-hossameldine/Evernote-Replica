@@ -6,7 +6,7 @@ import DropdownList from '../UI/Dropdown';
 const {
   AiFillHome,
   FaStar,
-  GrNotes,
+  IoIosPaper,
   IoIosCheckmarkCircle,
   RiBookletFill,
   RiPriceTagFill,
@@ -17,7 +17,7 @@ const {
 const TAB_CONTENT = {
   home: new NavTabModel('Home', AiFillHome),
   shortcuts: new NavTabModel('Shortcuts', FaStar),
-  notes: new NavTabModel('Notes', GrNotes),
+  notes: new NavTabModel('Notes', IoIosPaper),
   tasks: new NavTabModel('Tasks', IoIosCheckmarkCircle),
   notebooks: new NavTabModel('Notebooks', RiBookletFill),
   tags: new NavTabModel('Tags', RiPriceTagFill),
