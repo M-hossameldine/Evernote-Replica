@@ -20,12 +20,12 @@ const SideNavBar: React.FC = () => {
     >
       {/* Notes Navigator */}
       <div className='flex gap-3 text-neutral-400 pt-4 pb-2 lg:px-3'>
-        <IoIosArrowBack className='text-lg shrink-0' />
-        <IoIosArrowForward className='text-lg shrink-0' />
+        <IoIosArrowBack className='text-lg shrink-0 cursor-pointer' />
+        <IoIosArrowForward className='text-lg shrink-0 cursor-pointer' />
       </div>
-      <div className='flex flex-col gap-2 p-3'>
+      <header className='flex flex-col gap-2 p-3'>
         {/* User Profile */}
-        <div className='flex gap-2'>
+        <div className='flex gap-2 cursor-pointer'>
           <FaUserCircle className='text-3xl shrink-0' />
           <div className='flex items-center gap-1'>
             <small className='w-2/4 overflow-hidden scale-0 lg:scale-100 transition ease-out'>
@@ -37,7 +37,7 @@ const SideNavBar: React.FC = () => {
 
         {/* Add/Create Tab */}
         <AddNewNoteTab />
-      </div>
+      </header>
 
       <SearchBar />
       <SideNavTabs />
