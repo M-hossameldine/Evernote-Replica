@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom';
+
 import { NavTabModel } from '../../models/UI-Models';
 
 const SideNavTab: React.FC<{
@@ -5,8 +7,15 @@ const SideNavTab: React.FC<{
   className?: string;
   iconStyle?: string;
   textStyle?: string;
+  onClick?: () => void;
 }> = (props) => {
-  const { tab, className, iconStyle, textStyle } = props;
+  const {
+    tab,
+    className,
+    iconStyle,
+    textStyle,
+    onClick: tabClickHandler,
+  } = props;
 
   const tabClasses = `relative flex justify-center lg:justify-start items-center h-9 gap-[6px] lg:pl-5 py-1 hover:bg-neutral-700 cursor-pointer group  ${
     className ? className : ''
@@ -16,7 +25,7 @@ const SideNavTab: React.FC<{
 
   const textClasses = textStyle ? textStyle : '';
   return (
-    <li className={tabClasses}>
+    <li className={tabClasses} onClick={tabClickHandler}>
       <span className={iconsClasses}>
         <tab.icon />
       </span>

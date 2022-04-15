@@ -23,6 +23,7 @@ const SideNavBar: React.FC = () => {
         <IoIosArrowBack className='text-lg shrink-0 cursor-pointer' />
         <IoIosArrowForward className='text-lg shrink-0 cursor-pointer' />
       </div>
+      {/* sidebar header */}
       <header className='flex flex-col gap-2 p-3'>
         {/* User Profile */}
         <div className='flex gap-2 cursor-pointer'>

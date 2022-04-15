@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { HOMEPAGE, NOTESPAGE } from '../../constants/routes';
+
 import { NavTabModel } from '../../models/UI-Models';
 import Icons from '../../constants/Icons';
 import SideNavTab from './SideNavTab';
@@ -26,12 +29,17 @@ const TAB_CONTENT = {
 };
 
 const SideNavTabs: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <ul className='flex flex-col '>
-      <SideNavTab tab={TAB_CONTENT.home} />
+      <SideNavTab tab={TAB_CONTENT.home} onClick={() => navigate(HOMEPAGE)} />
       <div className='flex flex-col'>
         <SideNavTab tab={TAB_CONTENT.shortcuts} />
-        <SideNavTab tab={TAB_CONTENT.notes} />
+        <SideNavTab
+          tab={TAB_CONTENT.notes}
+          onClick={() => navigate(NOTESPAGE)}
+        />
         <SideNavTab tab={TAB_CONTENT.tasks} />
         <SideNavTab tab={TAB_CONTENT.notebooks} className='mt-3' />
         <SideNavTab tab={TAB_CONTENT.tags} />
