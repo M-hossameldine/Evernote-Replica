@@ -4,15 +4,10 @@ import Icons from '../../constants/Icons';
 import SideNavTabs from './SideNavTabs';
 import SideNavTab from './SideNavTab';
 import SearchBar from './SearchBar';
+import AddNewNoteTab from './AddNewNoteTab';
 
-const {
-  BsSearch,
-  BsPlus,
-  FaUserCircle,
-  IoIosArrowBack,
-  IoIosArrowForward,
-  IoIosArrowDown,
-} = Icons;
+const { FaUserCircle, IoIosArrowBack, IoIosArrowForward, IoIosArrowDown } =
+  Icons;
 
 const SideNavBar: React.FC = () => {
   const [expanded, setExpanded] = useState(true);
@@ -41,15 +36,7 @@ const SideNavBar: React.FC = () => {
         </div>
 
         {/* Add/Create Tab */}
-        <div className='text-white py-[6px] px-2 rounded-3xl bg-green-550 hover:opacity-90'>
-          <div className='flex items-center justify-evenly'>
-            <BsPlus className='text-2xl shrink-0' />
-            <span>New</span>
-            <span className='ml-auto'>
-              <IoIosArrowDown size='17' />
-            </span>
-          </div>
-        </div>
+        <AddNewNoteTab />
       </div>
 
       <SearchBar />
