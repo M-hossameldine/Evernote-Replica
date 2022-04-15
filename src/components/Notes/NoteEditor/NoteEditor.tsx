@@ -29,7 +29,7 @@ const NoteEditor: React.FC = (props) => {
             onChange={titleChangeHandler}
             className={{
               inputClasses:
-                'text-neutral-700 text-3xl font-semibold leading-10 placeholder:font-semibold placeholder:text-3xl',
+                'text-neutral-700 text-3xl font-semibold placeholder:font-semibold placeholder:text-3xl',
               fallbackClasses: 'text-3xl',
             }}
           />
