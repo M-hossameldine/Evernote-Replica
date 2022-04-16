@@ -23,6 +23,7 @@ const NoteEditorSlice = createSlice({
       action: PayloadAction<{ title: string; text: string; id: string }>
     ) {
       const { title, text, id } = action.payload;
+
       state.title = title;
       state.text = text;
       state.activeNoteId = id;

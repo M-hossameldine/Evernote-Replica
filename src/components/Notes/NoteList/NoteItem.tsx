@@ -7,9 +7,10 @@ const NoteItem: React.FC<{ note: NoteModel; onClick?: () => void }> = (
 ) => {
   const { note, onClick } = props;
 
-  const noteTimestamp = `${note.createdTimestamp.toLocaleString('default', {
+  const createNoteTimestamp = new Date(note.createdTimestamp);
+  const noteTimestamp = `${createNoteTimestamp.toLocaleString('default', {
     month: 'short',
-  })} ${note.createdTimestamp.getUTCDate()}`;
+  })} ${createNoteTimestamp.getUTCDate()}`;
 
   return (
     <li className={classes.note} onClick={onClick}>

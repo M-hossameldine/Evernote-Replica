@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux-hooks';
 import { selectNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
 import { editNote } from '../../../store/notes-slice/notes-slice';
+import { fillNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
 import AutoGrowingTextArea from '../../UI/AutoGrowingTextArea/AutoGrowingTextArea';
 
 const NoteEditor: React.FC = (props) => {
@@ -18,7 +19,8 @@ const NoteEditor: React.FC = (props) => {
     // const
     // console.log(titleValue);
     // setTitle(titleValue);
-    const updatedTimestamp = new Date();
+    const updatedTimestamp = new Date().toISOString();
+    dispatch(fillNoteEditor({ title: titleValue, text, id: activeNoteId }));
     dispatch(
       editNote({ title: titleValue, text, id: activeNoteId, updatedTimestamp })
     );

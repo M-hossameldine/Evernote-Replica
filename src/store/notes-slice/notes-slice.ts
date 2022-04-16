@@ -4,10 +4,26 @@ import NoteModel from '../../models/NoteModel';
 import { RootState } from '../index';
 
 const DUMMY_NOTE_lIST: NoteModel[] = [
-  new NoteModel('1st note title', new Date(), 'This is my First Note'),
-  new NoteModel('2st note title', new Date(), 'This is my Second Note'),
-  new NoteModel('3rd note title', new Date(), 'This is my Third Note'),
-  new NoteModel('4th note title', new Date(), 'This is my Forth Note'),
+  new NoteModel(
+    '1st note title',
+    new Date().toISOString(),
+    'This is my First Note'
+  ),
+  new NoteModel(
+    '2st note title',
+    new Date().toISOString(),
+    'This is my Second Note'
+  ),
+  new NoteModel(
+    '3rd note title',
+    new Date().toISOString(),
+    'This is my Third Note'
+  ),
+  new NoteModel(
+    '4th note title',
+    new Date().toISOString(),
+    'This is my Forth Note'
+  ),
 ];
 
 interface NotesState {
@@ -37,23 +53,23 @@ const NotesSlice = createSlice({
         title: string;
         text: string;
         id: string;
-        updatedTimestamp: Date;
+        updatedTimestamp: string;
       }>
     ) {
       const { title, text, id, updatedTimestamp } = action.payload;
 
       const existedNoteIndex = state.notes.findIndex((note) => note.id === id);
 
-      state.notes[existedNoteIndex] = {
-        ...state.notes[existedNoteIndex],
-        title,
-        text,
-        updatedTimestamp,
-      };
+      // state.notes[existedNoteIndex] = {
+      //   ...state.notes[existedNoteIndex],
+      //   title,
+      //   text,
+      //   updatedTimestamp,
+      // };
 
-      // state.notes[existedNoteIndex].text = text;
-      // state.notes[existedNoteIndex].title = title;
-      // state.notes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
+      state.notes[existedNoteIndex].text = text;
+      state.notes[existedNoteIndex].title = title;
+      state.notes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
     },
   },
 });
