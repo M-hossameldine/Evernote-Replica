@@ -2,15 +2,17 @@ import { v4 as uuid } from 'uuid';
 
 class NoteModel {
   title: string;
-  timestamp: Date;
-  body: string;
+  createdTimestamp: Date;
+  updatedTimestamp?: Date | null;
+  text: string;
   id: string;
 
-  constructor(title: string, timestamp: Date, body: string) {
+  constructor(title: string, createdTimestamp: Date, text: string) {
     this.title = title.length !== 0 ? title : '';
-    this.timestamp = timestamp;
-    this.body = body.length !== 0 ? body : '';
+    this.createdTimestamp = createdTimestamp;
+    this.text = this.text = text.length !== 0 ? text : '';
     this.id = uuid();
+    this.updatedTimestamp = null;
   }
 }
 

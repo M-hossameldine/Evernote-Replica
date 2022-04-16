@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { HOMEPAGE, NOTESPAGE } from '../../constants/routes';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { NavTabModel } from '../../models/UI-Models';
 import Icons from '../../constants/Icons';
 import SideNavTab from './SideNavTab';
 import DropdownList from '../UI/Dropdown';
+import { fillNoteEditor } from '../../store/noteEditor-slice/noteEditor-slice';
+import { selectNotes } from '../../store/notes-slice/notes-slice';
 
 const {
   AiFillHome,
@@ -30,16 +33,21 @@ const TAB_CONTENT = {
 
 const SideNavTabs: React.FC = () => {
   const navigate = useNavigate();
+  const notes = useAppSelector(selectNotes);
+  const dispatch = useAppDispatch();
+
+  const activateNotesTabHandler = () => {
+    const { title, text, id } = notes[0];
+    dispatch(fillNoteEditor({ title, text, id }));
+    navigate(NOTESPAGE);
+  };
 
   return (
     <ul className='flex flex-col '>
       <SideNavTab tab={TAB_CONTENT.home} onClick={() => navigate(HOMEPAGE)} />
       <div className='flex flex-col'>
         <SideNavTab tab={TAB_CONTENT.shortcuts} />
-        <SideNavTab
-          tab={TAB_CONTENT.notes}
-          onClick={() => navigate(NOTESPAGE)}
-        />
+        <SideNavTab tab={TAB_CONTENT.notes} onClick={activateNotesTabHandler} />
         <SideNavTab tab={TAB_CONTENT.tasks} />
         <SideNavTab tab={TAB_CONTENT.notebooks} className='mt-3' />
         <SideNavTab tab={TAB_CONTENT.tags} />

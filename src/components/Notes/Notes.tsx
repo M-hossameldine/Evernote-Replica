@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useAppSelector } from '../../hooks/redux-hooks';
 import { selectNotes } from '../../store/notes-slice/notes-slice';
 
@@ -9,17 +8,11 @@ import NoteList from './NoteList/NoteList';
 
 const { IoIosPaper } = Icons;
 
-const DUMMY_NOTE_lIST: NoteModel[] = [
-  new NoteModel('1st note title', new Date(), 'This is my First Note'),
-  new NoteModel('2st note title', new Date(), 'This is my Second Note'),
-  new NoteModel('2st note title', new Date(), 'This is my Third Note'),
-];
-
 const Notes: React.FC = (props) => {
-  // const [notes, setNotes] = useState(DUMMY_NOTE_lIST);
   const notes = useAppSelector(selectNotes);
   const notesNumber = notes.length;
-  console.log('notes', notes);
+  // console.log('notes', notes);
+
   return (
     <div className='flex flex-col bg-neutral-100 min-w-[18rem] h-screen'>
       {/* Notes bar header */}
@@ -33,8 +26,9 @@ const Notes: React.FC = (props) => {
           <NoteListingOptions />
         </div>
       </div>
+
       {/* Notes List */}
-      <NoteList notes={DUMMY_NOTE_lIST} />
+      <NoteList notes={notes} />
     </div>
   );
 };

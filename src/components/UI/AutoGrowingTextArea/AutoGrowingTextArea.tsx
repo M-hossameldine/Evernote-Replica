@@ -1,3 +1,5 @@
+import React from 'react';
+
 const AutoGrowingTextArea: React.FC<{
   value?: string;
   placeholder: string;
