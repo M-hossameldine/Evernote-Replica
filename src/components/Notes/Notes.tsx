@@ -2,7 +2,6 @@ import { useAppSelector } from '../../hooks/redux-hooks';
 import { selectNotes } from '../../store/notes-slice/notes-slice';
 
 import Icons from '../../constants/Icons';
-import NoteModel from '../../models/NoteModel';
 import NoteListingOptions from './NoteListingOperations/NoteListingOptions';
 import NoteList from './NoteList/NoteList';
 
