@@ -1,22 +1,30 @@
 import classes from './NoteItem.module.css';
 
-import NoteModel from '../../../models/NoteModel';
+import { NOTE_INTERFACE } from '../../../interfaces/note-interface';
 
-const NoteItem: React.FC<{ note: NoteModel; onClick?: () => void }> = (
-  props
-) => {
+const NoteItem: React.FC<{
+  note: NOTE_INTERFACE;
+  onClick?: (noteId: string) => void;
+}> = (props) => {
   const { note, onClick } = props;
 
   const createNoteTimestamp = new Date(note.createdTimestamp);
-  const noteTimestamp = `${createNoteTimestamp.toLocaleString('default', {
+
+  const noteTimestampValue = `${createNoteTimestamp.toLocaleString('default', {
     month: 'short',
   })} ${createNoteTimestamp.getUTCDate()}`;
 
+  const noteFocusHandler = () => {
+    if (props.onClick) {
+      props.onClick(note.id);
+    }
+  };
+
   return (
-    <li className={classes.note} onClick={onClick}>
+    <li className={classes.note} onClick={noteFocusHandler}>
       <h3 className={classes['note__title']}>{note.title}</h3>
       <p className={classes['note__body']}>{note.text}</p>
-      <small className={classes['note__timestamp']}>{noteTimestamp}</small>
+      <small className={classes['note__timestamp']}>{noteTimestampValue}</small>
     </li>
   );
 };

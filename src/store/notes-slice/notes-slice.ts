@@ -1,33 +1,41 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import NoteModel from '../../models/NoteModel';
+import { v4 as uuid } from 'uuid';
+import { NOTE_INTERFACE, createNote } from '../../interfaces/note-interface';
 import { RootState } from '../index';
 
-const DUMMY_NOTE_lIST: NoteModel[] = [
-  new NoteModel(
-    '1st note title',
-    new Date().toISOString(),
-    'This is my First Note'
-  ),
-  new NoteModel(
-    '2st note title',
-    new Date().toISOString(),
-    'This is my Second Note'
-  ),
-  new NoteModel(
-    '3rd note title',
-    new Date().toISOString(),
-    'This is my Third Note'
-  ),
-  new NoteModel(
-    '4th note title',
-    new Date().toISOString(),
-    'This is my Forth Note'
-  ),
+const DUMMY_NOTE_lIST: NOTE_INTERFACE[] = [
+  {
+    id: uuid(),
+    title: '1st Note Title',
+    text: '1st Note text body',
+    createdTimestamp: new Date().toISOString(),
+    updatedTimestamp: '',
+  },
+  {
+    id: uuid(),
+    title: '2nd Note Title',
+    text: '2nd Note text body',
+    createdTimestamp: new Date().toISOString(),
+    updatedTimestamp: '',
+  },
+  {
+    id: uuid(),
+    title: '3rd Note Title',
+    text: '3rd Note text body',
+    createdTimestamp: new Date().toISOString(),
+    updatedTimestamp: '',
+  },
+  {
+    id: uuid(),
+    title: '4th Note Title',
+    text: '4th Note text body',
+    createdTimestamp: new Date().toISOString(),
+    updatedTimestamp: '',
+  },
 ];
 
 interface NotesState {
-  notes: NoteModel[];
+  notes: NOTE_INTERFACE[];
 }
 
 const initialState: NotesState = {
@@ -39,9 +47,9 @@ const NotesSlice = createSlice({
   initialState,
   reducers: {
     // use the PayloadAction type to declare the contents of `action.payload`
-    addNote(state, action: PayloadAction<NoteModel>) {
+    addNote(state, action: PayloadAction<NOTE_INTERFACE>) {
       const { title, createdTimestamp, text } = action.payload;
-      state.notes.push(new NoteModel(title, createdTimestamp, text));
+      state.notes.push(createNote(title, text, createdTimestamp));
     },
     removeNote(state, action: PayloadAction<string>) {
       const existedId = action.payload;
