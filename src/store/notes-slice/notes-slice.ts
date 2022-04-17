@@ -49,7 +49,7 @@ const NotesSlice = createSlice({
     // use the PayloadAction type to declare the contents of `action.payload`
     addNote(state, action: PayloadAction<NOTE_INTERFACE>) {
       const { title, createdTimestamp, text } = action.payload;
-      state.notes.push(createNote(title, text, createdTimestamp));
+      state.notes.unshift(createNote(title, text, createdTimestamp));
     },
     removeNote(state, action: PayloadAction<string>) {
       const existedId = action.payload;

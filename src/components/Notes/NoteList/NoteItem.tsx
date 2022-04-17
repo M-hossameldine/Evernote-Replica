@@ -22,7 +22,9 @@ const NoteItem: React.FC<{
 
   return (
     <li className={classes.note} onClick={noteFocusHandler}>
-      <h3 className={classes['note__title']}>{note.title}</h3>
+      <h3 className={classes['note__title']}>
+        {note.title.length > 0 ? note.title : 'Untitled'}
+      </h3>
       <p className={classes['note__body']}>{note.text}</p>
       <small className={classes['note__timestamp']}>{noteTimestampValue}</small>
     </li>
