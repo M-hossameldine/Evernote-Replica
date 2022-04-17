@@ -1,18 +1,17 @@
 import { useAppDispatch } from '../../../hooks/redux-hooks';
 
 import { NOTE_INTERFACE } from '../../../interfaces/note-interface';
+import { fillNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
 import NoteItem from './NoteItem';
 
 const NoteList: React.FC<{ notes: NOTE_INTERFACE[] }> = (props) => {
-  // const notes = useAppSelector(selectNotes);
   const dispatch = useAppDispatch();
   const { notes } = props;
 
   const activateNoteHandler = (noteId: string) => {
-    // const selectedNote = notes.find((note) => note.id === noteId);
     const { title, text } = notes.find((note) => note.id === noteId)!;
-    // dispatch()
-    console.log('selectedNote', title);
+    dispatch(fillNoteEditor({ title, text, id: noteId }));
+    // console.log('selectedNote', title);
   };
 
   return (

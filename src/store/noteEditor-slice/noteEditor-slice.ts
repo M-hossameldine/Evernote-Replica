@@ -6,12 +6,14 @@ interface NoteEditorState {
   title: string;
   text: string;
   activeNoteId: string;
+  defaultActive: boolean;
 }
 
 const initialState: NoteEditorState = {
   title: '',
   text: '',
   activeNoteId: '',
+  defaultActive: true,
 };
 
 const NoteEditorSlice = createSlice({
@@ -27,6 +29,10 @@ const NoteEditorSlice = createSlice({
       state.title = title;
       state.text = text;
       state.activeNoteId = id;
+      state.defaultActive = false;
+    },
+    resetNoteEditor(state) {
+      state = initialState;
     },
   },
 });

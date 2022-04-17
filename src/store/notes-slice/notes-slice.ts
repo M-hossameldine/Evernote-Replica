@@ -68,16 +68,12 @@ const NotesSlice = createSlice({
 
       const existedNoteIndex = state.notes.findIndex((note) => note.id === id);
 
-      // state.notes[existedNoteIndex] = {
-      //   ...state.notes[existedNoteIndex],
-      //   title,
-      //   text,
-      //   updatedTimestamp,
-      // };
-
-      state.notes[existedNoteIndex].text = text;
-      state.notes[existedNoteIndex].title = title;
-      state.notes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
+      state.notes[existedNoteIndex] = {
+        ...state.notes[existedNoteIndex],
+        title,
+        text,
+        updatedTimestamp,
+      };
     },
   },
 });

@@ -1,25 +1,42 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux-hooks';
+
 import { selectNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
+import { selectNotes } from '../../../store/notes-slice/notes-slice';
 import { editNote } from '../../../store/notes-slice/notes-slice';
 import { fillNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
+
 import AutoGrowingTextArea from '../../UI/AutoGrowingTextArea/AutoGrowingTextArea';
 
 const NoteEditor: React.FC = (props) => {
-  // const [title, setTitle] = useState('');
-  // const [text, setText] = useState('');
-  const { title, text, activeNoteId } = useAppSelector(selectNoteEditor);
-  const titleTextareaRef = useRef<HTMLTextAreaElement>(null);
-  const textTextareaRef = useRef<HTMLTextAreaElement>(null);
   const dispatch = useAppDispatch();
+  const { title, text, activeNoteId, defaultActive } =
+    useAppSelector(selectNoteEditor);
+  const notes = useAppSelector(selectNotes);
+
+  let titleText = title;
+  let bodyText = text;
+
+  if (defaultActive) {
+    titleText = notes[0].title;
+    bodyText = notes[0].text;
+  }
+
+  // useEffect(() => {
+  //   if (defaultActive && notes.length > 0) {
+  //     titleText = notes[0].title;
+  //     bodyText = notes[0].text;
+  //   } else {
+  //     titleText = title;
+  //     bodyText = text;
+  //   }
+  // }, [defaultActive, notes]);
 
   const titleChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const titleValue = e.currentTarget.value;
-    // const titleRefValue = titleTextareaRef.current!.value;
-    // const
-    // console.log(titleValue);
-    // setTitle(titleValue);
     const updatedTimestamp = new Date().toISOString();
+
+    // update store states
     dispatch(fillNoteEditor({ title: titleValue, text, id: activeNoteId }));
     dispatch(
       editNote({ title: titleValue, text, id: activeNoteId, updatedTimestamp })
@@ -28,7 +45,13 @@ const NoteEditor: React.FC = (props) => {
 
   const textChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const enteredText = e.currentTarget.value;
-    // setText(enteredText);
+    const updatedTimestamp = new Date().toISOString();
+
+    // update store states
+    dispatch(fillNoteEditor({ title, text: enteredText, id: activeNoteId }));
+    dispatch(
+      editNote({ title, text: enteredText, id: activeNoteId, updatedTimestamp })
+    );
   };
 
   return (
@@ -38,10 +61,9 @@ const NoteEditor: React.FC = (props) => {
       <div className='px-10 py-5'>
         <div className='mb-4'>
           <AutoGrowingTextArea
-            value={title}
+            value={titleText}
             placeholder='Title'
             onChange={titleChangeHandler}
-            // ref={titleTextareaRef}
             className={{
               inputClasses:
                 'text-neutral-700 text-3xl font-semibold placeholder:font-semibold placeholder:text-3xl',
@@ -49,11 +71,11 @@ const NoteEditor: React.FC = (props) => {
             }}
           />
         </div>
+
         <AutoGrowingTextArea
-          value={text}
+          value={bodyText}
           placeholder='Start writing'
           onChange={textChangeHandler}
-          // ref={textTextareaRef}
           className={{
             inputClasses: 'text-neutral-800 ',
             fallbackClasses: '',

@@ -17,5 +17,6 @@ export function createNote(
     title,
     text,
     createdTimestamp,
+    updatedTimestamp: '',
   };
 }
