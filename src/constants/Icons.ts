@@ -4,6 +4,7 @@ import {
   IoIosArrowDown,
   IoIosCheckmarkCircle,
   IoIosPaper,
+  IoIosMore,
 } from 'react-icons/io';
 import { BsSearch, BsPlus, BsSortDown } from 'react-icons/bs';
 import { BiFilterAlt } from 'react-icons/bi';
@@ -18,6 +19,7 @@ const Icons = {
   IoIosArrowBack,
   IoIosArrowForward,
   IoIosArrowDown,
+  IoIosMore,
   FaUserCircle,
   AiFillHome,
   FaStar,

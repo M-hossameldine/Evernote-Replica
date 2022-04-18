@@ -6,6 +6,7 @@ import { selectNotes } from '../../../store/notes-slice/notes-slice';
 import { editNote } from '../../../store/notes-slice/notes-slice';
 import { fillNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
 
+import NoteEditorHeader from './NoteEditorHeader/NoteEditorHeader';
 import AutoGrowingTextArea from '../../UI/AutoGrowingTextArea/AutoGrowingTextArea';
 
 const NoteEditor: React.FC = (props) => {
@@ -56,7 +57,7 @@ const NoteEditor: React.FC = (props) => {
 
   return (
     <div className='grow'>
-      <header className='h-[6.2rem] bg-neutral-100 border-l-[1px] border-b-[1px] border-neutral-300'></header>
+      <NoteEditorHeader />
 
       <div className='px-10 py-5'>
         <div className='mb-4'>

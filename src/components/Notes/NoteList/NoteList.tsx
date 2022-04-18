@@ -15,8 +15,8 @@ const NoteList: React.FC<{ notes: NOTE_INTERFACE[] }> = (props) => {
   };
 
   return (
-    <div className='scrollbar-box overflow-scroll overflow-x-hidden'>
-      <ul className='relative grow flex flex-col gap-3 p-3 pb-6 bg-neutral-100 '>
+    <div className='scrollbar-box overflow-scroll overflow-x-hidden '>
+      <ul className='relative grow flex flex-col gap-3 p-3 pb-6 bg-neutral-100 cursor-pointer'>
         {notes.map((note) => (
           <NoteItem key={note.id} note={note} onClick={activateNoteHandler} />
         ))}
