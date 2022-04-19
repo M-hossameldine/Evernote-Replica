@@ -1,11 +1,17 @@
 import { useState } from 'react';
 
-import Icons from '../../../../constants/Icons';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/redux-hooks';
+import { selectNoteEditor } from '../../../../store/noteEditor-slice/noteEditor-slice';
+import { removeNote } from '../../../../store/notes-slice/notes-slice';
+
 import ExecludeEventWrapper from '../../../UI/ExecludeEventWrapper/ExecludeEventWrapper';
+import Icons from '../../../../constants/Icons';
 
 const { IoIosMore } = Icons;
 
 const NoteActionsDropdown: React.FC = (props) => {
+  const editor = useAppSelector(selectNoteEditor);
+  const dispatch = useAppDispatch();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDropdonwHandler = () => {
@@ -14,6 +20,11 @@ const NoteActionsDropdown: React.FC = (props) => {
 
   const hideDropdonwHandler = () => {
     setIsExpanded(false);
+  };
+
+  const deleteNoteHandler = () => {
+    dispatch(removeNote(editor.activeNoteId));
+    hideDropdonwHandler();
   };
 
   return (
@@ -31,9 +42,14 @@ const NoteActionsDropdown: React.FC = (props) => {
             isExpanded ? 'scale-100' : 'scale-0'
           }`}
         >
-          <div className='flex justify-between gap-4 p-4'>
-            <button className='text-neutral-700'> Move to Trash </button>
-            <span> Delete </span>
+          <div className='flex justify-between gap-4 py-2'>
+            <button
+              className='flex gap-4 text-neutral-700 hover:bg-neutral-100 px-4 py-1'
+              onClick={deleteNoteHandler}
+            >
+              Move to Trash
+              <span className='text-neutral-500'> Delete </span>
+            </button>
           </div>
         </div>
       </div>

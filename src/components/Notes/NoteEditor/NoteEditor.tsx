@@ -23,22 +23,18 @@ const NoteEditor: React.FC = (props) => {
     bodyText = notes[0].text;
   }
 
-  // useEffect(() => {
-  //   if (defaultActive && notes.length > 0) {
-  //     titleText = notes[0].title;
-  //     bodyText = notes[0].text;
-  //   } else {
-  //     titleText = title;
-  //     bodyText = text;
-  //   }
-  // }, [defaultActive, notes]);
-
   const titleChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const titleValue = e.currentTarget.value;
     const updatedTimestamp = new Date().toISOString();
 
     // update store states
-    dispatch(fillNoteEditor({ title: titleValue, text, id: activeNoteId }));
+    dispatch(
+      fillNoteEditor({
+        title: titleValue,
+        text,
+        id: activeNoteId,
+      })
+    );
     dispatch(
       editNote({ title: titleValue, text, id: activeNoteId, updatedTimestamp })
     );
@@ -49,7 +45,13 @@ const NoteEditor: React.FC = (props) => {
     const updatedTimestamp = new Date().toISOString();
 
     // update store states
-    dispatch(fillNoteEditor({ title, text: enteredText, id: activeNoteId }));
+    dispatch(
+      fillNoteEditor({
+        title,
+        text: enteredText,
+        id: activeNoteId,
+      })
+    );
     dispatch(
       editNote({ title, text: enteredText, id: activeNoteId, updatedTimestamp })
     );

@@ -6,13 +6,15 @@ interface NoteEditorState {
   title: string;
   text: string;
   activeNoteId: string;
-  defaultActive: boolean;
+  activeNoteIndex: number;
+  defaultActive: boolean; // view the first note
 }
 
 const initialState: NoteEditorState = {
   title: '',
   text: '',
   activeNoteId: '',
+  activeNoteIndex: 0,
   defaultActive: true,
 };
 

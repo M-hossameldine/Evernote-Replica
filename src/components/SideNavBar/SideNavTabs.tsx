@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { HOMEPAGE, NOTESPAGE } from '../../constants/routes';
+import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from '../../constants/routes';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { NavTabModel } from '../../models/UI-Models';
@@ -42,6 +42,10 @@ const SideNavTabs: React.FC = () => {
     navigate(NOTESPAGE);
   };
 
+  const navigateTrashHandler = () => {
+    navigate(TRASHPAGE);
+  };
+
   return (
     <ul className='flex flex-col '>
       <SideNavTab tab={TAB_CONTENT.home} onClick={() => navigate(HOMEPAGE)} />
@@ -52,7 +56,11 @@ const SideNavTabs: React.FC = () => {
         <SideNavTab tab={TAB_CONTENT.notebooks} className='mt-3' />
         <SideNavTab tab={TAB_CONTENT.tags} />
         <SideNavTab tab={TAB_CONTENT.sharedWithMe} />
-        <SideNavTab tab={TAB_CONTENT.trash} className='mt-3' />
+        <SideNavTab
+          tab={TAB_CONTENT.trash}
+          className='mt-3'
+          onClick={navigateTrashHandler}
+        />
       </div>
       <DropdownList />
     </ul>
