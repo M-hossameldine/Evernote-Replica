@@ -9,7 +9,17 @@ export interface TRASH_STATE_INTERFACE {
 }
 
 const initialState: TRASH_STATE_INTERFACE = {
-  notes: [],
+  notes: [
+    {
+      note: {
+        id: '1',
+        title: '1st deleted note',
+        text: '1st deleted note text body',
+        createdTimestamp: new Date().toISOString(),
+      },
+      deleteTimestamp: new Date().toISOString(),
+    },
+  ],
 };
 
 const TrashSlice = createSlice({
@@ -25,6 +35,6 @@ const TrashSlice = createSlice({
 export const { deleteItemPermanently, restoreItem, emptyTrash } =
   TrashSlice.actions;
 
-export const selectTrashNotes = (state: RootState) => state.notes;
+export const selectTrashNotes = (state: RootState) => state.trash.notes;
 
 export default TrashSlice.reducer;

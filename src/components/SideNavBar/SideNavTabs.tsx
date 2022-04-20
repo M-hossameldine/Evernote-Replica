@@ -3,11 +3,13 @@ import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from '../../constants/routes';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { NavTabModel } from '../../models/UI-Models';
-import Icons from '../../constants/Icons';
-import SideNavTab from './SideNavTab';
-import DropdownList from '../UI/Dropdown';
 import { fillNoteEditor } from '../../store/noteEditor-slice/noteEditor-slice';
 import { selectNotes } from '../../store/notes-slice/notes-slice';
+import { selectTrashNotes } from '../../store/trash-slice/trash-slice';
+
+import SideNavTab from './SideNavTab';
+import DropdownList from '../UI/Dropdown';
+import Icons from '../../constants/Icons';
 
 const {
   AiFillHome,
@@ -34,16 +36,20 @@ const TAB_CONTENT = {
 const SideNavTabs: React.FC = () => {
   const navigate = useNavigate();
   const notes = useAppSelector(selectNotes);
+  const trashNotes = useAppSelector(selectTrashNotes);
   const dispatch = useAppDispatch();
 
   const activateNotesTabHandler = () => {
     const { title, text, id } = notes[0];
     dispatch(fillNoteEditor({ title, text, id }));
-    navigate(NOTESPAGE);
+    navigate(`${NOTESPAGE}/${notes[0].id}`);
+    // navigate(`${NOTESPAGE}/5`);
   };
 
   const navigateTrashHandler = () => {
-    navigate(TRASHPAGE);
+    const firstTrashNote = trashNotes[0].note.id;
+    console.log('firstTrashNote', firstTrashNote);
+    navigate(`${TRASHPAGE}/${firstTrashNote}`);
   };
 
   return (

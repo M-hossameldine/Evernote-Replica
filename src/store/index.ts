@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import notesReducer from './notes-slice/notes-slice';
 import noteEditorReducer from './noteEditor-slice/noteEditor-slice';
 import trashReducer from './trash-slice/trash-slice';
+import uiReducer from './ui-slice/ui-slice';
 
 const store = configureStore({
   reducer: {
     notes: notesReducer,
     noteEditor: noteEditorReducer,
     trash: trashReducer,
+    ui: uiReducer,
   },
 });
 

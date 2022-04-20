@@ -17,7 +17,6 @@ const NoteEditorSidebar: React.FC = (props) => {
         notes={notes}
         titleText='Notes'
         titleIcon={IoIosPaper}
-        isTrashBin={false}
       />
 
       {/* Sidebar note list */}
