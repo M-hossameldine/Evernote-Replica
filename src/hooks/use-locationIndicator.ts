@@ -7,22 +7,26 @@ import { useLocation } from 'react-router-dom';
 
 import { TRASHPAGE, NOTESPAGE } from '../constants/routes';
 
-export const useTrashIndicator = () => {
-  const [isTrashBin, setIsTrashBin] = useState<string | null>(null);
+export const locationType = ['trash', 'notes', 'notebooks', 'generic'] as const;
+
+export type locationType = typeof locationType[number];
+
+export const useLocationIndicator = () => {
+  const [locationKey, setLocationKey] = useState<locationType | null>(null);
   const location = useLocation();
 
   useEffect(() => {
     const pageType = (page: string) => location.pathname.includes(page);
 
     if (pageType(TRASHPAGE)) {
-      setIsTrashBin('trash');
+      setLocationKey('trash');
     } else if (pageType(NOTESPAGE)) {
-      setIsTrashBin('notes');
+      setLocationKey('notes');
     } else {
-      setIsTrashBin(null);
+      setLocationKey(null);
       console.log('Page is note customized yet');
     }
   }, []);
 
-  return isTrashBin;
+  return { locationKey };
 };
