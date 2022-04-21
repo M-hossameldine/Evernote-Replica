@@ -40,16 +40,22 @@ const SideNavTabs: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const activateNotesTabHandler = () => {
-    const { title, text, id } = notes[0];
-    dispatch(fillNoteEditor({ title, text, id }));
-    navigate(`${NOTESPAGE}/${notes[0].id}`);
-    // navigate(`${NOTESPAGE}/5`);
+    if (notes.length > 0) {
+      const { title, text, id } = notes[0];
+      dispatch(fillNoteEditor({ title, text, id }));
+      navigate(`${NOTESPAGE}/${notes[0].id}`);
+    } else {
+      navigate(`${NOTESPAGE}/empty`);
+    }
   };
 
   const navigateTrashHandler = () => {
-    const firstTrashNote = trashNotes[0].note.id;
-    console.log('firstTrashNote', firstTrashNote);
-    navigate(`${TRASHPAGE}/${firstTrashNote}`);
+    if (trashNotes.length > 0) {
+      const firstTrashNote = trashNotes[0].note.id;
+      navigate(`${TRASHPAGE}/${firstTrashNote}`);
+    } else {
+      navigate(`${TRASHPAGE}/empty`);
+    }
   };
 
   return (

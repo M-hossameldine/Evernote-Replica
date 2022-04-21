@@ -13,16 +13,16 @@ export interface TRASH_STATE_INTERFACE {
 
 const initialState: TRASH_STATE_INTERFACE = {
   notes: [
-    {
-      note: {
-        id: '1',
-        title: '1st deleted note',
-        text: '1st deleted note text body',
-        createdTimestamp: new Date().toISOString(),
-      },
-      deleteTimestamp: new Date().toISOString(),
-      id: '1',
-    },
+    // {
+    //   note: {
+    //     id: '1',
+    //     title: '1st deleted note',
+    //     text: '1st deleted note text body',
+    //     createdTimestamp: new Date().toISOString(),
+    //   },
+    //   deleteTimestamp: new Date().toISOString(),
+    //   id: '1',
+    // },
   ],
 };
 
