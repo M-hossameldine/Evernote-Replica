@@ -5,7 +5,7 @@ import NoteEditor from '../components/Notes/NoteEditor/NoteEditor';
 import NoteEditorSidebar from '../components/Notes/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
 import Icons from '../constants/Icons';
 
-const { IoIosPaper } = Icons;
+const { IoIosPaper, GiNotebook } = Icons;
 
 const NotesPage: React.FC = (props) => {
   const notes = useAppSelector(selectNotes);
@@ -15,10 +15,20 @@ const NotesPage: React.FC = (props) => {
       <NoteEditorSidebar
         notes={notes}
         header={{ title: 'Notes', icon: IoIosPaper }}
+        fallbackData={{
+          icon: GiNotebook,
+          title: 'Create your first note',
+          text: '',
+          action: noteFallbackAction,
+        }}
       />
-      <NoteEditor />
+      {notes.length > 0 && <NoteEditor />}
     </div>
   );
 };
 
 export default NotesPage;
+
+const noteFallbackAction: React.FC = (props) => {
+  return <p>Click the + New Note button in the sidebar to get started</p>;
+};

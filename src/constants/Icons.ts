@@ -12,6 +12,7 @@ import { FaUserCircle, FaStar, FaUserFriends, FaTrash } from 'react-icons/fa';
 import { MdViewList } from 'react-icons/md';
 import { AiFillHome } from 'react-icons/ai';
 import { RiPriceTagFill, RiBookletFill } from 'react-icons/ri';
+import { GiNotebook } from 'react-icons/gi';
 
 const Icons = {
   BsSearch,
@@ -32,6 +33,7 @@ const Icons = {
   BsSortDown,
   BiFilterAlt,
   MdViewList,
+  GiNotebook,
 };
 
 export default Icons;

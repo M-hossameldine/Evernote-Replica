@@ -1,3 +1,4 @@
+import React from 'react';
 import { IconType } from 'react-icons';
 
 const FallbackMsg: React.FC<{
@@ -5,6 +6,7 @@ const FallbackMsg: React.FC<{
     title: string;
     text: string;
     icon: IconType;
+    action?: React.FC;
   };
 }> = (props) => {
   const { fallbackData } = props;
@@ -14,7 +16,7 @@ const FallbackMsg: React.FC<{
       <fallbackData.icon className='shrink-0 text-8xl text-neutral-300 mb-12' />
       <h2 className='text-neutral-700 text-lg mb-4 '>{fallbackData.title}</h2>
       <p>{fallbackData.text}</p>
-      {props.children}
+      {fallbackData.action && <fallbackData.action />}
     </div>
   );
 };
