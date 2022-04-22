@@ -21,8 +21,10 @@ const AddNewNoteTab: React.FC = () => {
   };
 
   useEffect(() => {
-    const firstNoteId = notes[0].id;
-    navigate(`/notes/${firstNoteId}`);
+    if (notes.length > 0) {
+      const firstNoteId = notes[0].id;
+      navigate(`/notes/${firstNoteId}`);
+    }
   }, [notes]);
 
   return (
