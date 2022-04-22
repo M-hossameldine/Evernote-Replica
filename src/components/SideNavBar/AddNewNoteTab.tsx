@@ -1,23 +1,29 @@
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/redux-hooks';
-
-import { addNote } from '../../store/notes-slice/notes-slice';
+import { useAddNewNote } from '../../hooks/use-addNewNote';
+import { useAppSelector, useAppDispatch } from '../../hooks/redux-hooks';
+import { selectNotes } from '../../store/notes-slice/notes-slice';
+import { sendNewNoteData } from '../../store/notes-slice/notes-actions';
 import Icons from '../../constants/Icons';
-import { createNote } from '../../interfaces/note-interface';
-import { NOTESPAGE } from '../../constants/routes';
 
 const { BsPlus, IoIosArrowDown } = Icons;
 
 const AddNewNoteTab: React.FC = () => {
-  const dispatch = useAppDispatch();
+  const { addToStore } = useAddNewNote();
+  const notes = useAppSelector(selectNotes);
   const navigate = useNavigate();
-
-  const timestamp = new Date().toISOString();
+  const dispatch = useAppDispatch();
 
   const addNoteHandler = () => {
-    dispatch(addNote(createNote('', '', timestamp)));
-    navigate(NOTESPAGE);
+    // addToStore();
+    dispatch(sendNewNoteData());
+    console.log('clicked');
   };
+
+  useEffect(() => {
+    const firstNoteId = notes[0].id;
+    navigate(`/notes/${firstNoteId}`);
+  }, [notes]);
 
   return (
     <button

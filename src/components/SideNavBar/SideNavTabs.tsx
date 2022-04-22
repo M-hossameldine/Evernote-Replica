@@ -42,7 +42,7 @@ const SideNavTabs: React.FC = () => {
   const activateNotesTabHandler = () => {
     if (notes.length > 0) {
       const { title, text, id } = notes[0];
-      dispatch(fillNoteEditor({ title, text, id }));
+      dispatch(fillNoteEditor({ id }));
       navigate(`${NOTESPAGE}/${notes[0].id}`);
     } else {
       navigate(`${NOTESPAGE}/empty`);

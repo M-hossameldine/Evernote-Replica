@@ -1,5 +1,5 @@
 /*
- * Custom Hook helps componens to detect if it's part of the trash page
+ * Custom Hook detects whick page (route) the reusable component is part of
  */
 
 import { useEffect, useState } from 'react';

@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import classes from './NoteItem.module.css';
 
 import { NOTE_INTERFACE } from '../../../interfaces/note-interface';
 import { TRASH_ITEM_INTERFACE } from '../../../interfaces/trash-interface';
+import { NOTESPAGE } from '../../../constants/routes';
 
 const NoteItem: React.FC<{
   note: NOTE_INTERFACE | TRASH_ITEM_INTERFACE;
@@ -25,13 +27,13 @@ const NoteItem: React.FC<{
   };
 
   return (
-    <li className={classes.note} onClick={noteFocusHandler}>
+    <Link className={classes.note} to={`${NOTESPAGE}/${selectedNoteId}`}>
       <h3 className={classes['note__title']}>
         {title.length > 0 ? title : 'Untitled'}
       </h3>
       <p className={classes['note__body']}>{text}</p>
       <small className={classes['note__timestamp']}>{noteTimestampValue}</small>
-    </li>
+    </Link>
   );
 };
 

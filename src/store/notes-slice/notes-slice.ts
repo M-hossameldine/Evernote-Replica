@@ -5,28 +5,28 @@ import { RootState } from '../index';
 
 const DUMMY_NOTE_lIST: NOTE_INTERFACE[] = [
   {
-    id: uuid(),
+    id: '0',
     title: '1st Note Title',
     text: '1st Note text body',
     createdTimestamp: new Date().toISOString(),
     updatedTimestamp: '',
   },
   {
-    id: uuid(),
+    id: '1',
     title: '2nd Note Title',
     text: '2nd Note text body',
     createdTimestamp: new Date().toISOString(),
     updatedTimestamp: '',
   },
   {
-    id: uuid(),
+    id: '2',
     title: '3rd Note Title',
     text: '3rd Note text body',
     createdTimestamp: new Date().toISOString(),
     updatedTimestamp: '',
   },
   {
-    id: uuid(),
+    id: '3',
     title: '4th Note Title',
     text: '4th Note text body',
     createdTimestamp: new Date().toISOString(),
@@ -65,15 +65,17 @@ const NotesSlice = createSlice({
       }>
     ) {
       const { title, text, id, updatedTimestamp } = action.payload;
-
+      console.log('id note-slice', id);
       const existedNoteIndex = state.notes.findIndex((note) => note.id === id);
-
-      state.notes[existedNoteIndex] = {
-        ...state.notes[existedNoteIndex],
-        title,
-        text,
-        updatedTimestamp,
-      };
+      state.notes[existedNoteIndex].title = title;
+      state.notes[existedNoteIndex].text = text;
+      state.notes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
+      // state.notes[existedNoteIndex] = {
+      //   ...state.notes[existedNoteIndex],
+      //   title,
+      //   text,
+      //   updatedTimestamp,
+      // };
     },
   },
 });

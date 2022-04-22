@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux-hooks';
 
 import { selectNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
@@ -11,17 +12,23 @@ import AutoGrowingTextArea from '../../UI/AutoGrowingTextArea/AutoGrowingTextAre
 
 const NoteEditor: React.FC = (props) => {
   const dispatch = useAppDispatch();
-  const { title, text, activeNoteId, defaultActive } =
-    useAppSelector(selectNoteEditor);
+  const { activeNoteIndex, defaultActive } = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);
+  const params = useParams();
 
-  let titleText = title;
-  let bodyText = text;
+  let activeId = params.noteId;
+  // console.log('editor param id', params.noteId);
 
-  if (defaultActive) {
-    titleText = notes[0].title;
-    bodyText = notes[0].text;
-  }
+  const activeNote = notes.find((note) => note.id === activeId);
+  // console.log('editor activeNote', activeNote);
+
+  let titleText = activeNote!.title;
+  let bodyText = activeNote!.text;
+
+  // if (defaultActive) {
+  //   titleText = notes[0].title;
+  //   bodyText = notes[0].text;
+  // }
 
   const titleChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const titleValue = e.currentTarget.value;
@@ -30,13 +37,16 @@ const NoteEditor: React.FC = (props) => {
     // update store states
     dispatch(
       fillNoteEditor({
-        title: titleValue,
-        text,
-        id: activeNoteId,
+        id: activeId!,
       })
     );
     dispatch(
-      editNote({ title: titleValue, text, id: activeNoteId, updatedTimestamp })
+      editNote({
+        title: titleValue,
+        text: bodyText,
+        id: activeId!,
+        updatedTimestamp,
+      })
     );
   };
 
@@ -47,13 +57,16 @@ const NoteEditor: React.FC = (props) => {
     // update store states
     dispatch(
       fillNoteEditor({
-        title,
-        text: enteredText,
-        id: activeNoteId,
+        id: activeId!,
       })
     );
     dispatch(
-      editNote({ title, text: enteredText, id: activeNoteId, updatedTimestamp })
+      editNote({
+        title: titleText,
+        text: enteredText,
+        id: activeId!,
+        updatedTimestamp,
+      })
     );
   };
 

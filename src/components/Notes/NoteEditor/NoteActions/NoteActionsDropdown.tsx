@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '../../../../hooks/redux-hooks';
 import { selectNoteEditor } from '../../../../store/noteEditor-slice/noteEditor-slice';
@@ -13,6 +14,7 @@ const NoteActionsDropdown: React.FC = (props) => {
   const editor = useAppSelector(selectNoteEditor);
   const dispatch = useAppDispatch();
   const [isExpanded, setIsExpanded] = useState(false);
+  const params = useParams();
 
   const toggleDropdonwHandler = () => {
     setIsExpanded((prevState) => !prevState);
@@ -23,7 +25,7 @@ const NoteActionsDropdown: React.FC = (props) => {
   };
 
   const deleteNoteHandler = () => {
-    dispatch(removeNote(editor.activeNoteId));
+    dispatch(removeNote(params.noteId!));
     hideDropdonwHandler();
   };
 
