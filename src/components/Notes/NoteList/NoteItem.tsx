@@ -3,18 +3,21 @@ import classes from './NoteItem.module.css';
 
 import { NOTE_INTERFACE } from '../../../interfaces/note-interface';
 import { TRASH_ITEM_INTERFACE } from '../../../interfaces/trash-interface';
-import { NOTESPAGE } from '../../../constants/routes';
+// import { NOTESPAGE } from '../../../constants/routes';
+import { useLocationIndicator } from '../../../hooks/use-locationIndicator';
 
 const NoteItem: React.FC<{
   note: NOTE_INTERFACE | TRASH_ITEM_INTERFACE;
   onClick?: (noteId: string) => void;
 }> = (props) => {
+  const location = useLocationIndicator();
   const { note, onClick } = props;
 
   let { text, title, createdTimestamp } = 'note' in note ? note.note : note;
 
   const createNoteTimestamp = new Date(createdTimestamp);
-  const { id: selectedNoteId } = 'note' in note ? note.note : note;
+  // const { id: selectedNoteId } = 'note' in note ? note : note;
+  const { id: selectedNoteId } = note;
 
   const noteTimestampValue = `${createNoteTimestamp.toLocaleString('default', {
     month: 'short',
@@ -26,8 +29,13 @@ const NoteItem: React.FC<{
     }
   };
 
+  console.log('route', `${location.locationKey}/${selectedNoteId}`);
+
   return (
-    <Link className={classes.note} to={`${NOTESPAGE}/${selectedNoteId}`}>
+    <Link
+      className={classes.note}
+      to={`/${location.locationKey}/${selectedNoteId}`}
+    >
       <h3 className={classes['note__title']}>
         {title.length > 0 ? title : 'Untitled'}
       </h3>

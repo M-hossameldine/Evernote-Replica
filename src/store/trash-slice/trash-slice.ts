@@ -15,9 +15,19 @@ const initialState: TRASH_STATE_INTERFACE = {
   notes: [
     {
       note: {
-        id: '1',
+        id: '5',
         title: '1st deleted note',
         text: '1st deleted note text body',
+        createdTimestamp: new Date().toISOString(),
+      },
+      deleteTimestamp: new Date().toISOString(),
+      id: '0',
+    },
+    {
+      note: {
+        id: '6',
+        title: '2nd deleted note',
+        text: '2nd deleted note text body',
         createdTimestamp: new Date().toISOString(),
       },
       deleteTimestamp: new Date().toISOString(),

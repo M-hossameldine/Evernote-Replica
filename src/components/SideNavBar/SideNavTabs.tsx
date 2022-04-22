@@ -51,7 +51,7 @@ const SideNavTabs: React.FC = () => {
 
   const navigateTrashHandler = () => {
     if (trashNotes.length > 0) {
-      const firstTrashNote = trashNotes[0].note.id;
+      const firstTrashNote = trashNotes[0].id;
       navigate(`${TRASHPAGE}/${firstTrashNote}`);
     } else {
       navigate(`${TRASHPAGE}/empty`);

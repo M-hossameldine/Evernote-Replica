@@ -6,7 +6,7 @@ import { TRASH_ITEM_INTERFACE } from '../../../../interfaces/trash-interface';
 import { HEADER_INTERFACE } from '../../../../interfaces/header-interface';
 
 const NoteEditorSidebarHeader: React.FC<{
-  notes: NOTE_INTERFACE[] | TRASH_ITEM_INTERFACE[];
+  notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
   headerData: HEADER_INTERFACE;
 }> = (props) => {
   const location = useLocationIndicator();

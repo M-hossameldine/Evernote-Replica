@@ -13,7 +13,7 @@ function App() {
         <Route path={HOMEPAGE} element={<HomePage />} />
         <Route path={`${NOTESPAGE}/:noteId`} element={<NotesPage />} />
         {/* <Route path={`${TRASHPAGE}`} element={<TrashPage />} /> */}
-        <Route path={`${TRASHPAGE}/:trashNoteId`} element={<TrashPage />} />
+        <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
       </Routes>
     </Layout>
   );

@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux-hooks';
+import { useLocationIndicator } from '../../../hooks/use-locationIndicator';
 
 import { selectNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
 import { selectNotes } from '../../../store/notes-slice/notes-slice';
+import { selectTrashNotes } from '../../../store/trash-slice/trash-slice';
 import { editNote } from '../../../store/notes-slice/notes-slice';
 import { fillNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
+import { NOTE_INTERFACE } from '../../../interfaces/note-interface';
+import { TRASH_ITEM_INTERFACE } from '../../../interfaces/trash-interface';
 
 import NoteEditorHeader from './NoteEditorHeader/NoteEditorHeader';
 import AutoGrowingTextArea from '../../UI/AutoGrowingTextArea/AutoGrowingTextArea';
@@ -14,16 +18,32 @@ const NoteEditor: React.FC = (props) => {
   const dispatch = useAppDispatch();
   const { activeNoteIndex, defaultActive } = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);
+  const trashNotes = useAppSelector(selectTrashNotes);
   const params = useParams();
+  const location = useLocationIndicator();
+
+  let notesList: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[] = [...notes];
+
+  if (location.locationKey === 'trash') {
+    notesList = trashNotes;
+  }
 
   let activeId = params.noteId;
-  // console.log('editor param id', params.noteId);
 
-  const activeNote = notes.find((note) => note.id === activeId);
-  // console.log('editor activeNote', activeNote);
+  let activeNote = notesList.find((note) => note.id === activeId);
 
-  let titleText = activeNote!.title;
-  let bodyText = activeNote!.text;
+  console.log('editor activeNote', activeNote);
+
+  let titleText = '';
+  let bodyText = '';
+
+  if (activeNote) {
+    titleText =
+      'title' in activeNote ? activeNote!.title : activeNote!.note.title;
+    bodyText = 'text' in activeNote ? activeNote!.text : activeNote!.note.text;
+  }
+  // useEffect(() => {
+  // }, [activeNote]);
 
   // if (defaultActive) {
   //   titleText = notes[0].title;

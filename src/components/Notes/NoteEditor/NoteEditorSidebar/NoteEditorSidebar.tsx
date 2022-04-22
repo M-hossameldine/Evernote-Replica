@@ -5,12 +5,9 @@ import { FALLBACK_DATA_INTERFACE } from '../../../../interfaces/fallbackData-int
 import NoteEditorSidebarHeader from '../NoteEditorSidebarHeader/NoteEditorSidebarHeader';
 import NoteList from '../../NoteList/NoteList';
 import FallbackMsg from '../../../UI/FallbackMsg/FallbackMsg';
-import Icons from '../../../../constants/Icons';
-
-const { FaTrash } = Icons;
 
 const NoteEditorSidebar: React.FC<{
-  notes: NOTE_INTERFACE[] | TRASH_ITEM_INTERFACE[];
+  notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
   header: HEADER_INTERFACE;
   fallbackData: FALLBACK_DATA_INTERFACE;
 }> = (props) => {
