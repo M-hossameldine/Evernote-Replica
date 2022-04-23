@@ -1,31 +1,25 @@
-import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAddNewNote } from '../../hooks/use-addNewNote';
-import { useAppSelector, useAppDispatch } from '../../hooks/redux-hooks';
+import { useAppSelector } from '../../hooks/redux-hooks';
 import { selectNotes } from '../../store/notes-slice/notes-slice';
 import { sendNewNoteData } from '../../store/notes-slice/notes-actions';
+import { NOTESPAGE } from '../../constants/routes';
+import { useUpdatedState } from '../../hooks/use-updatedState';
 import Icons from '../../constants/Icons';
 
 const { BsPlus, IoIosArrowDown } = Icons;
 
 const AddNewNoteTab: React.FC = () => {
-  const { addToStore } = useAddNewNote();
   const notes = useAppSelector(selectNotes);
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const notesUpdatedState = useUpdatedState({
+    asyncAction: sendNewNoteData,
+    route: NOTESPAGE,
+    usedIndex: 0,
+    watchedState: notes,
+    operation: 'add',
+  });
 
   const addNoteHandler = () => {
-    // addToStore();
-    dispatch(sendNewNoteData());
-    console.log('clicked');
+    notesUpdatedState.dispatchActionHandler();
   };
-
-  useEffect(() => {
-    if (notes.length > 0) {
-      const firstNoteId = notes[0].id;
-      navigate(`/notes/${firstNoteId}`);
-    }
-  }, [notes]);
 
   return (
     <button
