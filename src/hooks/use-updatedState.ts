@@ -3,6 +3,7 @@
  * Specially the naviagtion after updating the state successfuly
  * The typical usuage case: adding and deleting notes
  */
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { Dispatch } from 'redux';
 import { useNavigate } from 'react-router-dom';
@@ -30,8 +31,8 @@ export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
   operationMap.set('add', (length: number) => length + 1);
   operationMap.set('delete', (length: number) => length - 1);
 
-  const dispatchActionHandler = () => {
-    dispatch(asyncAction());
+  const dispatchActionHandler = (payload?: any) => {
+    dispatch(asyncAction(payload));
     setIsNoteAdded({ added: true, prevNotesLength: watchedState.length });
   };
 
@@ -46,6 +47,7 @@ export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
         'id' in watchedState[usedIndex]
           ? watchedState[usedIndex]['id']
           : 'empty';
+
       navigate(`${route}/${noteId}`);
       setIsNoteAdded({ added: false, prevNotesLength: watchedState.length });
     }

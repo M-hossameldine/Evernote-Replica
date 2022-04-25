@@ -1,6 +1,8 @@
 import { Link, useParams } from 'react-router-dom';
 import classes from './NoteItem.module.css';
 
+import { useAppDispatch } from '../../../hooks/redux-hooks';
+import { setActiveNoteIndex } from '../../../store/noteEditor-slice/noteEditor-slice';
 import { NOTE_INTERFACE } from '../../../interfaces/note-interface';
 import { TRASH_ITEM_INTERFACE } from '../../../interfaces/trash-interface';
 import { useLocationIndicator } from '../../../hooks/use-locationIndicator';
@@ -10,16 +12,18 @@ const NoteItem: React.FC<{
   index: number;
   onClick?: (noteIndex: number) => void;
 }> = (props) => {
+  const dispatch = useAppDispatch();
   const params = useParams();
   const location = useLocationIndicator();
   const { note, index, onClick } = props;
 
   let { text, title, createdTimestamp } = 'note' in note ? note.note : note;
 
-  // const { id: localNoteId } = 'note' in note ? note : note;
   const { id: localNoteId } = note;
 
   const noteFocusHandler = () => {
+    dispatch(setActiveNoteIndex({ index }));
+    console.log('index is set');
     if (props.onClick) {
       props.onClick(index);
     }
@@ -30,17 +34,12 @@ const NoteItem: React.FC<{
     month: 'short',
   })} ${createNoteTimestamp.getUTCDate()}`;
 
-  let noteItemClasses = ` ${classes.note} `;
-  if (localNoteId === params.noteId) {
-    noteItemClasses += ` ${classes.active} `;
-  }
-  //  + ()
-  //   ?
-  //   : '';
+  let noteItemClasses = ` ${classes.note} ${
+    localNoteId === params.noteId ? classes.active : ''
+  } `;
 
   return (
     <Link
-      // className={`${classes.note} ${classes.active}`}
       className={noteItemClasses}
       to={`/${location.locationKey}/${localNoteId}`}
       onClick={noteFocusHandler}

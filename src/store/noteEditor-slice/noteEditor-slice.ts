@@ -26,6 +26,11 @@ const NoteEditorSlice = createSlice({
     resetNoteEditor(state) {
       state = initialState;
     },
+    setActiveNoteIndex(state, action: PayloadAction<{ index: number }>) {
+      const { index } = action.payload;
+
+      state.activeNoteIndex = index;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -35,7 +40,7 @@ const NoteEditorSlice = createSlice({
   },
 });
 
-export const { fillNoteEditor } = NoteEditorSlice.actions;
+export const { fillNoteEditor, setActiveNoteIndex } = NoteEditorSlice.actions;
 
 export const selectNoteEditor = (state: RootState) => state.noteEditor;
 

@@ -51,8 +51,11 @@ const NotesSlice = createSlice({
       const { title, createdTimestamp, text } = action.payload;
       state.notes.unshift(createNote(title, text, createdTimestamp));
     },
-    removeNote(state, action: PayloadAction<string>) {
-      const existedId = action.payload;
+    moveToTrash(
+      state,
+      action: PayloadAction<{ id: string; note: NOTE_INTERFACE }>
+    ) {
+      const existedId = action.payload.id;
       state.notes = state.notes.filter((note) => note.id !== existedId);
     },
     editNote(
@@ -70,18 +73,12 @@ const NotesSlice = createSlice({
       state.notes[existedNoteIndex].title = title;
       state.notes[existedNoteIndex].text = text;
       state.notes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
-      // state.notes[existedNoteIndex] = {
-      //   ...state.notes[existedNoteIndex],
-      //   title,
-      //   text,
-      //   updatedTimestamp,
-      // };
     },
   },
 });
 
 // export const NotesActions = NotesSlice.actions;
-export const { addNote, removeNote, editNote } = NotesSlice.actions;
+export const { addNote, moveToTrash, editNote } = NotesSlice.actions;
 
 export const selectNotes = (state: RootState) => state.notes.notes;
 

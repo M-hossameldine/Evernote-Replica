@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import { moveToTrash } from '../notes-slice/notes-slice';
 import { RootState } from '../index';
+import { NOTE_INTERFACE } from '../../interfaces/note-interface';
 
 import {
   TRASH_ITEM_INTERFACE,
@@ -21,7 +22,7 @@ const initialState: TRASH_STATE_INTERFACE = {
         createdTimestamp: new Date().toISOString(),
       },
       deleteTimestamp: new Date().toISOString(),
-      id: '0',
+      id: '10',
     },
     {
       note: {
@@ -31,7 +32,7 @@ const initialState: TRASH_STATE_INTERFACE = {
         createdTimestamp: new Date().toISOString(),
       },
       deleteTimestamp: new Date().toISOString(),
-      id: '1',
+      id: '11',
     },
   ],
 };
@@ -43,6 +44,17 @@ const TrashSlice = createSlice({
     deleteItemPermanently: (state, action: PayloadAction<string>) => {},
     restoreItem: (state, action: PayloadAction<string>) => {},
     emptyTrash: (state) => {},
+  },
+  extraReducers: (builder) => {
+    builder.addCase(
+      moveToTrash,
+      (state, action: PayloadAction<{ id: string; note: NOTE_INTERFACE }>) => {
+        const newTrashNote = createTrashNote(action.payload.note);
+        let notes = state.notes.unshift(newTrashNote);
+        console.log('state notes', notes);
+        console.log('payload', action.payload);
+      }
+    );
   },
 });
 

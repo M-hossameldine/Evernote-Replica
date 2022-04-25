@@ -6,6 +6,7 @@ import { createNote } from '../../interfaces/note-interface';
 import { NOTE_INTERFACE } from '../../interfaces/note-interface';
 import { NOTESPAGE } from '../../constants/routes';
 import { AppDispatch, RootState } from '../index';
+import { moveToTrash } from './notes-slice';
 
 // export const sendNewNoteData2 = createAsyncThunk(
 //   'notes/sendNewNoteStatus',
@@ -29,8 +30,17 @@ export const sendNewNoteData = (payload?: {
       dispatch(addNote(note));
     };
 
+    // Error handling and api requests will be added
     try {
       await sendRequest();
     } catch (error) {}
+  };
+};
+
+export const MoveToTrashAction = (payload?: any) => {
+  return async (dispatch: Dispatch) => {
+    dispatch(moveToTrash({ id: payload.id, note: payload.note }));
+
+    // Error handling and api requests will be added
   };
 };

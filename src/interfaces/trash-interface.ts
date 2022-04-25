@@ -7,10 +7,8 @@ export interface TRASH_ITEM_INTERFACE {
   id: string;
 }
 
-export const createTrashNote = (
-  note: NOTE_INTERFACE,
-  deleteTimestamp: string
-) => {
+export const createTrashNote = (note: NOTE_INTERFACE) => {
+  const deleteTimestamp = new Date().toDateString();
   return {
     note,
     deleteTimestamp,

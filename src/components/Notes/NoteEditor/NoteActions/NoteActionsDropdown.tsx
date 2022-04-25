@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useUpdatedState } from '../../../../hooks/use-updatedState';
 
 import { useAppSelector, useAppDispatch } from '../../../../hooks/redux-hooks';
 import { selectNoteEditor } from '../../../../store/noteEditor-slice/noteEditor-slice';
-import { removeNote } from '../../../../store/notes-slice/notes-slice';
+import { selectNotes } from '../../../../store/notes-slice/notes-slice';
+import { moveToTrash } from '../../../../store/notes-slice/notes-slice';
+import { MoveToTrashAction } from '../../../../store/notes-slice/notes-actions';
 
+import { NOTESPAGE } from '../../../../constants/routes';
 import ExecludeEventWrapper from '../../../UI/ExecludeEventWrapper/ExecludeEventWrapper';
 import Icons from '../../../../constants/Icons';
 
@@ -12,21 +16,35 @@ const { IoIosMore } = Icons;
 
 const NoteActionsDropdown: React.FC = (props) => {
   const editor = useAppSelector(selectNoteEditor);
+  const notes = useAppSelector(selectNotes);
   const dispatch = useAppDispatch();
   const [isExpanded, setIsExpanded] = useState(false);
   const params = useParams();
+  const updatedState = useUpdatedState({
+    asyncAction: MoveToTrashAction,
+    watchedState: notes,
+    route: NOTESPAGE,
+    usedIndex: editor.activeNoteIndex,
+    operation: 'delete',
+  });
 
+  const deleteNoteHandler = () => {
+    const selectedNote = notes.find((note) => note.id === params.noteId);
+    updatedState.dispatchActionHandler({
+      id: params.noteId!,
+      note: selectedNote!,
+    });
+    // dispatch(moveToTrash({ id: params.noteId!, note: selectedNote! }));
+    hideDropdonwHandler();
+  };
+
+  // dropdown visiblity handlers
   const toggleDropdonwHandler = () => {
     setIsExpanded((prevState) => !prevState);
   };
 
   const hideDropdonwHandler = () => {
     setIsExpanded(false);
-  };
-
-  const deleteNoteHandler = () => {
-    dispatch(removeNote(params.noteId!));
-    hideDropdonwHandler();
   };
 
   return (

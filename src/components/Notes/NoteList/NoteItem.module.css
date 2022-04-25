@@ -3,7 +3,7 @@
   p-3 rounded-xl;
 }
 .note.active {
-  @apply border-[2px] border-neutral-300;
+  @apply border-2 border-neutral-300;
 }
 .note__title {
   @apply font-semibold text-neutral-700;
