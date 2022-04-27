@@ -21,25 +21,32 @@ export const sendNewNoteData = (payload?: {
   text?: string;
 }) => {
   return async (dispatch: Dispatch) => {
-    const sendRequest = async () => {
-      const newTitle = payload && payload.title ? payload.title : '';
-      const newText = payload && payload.text ? payload.text : '';
-      const timestamp = new Date().toISOString();
+    const newTitle = payload && payload.title ? payload.title : '';
+    const newText = payload && payload.text ? payload.text : '';
+    const timestamp = new Date().toISOString();
 
-      const note = createNote(newTitle, newText, timestamp);
-      dispatch(addNote(note));
-    };
+    const note = createNote(newTitle, newText, timestamp);
 
     // Error handling and api requests will be added
+    const sendRequest = async () => {};
+
     try {
       await sendRequest();
+
+      dispatch(addNote(note));
     } catch (error) {}
   };
 };
 
 export const MoveToTrashAction = (payload?: any) => {
   return async (dispatch: Dispatch) => {
-    dispatch(moveToTrash({ id: payload.id, note: payload.note }));
+    console.log('payload dropdown', payload);
+    const sendRequest = async () => {};
+    try {
+      await sendRequest();
+
+      dispatch(moveToTrash({ id: payload.id, note: payload.note }));
+    } catch (error) {}
 
     // Error handling and api requests will be added
   };

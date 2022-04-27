@@ -14,7 +14,7 @@ interface UPDATE_DATA_INTERFACE {
   route: string;
   usedIndex: number;
   watchedState: any[];
-  operation: 'add' | 'delete';
+  operation: 'add' | 'delete' | 'update';
 }
 
 export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
@@ -34,15 +34,24 @@ export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
   const dispatchActionHandler = (payload?: any) => {
     dispatch(asyncAction(payload));
     setIsNoteAdded({ added: true, prevNotesLength: watchedState.length });
+    console.log('dropdown action added', isNoteAdded);
   };
 
   // navigate to first note after adding the new note successfuly
   useEffect(() => {
+    // console.log('useEffect entered dropdown');
+    console.log('dropdown cond part 1.1', isNoteAdded.added);
+    console.log('dropdown cond part 1.2', watchedState.length);
+    console.log(
+      'dropdown cond part 2',
+      operationMap.get(operation)(isNoteAdded.prevNotesLength)
+    );
     if (
       isNoteAdded.added &&
       watchedState.length ===
         operationMap.get(operation)(isNoteAdded.prevNotesLength)
     ) {
+      console.log('dropdown if cond');
       const noteId =
         'id' in watchedState[usedIndex]
           ? watchedState[usedIndex]['id']
