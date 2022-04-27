@@ -22,7 +22,7 @@ const initialState: TRASH_STATE_INTERFACE = {
         createdTimestamp: new Date().toISOString(),
       },
       deleteTimestamp: new Date().toISOString(),
-      id: '10',
+      id: '9',
     },
     {
       note: {
@@ -41,7 +41,11 @@ const TrashSlice = createSlice({
   name: 'Trash Slice',
   initialState,
   reducers: {
-    deleteItemPermanently: (state, action: PayloadAction<string>) => {},
+    deleteItemPermanently: (state, action: PayloadAction<{ id: string }>) => {
+      const itemId = action.payload.id;
+
+      state.notes = state.notes.filter((item) => item.id !== itemId);
+    },
     restoreItem: (state, action: PayloadAction<string>) => {},
     emptyTrash: (state) => {},
   },

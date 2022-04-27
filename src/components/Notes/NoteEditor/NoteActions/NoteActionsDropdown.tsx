@@ -7,7 +7,7 @@ import { selectNoteEditor } from '../../../../store/noteEditor-slice/noteEditor-
 import { selectNotes } from '../../../../store/notes-slice/notes-slice';
 import { selectTrashNotes } from '../../../../store/trash-slice/trash-slice';
 import { MoveToTrashAction } from '../../../../store/notes-slice/notes-actions';
-
+import { deleteItemPermanentlyAction } from '../../../../store/trash-slice/trash-actions';
 import ExecludeEventWrapper from '../../../UI/ExecludeEventWrapper/ExecludeEventWrapper';
 import NoteActionsDropdownItem from './NoteActionsDropdownItem';
 import { findNoteById } from '../../../../utils/functions';
@@ -50,14 +50,12 @@ const NoteActionsDropdown: React.FC = (props) => {
     </>
   ) : (
     <>
-      {/* <div className='flex justify-between gap-4 py-2'>
-        <button
-          className='flex gap-4 text-neutral-700 hover:bg-neutral-100 px-4 py-1'
-          onClick={moveNoteToTrashHandler}
-        >
-          Delete permanently
-        </button>
-      </div> */}
+      <NoteActionsDropdownItem
+        text='Delete permanently'
+        asyncAction={deleteItemPermanentlyAction}
+        asyncActionArgs={{ id: params.noteId }}
+        operation='delete'
+      />
     </>
   );
 
