@@ -4,6 +4,7 @@ import NoteListingOptions from '../../NoteListingOperations/NoteListingOptions';
 import { NOTE_INTERFACE } from '../../../../interfaces/note-interface';
 import { TRASH_ITEM_INTERFACE } from '../../../../interfaces/trash-interface';
 import { HEADER_INTERFACE } from '../../../../interfaces/header-interface';
+import EmptyTrashButton from './EmptyTrashButton';
 
 const NoteEditorSidebarHeader: React.FC<{
   notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
@@ -19,11 +20,7 @@ const NoteEditorSidebarHeader: React.FC<{
       <div className='flex items-center gap-1 text-neutral-700 pb-3 '>
         <headerData.icon size='18' className='shrink-0' />
         <h2 className='text-xl'>{headerData.title}</h2>
-        {location.locationKey === 'trash' && (
-          <button className='ml-auto text-sm text-white bg-neutral-300 px-3 py-1 rounded'>
-            Empty Trash
-          </button>
-        )}
+        {location.locationKey === 'trash' && <EmptyTrashButton />}
       </div>
 
       <div className='flex justify-between items-center text-neutral-500 '>

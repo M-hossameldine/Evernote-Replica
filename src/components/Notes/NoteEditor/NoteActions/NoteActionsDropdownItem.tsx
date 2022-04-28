@@ -17,7 +17,7 @@ const NoteActionsDropdownItem: React.FC<{
   text: string;
   asyncAction: (payload?: any) => (dispatch: Dispatch) => Promise<void>;
   asyncActionArgs: {};
-  operation: 'add' | 'delete' | 'update';
+  operation: 'add' | 'delete' | 'update' | 'empty';
 }> = (props) => {
   const { text, asyncAction, asyncActionArgs, operation } = props;
 

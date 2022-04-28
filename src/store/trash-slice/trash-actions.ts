@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { deleteItemPermanently, restoreItem } from './trash-slice';
+import { deleteItemPermanently, restoreItem, emptyTrash } from './trash-slice';
 
 import { TRASH_ITEM_INTERFACE } from '../../interfaces/trash-interface';
 
@@ -17,5 +17,11 @@ export const restoreItemFromTrashAction = (payload: {
 }) => {
   return async (dispatch: Dispatch) => {
     dispatch(restoreItem(payload));
+  };
+};
+
+export const emptyTrashAction = () => {
+  return async (dispatch: Dispatch) => {
+    dispatch(emptyTrash());
   };
 };
