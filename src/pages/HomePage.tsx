@@ -1,5 +1,7 @@
+import HomeHeader from '../components/Home/HomeHeader';
+
 const HomePage: React.FC = (props) => {
-  return <h2> Home Page</h2>;
+  return <HomeHeader />;
 };
 
 export default HomePage;

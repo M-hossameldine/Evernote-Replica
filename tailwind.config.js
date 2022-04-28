@@ -10,6 +10,7 @@ module.exports = {
       boxShadow: {
         'even-1': '0 0 4px 2px rgba(0, 0, 0, 0.2)',
       },
+      backgroundImage: {},
     },
   },
   plugins: [],
