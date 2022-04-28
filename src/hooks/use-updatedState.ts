@@ -3,7 +3,7 @@
  * Specially the naviagtion after updating the state successfuly
  * The typical usuage case: adding and deleting notes
  */
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+
 import { useEffect, useState } from 'react';
 import { Dispatch } from 'redux';
 import { useNavigate } from 'react-router-dom';
@@ -14,53 +14,60 @@ interface UPDATE_DATA_INTERFACE {
   route: string;
   usedIndex: number;
   watchedState: any[];
-  operation: 'add' | 'delete' | 'update';
+  operation: 'add' | 'delete' | 'update' | 'empty';
 }
 
 export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
   const { asyncAction, route, usedIndex, watchedState, operation } =
     updatedStateData;
-  const [isNoteAdded, setIsNoteAdded] = useState<{
-    added: boolean;
+  const [isListEdited, setIsListEdited] = useState<{
+    isEdited: boolean;
     prevNotesLength: number;
-  }>({ added: false, prevNotesLength: watchedState.length });
+  }>({ isEdited: false, prevNotesLength: watchedState.length });
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  // set operations map that get the new updated list length value
   const operationMap = new Map();
   operationMap.set('add', (length: number) => length + 1);
   operationMap.set('delete', (length: number) => length - 1);
+  operationMap.set('empty', () => 0);
 
+  // execute the store action
   const dispatchActionHandler = (payload?: any) => {
     dispatch(asyncAction(payload));
-    setIsNoteAdded({ added: true, prevNotesLength: watchedState.length });
-    console.log('dropdown action added', isNoteAdded);
+    setIsListEdited({ isEdited: true, prevNotesLength: watchedState.length });
+    console.log('dropdown action isEdited', isListEdited);
   };
 
-  // navigate to first note after adding the new note successfuly
+  // navigate to route after the watched list successfuly
   useEffect(() => {
-    // console.log('useEffect entered dropdown');
-    console.log('dropdown cond part 1.1', isNoteAdded.added);
-    console.log('dropdown cond part 1.2', watchedState.length);
-    console.log(
-      'dropdown cond part 2',
-      operationMap.get(operation)(isNoteAdded.prevNotesLength)
-    );
     if (
-      isNoteAdded.added &&
+      isListEdited.isEdited &&
       watchedState.length ===
-        operationMap.get(operation)(isNoteAdded.prevNotesLength)
+        operationMap.get(operation)(isListEdited.prevNotesLength) &&
+      watchedState.length !== 0
     ) {
-      console.log('dropdown if cond');
       const noteId =
-        'id' in watchedState[usedIndex]
+        // watchedState[usedIndex] && 'id' in watchedState[usedIndex]
+        usedIndex < watchedState.length - 1 // check if the last item is deleted
           ? watchedState[usedIndex]['id']
-          : 'empty';
+          : watchedState[watchedState.length - 1]['id'];
 
       navigate(`${route}/${noteId}`);
-      setIsNoteAdded({ added: false, prevNotesLength: watchedState.length });
+      setIsListEdited({
+        isEdited: false,
+        prevNotesLength: watchedState.length,
+      });
+    } else if (watchedState.length === 0) {
+      navigate(`${route}/empty`);
+      // // causes an infinity loop
+      // setIsListEdited({
+      //   isEdited: false,
+      //   prevNotesLength: watchedState.length,
+      // });
     }
-  }, [isNoteAdded, watchedState]);
+  }, [isListEdited, watchedState]);
 
   return { dispatchActionHandler };
 };
