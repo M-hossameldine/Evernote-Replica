@@ -6,8 +6,7 @@ import SideNavTab from './SideNavTab';
 import SearchBar from './SearchBar';
 import AddNewNoteTab from './AddNewNoteTab';
 
-const { FaUserCircle, IoIosArrowBack, IoIosArrowForward, IoIosArrowDown } =
-  Icons;
+const { FaUserCircle, IoIosArrowDown } = Icons;
 
 const SideNavBar: React.FC = () => {
   const [expanded, setExpanded] = useState(true);
@@ -18,11 +17,6 @@ const SideNavBar: React.FC = () => {
     <div
       className={`flex flex-col h-screen w-14 lg:w-56 bg-neutral-800 text-neutral-300`}
     >
-      {/* Notes Navigator */}
-      <div className='flex gap-3 text-neutral-400 pt-4 pb-2 lg:px-3'>
-        <IoIosArrowBack className='text-lg shrink-0 cursor-pointer' />
-        <IoIosArrowForward className='text-lg shrink-0 cursor-pointer' />
-      </div>
       {/* sidebar header */}
       <header className='flex flex-col gap-2 p-3'>
         {/* User Profile */}
