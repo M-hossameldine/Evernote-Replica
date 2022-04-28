@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
 import { NOTE_INTERFACE, createNote } from '../../interfaces/note-interface';
 import { RootState } from '../index';
+import { restoreItem } from '../trash-slice/trash-slice';
+import { TRASH_ITEM_INTERFACE } from '../../interfaces/trash-interface';
 
 const DUMMY_NOTE_lIST: NOTE_INTERFACE[] = [
   {
@@ -74,6 +76,19 @@ const NotesSlice = createSlice({
       state.notes[existedNoteIndex].text = text;
       state.notes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(
+      restoreItem,
+      (
+        state,
+        action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>
+      ) => {
+        const restoredNote = action.payload.note.note;
+
+        state.notes.unshift(restoredNote);
+      }
+    );
   },
 });
 

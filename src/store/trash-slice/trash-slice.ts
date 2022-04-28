@@ -46,8 +46,17 @@ const TrashSlice = createSlice({
 
       state.notes = state.notes.filter((item) => item.id !== itemId);
     },
-    restoreItem: (state, action: PayloadAction<string>) => {},
-    emptyTrash: (state) => {},
+    restoreItem: (
+      state,
+      action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>
+    ) => {
+      const itemId = action.payload.id;
+
+      state.notes = state.notes.filter((item) => item.id !== itemId);
+    },
+    emptyTrash: (state) => {
+      state.notes = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(

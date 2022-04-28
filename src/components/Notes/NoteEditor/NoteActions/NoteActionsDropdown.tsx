@@ -7,7 +7,10 @@ import { selectNoteEditor } from '../../../../store/noteEditor-slice/noteEditor-
 import { selectNotes } from '../../../../store/notes-slice/notes-slice';
 import { selectTrashNotes } from '../../../../store/trash-slice/trash-slice';
 import { MoveToTrashAction } from '../../../../store/notes-slice/notes-actions';
-import { deleteItemPermanentlyAction } from '../../../../store/trash-slice/trash-actions';
+import {
+  deleteItemPermanentlyAction,
+  restoreItemFromTrashAction,
+} from '../../../../store/trash-slice/trash-actions';
 import ExecludeEventWrapper from '../../../UI/ExecludeEventWrapper/ExecludeEventWrapper';
 import NoteActionsDropdownItem from './NoteActionsDropdownItem';
 import { findNoteById } from '../../../../utils/functions';
@@ -54,6 +57,12 @@ const NoteActionsDropdown: React.FC = (props) => {
         text='Delete permanently'
         asyncAction={deleteItemPermanentlyAction}
         asyncActionArgs={{ id: params.noteId }}
+        operation='delete'
+      />
+      <NoteActionsDropdownItem
+        text='Restore note'
+        asyncAction={restoreItemFromTrashAction}
+        asyncActionArgs={{ id: params.noteId, note: selectedNote! }}
         operation='delete'
       />
     </>
