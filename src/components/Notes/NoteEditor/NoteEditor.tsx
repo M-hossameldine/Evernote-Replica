@@ -91,7 +91,7 @@ const NoteEditor: React.FC = (props) => {
   };
 
   return (
-    <div className='grow'>
+    <div className='grow bg-white h-screen'>
       <NoteEditorHeader />
 
       <div className='px-10 py-5'>

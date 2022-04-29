@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from './constants/routes';
+import { HOMEPAGE, NOTESPAGE, TRASHPAGE, EDITORPAGE } from './constants/routes';
 import Layout from './components/UI/Layout/Layout';
 import NotesPage from './pages/NotesPage';
 import HomePage from './pages/HomePage';
@@ -14,6 +14,7 @@ function App() {
         <Route path={`${NOTESPAGE}/:noteId`} element={<NotesPage />} />
         {/* <Route path={`${TRASHPAGE}`} element={<TrashPage />} /> */}
         <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
+        <Route path={`${EDITORPAGE}/:noteId`} element={<NotesPage />} />
       </Routes>
     </Layout>
   );
