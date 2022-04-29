@@ -6,18 +6,21 @@ import {
   FUNCTION_ITEM_INTERFACE,
   ACTION_ITEM_INTERFACE,
 } from '../../../interfaces/index';
-import Icons from '../../../constants/Icons';
-
-const { IoIosMore } = Icons;
 
 interface MENU_INTERFACE {
   menuHeader: JSX.Element;
   submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];
   className?: string;
+  placeSubmenu?: {
+    // default
+    x?: 'leftWinger' | 'rightWinger' | 'midfield' | string;
+    y?: 'top' | 'bottom' | string;
+  };
 }
 
 const DropdownMenu: React.FC<MENU_INTERFACE> = (props) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const { placeSubmenu } = props;
+  const [isExpanded, setIsExpanded] = useState(false); // set submenu visiblitily
 
   // sebmenu visiblity handlers
   const toggleDropdonwHandler = () => {
@@ -27,6 +30,36 @@ const DropdownMenu: React.FC<MENU_INTERFACE> = (props) => {
   const hideDropdonwHandler = () => {
     setIsExpanded(false);
   };
+
+  // submenu position
+  let submenuPosition = { x: 'left-0', y: 'top-[150%]' }; // default position bottom leftWinger
+  if (placeSubmenu) {
+    // Horizontal position
+    if (placeSubmenu.x) {
+      switch (placeSubmenu.x) {
+        case 'rightWinger':
+          submenuPosition.x = 'right-0';
+          break;
+        case 'leftWinger':
+          submenuPosition.x = 'left-0';
+          break;
+        case 'midfield':
+          submenuPosition.x = 'left-2/4 -translate-x-2/4';
+          break;
+        default:
+          submenuPosition.x = placeSubmenu.x;
+      }
+    }
+
+    // Vertical position
+    if (placeSubmenu.y === 'top' || placeSubmenu.y === 'bottom') {
+      submenuPosition.y =
+        placeSubmenu.y === 'top' ? 'bottom-[130%]' : 'top-[130%]';
+    } else if (placeSubmenu.y) {
+      submenuPosition.y = placeSubmenu.y;
+    }
+  }
+
   return (
     <ExecludeEventWrapper
       listenerHandler={hideDropdonwHandler}
@@ -34,21 +67,20 @@ const DropdownMenu: React.FC<MENU_INTERFACE> = (props) => {
     >
       {/* Menu Header */}
       <button
-        className='text-neutral-500 m-0 p-0'
+        className='text-neutral-500 hover:bg-neutral-100 rounded p-1'
         onClick={toggleDropdonwHandler}
       >
-        {/* <IoIosMore className='text-xl shrink-0' /> */}
         {props.menuHeader}
       </button>
 
       {/* Submenu */}
       <Submenu
-        className={`absolute right-0 top-[150%] z-10 bg-white whitespace-nowrap shadow-even-1 rounded text-sm ${
-          isExpanded ? 'scale-100' : 'scale-0'
-        }`}
+        className={`absolute z-10 ${submenuPosition.x} ${submenuPosition.y} 
+        ${isExpanded ? 'scale-100' : 'scale-0'}
+        bg-white whitespace-nowrap shadow-even-1 rounded text-sm py-2`}
         onClick={hideDropdonwHandler}
         submenuItemsData={props.submenuItemsData}
-      ></Submenu>
+      />
     </ExecludeEventWrapper>
   );
 };
