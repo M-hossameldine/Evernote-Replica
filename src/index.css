@@ -29,6 +29,7 @@ code {
   .break-word-break {
     word-break: break-word;
   }
+
   /* Scrollbar for Firefox */
   .scrollbar-box {
     scrollbar-color: transparent transparent;
@@ -41,7 +42,7 @@ code {
 
   /* Scrollbar for Chrome & Safari & Edge */
   ::-webkit-scrollbar {
-    @apply w-2 absolute top-0 right-1 mr-2;
+    @apply w-2 h-2 absolute top-0 right-1 mr-2;
   }
 
   ::-webkit-scrollbar-track {
