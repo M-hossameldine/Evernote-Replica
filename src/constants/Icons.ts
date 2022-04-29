@@ -9,7 +9,7 @@ import {
 import { BsSearch, BsPlus, BsSortDown } from 'react-icons/bs';
 import { BiFilterAlt } from 'react-icons/bi';
 import { FaUserCircle, FaStar, FaUserFriends, FaTrash } from 'react-icons/fa';
-import { MdViewList } from 'react-icons/md';
+import { MdViewList, MdPostAdd } from 'react-icons/md';
 import { AiFillHome } from 'react-icons/ai';
 import { RiPriceTagFill, RiBookletFill, RiHomeGearFill } from 'react-icons/ri';
 import { GiNotebook } from 'react-icons/gi';
@@ -35,6 +35,7 @@ const Icons = {
   MdViewList,
   GiNotebook,
   RiHomeGearFill,
+  MdPostAdd,
 };
 
 export default Icons;
