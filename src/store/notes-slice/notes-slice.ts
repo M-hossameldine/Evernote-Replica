@@ -34,6 +34,27 @@ const DUMMY_NOTE_lIST: NOTE_INTERFACE[] = [
     createdTimestamp: new Date().toISOString(),
     updatedTimestamp: '',
   },
+  {
+    id: '4',
+    title: '5th Note Title',
+    text: '5th Note text body',
+    createdTimestamp: new Date().toISOString(),
+    updatedTimestamp: '',
+  },
+  {
+    id: '5',
+    title: '6th Note Title',
+    text: '6th Note text body',
+    createdTimestamp: new Date().toISOString(),
+    updatedTimestamp: '',
+  },
+  {
+    id: '6',
+    title: '7th Note Title',
+    text: '7th Note text body',
+    createdTimestamp: new Date().toISOString(),
+    updatedTimestamp: '',
+  },
 ];
 
 interface NotesState {

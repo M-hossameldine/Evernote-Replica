@@ -16,9 +16,12 @@ const Submenu: React.FC<{
       {props.submenuItemsData.map((itemData) => {
         let item;
         if ('asyncAction' in itemData) {
-          const { text, asyncAction, asyncActionArgs, operation } = itemData;
+          const { id, text, asyncAction, asyncActionArgs, operation } =
+            itemData;
           item = (
             <SubmenuActionItem
+              key={id}
+              id={id}
               text={text}
               asyncAction={asyncAction}
               asyncActionArgs={asyncActionArgs}
@@ -26,8 +29,15 @@ const Submenu: React.FC<{
             />
           );
         } else {
-          const { text, onClick } = itemData;
-          item = <SubmenuFunctionItem text={text} onClick={onClick} />;
+          const { id, text, onClick } = itemData;
+          item = (
+            <SubmenuFunctionItem
+              key={id}
+              id={id}
+              text={text}
+              onClick={onClick}
+            />
+          );
         }
 
         return item;

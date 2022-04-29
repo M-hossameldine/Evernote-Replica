@@ -8,7 +8,8 @@ module.exports = {
         },
       },
       boxShadow: {
-        'even-1': '0 0 4px 2px rgba(0, 0, 0, 0.2)',
+        'even-1': '0 0 3px 2px rgba(0, 0, 0, 0.05)',
+        'even-2': '0 0 4px 2px rgba(0, 0, 0, 0.2)',
       },
       backgroundImage: {},
     },

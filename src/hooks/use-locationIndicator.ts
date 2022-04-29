@@ -5,9 +5,15 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { TRASHPAGE, NOTESPAGE } from '../constants/routes';
+import { TRASHPAGE, NOTESPAGE, EDITORPAGE } from '../constants/routes';
 
-export const locationType = ['trash', 'notes', 'notebooks', 'generic'] as const;
+export const locationType = [
+  'trash',
+  'notes',
+  'notebooks',
+  'editor',
+  'generic',
+] as const;
 
 export type locationType = typeof locationType[number];
 
@@ -22,6 +28,8 @@ export const useLocationIndicator = () => {
       setLocationKey('trash');
     } else if (pageType(NOTESPAGE)) {
       setLocationKey('notes');
+    } else if (pageType(EDITORPAGE)) {
+      setLocationKey('editor');
     } else {
       setLocationKey(null);
       console.log('Page is note customized yet');

@@ -79,7 +79,7 @@ const NoteActionsDropdown: React.FC = (props) => {
         </button>
 
         <div
-          className={`absolute right-0 top-[150%] z-10 bg-white whitespace-nowrap shadow-even-1 rounded text-sm ${
+          className={`absolute right-0 top-[150%] z-10 bg-white whitespace-nowrap shadow-even-2 rounded text-sm ${
             isExpanded ? 'scale-100' : 'scale-0'
           }`}
           onClick={hideDropdonwHandler}

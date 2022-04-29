@@ -6,13 +6,15 @@
 import { Dispatch } from 'redux';
 
 export interface ACTION_ITEM_INTERFACE {
+  id: string;
   text: string;
   asyncAction: (payload?: any) => (dispatch: Dispatch) => Promise<void>;
-  asyncActionArgs: {};
+  asyncActionArgs?: {};
   operation: 'add' | 'delete' | 'update' | 'empty';
 }
 
 export interface FUNCTION_ITEM_INTERFACE {
+  id: string;
   text: string;
   onClick: () => void;
 }

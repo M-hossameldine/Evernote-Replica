@@ -77,7 +77,7 @@ const DropdownMenu: React.FC<MENU_INTERFACE> = (props) => {
       <Submenu
         className={`absolute z-10 ${submenuPosition.x} ${submenuPosition.y} 
         ${isExpanded ? 'scale-100' : 'scale-0'}
-        bg-white whitespace-nowrap shadow-even-1 rounded text-sm py-2`}
+        bg-white whitespace-nowrap shadow-even-2 rounded text-sm py-2`}
         onClick={hideDropdonwHandler}
         submenuItemsData={props.submenuItemsData}
       />

@@ -10,12 +10,14 @@ import { useLocationIndicator } from '../../../hooks/use-locationIndicator';
 const NoteItem: React.FC<{
   note: NOTE_INTERFACE | TRASH_ITEM_INTERFACE;
   index: number;
+  className?: string;
+  route?: string;
   onClick?: (noteIndex: number) => void;
 }> = (props) => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const location = useLocationIndicator();
-  const { note, index, onClick } = props;
+  const { note, index, className, route, onClick } = props;
 
   let { text, title, createdTimestamp } = 'note' in note ? note.note : note;
 
@@ -29,19 +31,26 @@ const NoteItem: React.FC<{
     }
   };
 
+  // navigation link
+  const navigationLink = route
+    ? `${route}/${localNoteId}`
+    : `/${location.locationKey}/${localNoteId}`;
+
+  // date form
   const createNoteTimestamp = new Date(createdTimestamp);
   const noteTimestampValue = `${createNoteTimestamp.toLocaleString('default', {
     month: 'short',
   })} ${createNoteTimestamp.getUTCDate()}`;
 
-  let noteItemClasses = ` ${classes.note} ${
-    localNoteId === params.noteId ? classes.active : ''
-  } `;
+  // style
+  let noteItemClasses = ` ${classes.note} block
+    ${localNoteId === params.noteId ? classes.active : ''} 
+    ${className ? className : ''}`;
 
   return (
     <Link
       className={noteItemClasses}
-      to={`/${location.locationKey}/${localNoteId}`}
+      to={navigationLink}
       onClick={noteFocusHandler}
     >
       <h3 className={classes['note__title']}>
