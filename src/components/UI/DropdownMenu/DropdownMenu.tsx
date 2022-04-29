@@ -1,11 +1,22 @@
 import { useState } from 'react';
 
 import ExecludeEventWrapper from '../ExecludeEventWrapper/ExecludeEventWrapper';
+import Submenu from './Submenu';
+import {
+  FUNCTION_ITEM_INTERFACE,
+  ACTION_ITEM_INTERFACE,
+} from '../../../interfaces/index';
 import Icons from '../../../constants/Icons';
 
 const { IoIosMore } = Icons;
 
-const DropdownMenu: React.FC = (props) => {
+interface MENU_INTERFACE {
+  menuHeader: JSX.Element;
+  submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];
+  className?: string;
+}
+
+const DropdownMenu: React.FC<MENU_INTERFACE> = (props) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   // sebmenu visiblity handlers
@@ -19,23 +30,25 @@ const DropdownMenu: React.FC = (props) => {
   return (
     <ExecludeEventWrapper
       listenerHandler={hideDropdonwHandler}
-      className='relative'
+      className={`relative ${props.className ? props.className : ''}`}
     >
-      {/* Submenu trigger */}
+      {/* Menu Header */}
       <button
         className='text-neutral-500 m-0 p-0'
         onClick={toggleDropdonwHandler}
       >
-        <IoIosMore className='text-xl shrink-0' />
+        {/* <IoIosMore className='text-xl shrink-0' /> */}
+        {props.menuHeader}
       </button>
 
       {/* Submenu */}
-      <div
+      <Submenu
         className={`absolute right-0 top-[150%] z-10 bg-white whitespace-nowrap shadow-even-1 rounded text-sm ${
           isExpanded ? 'scale-100' : 'scale-0'
         }`}
         onClick={hideDropdonwHandler}
-      ></div>
+        submenuItemsData={props.submenuItemsData}
+      ></Submenu>
     </ExecludeEventWrapper>
   );
 };
