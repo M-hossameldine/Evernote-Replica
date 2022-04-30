@@ -62,12 +62,12 @@ const SideNavTabs: React.FC = () => {
     <ul className='flex flex-col '>
       <SideNavTab tab={TAB_CONTENT.home} onClick={() => navigate(HOMEPAGE)} />
       <div className='flex flex-col'>
-        <SideNavTab tab={TAB_CONTENT.shortcuts} />
+        {/* <SideNavTab tab={TAB_CONTENT.shortcuts} /> */}
         <SideNavTab tab={TAB_CONTENT.notes} onClick={activateNotesTabHandler} />
-        <SideNavTab tab={TAB_CONTENT.tasks} />
-        <SideNavTab tab={TAB_CONTENT.notebooks} className='mt-3' />
-        <SideNavTab tab={TAB_CONTENT.tags} />
-        <SideNavTab tab={TAB_CONTENT.sharedWithMe} />
+        {/* <SideNavTab tab={TAB_CONTENT.tasks} /> */}
+        {/* <SideNavTab tab={TAB_CONTENT.notebooks} className='mt-3' /> */}
+        {/* <SideNavTab tab={TAB_CONTENT.tags} /> */}
+        {/* <SideNavTab tab={TAB_CONTENT.sharedWithMe} /> */}
         <SideNavTab
           tab={TAB_CONTENT.trash}
           className='mt-3'

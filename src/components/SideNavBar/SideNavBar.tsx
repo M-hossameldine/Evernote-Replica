@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import Icons from '../../constants/Icons';
 import SideNavTabs from './SideNavTabs';
-import SideNavTab from './SideNavTab';
 import SearchBar from './SearchBar';
 import AddNewNoteTab from './AddNewNoteTab';
 
@@ -34,7 +33,7 @@ const SideNavBar: React.FC = () => {
         <AddNewNoteTab />
       </header>
 
-      <SearchBar />
+      {/* <SearchBar /> */}
       <SideNavTabs />
     </div>
   );

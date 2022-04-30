@@ -12,9 +12,8 @@ function App() {
       <Routes>
         <Route path={HOMEPAGE} element={<HomePage />} />
         <Route path={`${NOTESPAGE}/:noteId`} element={<NotesPage />} />
-        {/* <Route path={`${TRASHPAGE}`} element={<TrashPage />} /> */}
-        <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
         <Route path={`${EDITORPAGE}/:noteId`} element={<NotesPage />} />
+        <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
       </Routes>
     </Layout>
   );

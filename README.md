@@ -1,6 +1,6 @@
-# Note Manager (Evernote Simulator)
+# Evernote Replica with React
 
-#### Demo site is here: [Live link will provide Soon]()
+#### Demo site is here: [Evernote Demo](https://evernote-replica-react.web.app/)
 
 ## Table of Contents
 
@@ -10,6 +10,11 @@
 - [Built Using](#built_using)
 - [TODO](#todo)
 - [Acknowledgements](#achknowledgement)
+
+## About <a name= "about"></a>
+
+This project is a demo replica for the **Evernote**.  
+Evernote is an app designed for note taking, organizing, task management, and archiving. It is developed by the Evernote Corporation,
 
 ## Build Setup <a name="build_setup"></a>
 
@@ -30,5 +35,8 @@
 #### Client-Side
 
 - [ReactJs](https://reactjs.org/) - Web FrameWork
+- [React Router Dom v.6](https://www.npmjs.com/package/react-router-dom/v/6.0.0) DOM binding for [React Router](https://reactrouter.com/)
 - [TypeScript](https://www.typescriptlang.org/) - Strongly typed programming language that build on JavaScript
+- [Redux](https://redux.js.org/) - State Management Library
+- [Redux-Toolkit](https://redux-toolkit.js.org/) - Efficient Redux development Toolset
 - [Tailwind](https://tailwindcss.com/) - Utility-First CSS Framework
