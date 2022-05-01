@@ -4,7 +4,7 @@ import { HOMEPAGE, AUTHPAGE } from '../../../constants/routes';
 
 const HomePublicNav: React.FC = (props) => {
   return (
-    <header className='fixed top-0 left-0 w-full text-gray-600 body-font'>
+    <div className='fixed top-0 left-0 w-full text-gray-600 body-font'>
       <div className=' flex flex-wrap p-5 flex-col md:flex-row items-center container max-w-[75rem] mx-auto  '>
         <Link
           to={HOMEPAGE}
@@ -22,7 +22,7 @@ const HomePublicNav: React.FC = (props) => {
           </Link>
         </nav>
       </div>
-    </header>
+    </div>
   );
 };
 

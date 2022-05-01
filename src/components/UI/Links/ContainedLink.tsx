@@ -14,14 +14,13 @@ interface CONTAINED_LINK_INTERFACE {
 const ContainedLink: React.FC<CONTAINED_LINK_INTERFACE> = (props) => {
   const { text, route, className, icon } = props;
 
-  const linkClasses =
-    `text-white bg-green-550 hover:bg-green-600 font-semibold py-[1em] px-[4em] rounded ` +
-    className
-      ? className
-      : '';
-
   return (
-    <Link to={route} className={linkClasses}>
+    <Link
+      to={route}
+      className={` table text-white bg-green-550 hover:bg-green-450 font-semibold p-[4.5em] py-[0.7em] rounded ${
+        className ? className : ''
+      }`}
+    >
       {text}
       {icon ? (
         <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
@@ -30,7 +29,6 @@ const ContainedLink: React.FC<CONTAINED_LINK_INTERFACE> = (props) => {
       )}
     </Link>
   );
-  // return <Link to={route} className=''> {text} </Link>;
 };
 
 export default ContainedLink;

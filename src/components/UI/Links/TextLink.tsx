@@ -4,7 +4,7 @@ import { IconType } from 'react-icons';
 interface TEXT_LINK_INTERFACE {
   text: string;
   route: string;
-  underlined?: boolean;
+  underline?: boolean;
   className?: string;
   icon?: {
     Icon: IconType;
@@ -13,10 +13,11 @@ interface TEXT_LINK_INTERFACE {
 }
 
 const TextLink: React.FC<TEXT_LINK_INTERFACE> = (props) => {
-  const { text, route, underlined = true, className, icon } = props;
+  const { text, route, underline = true, className, icon } = props;
 
-  let linkClasses =
-    ` ${className ? className : ''} ` + underlined ? ' underlined ' : '';
+  let linkClasses = ` text-neutral-700 hover:text-green-550 
+      ${className ? className : ''} 
+      ${underline ? ' underline ' : ''} `;
 
   return (
     <Link to={route} className={linkClasses}>
