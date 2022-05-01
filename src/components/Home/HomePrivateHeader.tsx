@@ -4,7 +4,7 @@ import Icons from '../../constants/Icons';
 const { RiHomeGearFill } = Icons;
 const { HomeImg } = Images;
 
-const HomeHeader: React.FC = (props) => {
+const HomePrivateHeader: React.FC = (props) => {
   // get home header date
   const todayTimestamp = new Date().toLocaleString('en-US', {
     dateStyle: 'full',
@@ -38,4 +38,4 @@ const HomeHeader: React.FC = (props) => {
   );
 };
 
-export default HomeHeader;
+export default HomePrivateHeader;

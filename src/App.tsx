@@ -20,7 +20,8 @@ function App() {
       {!isLoggedIn && (
         <Routes>
           <Route path={HOMEPAGE} element={<HomePage />} />
-          <Route path={AUTHPAGE} element={<AuthPage />} />
+          <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
+          <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
         </Routes>
       )}
 

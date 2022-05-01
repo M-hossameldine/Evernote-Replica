@@ -1,11 +1,28 @@
-import HomeHeader from '../components/Home/HomeHeader';
-import WidgetsContainer from '../components/Home/WidgetsContainer';
+import { useState } from 'react';
+
+import {
+  HomePublicNav,
+  HomePrivateHeader,
+  WidgetsContainer,
+} from '../components/shared-components';
 
 const HomePage: React.FC = (props) => {
   return (
     <>
-      <HomeHeader />
-      <WidgetsContainer />
+      {/* user is not authorized */}
+      {true && (
+        <>
+          <HomePublicNav />
+        </>
+      )}
+
+      {/* user is authorized */}
+      {false && (
+        <>
+          <HomePrivateHeader />
+          <WidgetsContainer />
+        </>
+      )}
     </>
   );
 };
