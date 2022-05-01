@@ -20,7 +20,7 @@ const NoteEditorSidebarHeader: React.FC<{
       <div className='flex items-center gap-1 text-neutral-700 pb-3 '>
         <headerData.icon size='18' className='shrink-0' />
         <h2 className='text-xl'>{headerData.title}</h2>
-        {location.locationKey === 'trash' && <EmptyTrashButton />}
+        {location.isInCurrentPath('trash') && <EmptyTrashButton />}
       </div>
 
       <div className='flex justify-between items-center text-neutral-500 '>

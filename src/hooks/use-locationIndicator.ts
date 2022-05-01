@@ -2,7 +2,7 @@
  * Custom Hook detects whick page (route) the reusable component is part of
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { TRASHPAGE, NOTESPAGE, EDITORPAGE } from '../constants/routes';
@@ -18,17 +18,20 @@ export const locationType = [
 export type locationType = typeof locationType[number];
 
 export const useLocationIndicator = () => {
-  const [locationKey, setLocationKey] = useState<locationType | null>(null);
   const location = useLocation();
+  const [locationKey, setLocationKey] = useState<locationType | null>(null);
+
+  const isInCurrentPath = useCallback(
+    (page: string) => location.pathname.includes(page),
+    [location]
+  );
 
   useEffect(() => {
-    const pageType = (page: string) => location.pathname.includes(page);
-
-    if (pageType(TRASHPAGE)) {
+    if (isInCurrentPath(TRASHPAGE)) {
       setLocationKey('trash');
-    } else if (pageType(NOTESPAGE)) {
+    } else if (isInCurrentPath(NOTESPAGE)) {
       setLocationKey('notes');
-    } else if (pageType(EDITORPAGE)) {
+    } else if (isInCurrentPath(EDITORPAGE)) {
       setLocationKey('editor');
     } else {
       setLocationKey(null);
@@ -36,5 +39,5 @@ export const useLocationIndicator = () => {
     }
   }, []);
 
-  return { locationKey };
+  return { isInCurrentPath, locationKey };
 };

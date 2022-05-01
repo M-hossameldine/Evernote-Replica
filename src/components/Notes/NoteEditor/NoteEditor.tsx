@@ -24,7 +24,7 @@ const NoteEditor: React.FC = (props) => {
 
   let notesList: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[] = [...notes];
 
-  if (location.locationKey === 'trash') {
+  if (location.isInCurrentPath('trash')) {
     notesList = trashNotes;
   }
 

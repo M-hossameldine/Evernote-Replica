@@ -26,7 +26,7 @@ const NoteActionsDropdown: React.FC = (props) => {
   const location = useLocationIndicator();
   const params = useParams();
 
-  const isInTrash = location.locationKey === 'trash';
+  const isInTrash = location.isInCurrentPath('trash');
 
   const selectedNote = findNoteById(
     isInTrash ? trashNotes : notes,
