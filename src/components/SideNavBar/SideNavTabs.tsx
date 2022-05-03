@@ -9,9 +9,7 @@ import { selectTrashNotes } from '../../store/trash-slice/trash-slice';
 
 import SideNavTab from './SideNavTab';
 import DropdownList from '../UI/Dropdown';
-import Icons from '../../constants/Icons';
-
-const {
+import {
   AiFillHome,
   FaStar,
   IoIosPaper,
@@ -20,7 +18,7 @@ const {
   RiPriceTagFill,
   FaUserFriends,
   FaTrash,
-} = Icons;
+} from '../../assets/index';
 
 const TAB_CONTENT = {
   home: new NavTabModel('Home', AiFillHome),

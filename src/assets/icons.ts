@@ -8,13 +8,21 @@ import {
 } from 'react-icons/io';
 import { BsSearch, BsPlus, BsSortDown } from 'react-icons/bs';
 import { BiFilterAlt } from 'react-icons/bi';
-import { FaUserCircle, FaStar, FaUserFriends, FaTrash } from 'react-icons/fa';
+import {
+  FaUserCircle,
+  FaStar,
+  FaUserFriends,
+  FaTrash,
+  FaBars,
+} from 'react-icons/fa';
 import { MdViewList, MdPostAdd } from 'react-icons/md';
 import { AiFillHome } from 'react-icons/ai';
 import { RiPriceTagFill, RiBookletFill, RiHomeGearFill } from 'react-icons/ri';
 import { GiNotebook } from 'react-icons/gi';
+import { GrClose } from 'react-icons/gr';
 
-const Icons = {
+// Icons
+export {
   BsSearch,
   BsPlus,
   IoIosArrowBack,
@@ -36,6 +44,6 @@ const Icons = {
   GiNotebook,
   RiHomeGearFill,
   MdPostAdd,
+  FaBars,
+  GrClose,
 };
-
-export default Icons;

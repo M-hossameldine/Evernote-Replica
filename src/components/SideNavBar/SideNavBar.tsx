@@ -1,11 +1,8 @@
 import { useState } from 'react';
 
-import Icons from '../../constants/Icons';
+import { FaUserCircle, IoIosArrowDown } from '../../assets/index';
 import SideNavTabs from './SideNavTabs';
-import SearchBar from './SearchBar';
 import AddNewNoteTab from './AddNewNoteTab';
-
-const { FaUserCircle, IoIosArrowDown } = Icons;
 
 const SideNavBar: React.FC = () => {
   const [expanded, setExpanded] = useState(true);

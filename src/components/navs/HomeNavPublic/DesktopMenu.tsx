@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { HorizontalLogo } from '../../../assets/index';
 import { HOMEPAGE, AUTHPAGE } from '../../../constants/routes';
-import { FaBars } from '../../../constants/Icons';
+import { FaBars } from '../../../assets/index';
 
 const DesktopMenu: React.FC<{ onShowMenu: () => void }> = (props) => {
   return (

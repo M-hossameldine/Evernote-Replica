@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { HorizontalLogo } from '../../../assets/index';
 import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from '../../../constants/routes';
 import { GhostLink, ExecludeEventWrapper } from '../../shared-components';
-import { GrClose } from '../../../constants/Icons';
+import { GrClose } from '../../../assets/index';
 
 const MobileMenu: React.FC<{
   onClose: () => void;

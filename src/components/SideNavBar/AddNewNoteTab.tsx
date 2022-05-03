@@ -1,7 +1,5 @@
 import AddNoteWrapper from '../Notes/AddNoteWrapper/AddNoteWrapper';
-import Icons from '../../constants/Icons';
-
-const { BsPlus, IoIosArrowDown } = Icons;
+import { BsPlus, IoIosArrowDown } from '../../assets/index';
 
 const AddNewNoteTab: React.FC = () => {
   return (

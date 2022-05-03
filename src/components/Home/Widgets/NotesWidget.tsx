@@ -13,9 +13,7 @@ import {
   ACTION_ITEM_INTERFACE,
 } from '../../../interfaces/index';
 import { sendNewNoteData } from '../../../store/notes-slice/notes-actions';
-import Icons from '../../../constants/Icons';
-
-const { IoIosArrowForward, MdPostAdd, IoIosMore } = Icons;
+import { IoIosArrowForward, MdPostAdd, IoIosMore } from '../../../assets/index';
 
 const NotesWidget: React.FC<{ className?: string }> = (props) => {
   const notes = useAppSelector(selectNotes);

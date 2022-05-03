@@ -4,9 +4,7 @@ import { useLocationIndicator } from '../hooks/use-locationIndicator';
 
 import NoteEditor from '../components/Notes/NoteEditor/NoteEditor';
 import NoteEditorSidebar from '../components/Notes/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
-import Icons from '../constants/Icons';
-
-const { IoIosPaper, GiNotebook } = Icons;
+import { IoIosPaper, GiNotebook } from '../assets/index';
 
 const NotesPage: React.FC = (props) => {
   const notes = useAppSelector(selectNotes);

@@ -23,12 +23,12 @@ const HeroSection: React.FC<HERO_INTERFACE> = (props) => {
 
   return (
     <section
-      className={` pt-24 px-16 container max-w-[75rem] mx-auto  text-center ${
+      className={`px-4 md:px-12 lg:px-24 container max-w-[75rem] mx-auto  text-center ${
         className ? className : ''
       } `}
     >
       <h1
-        className='font-bold leading-[150%] mb-2'
+        className='font-bold leading-[150%] mb-2 mt-4'
         style={{ fontSize: 'clamp(2.2rem, 7vw, 3.5rem)', lineHeight: '' }}
       >
         {title}

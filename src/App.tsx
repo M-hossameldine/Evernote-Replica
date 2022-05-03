@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import { Layout } from './components/shared-components';
 import {
   AUTHPAGE,
   HOMEPAGE,
   NOTESPAGE,
   TRASHPAGE,
   EDITORPAGE,
+  DOWNLOADPAGE,
 } from './constants/routes';
-import Layout from './components/UI/Layout/Layout';
-import { AuthPage, HomePage, NotesPage, TrashPage } from './pages/shared-pages';
+import {
+  AuthPage,
+  HomePage,
+  NotesPage,
+  TrashPage,
+  DownloadPage,
+} from './pages/shared-pages';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,6 +29,7 @@ function App() {
           <Route path={HOMEPAGE} element={<HomePage />} />
           <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
           <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
+          <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
         </Routes>
       )}
 

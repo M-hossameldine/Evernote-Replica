@@ -1,8 +1,6 @@
 import SideNavTab from './SideNavTab';
 import { NavTabModel } from '../../models/UI-Models';
-import Icons from '../../constants/Icons';
-
-const { BsSearch } = Icons;
+import { BsSearch } from '../../assets/index';
 
 const SEARCH_TAB = new NavTabModel('Search', BsSearch);
 

@@ -14,9 +14,7 @@ import {
 import ExecludeEventWrapper from '../../../UI/ExecludeEventWrapper/ExecludeEventWrapper';
 import NoteActionsDropdownItem from './NoteActionsDropdownItem';
 import { findNoteById } from '../../../../utils/functions';
-import Icons from '../../../../constants/Icons';
-
-const { IoIosMore } = Icons;
+import { IoIosMore } from '../../../../assets/index';
 
 const NoteActionsDropdown: React.FC = (props) => {
   const [isExpanded, setIsExpanded] = useState(false);

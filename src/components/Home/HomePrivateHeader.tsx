@@ -1,8 +1,5 @@
-import Images from '../../assets/index';
-import Icons from '../../constants/Icons';
-
-const { RiHomeGearFill } = Icons;
-const { HomeImg } = Images;
+import { HomeImg } from '../../assets/index';
+import { RiHomeGearFill } from '../../assets/index';
 
 const HomePrivateHeader: React.FC = (props) => {
   // get home header date

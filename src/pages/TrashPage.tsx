@@ -3,9 +3,7 @@ import { selectTrashNotes } from '../store/trash-slice/trash-slice';
 
 import NoteEditorSidebar from '../components/Notes/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
 import NoteEditor from '../components/Notes/NoteEditor/NoteEditor';
-import Icons from '../constants/Icons';
-
-const { FaTrash } = Icons;
+import { FaTrash } from '../assets/index';
 
 const TrashPage: React.FC = (props) => {
   const trashNotes = useAppSelector(selectTrashNotes);

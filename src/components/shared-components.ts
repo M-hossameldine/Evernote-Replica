@@ -1,12 +1,17 @@
 // UI
+import ExecludeEventWrapper from './UI/ExecludeEventWrapper/ExecludeEventWrapper';
 import TextLink from './UI/Links/TextLink';
 import ContainedLink from './UI/Links/ContainedLink';
+import GhostLink from './UI/Links/GhostLink';
 
 // Public flow
 import AuthForm from './Auth/AuthForm';
-import HomePublicNav from './navs/PuplicHomeNav/HomePublicNav';
+import HomePublicNav from './navs/HomeNavPublic';
+import MobileMenu from './navs/HomeNavPublic/MobileMenu';
+import DesktopMenu from './navs/HomeNavPublic/DesktopMenu';
 
 // Private flow
+import Layout from './UI/Layout/Layout';
 import HomePrivateHeader from './Home/HomePrivateHeader';
 import WidgetsContainer from './Home/WidgetsContainer';
 
@@ -16,10 +21,15 @@ import HeroSection from '../sections/HeroSection/HeroSection';
 // Pages
 
 export {
+  ExecludeEventWrapper,
   TextLink,
   ContainedLink,
+  GhostLink,
   AuthForm,
   HomePublicNav,
+  DesktopMenu,
+  MobileMenu,
+  Layout,
   HomePrivateHeader,
   WidgetsContainer,
   HeroSection,

@@ -1,8 +1,6 @@
 import { useLocationIndicator } from '../../../hooks/use-locationIndicator';
 
-import Icons from '../../../constants/Icons';
-
-const { BsSortDown, BiFilterAlt, MdViewList } = Icons;
+import { BsSortDown, BiFilterAlt, MdViewList } from '../../../assets/index';
 
 const NoteListingOptions: React.FC = (props) => {
   const location = useLocationIndicator();
