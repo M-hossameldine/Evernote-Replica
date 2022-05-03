@@ -12,6 +12,7 @@ import DesktopMenu from './navs/HomeNavPublic/DesktopMenu';
 
 // Private flow
 import Layout from './UI/Layout/Layout';
+import SideNavBar from './SideNavBar/SideNavBar';
 import HomePrivateHeader from './Home/HomePrivateHeader';
 import WidgetsContainer from './Home/WidgetsContainer';
 
@@ -30,6 +31,7 @@ export {
   DesktopMenu,
   MobileMenu,
   Layout,
+  SideNavBar,
   HomePrivateHeader,
   WidgetsContainer,
   HeroSection,

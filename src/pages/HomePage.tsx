@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import {
-  HomePublicNav,
+  // HomePublicNav,
   HomePrivateHeader,
   WidgetsContainer,
   HeroSection,
@@ -15,7 +15,7 @@ const HomePage: React.FC = (props) => {
       {/* user is not authorized */}
       {true && (
         <div className=''>
-          <HomePublicNav />
+          {/* <HomePublicNav /> */}
           <HeroSection
             title='Tame your work, organize your life'
             description='Remember everything and tackle any project with your notes, tasks, and schedule all in one place.'

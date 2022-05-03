@@ -25,12 +25,18 @@ function App() {
     <>
       {/*if user is not authorized*/}
       {!isLoggedIn && (
-        <Routes>
-          <Route path={HOMEPAGE} element={<HomePage />} />
-          <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
-          <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
-          <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
-        </Routes>
+        <>
+          <Routes>
+            <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
+            <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
+          </Routes>
+          <Layout>
+            <Routes>
+              <Route path={HOMEPAGE} element={<HomePage />} />
+              <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
+            </Routes>
+          </Layout>
+        </>
       )}
 
       {/* if user is authorized, render the layout */}
