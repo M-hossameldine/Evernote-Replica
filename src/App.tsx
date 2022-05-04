@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useLocationIndicator } from './hooks/use-locationIndicator';
 
 import { Layout } from './components';
 import {
@@ -20,18 +21,22 @@ import {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocationIndicator();
 
   return (
     <>
       {/*if user is not authorized*/}
-      {!isLoggedIn && (
+      {!isLoggedIn && location.isInCurrentPath(AUTHPAGE) && (
+        <Routes>
+          <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
+          <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
+        </Routes>
+      )}
+
+      {!isLoggedIn && !location.isInCurrentPath(AUTHPAGE) && (
         <>
-          {/* <Routes>
-          </Routes> */}
           <Layout>
             <Routes>
-              <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
-              <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
               <Route path={HOMEPAGE} element={<HomePage />} />
               <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
             </Routes>
