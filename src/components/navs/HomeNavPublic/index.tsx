@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { DesktopMenu, MobileMenu } from '../../shared-components';
+import { DesktopMenu, MobileMenu } from '../..';
 
 const HomePublicNav: React.FC = (props) => {
   const [showMobileMenu, setShowMenu] = useState(false);

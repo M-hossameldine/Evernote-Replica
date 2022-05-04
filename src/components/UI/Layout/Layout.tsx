@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SideNavBar, HomePublicNav } from '../../shared-components';
+import { SideNavBar, HomePublicNav } from '../..';
 
 const Layout: React.FC = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

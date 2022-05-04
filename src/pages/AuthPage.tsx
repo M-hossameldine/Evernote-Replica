@@ -1,4 +1,4 @@
-import { AuthForm } from '../components/shared-components';
+import { AuthForm } from '../components';
 
 const AuthPage: React.FC = (props) => {
   return (

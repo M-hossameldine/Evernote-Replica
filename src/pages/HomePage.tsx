@@ -5,7 +5,7 @@ import {
   HomePrivateHeader,
   WidgetsContainer,
   HeroSection,
-} from '../components/shared-components';
+} from '../components';
 
 import { AUTHPAGE } from '../constants/routes';
 

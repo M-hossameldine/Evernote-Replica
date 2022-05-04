@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { Layout } from './components/shared-components';
+import { Layout } from './components';
 import {
   AUTHPAGE,
   HOMEPAGE,
@@ -16,7 +16,7 @@ import {
   NotesPage,
   TrashPage,
   DownloadPage,
-} from './pages/shared-pages';
+} from './pages';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,12 +26,12 @@ function App() {
       {/*if user is not authorized*/}
       {!isLoggedIn && (
         <>
-          <Routes>
-            <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
-            <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
-          </Routes>
+          {/* <Routes>
+          </Routes> */}
           <Layout>
             <Routes>
+              <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
+              <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
               <Route path={HOMEPAGE} element={<HomePage />} />
               <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
             </Routes>
