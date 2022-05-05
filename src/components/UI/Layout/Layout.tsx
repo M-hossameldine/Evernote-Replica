@@ -15,7 +15,7 @@ const Layout: React.FC = (props) => {
         </div>
       )}
       {!isLoggedIn && (
-        <main>
+        <main className='pt-12'>
           <HomePublicNav />
           {props.children}
         </main>
