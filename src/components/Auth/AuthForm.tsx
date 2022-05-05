@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useLocationIndicator } from '../../hooks';
 import { VerticalLogo } from '../../assets/index';
 
+import { TextLink } from '../index';
+import { AUTHPAGE } from '../../constants/routes';
+
 const AuthForm: React.FC = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -80,13 +83,19 @@ const AuthForm: React.FC = (props) => {
         )}
 
         {/* toggle auth form - login/register */}
-        <p className='text-sm text-center text-neutral-500 pt-8'>
-          {isLogin ? "Don't have an account?" : 'Already have an account?'}
+        <div className='text-sm text-center  pt-8'>
+          <p className='text-sm text-neutral-500'>
+            {isLogin ? "Don't have an account?" : 'Already have an account?'}
+          </p>
           <br />
-          <button type='button' className='text-base text-green-600'>
-            {isLogin ? 'Create account' : 'Sign in'}
-          </button>
-        </p>
+
+          <TextLink
+            text={isLogin ? 'Create account' : 'Sign in'}
+            route={`${AUTHPAGE}/${isLogin ? 'register' : 'login'}`}
+            className='text-base text-green-600'
+            underline={false}
+          />
+        </div>
       </div>
     </form>
   );
