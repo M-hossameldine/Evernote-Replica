@@ -49,19 +49,22 @@ const MobileMenu: React.FC<{
                   Log In
                 </Link>
               </li>
+
+              {/* download App */}
+              <li onClick={props.onClose}>
+                <GhostLink
+                  text='Download'
+                  colors={{
+                    textClr: 'text-green-550',
+                    textHoverClr: 'text-green-450',
+                    borderClr: 'border-green-550',
+                    borderHoverClr: 'border-green-450',
+                  }}
+                  className='text-sm font-semibold px-[5em] mx-auto mt-12'
+                  route={DOWNLOADPAGE}
+                />
+              </li>
             </ul>
-            {/* download App */}
-            <GhostLink
-              text='Download'
-              colors={{
-                textClr: 'text-green-550',
-                textHoverClr: 'text-green-450',
-                borderClr: 'border-green-550',
-                borderHoverClr: 'border-green-450',
-              }}
-              className='text-sm font-semibold px-[5em] mx-auto mt-12'
-              route={DOWNLOADPAGE}
-            />
           </nav>
         </ExecludeEventWrapper>
       )}
