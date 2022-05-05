@@ -1,9 +1,15 @@
+import { IconType } from 'react-icons';
+
 const ExteranlLink: React.FC<{
   text: string;
+  icon?: {
+    Icon: IconType;
+    iconStyle?: string;
+  };
   href: string;
   className?: string;
 }> = (props) => {
-  const { href, className, text } = props;
+  const { text, icon, href, className } = props;
 
   return (
     <a
@@ -13,6 +19,11 @@ const ExteranlLink: React.FC<{
       className={className}
     >
       {text}
+      {icon ? (
+        <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
+      ) : (
+        ''
+      )}
     </a>
   );
 };

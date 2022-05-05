@@ -1,33 +1,48 @@
 import { Link } from 'react-router-dom';
 import { IconType } from 'react-icons';
 
+import { ExternalLink } from '../../index';
+
 interface TEXT_LINK_INTERFACE {
   text: string;
-  route: string;
   underline?: boolean;
   className?: string;
   icon?: {
     Icon: IconType;
     iconStyle?: string;
   };
+  route: string;
+  isExteranl?: boolean;
 }
 
 const TextLink: React.FC<TEXT_LINK_INTERFACE> = (props) => {
-  const { text, route, underline = true, className, icon } = props;
+  const { text, route, underline = true, className, icon, isExteranl } = props;
 
-  let linkClasses = ` text-neutral-700 hover:text-green-550 
+  let linkClasses = ` 
       ${className ? className : ''} 
       ${underline ? ' underline ' : ''} `;
 
   return (
-    <Link to={route} className={linkClasses}>
-      {text}
-      {icon ? (
-        <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
-      ) : (
-        ''
+    <p>
+      {!isExteranl && (
+        <Link to={route} className={linkClasses}>
+          {text}
+          {icon ? (
+            <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
+          ) : (
+            ''
+          )}
+        </Link>
       )}
-    </Link>
+      {isExteranl && (
+        <ExternalLink
+          text={text}
+          icon={icon}
+          href={route}
+          className={linkClasses}
+        />
+      )}
+    </p>
   );
 };
 

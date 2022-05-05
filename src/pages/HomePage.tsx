@@ -29,7 +29,8 @@ const HomePage: React.FC = (props) => {
               {
                 text: 'Already have an account? Log in',
                 route: `${AUTHPAGE}/login`,
-                className: 'font-semibold text-lg',
+                className:
+                  'font-semibold text-lg text-neutral-500 hover:text-green-450',
               },
             ]}
           />
