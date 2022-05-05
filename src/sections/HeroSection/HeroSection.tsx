@@ -9,6 +9,7 @@ interface HERO_INTERFACE {
   primeBtn: {
     text: string;
     route: string;
+    isExteranl?: boolean;
     className?: string;
   };
   secondaryBtns?: {
@@ -41,6 +42,7 @@ const HeroSection: React.FC<HERO_INTERFACE> = (props) => {
         text={primeBtn.text}
         className={`mx-auto mb-4 
           ${primeBtn.className ? primeBtn.className : ''}`}
+        isExteranl={primeBtn.isExteranl}
       />
 
       {/* optional call to extra actions */}
