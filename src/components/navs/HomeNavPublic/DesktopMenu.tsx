@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 
 import { HorizontalLogo } from '../../../assets/index';
-import { HOMEPAGE, AUTHPAGE } from '../../../constants/routes';
+import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from '../../../constants/routes';
 import { FaBars } from '../../../assets/index';
+import { GhostLink } from '../../index';
 
 const DesktopMenu: React.FC<{ onShowMenu: () => void }> = (props) => {
   return (
@@ -17,14 +18,25 @@ const DesktopMenu: React.FC<{ onShowMenu: () => void }> = (props) => {
       {/* top menu nav */}
 
       {/* Utility nav */}
-      <nav className=' items-center text-base ml-auto'>
-        <Link
-          to={`${AUTHPAGE}/login`}
-          className='hidden lg:block font-semibold text-lg mr-5 text-neutral-700 hover:text-green-600'
-        >
-          Log In
-        </Link>
-
+      <nav className='flex items-center text-base ml-auto'>
+        <ul className='hidden lg:flex gap-3 items-center'>
+          <Link
+            to={`${AUTHPAGE}/login`}
+            className=' font-semibold text-lg  text-neutral-700 hover:text-green-600'
+          >
+            Log In
+          </Link>
+          <GhostLink
+            text='Download'
+            route={DOWNLOADPAGE}
+            colors={{
+              textClr: 'text-green-550',
+              textHoverClr: 'text-green-450',
+              borderClr: 'border-green-550',
+              borderHoverClr: 'border-green-450',
+            }}
+          />
+        </ul>
         <button onClick={props.onShowMenu}>
           <FaBars className='lg:hidden shrink-0 text-2xl' />
         </button>

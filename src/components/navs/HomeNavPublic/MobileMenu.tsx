@@ -53,9 +53,11 @@ const MobileMenu: React.FC<{
             {/* download App */}
             <GhostLink
               text='Download'
-              textColor={{
-                color: 'text-green-550',
-                hoverColor: 'text-green-450',
+              colors={{
+                textClr: 'text-green-550',
+                textHoverClr: 'text-green-450',
+                borderClr: 'border-green-550',
+                borderHoverClr: 'border-green-450',
               }}
               className='text-sm font-semibold px-[5em] mx-auto mt-12'
               route={DOWNLOADPAGE}

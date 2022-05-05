@@ -1,39 +1,50 @@
 import { Link } from 'react-router-dom';
 import { IconType } from 'react-icons';
+import { ExternalLink } from '../../index';
 
 interface LINK_INTERFACE {
   text: string;
-  route: string;
-  textColor: { color: string; hoverColor: string };
+  colors: {
+    textClr: string;
+    textHoverClr: string;
+    borderClr: string;
+    borderHoverClr: string;
+  };
   className?: string;
   icon?: {
     Icon: IconType;
     iconStyle?: string;
   };
+  route: string;
+  isExteranl?: boolean;
 }
 
 const GhostLink: React.FC<LINK_INTERFACE> = (props) => {
-  const { text, route, textColor, className, icon } = props;
+  const { text, colors, className, icon, route, isExteranl } = props;
+  const { textClr, textHoverClr, borderClr, borderHoverClr } = props.colors;
 
-  let colorValue = textColor.color.replace('text-', '');
-  let hoverColorValue = textColor.hoverColor.replace('text-', '');
+  let textHoverColor = ` hover:${textHoverClr} `;
+  let borderHoverColor = ` hover:${borderHoverClr} `;
 
-  let clrClasses = ` border-${colorValue} hover:border-${hoverColorValue} `;
-  // border-${colorValue} hover:border-${hoverColorValue}
+  const linkClasses = `table ${textClr} ${textHoverColor}
+    border-solid border-2 ${borderClr} ${borderHoverColor}
+    p-[4em] py-[0.5em] rounded
+   ${className ? className : ''}`;
+
   return (
-    <Link
-      to={route}
-      className={`table text-${colorValue} hover:text-${hoverColorValue}
-        border-2 ${clrClasses} p-[4em] py-[0.5em] rounded
-        ${className ? className : ''}`}
-    >
-      {text}
-      {icon ? (
-        <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
-      ) : (
-        ''
+    <>
+      {!isExteranl && (
+        <Link to={route} className={linkClasses}>
+          {text}
+          {icon ? (
+            <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
+          ) : (
+            ''
+          )}
+        </Link>
       )}
-    </Link>
+      {isExteranl && <ExternalLink href={route} text={text} className={''} />}
+    </>
   );
 };
 
