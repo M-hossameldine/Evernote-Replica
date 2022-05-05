@@ -33,7 +33,12 @@ const ContainedLink: React.FC<CONTAINED_LINK_INTERFACE> = (props) => {
         </Link>
       )}
       {isExteranl && (
-        <ExternalLink href={route} className={linkClasses} text={text} />
+        <ExternalLink
+          href={route}
+          className={linkClasses}
+          text={text}
+          icon={icon}
+        />
       )}
     </>
   );

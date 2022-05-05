@@ -43,7 +43,14 @@ const GhostLink: React.FC<LINK_INTERFACE> = (props) => {
           )}
         </Link>
       )}
-      {isExteranl && <ExternalLink href={route} text={text} className={''} />}
+      {isExteranl && (
+        <ExternalLink
+          href={route}
+          text={text}
+          className={linkClasses}
+          icon={icon}
+        />
+      )}
     </>
   );
 };
