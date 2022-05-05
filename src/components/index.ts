@@ -1,5 +1,6 @@
 // UI
 import ExecludeEventWrapper from './UI/ExecludeEventWrapper/ExecludeEventWrapper';
+import ExternalLink from './UI/Links/ExternalLink';
 import TextLink from './UI/Links/TextLink';
 import ContainedLink from './UI/Links/ContainedLink';
 import GhostLink from './UI/Links/GhostLink';
@@ -23,6 +24,7 @@ import HeroSection from '../sections/HeroSection/HeroSection';
 
 export {
   ExecludeEventWrapper,
+  ExternalLink,
   TextLink,
   ContainedLink,
   GhostLink,
