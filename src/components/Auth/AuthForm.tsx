@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useLocationIndicator } from '../../hooks';
 import { VerticalLogo } from '../../assets/index';
 
 const AuthForm: React.FC = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const location = useLocationIndicator();
+
+  const isLogin = location.isInCurrentPath('login');
 
   const emailChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
@@ -60,27 +64,28 @@ const AuthForm: React.FC = (props) => {
           type='submit'
           className='text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg'
         >
-          {true && 'Sign up'}
-          {false && 'Sign in'}
+          {!isLogin ? 'Sign up' : 'Sign in'}
           {false && 'Continue'}
         </button>
 
-        {/* toggle auth */}
+        {/* Terms & Privacy */}
+        {!isLogin && (
+          <p className='text-xs text-center text-gray-500 mt-3'>
+            By creating an account, you are agreeing to our
+            <button className='text-green-600'>
+              Terms of Service
+            </button> and{' '}
+            <button className='text-green-600'> Pirvacy Plicy</button>
+          </p>
+        )}
+
+        {/* toggle auth form - login/register */}
         <p className='text-sm text-center text-neutral-500 pt-8'>
-          {true && "Don't have an account?"}
-          {false && 'Already have an account?'}
+          {isLogin ? "Don't have an account?" : 'Already have an account?'}
           <br />
           <button type='button' className='text-base text-green-600'>
-            {true && 'Create account'}
-            {false && 'Sign in'}
+            {isLogin ? 'Create account' : 'Sign in'}
           </button>
-        </p>
-
-        {/* Terms & Privacy */}
-        <p className='text-xs text-center text-gray-500 mt-3'>
-          By creating an account, you are agreeing to our
-          <button className='text-green-600'>Terms of Service</button> and{' '}
-          <button className='text-green-600'> Pirvacy Plicy</button>
         </p>
       </div>
     </form>
