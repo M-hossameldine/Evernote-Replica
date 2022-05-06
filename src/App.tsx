@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useLocationIndicator } from './hooks/use-locationIndicator';
+import { useAppSelector } from './hooks';
 
-import { Layout } from './components';
+import { selectNotification } from './store/shared-store';
+import { Layout, Notification } from './components';
 import {
   AUTHPAGE,
   HOMEPAGE,
@@ -21,10 +23,18 @@ import {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const notification = useAppSelector(selectNotification);
   const location = useLocationIndicator();
 
   return (
     <>
+      {notification && (
+        <Notification
+          message={notification.message}
+          status={notification.status}
+        />
+      )}
+
       {/*if user is not authorized*/}
       {!isLoggedIn && location.isInCurrentPath(AUTHPAGE) && (
         <Routes>
