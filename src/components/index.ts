@@ -4,6 +4,7 @@ import ExternalLink from './UI/Links/ExternalLink';
 import TextLink from './UI/Links/TextLink';
 import ContainedLink from './UI/Links/ContainedLink';
 import GhostLink from './UI/Links/GhostLink';
+import Notification from './UI/Notification/Notification';
 
 // Public flow
 import AuthForm from './Auth/AuthForm';
@@ -28,6 +29,7 @@ export {
   TextLink,
   ContainedLink,
   GhostLink,
+  Notification,
   AuthForm,
   HomePublicNav,
   DesktopMenu,

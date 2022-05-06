@@ -1,0 +1,22 @@
+.notification {
+  @apply fixed top-10 left-2/4 -translate-x-1/2 flex
+  text-white 
+  rounded-md;
+}
+
+.message {
+  @apply flex items-center gap-1 px-5 py-2;
+}
+
+.btn {
+  @apply p-2 px-3
+  border-solid border-l-[1px] border-neutral-300;
+}
+
+.success {
+  @apply bg-sky-700;
+}
+
+.error {
+  @apply bg-red-500;
+}
