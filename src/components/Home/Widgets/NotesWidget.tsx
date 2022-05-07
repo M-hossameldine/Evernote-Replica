@@ -1,19 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
 import { useAppSelector } from '../../../hooks/redux-hooks';
-import { selectNotes } from '../../../store/notes-slice/notes-slice';
+import { v4 as uuid } from 'uuid';
 
-import AddNoteWrapper from '../../Notes/AddNoteWrapper/AddNoteWrapper';
-import DropdownMenu from '../../UI/DropdownMenu/DropdownMenu';
-import Card from '../../UI/Card/Card';
-import NoteItem from '../../Notes/NoteItem/NoteItem';
+import { selectNotes, sendNewNoteData } from '../../../store/shared-store';
+import { DropdownMenu, Card, NoteItem, AddNoteWrapper } from '../../index';
 import { NOTESPAGE, EDITORPAGE } from '../../../constants/routes';
+import { IoIosArrowForward, MdPostAdd, IoIosMore } from '../../../assets/index';
 import {
   FUNCTION_ITEM_INTERFACE,
   ACTION_ITEM_INTERFACE,
 } from '../../../interfaces/index';
-import { sendNewNoteData } from '../../../store/notes-slice/notes-actions';
-import { IoIosArrowForward, MdPostAdd, IoIosMore } from '../../../assets/index';
 
 const NotesWidget: React.FC<{ className?: string }> = (props) => {
   const notes = useAppSelector(selectNotes);
@@ -24,12 +20,12 @@ const NotesWidget: React.FC<{ className?: string }> = (props) => {
   const dropdownData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[] = [
     {
       id: uuid(),
-      text: 'Go to notes',
+      content: 'Go to notes',
       onClick: () => navigate(`${NOTESPAGE}/${firstNote}`),
     },
     {
       id: uuid(),
-      text: 'Create new note',
+      content: 'Create new note',
       asyncAction: sendNewNoteData,
       operation: 'add',
     },
@@ -56,7 +52,10 @@ const NotesWidget: React.FC<{ className?: string }> = (props) => {
         </AddNoteWrapper>
 
         <DropdownMenu
-          menuHeader={<IoIosMore />}
+          menuHeader={{
+            content: <IoIosMore />,
+            className: 'text-neutral-500 hover:bg-neutral-100 rounded p-1',
+          }}
           className='ml-2'
           submenuItemsData={dropdownData}
           placeSubmenu={{ x: 'rightWinger', y: 'bottom' }}

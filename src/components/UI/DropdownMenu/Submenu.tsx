@@ -16,25 +16,25 @@ const Submenu: React.FC<{
       {props.submenuItemsData.map((itemData) => {
         let item;
         if ('asyncAction' in itemData) {
-          const { id, text, asyncAction, asyncActionArgs, operation } =
+          const { id, content, asyncAction, asyncActionArgs, operation } =
             itemData;
           item = (
             <SubmenuActionItem
               key={id}
               id={id}
-              text={text}
+              content={content}
               asyncAction={asyncAction}
               asyncActionArgs={asyncActionArgs}
               operation={operation}
             />
           );
         } else {
-          const { id, text, onClick } = itemData;
+          const { id, content, onClick } = itemData;
           item = (
             <SubmenuFunctionItem
               key={id}
               id={id}
-              text={text}
+              content={content}
               onClick={onClick}
             />
           );

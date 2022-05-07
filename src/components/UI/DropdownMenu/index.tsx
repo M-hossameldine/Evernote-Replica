@@ -8,7 +8,7 @@ import {
 } from '../../../interfaces/index';
 
 interface MENU_INTERFACE {
-  menuHeader: JSX.Element;
+  menuHeader: { content: JSX.Element; className?: string };
   submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];
   className?: string;
   placeSubmenu?: {
@@ -19,6 +19,7 @@ interface MENU_INTERFACE {
 }
 
 const DropdownMenu: React.FC<MENU_INTERFACE> = (props) => {
+  const { menuHeader } = props;
   const { placeSubmenu } = props;
   const [isExpanded, setIsExpanded] = useState(false); // set submenu visiblitily
 
@@ -66,11 +67,8 @@ const DropdownMenu: React.FC<MENU_INTERFACE> = (props) => {
       className={`relative ${props.className ? props.className : ''}`}
     >
       {/* Menu Header */}
-      <button
-        className='text-neutral-500 hover:bg-neutral-100 rounded p-1'
-        onClick={toggleDropdonwHandler}
-      >
-        {props.menuHeader}
+      <button className={menuHeader.className} onClick={toggleDropdonwHandler}>
+        {menuHeader.content}
       </button>
 
       {/* Submenu */}

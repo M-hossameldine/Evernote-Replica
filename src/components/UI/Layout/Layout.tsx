@@ -1,25 +1,50 @@
-import { useState } from 'react';
-import { SideNavBar, HomePublicNav } from '../..';
+import { useAppSelector, useLocationIndicator } from '../../../hooks';
+import { MainUserSideNav, MainPublicNav } from '../..';
+import { selectIsloggedIn } from '../../../store/shared-store';
+import { AUTHPAGE } from '../../../constants';
 
 const Layout: React.FC = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useAppSelector(selectIsloggedIn);
+  const location = useLocationIndicator();
+
+  // let layoutClasses = isLoggedIn ? ' flex w-full h-screen ' : ' pt-12 ' ;
+
+  // if (!isLoggedIn) {
+  //   layoutClasses += ;
+  // } else if (isLoggedIn) {
+  //   layoutClasses = ;
+  // }
 
   return (
     <>
-      {isLoggedIn && (
-        <div className='flex w-full h-screen'>
-          <SideNavBar />
-          <main className='bg-neutral-200 w-full scrollbar-box overflow-y-scroll'>
+      <main className={`${isLoggedIn ? 'flex w-full h-screen' : 'pt-12'}`}>
+        {isLoggedIn ? (
+          <MainUserSideNav />
+        ) : (
+          !location.isInCurrentPath(AUTHPAGE) && <MainPublicNav />
+        )}
+        {isLoggedIn ? (
+          <div className='bg-neutral-200 w-full scrollbar-box overflow-y-scroll'>
             {props.children}
-          </main>
-        </div>
+          </div>
+        ) : (
+          props.children
+        )}
+      </main>
+      {/* {isLoggedIn && (
+        <main className='flex w-full h-screen'>
+          <MainUserSideNav />
+          <div className='bg-neutral-200 w-full scrollbar-box overflow-y-scroll'>
+            {props.children}
+          </div>
+        </main>
       )}
       {!isLoggedIn && (
         <main className='pt-12'>
-          <HomePublicNav />
+          <MainPublicNav />
           {props.children}
         </main>
-      )}
+      )} */}
     </>
   );
 };

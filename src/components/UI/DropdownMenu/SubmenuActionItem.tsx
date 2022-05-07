@@ -14,7 +14,7 @@ import { TRASH_ITEM_INTERFACE } from '../../../interfaces/trash-interface';
 import { findNoteById } from '../../../utils/functions';
 
 const SubmenuActionItem: React.FC<ACTION_ITEM_INTERFACE> = (props) => {
-  const { text, asyncAction, asyncActionArgs, operation } = props;
+  const { content, asyncAction, asyncActionArgs, operation } = props;
 
   const editor = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);
@@ -45,7 +45,7 @@ const SubmenuActionItem: React.FC<ACTION_ITEM_INTERFACE> = (props) => {
       className='flex gap-4 text-neutral-700 font-semibold hover:bg-neutral-100 px-4 py-2 w-full'
       onClick={itemActionHandler}
     >
-      {text}
+      {content}
     </button>
   );
 };

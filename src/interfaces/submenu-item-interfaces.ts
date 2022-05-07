@@ -7,7 +7,7 @@ import { Dispatch } from 'redux';
 
 export interface ACTION_ITEM_INTERFACE {
   id: string;
-  text: string;
+  content: string | JSX.Element;
   asyncAction: (payload?: any) => (dispatch: Dispatch) => Promise<void>;
   asyncActionArgs?: {};
   operation: 'add' | 'delete' | 'update' | 'empty';
@@ -15,6 +15,6 @@ export interface ACTION_ITEM_INTERFACE {
 
 export interface FUNCTION_ITEM_INTERFACE {
   id: string;
-  text: string;
+  content: string | JSX.Element;
   onClick: () => void;
 }
