@@ -4,3 +4,4 @@ export const TRASHPAGE = '/trash';
 export const EDITORPAGE = '/editor';
 export const AUTHPAGE = '/auth';
 export const DOWNLOADPAGE = '/download';
+export const RESETPASSWORDPAGE = '/resetpassword';

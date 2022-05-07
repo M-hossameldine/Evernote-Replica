@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { DesktopMenu, MobileMenu } from '../..';
 
-const HomePublicNav: React.FC = (props) => {
+const MainPublicNav: React.FC = (props) => {
   const [showMobileMenu, setShowMenu] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -20,4 +20,4 @@ const HomePublicNav: React.FC = (props) => {
   );
 };
 
-export default HomePublicNav;
+export default MainPublicNav;

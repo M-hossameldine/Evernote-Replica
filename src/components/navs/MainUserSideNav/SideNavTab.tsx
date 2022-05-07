@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
-import { NavTabModel } from '../../models/UI-Models';
+import { NavTabModel } from '../../../models/UI-Models';
 
 const SideNavTab: React.FC<{
   tab: NavTabModel;

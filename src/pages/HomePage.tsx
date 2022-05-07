@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useAppSelector } from '../hooks';
+import { selectIsloggedIn } from '../store/shared-store';
 
 import {
   HomePrivateHeader,
@@ -9,10 +10,12 @@ import {
 import { AUTHPAGE } from '../constants/routes';
 
 const HomePage: React.FC = (props) => {
+  const isLoggedIn = useAppSelector(selectIsloggedIn);
+
   return (
     <>
       {/* user is not authorized */}
-      {true && (
+      {!isLoggedIn && (
         <div className=''>
           <HeroSection
             title='Tame your work, organize your life'
@@ -36,7 +39,7 @@ const HomePage: React.FC = (props) => {
       )}
 
       {/* user is authorized */}
-      {false && (
+      {isLoggedIn && (
         <>
           <HomePrivateHeader />
           <WidgetsContainer />

@@ -4,6 +4,7 @@ import notesReducer from './notes-slice/notes-slice';
 import noteEditorReducer from './noteEditor-slice/noteEditor-slice';
 import trashReducer from './trash-slice/trash-slice';
 import uiReducer from './ui-slice/ui-slice';
+import authReducer from './auth-slice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     noteEditor: noteEditorReducer,
     trash: trashReducer,
     ui: uiReducer,
+    auth: authReducer,
   },
 });
 

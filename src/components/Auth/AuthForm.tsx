@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { useLocationIndicator } from '../../hooks';
-import { VerticalLogo } from '../../assets/index';
+import { useAppDispatch } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 
+import { login } from '../../store/shared-store';
 import { TextLink } from '../index';
-import { AUTHPAGE } from '../../constants/routes';
+import { VerticalLogo } from '../../assets/index';
+import { AUTHPAGE, API_KEY, HOMEPAGE } from '../../constants';
 
 const AuthForm: React.FC = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // show form submission loading style
   const location = useLocationIndicator();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const isLogin = location.isInCurrentPath('login');
 
@@ -21,6 +27,56 @@ const AuthForm: React.FC = (props) => {
   };
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
+    console.log('email', email);
+    console.log('password', password);
+
+    setIsLoading(true);
+
+    let url = '';
+
+    if (isLogin) {
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
+    } else {
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
+    }
+
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password,
+        returnSecureToken: true,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        setIsLoading(false);
+
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            console.log(data);
+            let errorMessage = 'Authentication Failed';
+
+            if (data && data.error && data.error.message) {
+              errorMessage = data.error.message;
+            }
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        dispatch(login(data.idToken));
+        navigate(HOMEPAGE);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
@@ -71,6 +127,15 @@ const AuthForm: React.FC = (props) => {
           {false && 'Continue'}
         </button>
 
+        {isLogin && (
+          <TextLink
+            route=''
+            text='Forgot Password?'
+            underline={false}
+            className='table mx-auto mt-4 text-sm text-green-450 '
+          />
+        )}
+
         {/* Terms & Privacy */}
         {!isLogin && (
           <p className='text-xs text-center text-gray-500 mt-3'>
@@ -87,7 +152,6 @@ const AuthForm: React.FC = (props) => {
           <p className='text-sm text-neutral-500'>
             {isLogin ? "Don't have an account?" : 'Already have an account?'}
           </p>
-          <br />
 
           <TextLink
             text={isLogin ? 'Create account' : 'Sign in'}

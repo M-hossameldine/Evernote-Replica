@@ -1,4 +1,4 @@
-import { NavTabModel } from '../../models/UI-Models';
+import { NavTabModel } from '../../../models/UI-Models';
 import SideNavTab from './SideNavTab';
 
 const TapDropdown: React.FC<{ tabs: NavTabModel[] }> = (props) => {
