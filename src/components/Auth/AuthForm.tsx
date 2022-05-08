@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocationIndicator } from '../../hooks';
 import { useAppDispatch } from '../../hooks';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { login, userLoginThunk } from '../../store/shared-store';
 import { TextLink } from '../index';
@@ -105,11 +105,9 @@ const AuthForm: React.FC = (props) => {
       className='w-full md:w-[32rem] h-screen md:h-auto bg-white rounded-lg p-8 py-16  mx-auto mt-10 md:mt-0 relative z-10 shadow-even-3'
     >
       <div className='flex flex-col max-w-[20rem] mx-auto'>
-        <img
-          src={VerticalLogo}
-          alt='Evernote Logo'
-          className='max-w-[11rem] mx-auto'
-        />
+        <Link to='/' className='max-w-[11rem] mx-auto'>
+          <img src={VerticalLogo} alt='Evernote Logo' />
+        </Link>
 
         <p className='text-neutral-600 mx-auto mt-5 mb-12'>
           Remember everything important.
