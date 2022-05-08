@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useAppDispatch } from '../../../hooks';
 
-import { logout } from '../../../store/shared-store';
+import { logout, userLogoutThunk } from '../../../store/shared-store';
 import { FaUserCircle, IoIosArrowDown } from '../../../assets/index';
 import { DropdownMenu, AddNewNoteTab, SideNavTabs } from '../../index';
 
@@ -38,7 +38,7 @@ const SideNavBar: React.FC = () => {
               id: uuid(),
               content: 'Sign out designer.m.hossam@gmail.com',
               onClick: () => {
-                dispatch(logout());
+                dispatch(userLogoutThunk());
               },
             },
           ]}

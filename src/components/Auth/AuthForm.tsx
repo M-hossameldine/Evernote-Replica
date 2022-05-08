@@ -3,10 +3,16 @@ import { useLocationIndicator } from '../../hooks';
 import { useAppDispatch } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 
-import { login } from '../../store/shared-store';
+import { login, userLoginThunk } from '../../store/shared-store';
 import { TextLink } from '../index';
 import { VerticalLogo } from '../../assets/index';
-import { AUTHPAGE, API_KEY, HOMEPAGE } from '../../constants';
+import {
+  AUTHPAGE,
+  API_KEY,
+  HOMEPAGE,
+  LOGIN_ENDPOINT,
+  SIGNUP_ENDPOINT,
+} from '../../constants';
 
 const AuthForm: React.FC = (props) => {
   const [email, setEmail] = useState('');
@@ -25,58 +31,72 @@ const AuthForm: React.FC = (props) => {
   const passwordChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setPassword(event.currentTarget.value);
   };
-  const submitHandler = (event: React.FormEvent) => {
+  // const submitHandler = (event: React.FormEvent) => {
+  //   event.preventDefault();
+  //   console.log('email', email);
+  //   console.log('password', password);
+
+  //   setIsLoading(true);
+
+  //   let url = '';
+
+  //   if (isLogin) {
+  //     url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
+  //   } else {
+  //     url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
+  //   }
+
+  //   fetch(url, {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       email,
+  //       password,
+  //       returnSecureToken: true,
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((res) => {
+  //       setIsLoading(false);
+
+  //       if (res.ok) {
+  //         return res.json();
+  //       } else {
+  //         return res.json().then((data) => {
+  //           console.log(data);
+  //           let errorMessage = 'Authentication Failed';
+
+  //           if (data && data.error && data.error.message) {
+  //             errorMessage = data.error.message;
+  //           }
+
+  //           throw new Error(errorMessage);
+  //         });
+  //       }
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //       dispatch(login(data.idToken));
+  //       navigate(HOMEPAGE);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message);
+  //     });
+  // };
+
+  const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('email', email);
-    console.log('password', password);
 
     setIsLoading(true);
+    let url = isLogin ? LOGIN_ENDPOINT : SIGNUP_ENDPOINT;
 
-    let url = '';
+    const submitSuccessfuly = () => {
+      setIsLoading(false);
+      navigate(HOMEPAGE);
+    };
 
-    if (isLogin) {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
-    } else {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
-    }
-
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        email,
-        password,
-        returnSecureToken: true,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        setIsLoading(false);
-
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            console.log(data);
-            let errorMessage = 'Authentication Failed';
-
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
-        console.log(data);
-        dispatch(login(data.idToken));
-        navigate(HOMEPAGE);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    await dispatch(userLoginThunk(email, password, url, submitSuccessfuly));
   };
 
   return (

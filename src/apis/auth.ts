@@ -3,10 +3,14 @@ import axios from 'axios';
 import { LOGIN_ENDPOINT, CHANGE_PASSWORD_ENDPOINT } from '../constants';
 
 // login/signup requests
-export const authRequest = async (email: string, password: string) => {
+export const authRequest = async (
+  email: string,
+  password: string,
+  url: string
+) => {
   const response = await axios({
     method: 'POST',
-    url: LOGIN_ENDPOINT,
+    url: url,
     data: JSON.stringify({
       email,
       password,

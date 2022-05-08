@@ -1,5 +1,6 @@
 // states
 export * from './auth-slice';
+export * from './auth-slice/auth-actions';
 export * from './noteEditor-slice/noteEditor-slice';
 export * from './notes-slice/notes-slice';
 export * from './notes-slice/notes-actions';

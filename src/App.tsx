@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useLocationIndicator } from './hooks/use-locationIndicator';
-import { useAppSelector } from './hooks';
+import { useAppSelector, useAppDispatch } from './hooks';
 
-import { selectNotification, selectIsloggedIn } from './store/shared-store';
+import {
+  selectNotification,
+  selectIsloggedIn,
+  setToken,
+} from './store/shared-store';
 import { Layout, Notification } from './components';
 import {
   AUTHPAGE,
@@ -22,10 +26,19 @@ import {
 } from './pages';
 
 function App() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isLoggedIn = useAppSelector(selectIsloggedIn);
   const notification = useAppSelector(selectNotification);
+  const dispatch = useAppDispatch();
   const location = useLocationIndicator();
+
+  // presist login
+  useEffect(() => {
+    const authToken = localStorage.getItem('token');
+
+    if (authToken) {
+      dispatch(setToken({ token: authToken }));
+    }
+  }, []);
 
   return (
     <>
