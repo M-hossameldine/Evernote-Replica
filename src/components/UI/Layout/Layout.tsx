@@ -7,7 +7,7 @@ const Layout: React.FC = (props) => {
   const isLoggedIn = useAppSelector(selectIsloggedIn);
   const location = useLocationIndicator();
 
-  // let layoutClasses = isLoggedIn ? ' flex w-full h-screen ' : ' pt-12 ' ;
+  let layoutClasses = isLoggedIn ? ' flex w-full h-screen ' : ' pt-12 ';
 
   // if (!isLoggedIn) {
   //   layoutClasses += ;
@@ -15,9 +15,13 @@ const Layout: React.FC = (props) => {
   //   layoutClasses = ;
   // }
 
+  if (location.isInCurrentPath('auth')) {
+    layoutClasses = '';
+  }
+
   return (
     <>
-      <main className={`${isLoggedIn ? 'flex w-full h-screen' : 'pt-12'}`}>
+      <main className={layoutClasses}>
         {isLoggedIn ? (
           <MainUserSideNav />
         ) : (
