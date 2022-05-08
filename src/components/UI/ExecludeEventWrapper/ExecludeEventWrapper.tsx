@@ -2,18 +2,21 @@ import { useRef } from 'react';
 
 import { useOutsideListener } from '../../../hooks/use-outsideListener';
 
-const ExecludeEventWrapper: React.FC<{
+type Props = {
+  children?: React.ReactNode;
   listenerHandler: () => void;
   className?: string;
-}> = (props) => {
-  const { className } = props;
+};
+
+const ExecludeEventWrapper: React.FC<Props> = (props) => {
+  const { children, listenerHandler, className } = props;
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useOutsideListener(wrapperRef, 'mousedown', props.listenerHandler);
 
   return (
     <div ref={wrapperRef} className={className}>
-      {props.children}
+      {children}
     </div>
   );
 };
