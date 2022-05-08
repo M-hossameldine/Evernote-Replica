@@ -1,57 +1,77 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useLocationIndicator } from './hooks/use-locationIndicator';
+import { useAppSelector, useAppDispatch } from './hooks';
+
+import {
+  selectNotification,
+  selectIsloggedIn,
+  setToken,
+} from './store/shared-store';
+import { Layout, Notification } from './components';
+import {
+  AUTHPAGE,
+  HOMEPAGE,
+  NOTESPAGE,
+  TRASHPAGE,
+  EDITORPAGE,
+  DOWNLOADPAGE,
+} from './constants/routes';
+import {
+  AuthPage,
+  HomePage,
+  NotesPage,
+  TrashPage,
+  DownloadPage,
+} from './pages';
 
 function App() {
+  const isLoggedIn = useAppSelector(selectIsloggedIn);
+  const notification = useAppSelector(selectNotification);
+  const dispatch = useAppDispatch();
+  const location = useLocationIndicator();
+
+  // presist login
+  useEffect(() => {
+    const authToken = localStorage.getItem('token');
+
+    if (authToken) {
+      dispatch(setToken({ token: authToken }));
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      {notification && (
+        <Notification
+          message={notification.message}
+          status={notification.status}
+        />
+      )}
+
+      <Layout>
+        <Routes>
+          <Route path={HOMEPAGE} element={<HomePage />} />
+          {/*if user is not authorized*/}
+          {!isLoggedIn && (
+            <>
+              <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
+              <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
+              <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
+            </>
+          )}
+          {/* if user is authorized*/}
+          {isLoggedIn && (
+            <>
+              <Route path={`${NOTESPAGE}/:noteId`} element={<NotesPage />} />
+              <Route path={`${EDITORPAGE}/:noteId`} element={<NotesPage />} />
+              <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
+            </>
+          )}
+          <Route path='*' element={<Navigate to={`/`} />} />
+        </Routes>
+      </Layout>
+    </>
   );
 }
 

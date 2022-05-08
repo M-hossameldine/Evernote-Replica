@@ -1,3 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+#1a1a1a
+#333333
+#404040
+#777777
+#a6a6a6
+#7f7f7f
+#f8f8f8 
+*/
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +23,37 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@layer components {
+  .break-word-break {
+    word-break: break-word;
+  }
+
+  /* Scrollbar for Firefox */
+  .scrollbar-box {
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-box:hover {
+    scrollbar-color: rgb(163, 163, 163) transparent;
+  }
+
+  /* Scrollbar for Chrome & Safari & Edge */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2 absolute top-0 right-1 mr-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-transparent rounded-xl;
+  }
+
+  *:hover > ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-400;
+  }
 }

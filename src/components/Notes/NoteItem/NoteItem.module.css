@@ -1,0 +1,18 @@
+.note {
+  @apply bg-white shadow-md
+  p-3 rounded-xl;
+}
+.note.active {
+  @apply border-2 border-neutral-300;
+}
+.note__title {
+  @apply font-semibold text-neutral-700;
+}
+
+.note__body {
+  @apply text-neutral-500 h-44 overflow-hidden;
+}
+
+.note__timestamp {
+  @apply text-neutral-500;
+}
