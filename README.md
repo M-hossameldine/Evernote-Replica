@@ -40,3 +40,12 @@ Evernote is an app designed for note taking, organizing, task management, and ar
 - [Redux](https://redux.js.org/) - State Management Library
 - [Redux-Toolkit](https://redux-toolkit.js.org/) - Efficient Redux development Toolset
 - [Tailwind](https://tailwindcss.com/) - Utility-First CSS Framework
+
+#### Server-Side (Database & Authentication)
+
+- [Firebase](https://firebase.google.com/) - Google-Backed application development software (I Used it to Build Database)
+
+[Firebase](https://firebase.google.com/) - Google-Backed application development software
+
+- [Firebase Auth REST API](https://firebase.google.com/docs/reference/rest/auth#section) - Back-End Authentication
+- Firebase Realtime Database.
