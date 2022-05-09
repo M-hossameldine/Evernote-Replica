@@ -7,6 +7,7 @@ import GhostLink from './UI/Links/GhostLink';
 import Notification from './UI/Notification/Notification';
 import DropdownMenu from './UI/DropdownMenu/';
 import Card from './UI/Card/Card';
+import AutoGrowingTextArea from './UI/AutoGrowingTextArea/AutoGrowingTextArea';
 
 // Public flow
 import AuthForm from './Auth/AuthForm';
@@ -23,6 +24,8 @@ import WidgetsContainer from './Home/WidgetsContainer';
 import NoteItem from './Notes/NoteItem/NoteItem';
 import AddNoteWrapper from './Notes/AddNoteWrapper/AddNoteWrapper';
 import AddNewNoteTab from './navs/MainUserSideNav/AddNewNoteTab';
+import NoteEditorHeader from './Notes/NoteEditor/NoteEditorHeader/NoteEditorHeader';
+
 // Sections
 import HeroSection from '../sections/HeroSection/HeroSection';
 
@@ -37,6 +40,7 @@ export {
   Notification,
   DropdownMenu,
   Card,
+  AutoGrowingTextArea,
   AuthForm,
   MainPublicNav,
   DesktopMenu,
@@ -47,6 +51,7 @@ export {
   HomePrivateHeader,
   WidgetsContainer,
   NoteItem,
+  NoteEditorHeader,
   AddNoteWrapper,
   AddNewNoteTab,
   HeroSection,

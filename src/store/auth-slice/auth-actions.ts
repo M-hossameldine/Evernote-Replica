@@ -18,8 +18,8 @@ export const userLoginThunk = (
     try {
       const response = await sendRequest();
 
-      localStorage.setItem('token', response.data.idToken);
-      dispatch(login({ token: response.data.idToken }));
+      // localStorage.setItem('token', response.data.idToken);
+      dispatch(login(response.data));
 
       if (successHandler) successHandler();
     } catch (error: any) {

@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../../hooks/redux-hooks';
-import { useLocationIndicator } from '../../../hooks/use-locationIndicator';
+import {
+  useAppSelector,
+  useAppDispatch,
+  useLocationIndicator,
+} from '../../../hooks';
 
-import { selectNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
-import { selectNotes } from '../../../store/notes-slice/notes-slice';
-import { selectTrashNotes } from '../../../store/trash-slice/trash-slice';
-import { editNote } from '../../../store/notes-slice/notes-slice';
-import { fillNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
-import { NOTE_INTERFACE } from '../../../interfaces/note-interface';
-import { TRASH_ITEM_INTERFACE } from '../../../interfaces/trash-interface';
-
-import NoteEditorHeader from './NoteEditorHeader/NoteEditorHeader';
-import AutoGrowingTextArea from '../../UI/AutoGrowingTextArea/AutoGrowingTextArea';
+import {
+  selectNotes,
+  selectTrashNotes,
+  selectNoteEditor,
+  editNote,
+  fillNoteEditor,
+  showNotification,
+} from '../../../store/shared-store';
+import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from '../../../interfaces';
+import { AutoGrowingTextArea, NoteEditorHeader } from '../../index';
 
 const NoteEditor: React.FC = (props) => {
   const dispatch = useAppDispatch();
@@ -21,10 +24,23 @@ const NoteEditor: React.FC = (props) => {
   const trashNotes = useAppSelector(selectTrashNotes);
   const params = useParams();
   const location = useLocationIndicator();
+  const [isDisabled, setIsDisabled] = useState(false); // disable editor fields in trash page
 
   let notesList: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[] = [...notes];
 
-  if (location.isInCurrentPath('trash')) {
+  const isInTrashPage = location.isInCurrentPath('trash');
+  useEffect(() => {
+    if (isInTrashPage) {
+      // render trash list
+      notesList = trashNotes;
+
+      // prevent user from editing trash notes
+      setIsDisabled(true);
+    }
+  }, []);
+
+  if (isInTrashPage) {
+    // render trash list
     notesList = trashNotes;
   }
 
@@ -90,11 +106,24 @@ const NoteEditor: React.FC = (props) => {
     );
   };
 
+  const trashNotificationHandler = () => {
+    console.log('field clicked');
+    if (isInTrashPage) {
+      console.log('field cond clicked');
+      dispatch(
+        showNotification({
+          status: 'error',
+          message: 'You can not update a note in the Trash',
+        })
+      );
+    }
+  };
+
   return (
     <div className='grow bg-white h-screen'>
       <NoteEditorHeader />
 
-      <div className='px-10 py-5'>
+      <div className='px-10 py-5' onClick={trashNotificationHandler}>
         <div className='mb-4'>
           <AutoGrowingTextArea
             value={titleText}
@@ -105,6 +134,7 @@ const NoteEditor: React.FC = (props) => {
                 'text-neutral-700 text-3xl font-semibold placeholder:font-semibold placeholder:text-3xl',
               fallbackClasses: 'text-3xl',
             }}
+            disabled={isDisabled}
           />
         </div>
 
@@ -116,6 +146,7 @@ const NoteEditor: React.FC = (props) => {
             inputClasses: 'text-neutral-800 ',
             fallbackClasses: '',
           }}
+          disabled={isDisabled}
         />
       </div>
     </div>

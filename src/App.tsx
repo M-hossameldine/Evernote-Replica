@@ -42,12 +42,7 @@ function App() {
 
   return (
     <>
-      {notification && (
-        <Notification
-          message={notification.message}
-          status={notification.status}
-        />
-      )}
+      <Notification />
 
       <Layout>
         <Routes>

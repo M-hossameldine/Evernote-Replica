@@ -1,7 +1,8 @@
 .notification {
   @apply fixed top-10 left-2/4 -translate-x-1/2 flex
-  text-white 
-  rounded-md;
+  text-white z-[-1] opacity-0
+  rounded-md
+  transition-all ease-in;
 }
 
 .message {
@@ -19,4 +20,8 @@
 
 .error {
   @apply bg-red-500;
+}
+
+.visible {
+  @apply z-20 opacity-100;
 }

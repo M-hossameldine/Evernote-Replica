@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { RootState } from '../index';
+import { USER_AUTH_DATA_INTERFACE } from '../../interfaces';
 
 interface AUTH_STATE_INTERFACE {
   token: string | null;
@@ -20,8 +20,9 @@ const AuthSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = !!action.payload.token;
     },
-    login: (state, action: PayloadAction<{ token: string }>) => {
-      state.token = action.payload.token;
+    // login: (state, action: PayloadAction<{ token: string }>) => {
+    login: (state, action: PayloadAction<USER_AUTH_DATA_INTERFACE>) => {
+      state.token = action.payload.idToken;
       state.isLoggedIn = true;
     },
     logout: (state) => {

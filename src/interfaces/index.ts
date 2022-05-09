@@ -7,6 +7,7 @@ import {
   FUNCTION_ITEM_INTERFACE,
 } from './submenu-item-interfaces';
 import { TRASH_ITEM_INTERFACE } from './trash-interface';
+export * from './auth-interfaces';
 
 export type {
   ELEMENT_ATTRIBUTES_INTERFACE,

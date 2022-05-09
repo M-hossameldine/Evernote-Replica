@@ -3,14 +3,18 @@ import React from 'react';
 const AutoGrowingTextArea: React.FC<{
   value?: string;
   placeholder: string;
-  onChange: (e: React.FormEvent<HTMLTextAreaElement>) => void;
   className?: { inputClasses: string; fallbackClasses: string };
+  disabled?: boolean;
+  onChange: (e: React.FormEvent<HTMLTextAreaElement>) => void;
+  onClick?: () => void;
 }> = (props) => {
   const {
     value: textValue,
     placeholder,
-    onChange: textChangeHandler,
     className,
+    disabled,
+    onChange: textChangeHandler,
+    onClick: inputClickedHandler,
   } = props;
 
   let textareaClasses = ` absolute resize-none overflow-hidden w-full h-full min-h-[2.5rem] outline-none  `;
@@ -28,7 +32,9 @@ const AutoGrowingTextArea: React.FC<{
         className={textareaClasses}
         placeholder={placeholder}
         value={textValue}
+        disabled={disabled}
         onChange={textChangeHandler}
+        onClick={inputClickedHandler}
       />
 
       {/*For Height Auto Growing */}
