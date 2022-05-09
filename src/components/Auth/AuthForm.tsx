@@ -5,7 +5,7 @@ import { useLocationIndicator } from '../../hooks';
 import { useAppDispatch } from '../../hooks';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { login, userLoginThunk } from '../../store/shared-store';
+import { login, userLoginThunk } from '../../store';
 import { TextLink } from '../index';
 import { VerticalLogo } from '../../assets/index';
 import {

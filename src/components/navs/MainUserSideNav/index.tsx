@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useAppDispatch } from '../../../hooks';
 
-import { logout, userLogoutThunk } from '../../../store/shared-store';
+import { logout, userLogoutThunk } from '../../../store';
 import { FaUserCircle, IoIosArrowDown } from '../../../assets/index';
 import { DropdownMenu, AddNewNoteTab, SideNavTabs } from '../../index';
 

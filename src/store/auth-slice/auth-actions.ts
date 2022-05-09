@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { login, logout } from '../shared-store';
+import { login, logout } from '../index';
 import { authRequest } from '../../apis';
 
 let logoutTimer: ReturnType<typeof setTimeout> = setTimeout(() => {});

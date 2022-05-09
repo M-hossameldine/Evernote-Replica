@@ -5,7 +5,7 @@ import { addNote } from './notes-slice';
 import { createNote } from '../../interfaces/note-interface';
 import { NOTE_INTERFACE } from '../../interfaces/note-interface';
 import { NOTESPAGE } from '../../constants/routes';
-import { AppDispatch, RootState } from '../index';
+import { AppDispatch, RootState } from '../store';
 import { moveToTrash } from './notes-slice';
 
 // export const sendNewNoteData2 = createAsyncThunk(

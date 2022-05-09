@@ -1,6 +1,6 @@
 import { useAppSelector, useLocationIndicator } from '../../../hooks';
 import { MainUserSideNav, MainPublicNav } from '../..';
-import { selectIsloggedIn } from '../../../store/shared-store';
+import { selectIsloggedIn } from '../../../store';
 import { AUTHPAGE } from '../../../constants';
 
 type Props = {

@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 import classes from './Notification.module.css';
-import {
-  selectNotification,
-  hideNotification,
-} from '../../../store/shared-store';
+import { selectNotification, hideNotification } from '../../../store';
 import { IoMdClose, MdError } from '../../../assets';
 
 const Notification: React.FC = (props) => {

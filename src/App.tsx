@@ -3,11 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useLocationIndicator } from './hooks/use-locationIndicator';
 import { useAppSelector, useAppDispatch } from './hooks';
 
-import {
-  selectNotification,
-  selectIsloggedIn,
-  setToken,
-} from './store/shared-store';
+import { selectNotification, selectIsloggedIn, setToken } from './store';
 import { Layout, Notification } from './components';
 import {
   AUTHPAGE,

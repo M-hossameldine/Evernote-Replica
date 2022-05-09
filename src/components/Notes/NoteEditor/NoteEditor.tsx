@@ -13,7 +13,7 @@ import {
   editNote,
   fillNoteEditor,
   showNotification,
-} from '../../../store/shared-store';
+} from '../../../store';
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from '../../../interfaces';
 import { AutoGrowingTextArea, NoteEditorHeader } from '../../index';
 

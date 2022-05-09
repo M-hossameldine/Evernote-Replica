@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../hooks/redux-hooks';
 import { v4 as uuid } from 'uuid';
 
-import { selectNotes, sendNewNoteData } from '../../../store/shared-store';
+import { selectNotes, sendNewNoteData } from '../../../store';
 import { DropdownMenu, Card, NoteItem, AddNoteWrapper } from '../../index';
 import { NOTESPAGE, EDITORPAGE } from '../../../constants/routes';
 import { IoIosArrowForward, MdPostAdd, IoIosMore } from '../../../assets/index';

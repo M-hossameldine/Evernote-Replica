@@ -1,5 +1,5 @@
 import { useAppSelector, useUpdatedState } from '../../../hooks';
-import { selectNotes, sendNewNoteData } from '../../../store/shared-store';
+import { selectNotes, sendNewNoteData } from '../../../store';
 import { NOTESPAGE } from '../../../constants';
 
 type Props = {

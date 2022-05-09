@@ -1,5 +1,5 @@
 import { useAppSelector } from '../hooks';
-import { selectIsloggedIn } from '../store/shared-store';
+import { selectIsloggedIn } from '../store';
 
 import {
   HomePrivateHeader,
