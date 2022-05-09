@@ -1,8 +1,6 @@
-import { useAppSelector } from '../../../hooks/redux-hooks';
-import { selectNotes } from '../../../store/notes-slice/notes-slice';
-import { sendNewNoteData } from '../../../store/notes-slice/notes-actions';
-import { NOTESPAGE } from '../../../constants/routes';
-import { useUpdatedState } from '../../../hooks/use-updatedState';
+import { useAppSelector, useUpdatedState } from '../../../hooks';
+import { selectNotes, sendNewNoteData } from '../../../store/shared-store';
+import { NOTESPAGE } from '../../../constants';
 
 type Props = {
   children?: React.ReactNode;
