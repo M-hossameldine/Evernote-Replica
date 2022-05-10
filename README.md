@@ -43,9 +43,6 @@ Evernote is an app designed for note taking, organizing, task management, and ar
 
 #### Server-Side (Database & Authentication)
 
-- [Firebase](https://firebase.google.com/) - Google-Backed application development software (I Used it to Build Database)
-
-[Firebase](https://firebase.google.com/) - Google-Backed application development software
-
+- [Firebase](https://firebase.google.com/) - Google-Backed application development software
 - [Firebase Auth REST API](https://firebase.google.com/docs/reference/rest/auth#section) - Back-End Authentication
 - Firebase Realtime Database.

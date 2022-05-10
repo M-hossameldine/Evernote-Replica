@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useLocationIndicator } from './hooks/use-locationIndicator';
-import { useAppSelector, useAppDispatch } from './hooks';
+import { useAppSelector, useAppDispatch, useTokenData } from './hooks';
 
 import { selectNotification, selectIsloggedIn, setToken } from './store';
 import { Layout, Notification } from './components';
@@ -27,14 +27,15 @@ function App() {
   const dispatch = useAppDispatch();
   const location = useLocationIndicator();
 
-  // presist login
-  useEffect(() => {
-    const authToken = localStorage.getItem('token');
+  // preserve login using token stored data in the local storage
+  useTokenData();
+  // useEffect(() => {
+  //   const authToken = localStorage.getItem('token');
 
-    if (authToken) {
-      dispatch(setToken({ token: authToken }));
-    }
-  }, []);
+  //   if (authToken) {
+  //     dispatch(setToken({ token: authToken }));
+  //   }
+  // }, []);
 
   return (
     <>
