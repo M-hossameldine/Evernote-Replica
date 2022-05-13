@@ -5,11 +5,13 @@ import { USER_AUTH_DATA_INTERFACE } from '../../interfaces';
 interface AUTH_STATE_INTERFACE {
   token: string | null;
   isLoggedIn: boolean;
+  userId: string;
 }
 
 const initialState: AUTH_STATE_INTERFACE = {
   token: '',
   isLoggedIn: false,
+  userId: ''
 };
 
 const AuthSlice = createSlice({

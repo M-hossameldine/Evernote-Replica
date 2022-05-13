@@ -4,11 +4,14 @@
  */
 
 import { Dispatch } from 'redux';
+import { RootState } from '../store';
 
 export interface ACTION_ITEM_INTERFACE {
   id: string;
   content: string | JSX.Element;
-  asyncAction: (payload?: any) => (dispatch: Dispatch) => Promise<void>;
+  asyncAction: (
+    payload?: any
+  ) => (dispatch: Dispatch, getState: () => RootState) => Promise<void>;
   asyncActionArgs?: {};
   operation: 'add' | 'delete' | 'update' | 'empty';
 }

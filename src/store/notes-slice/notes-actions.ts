@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 import { addNote } from './notes-slice';
 import { createNote } from '../../interfaces/note-interface';
@@ -20,15 +21,24 @@ export const sendNewNoteData = (payload?: {
   title?: string;
   text?: string;
 }) => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: Dispatch, getState: () => RootState) => {
     const newTitle = payload && payload.title ? payload.title : '';
     const newText = payload && payload.text ? payload.text : '';
     const timestamp = new Date().toISOString();
 
     const note = createNote(newTitle, newText, timestamp);
 
+    console.log('add note state', getState().notes.notes);
     // Error handling and api requests will be added
-    const sendRequest = async () => {};
+    const sendRequest = async () => {
+      const response = await axios({
+        method: 'POST',
+        url: `https://evernote-replica-react-default-rtdb.firebaseio.com/users/${userId}/notes/${note.id}.json`,
+        data: JSON.stringify({
+          note,
+        }),
+      });
+    };
 
     try {
       await sendRequest();
