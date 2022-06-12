@@ -17,6 +17,10 @@ module.exports = {
         'even-3': '0 0 14px 1px rgba(0, 0, 0, 0.2)',
       },
       backgroundImage: {},
+      spacing: {
+        '1/10': '10%',
+        '1//20': '5%',
+      },
     },
   },
   plugins: [],
