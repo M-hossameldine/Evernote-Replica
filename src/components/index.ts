@@ -26,10 +26,11 @@ import AddNoteWrapper from './Notes/AddNoteWrapper/AddNoteWrapper';
 import AddNewNoteTab from './navs/MainUserSideNav/AddNewNoteTab';
 import NoteEditorHeader from './Notes/NoteEditor/NoteEditorHeader/NoteEditorHeader';
 
+// Other components
+import SimpleFeatureBlock from './other/FeatureBlock/SimpleFeatureBlock';
+
 // Sections
 import HeroSection from '../sections/HeroSection/HeroSection';
-
-// Pages
 
 export {
   ExecludeEventWrapper,
@@ -55,4 +56,5 @@ export {
   AddNoteWrapper,
   AddNewNoteTab,
   HeroSection,
+  SimpleFeatureBlock,
 };
