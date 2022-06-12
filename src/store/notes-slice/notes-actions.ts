@@ -30,15 +30,7 @@ export const sendNewNoteData = (payload?: {
 
     console.log('add note state', getState().notes.notes);
     // Error handling and api requests will be added
-    const sendRequest = async () => {
-      const response = await axios({
-        method: 'POST',
-        url: `https://evernote-replica-react-default-rtdb.firebaseio.com/users/${userId}/notes/${note.id}.json`,
-        data: JSON.stringify({
-          note,
-        }),
-      });
-    };
+    const sendRequest = async () => {};
 
     try {
       await sendRequest();
