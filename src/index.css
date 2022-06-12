@@ -30,6 +30,11 @@ code {
     word-break: break-word;
   }
 
+  /* section wrapper */
+  .wrapper {
+    @apply w-full max-w-[75rem] mx-auto px-[5%] xl:px-0;
+  }
+
   /* Scrollbar for Firefox */
   .scrollbar-box {
     scrollbar-color: transparent transparent;
