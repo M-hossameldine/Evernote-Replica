@@ -3,7 +3,36 @@ import { AUTHPAGE } from '../../constants/routes';
 import { TaskHeroImg, VideoModalImg } from '../../assets';
 import { HOME_BASIC_FEATURE_DATA } from '../../utils/data';
 
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 const PublicHomePage: React.FC = () => {
+  // carousel settings
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    pauseOnHover: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    customPaging: () => (
+      <button
+        className='before:mt-4'
+        // style={{
+        //   marginTop: '20px',
+        //   width: '10px',
+        //   height: '10px',
+        //   borderRadius: '50%',
+        //   color: 'blue',
+        //   backgroundColor: '#ccc',
+        // }}
+      ></button>
+    ),
+  };
+
   return (
     <div className=''>
       <HeroSection
@@ -27,7 +56,7 @@ const PublicHomePage: React.FC = () => {
 
       <div className='wrapper '>
         {/* Hero Row */}
-        <div className='flex flex-row mt-14'>
+        <div className='block md:flex flex-row items-center mt-14'>
           <div>
             <img
               src={TaskHeroImg}
@@ -40,16 +69,34 @@ const PublicHomePage: React.FC = () => {
             {HOME_BASIC_FEATURE_DATA.map((feature) => (
               <SimpleFeatureBlock
                 key={feature.id}
-                title={{ text: feature.title }}
+                title={{
+                  text: feature.title,
+                  className: 'text-lg font-semibold uppercase pb-2',
+                }}
                 description={{ text: feature.description }}
               />
             ))}
           </ul>
-          {/* Mobile */}
+          {/* Mobile Features carousel*/}
+          <div className='block md:hidden'>
+            <Slider {...settings}>
+              {HOME_BASIC_FEATURE_DATA.map((feature) => (
+                <SimpleFeatureBlock
+                  key={feature.id}
+                  className='text-center'
+                  title={{
+                    text: feature.title,
+                    className: 'text-xl font-semibold uppercase pb-2',
+                  }}
+                  description={{ text: feature.description }}
+                />
+              ))}
+            </Slider>
+          </div>
         </div>
 
         {/* Video Modal */}
-        <div className='text-center mt-12'>
+        <div className='text-center mt-32 md:mt-16'>
           <h2
             className='text-6xl font-semibold px-8 leading-[150%] mb-3'
             style={{ fontSize: 'clamp(2.2rem, 6vw, 3rem)' }}

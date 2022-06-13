@@ -5,7 +5,7 @@ export const HOME_BASIC_FEATURE_DATA = [
     id: uuid(),
     title: 'Work Anywhere',
     description:
-      'Keep important info handy—your notes sync automatically to all your devices.',
+      'Keep important info handy your notes sync automatically to all your devices.',
   },
   {
     id: uuid(),
