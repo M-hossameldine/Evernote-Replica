@@ -1,6 +1,7 @@
 import { HeroSection, SimpleFeatureBlock } from '../../components';
 import { AUTHPAGE } from '../../constants/routes';
 import { TaskHeroImg, VideoModalImg } from '../../assets';
+import { HOME_BASIC_FEATURE_DATA } from '../../utils/data';
 
 const PublicHomePage: React.FC = () => {
   return (
@@ -33,33 +34,17 @@ const PublicHomePage: React.FC = () => {
               alt='Image contians a loptop and mobile phone that use evernote app'
             />
           </div>
-          {/* desktop */}
-          <div className='flex flex-col gap-4'>
-            <SimpleFeatureBlock
-              title={{ text: 'Work Anywhere' }}
-              description={{
-                text: 'Keep important info handy—your notes sync automatically to all your devices.',
-              }}
-            />
-            <SimpleFeatureBlock
-              title={{ text: 'REMEMBER EVERYTHING' }}
-              description={{
-                text: 'Make notes more useful by adding text, images, audio, scans, PDFs, and documents.',
-              }}
-            />
-            <SimpleFeatureBlock
-              title={{ text: 'TURN TO-DO INTO DONE' }}
-              description={{
-                text: 'Bring your notes, tasks, and schedules together to get things done more easily.',
-              }}
-            />
-            <SimpleFeatureBlock
-              title={{ text: 'FIND THINGS FAST' }}
-              description={{
-                text: 'Get what you need, when you need it with powerful, flexible search capabilities.',
-              }}
-            />
-          </div>
+
+          {/* desktop features*/}
+          <ul className='w-[15rem] shrink-0 hidden md:flex flex-col gap-4'>
+            {HOME_BASIC_FEATURE_DATA.map((feature) => (
+              <SimpleFeatureBlock
+                key={feature.id}
+                title={{ text: feature.title }}
+                description={{ text: feature.description }}
+              />
+            ))}
+          </ul>
           {/* Mobile */}
         </div>
 
