@@ -1,6 +1,6 @@
 import { HeroSection, SimpleFeatureBlock } from '../../components';
 import { AUTHPAGE } from '../../constants/routes';
-import { TaskHeroImg } from '../../assets';
+import { TaskHeroImg, VideoModalImg } from '../../assets';
 
 const PublicHomePage: React.FC = () => {
   return (
@@ -23,45 +23,65 @@ const PublicHomePage: React.FC = () => {
           },
         ]}
       />
-      {/* Hero Row */}
-      <div className='wrapper flex flex-row mt-14'>
-        <div>
-          <img
-            src={TaskHeroImg}
-            alt='Image contians a loptop and mobile phone that use evernote app'
-          />
+
+      <div className='wrapper '>
+        {/* Hero Row */}
+        <div className='flex flex-row mt-14'>
+          <div>
+            <img
+              src={TaskHeroImg}
+              alt='Image contians a loptop and mobile phone that use evernote app'
+            />
+          </div>
+          {/* desktop */}
+          <div className='flex flex-col gap-4'>
+            <SimpleFeatureBlock
+              title={{ text: 'Work Anywhere' }}
+              description={{
+                text: 'Keep important info handy—your notes sync automatically to all your devices.',
+              }}
+            />
+            <SimpleFeatureBlock
+              title={{ text: 'REMEMBER EVERYTHING' }}
+              description={{
+                text: 'Make notes more useful by adding text, images, audio, scans, PDFs, and documents.',
+              }}
+            />
+            <SimpleFeatureBlock
+              title={{ text: 'TURN TO-DO INTO DONE' }}
+              description={{
+                text: 'Bring your notes, tasks, and schedules together to get things done more easily.',
+              }}
+            />
+            <SimpleFeatureBlock
+              title={{ text: 'FIND THINGS FAST' }}
+              description={{
+                text: 'Get what you need, when you need it with powerful, flexible search capabilities.',
+              }}
+            />
+          </div>
+          {/* Mobile */}
         </div>
 
-        {/* desktop */}
-        <div className='flex flex-col gap-4'>
-          <SimpleFeatureBlock
-            title={{ text: 'Work Anywhere' }}
-            description={{
-              text: 'Keep important info handy—your notes sync automatically to all your devices.',
-            }}
-          />
-
-          <SimpleFeatureBlock
-            title={{ text: 'REMEMBER EVERYTHING' }}
-            description={{
-              text: 'Make notes more useful by adding text, images, audio, scans, PDFs, and documents.',
-            }}
-          />
-          <SimpleFeatureBlock
-            title={{ text: 'TURN TO-DO INTO DONE' }}
-            description={{
-              text: 'Bring your notes, tasks, and schedules together to get things done more easily.',
-            }}
-          />
-          <SimpleFeatureBlock
-            title={{ text: 'FIND THINGS FAST' }}
-            description={{
-              text: 'Get what you need, when you need it with powerful, flexible search capabilities.',
-            }}
-          />
+        {/* Video Modal */}
+        <div className='text-center mt-12'>
+          <h2
+            className='text-6xl font-semibold px-8 leading-[150%] mb-3'
+            style={{ fontSize: 'clamp(2.2rem, 6vw, 3rem)' }}
+          >
+            Find your productivity happy place
+          </h2>
+          <p className='text-lg sm:text-2xl'>
+            See what's possible with Evernote
+          </p>
+          <div className='' style={{ paddingTop: 'clamp(3.5rem, 6vw, 6rem)' }}>
+            <img
+              className='block'
+              src={VideoModalImg}
+              alt='Clickable image opens video to explain Evernote capabilites'
+            />
+          </div>
         </div>
-
-        {/* Mobile */}
       </div>
     </div>
   );

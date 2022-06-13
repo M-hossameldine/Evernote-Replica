@@ -1,11 +1,13 @@
-import AuthPage from './AuthPage';
 import HomePage from './HomePage';
+
+// User pages
 import NotesPage from './NotesPage';
 import TrashPage from './TrashPage';
-import DownloadPage from './DownloadPage';
 
 // Public Pages
 import PublicHomePage from './PublicPages/PublicHomePage';
+import DownloadPage from './DownloadPage';
+import AuthPage from './AuthPage';
 
 export {
   AuthPage,
