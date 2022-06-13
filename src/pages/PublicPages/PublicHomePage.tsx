@@ -59,7 +59,10 @@ const PublicHomePage: React.FC = () => {
           <p className='text-lg sm:text-2xl'>
             See what's possible with Evernote
           </p>
-          <div className='' style={{ paddingTop: 'clamp(3.5rem, 6vw, 6rem)' }}>
+          <div
+            className='max-w-[60rem] mx-auto'
+            style={{ paddingTop: 'clamp(3.5rem, 6vw, 6rem)' }}
+          >
             <img
               className='block'
               src={VideoModalImg}
