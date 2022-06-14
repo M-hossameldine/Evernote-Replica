@@ -1,40 +1,36 @@
-import { HeroSection, SimpleFeatureBlock } from '../../components';
+import {
+  HeroSection,
+  SimpleFeatureBlock,
+  FeatureCarousel,
+  TestimonialCarousel,
+} from '../../components';
 import { AUTHPAGE } from '../../constants/routes';
 import { TaskHeroImg, VideoModalImg } from '../../assets';
-import { HOME_BASIC_FEATURE_DATA } from '../../utils/data';
+import {
+  HOME_BASIC_FEATURE_DATA,
+  Testimonial_CAROUSEL_DATA,
+} from '../../utils/data';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const PublicHomePage: React.FC = () => {
-  // carousel settings
-  const settings = {
-    dots: true,
-    infinite: true,
-    autoplay: true,
-    pauseOnHover: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    customPaging: () => (
-      <button
-        className='before:mt-4'
-        // style={{
-        //   marginTop: '20px',
-        //   width: '10px',
-        //   height: '10px',
-        //   borderRadius: '50%',
-        //   color: 'blue',
-        //   backgroundColor: '#ccc',
-        // }}
-      ></button>
-    ),
-  };
+// carousel settings
+const featureCarouselSettings = {
+  dots: true,
+  infinite: true,
+  autoplay: true,
+  pauseOnHover: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: true,
+  customPaging: () => <button className='before:mt-4'></button>,
+};
 
+const PublicHomePage: React.FC = () => {
   return (
-    <div className=''>
+    <div className='pb-[40rem]'>
       <HeroSection
         title='Tame your work, organize your life'
         description='Remember everything and tackle any project with your notes, tasks, and schedule all in one place.'
@@ -77,26 +73,18 @@ const PublicHomePage: React.FC = () => {
               />
             ))}
           </ul>
+
           {/* Mobile Features carousel*/}
-          <div className='block md:hidden'>
-            <Slider {...settings}>
-              {HOME_BASIC_FEATURE_DATA.map((feature) => (
-                <SimpleFeatureBlock
-                  key={feature.id}
-                  className='text-center'
-                  title={{
-                    text: feature.title,
-                    className: 'text-xl font-semibold uppercase pb-2',
-                  }}
-                  description={{ text: feature.description }}
-                />
-              ))}
-            </Slider>
-          </div>
+          <ul className='block md:hidden'>
+            <FeatureCarousel
+              settings={featureCarouselSettings}
+              data={HOME_BASIC_FEATURE_DATA}
+            />
+          </ul>
         </div>
 
         {/* Video Modal */}
-        <div className='text-center mt-32 md:mt-16'>
+        <div className='text-center mt-32 md:mt-16 mb-16'>
           <h2
             className='text-6xl font-semibold px-8 leading-[150%] mb-3'
             style={{ fontSize: 'clamp(2.2rem, 6vw, 3rem)' }}
@@ -118,6 +106,21 @@ const PublicHomePage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Logo Carousel */}
+      <section className='bg-slate-50'>
+        <TestimonialCarousel
+          className='wrapper py-16'
+          data={Testimonial_CAROUSEL_DATA}
+          trackSettings={{
+            slidesToShow: 6,
+            swipeToSlide: true,
+            focusOnSelect: true,
+            autoplay: true,
+            infinite: true,
+          }}
+        />
+      </section>
     </div>
   );
 };

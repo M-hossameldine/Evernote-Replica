@@ -8,12 +8,17 @@ import Notification from './UI/Notification/Notification';
 import DropdownMenu from './UI/DropdownMenu/';
 import Card from './UI/Card/Card';
 import AutoGrowingTextArea from './UI/AutoGrowingTextArea/AutoGrowingTextArea';
+import LogoCarousel from './UI/carousels/LogoCarousel/LogoCarousel';
+import DefaultCarousel from './UI/carousels/DefaultCarousel/DefaultCarousel';
 
 // Public flow
 import AuthForm from './Auth/AuthForm';
 import MainPublicNav from './navs/MainPublicNav';
 import MobileMenu from './navs/MainPublicNav/MobileMenu';
 import DesktopMenu from './navs/MainPublicNav/DesktopMenu';
+import FeatureCarousel from './Carousels/FeatureCarousel/FeatureCarousel';
+import TestimonialCarousel from './Carousels/TestimonialCarousel/';
+import TestimonialCard from './Carousels/TestimonialCarousel/TestimonialCard';
 
 // User flow
 import Layout from './UI/Layout/Layout';
@@ -57,4 +62,9 @@ export {
   AddNewNoteTab,
   HeroSection,
   SimpleFeatureBlock,
+  FeatureCarousel,
+  TestimonialCarousel,
+  TestimonialCard,
+  LogoCarousel,
+  DefaultCarousel,
 };
