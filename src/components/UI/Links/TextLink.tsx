@@ -12,7 +12,7 @@ interface TEXT_LINK_INTERFACE {
     iconStyle?: string;
   };
   route: string;
-  isExteranl?: boolean;
+  isExteranl?: boolean; // to define if the link will navigate to internal destination inside our app or exteranl destination
 }
 
 const TextLink: React.FC<TEXT_LINK_INTERFACE> = (props) => {
