@@ -27,7 +27,7 @@ const MainPublicNav: React.FC = (props) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full text-gray-600 bg-white ${boxShadowStyle} transition-all duration-100 body-font`}
+      className={`fixed top-0 left-0 z-10 w-full text-gray-600 bg-white ${boxShadowStyle} transition-all duration-100 body-font`}
     >
       <DesktopMenu onShowMenu={toggleMobileMenu} />
       <MobileMenu onClose={toggleMobileMenu} showMenu={showMobileMenu} />
