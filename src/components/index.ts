@@ -18,8 +18,8 @@ import MainPublicNav from './navs/MainPublicNav';
 import MobileMenu from './navs/MainPublicNav/MobileMenu';
 import DesktopMenu from './navs/MainPublicNav/DesktopMenu';
 import FeatureCarousel from './Carousels/FeatureCarousel/FeatureCarousel';
-import TestimonialCarousel from './Carousels/TestimonialCarousel/';
-import TestimonialCard from './Carousels/TestimonialCarousel/TestimonialCard';
+
+import TestimonialCard from './UI/Card/TestimonialCard/TestimonialCard';
 
 // User flow
 import Layout from './UI/Layout/Layout';
@@ -65,7 +65,6 @@ export {
   HeroSection,
   SimpleFeatureBlock,
   FeatureCarousel,
-  TestimonialCarousel,
   TestimonialCard,
   LogoCarousel,
   DefaultCarousel,

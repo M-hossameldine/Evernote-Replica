@@ -1,9 +1,9 @@
+import { SimpleFeatureBlock, FeatureCarousel } from '../../components';
 import {
-  SimpleFeatureBlock,
-  FeatureCarousel,
-  TestimonialCarousel,
-} from '../../components';
-import { HeroSection, FeatureZigzagSection } from '../../sections/';
+  HeroSection,
+  TestimonialSection,
+  FeatureZigzagSection,
+} from '../../sections/';
 import { AUTHPAGE } from '../../constants/routes';
 import { TaskHeroImg, VideoModalImg } from '../../assets';
 import {
@@ -11,19 +11,10 @@ import {
   Testimonial_CAROUSEL_DATA,
   HOME_FEATURE_ZIGZAG_DATA,
 } from '../../utils/data';
-
-// carousel settings
-const featureCarouselSettings = {
-  dots: true,
-  infinite: true,
-  autoplay: true,
-  pauseOnHover: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: true,
-  customPaging: () => <button className='before:mt-4'></button>,
-};
+import {
+  FEATURE_CAROUSEL_SETTINGS,
+  TESTIMONIAL_CAROUSEL_SETTINGS,
+} from '../../utils/settings';
 
 const PublicHomePage: React.FC = () => {
   return (
@@ -74,7 +65,7 @@ const PublicHomePage: React.FC = () => {
           {/* Mobile Features carousel*/}
           <ul className='block md:hidden'>
             <FeatureCarousel
-              settings={featureCarouselSettings}
+              settings={FEATURE_CAROUSEL_SETTINGS}
               data={HOME_BASIC_FEATURE_DATA}
             />
           </ul>
@@ -105,17 +96,11 @@ const PublicHomePage: React.FC = () => {
       </div>
 
       {/* Testimonial Carousel */}
-      <section className='bg-slate-50'>
-        <TestimonialCarousel
-          className='wrapper py-16'
+      <section>
+        <TestimonialSection
+          className='wrapper bg-slate-50 py-16 '
           data={Testimonial_CAROUSEL_DATA}
-          trackSettings={{
-            slidesToShow: 6,
-            swipeToSlide: true,
-            focusOnSelect: true,
-            autoplay: true,
-            infinite: true,
-          }}
+          trackSettings={TESTIMONIAL_CAROUSEL_SETTINGS}
         />
       </section>
 

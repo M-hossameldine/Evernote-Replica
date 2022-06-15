@@ -1,8 +1,12 @@
 import './index.css';
 
-import { TestimonialCard, LogoCarousel, DefaultCarousel } from '../../';
-import { Testimonial_CAROUSEL_DATA } from '../../../utils/data';
-import { Testimonial_CAROUSEL_DATA_INTERFACE } from '../../../interfaces';
+import {
+  TestimonialCard,
+  LogoCarousel,
+  DefaultCarousel,
+} from '../../components';
+import { Testimonial_CAROUSEL_DATA } from '../../utils/data';
+import { Testimonial_CAROUSEL_DATA_INTERFACE } from '../../interfaces';
 
 const DefaultCarouselSettings = {
   dots: true,
@@ -22,7 +26,7 @@ interface ComponentInterface {
   trackSettings: {};
   viewSettings?: {};
 }
-const TestimonialCarousel: React.FC<ComponentInterface> = (props) => {
+const TestimonialSection: React.FC<ComponentInterface> = (props) => {
   const { className, data, trackSettings, viewSettings } = props;
 
   const carouselSlides = Testimonial_CAROUSEL_DATA.map((slide) => (
@@ -56,4 +60,4 @@ const TestimonialCarousel: React.FC<ComponentInterface> = (props) => {
   );
 };
 
-export default TestimonialCarousel;
+export default TestimonialSection;
