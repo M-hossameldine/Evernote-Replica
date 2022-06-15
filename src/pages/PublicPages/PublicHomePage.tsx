@@ -1,19 +1,16 @@
 import {
-  HeroSection,
   SimpleFeatureBlock,
   FeatureCarousel,
   TestimonialCarousel,
 } from '../../components';
+import { HeroSection, FeatureZigzagSection } from '../../sections/';
 import { AUTHPAGE } from '../../constants/routes';
 import { TaskHeroImg, VideoModalImg } from '../../assets';
 import {
   HOME_BASIC_FEATURE_DATA,
   Testimonial_CAROUSEL_DATA,
+  HOME_FEATURE_ZIGZAG_DATA,
 } from '../../utils/data';
-
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 // carousel settings
 const featureCarouselSettings = {
@@ -107,7 +104,7 @@ const PublicHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Logo Carousel */}
+      {/* Testimonial Carousel */}
       <section className='bg-slate-50'>
         <TestimonialCarousel
           className='wrapper py-16'
@@ -121,6 +118,12 @@ const PublicHomePage: React.FC = () => {
           }}
         />
       </section>
+
+      {/* Zigzag Feature Rows */}
+      <FeatureZigzagSection
+        className='wrapper pb-12'
+        dataList={HOME_FEATURE_ZIGZAG_DATA}
+      />
     </div>
   );
 };

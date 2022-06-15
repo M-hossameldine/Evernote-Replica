@@ -6,8 +6,8 @@ import TrashPage from './TrashPage';
 
 // Public Pages
 import PublicHomePage from './PublicPages/PublicHomePage';
-import DownloadPage from './DownloadPage';
-import AuthPage from './AuthPage';
+import DownloadPage from './PublicPages/DownloadPage';
+import AuthPage from './PublicPages/AuthPage';
 
 export {
   AuthPage,

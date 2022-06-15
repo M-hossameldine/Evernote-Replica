@@ -7,6 +7,7 @@ import GhostLink from './UI/Links/GhostLink';
 import Notification from './UI/Notification/Notification';
 import DropdownMenu from './UI/DropdownMenu/';
 import Card from './UI/Card/Card';
+import RowCard from './UI/Card/RowCard/RowCard';
 import AutoGrowingTextArea from './UI/AutoGrowingTextArea/AutoGrowingTextArea';
 import LogoCarousel from './UI/carousels/LogoCarousel/LogoCarousel';
 import DefaultCarousel from './UI/carousels/DefaultCarousel/DefaultCarousel';
@@ -46,6 +47,7 @@ export {
   Notification,
   DropdownMenu,
   Card,
+  RowCard,
   AutoGrowingTextArea,
   AuthForm,
   MainPublicNav,
