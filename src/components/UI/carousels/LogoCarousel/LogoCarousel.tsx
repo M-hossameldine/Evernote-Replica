@@ -42,6 +42,7 @@ const LogoCarousel: React.FC<{
         >
           {data.map((testimonial) => (
             <div
+              key={testimonial.id}
               className={`logo !block max-w-[150px] w-full max-h-full mx-auto cursor-pointer px-[1vw]`}
             >
               <img

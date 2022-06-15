@@ -14,7 +14,14 @@ const FeatureZigzagSection: React.FC<ComponentInterface> = (props) => {
       {dataList.map((card, index) => {
         const isOdd = index % 2 !== 0; // reverse card direction
 
-        return <RowCard {...card} reverseDir={isOdd} className='mt-20' />;
+        return (
+          <RowCard
+            key={card.id}
+            {...card}
+            reverseDir={isOdd}
+            className='mt-20'
+          />
+        );
       })}
     </section>
   );
