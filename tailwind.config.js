@@ -1,5 +1,8 @@
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    './node_modules/tw-elements/dist/js/**/*.js',
+  ],
   theme: {
     extend: {
       screens: {
@@ -21,7 +24,11 @@ module.exports = {
         '1/10': '10%',
         '1//20': '5%',
       },
+      content: {
+        'arrow-angle-up':
+          'url("/src/assets/images/tw-icons/tw-expand-arrow.svg")',
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tw-elements/dist/plugin')],
 };
