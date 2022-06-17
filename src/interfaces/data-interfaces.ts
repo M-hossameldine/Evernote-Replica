@@ -26,3 +26,15 @@ export interface HOME_FEATURE_ZIGZAG_DATA_INTERFACE {
     icon: REACT_ICON_INTERFACE;
   };
 }
+
+export interface PRICE_PLAN_DATA_INTERFACE {
+  id: string; // card id
+  title: string;
+  price: string;
+  note: string;
+  features: { text: string; id: string }[];
+  callToAction: {
+    text: string;
+    route: string;
+  };
+}
