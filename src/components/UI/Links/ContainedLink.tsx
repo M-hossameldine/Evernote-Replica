@@ -17,7 +17,7 @@ interface CONTAINED_LINK_INTERFACE {
 const ContainedLink: React.FC<CONTAINED_LINK_INTERFACE> = (props) => {
   const { text, icon, className, route, isExteranl } = props;
 
-  const linkClasses = ` table text-white bg-green-550 hover:bg-green-450 font-semibold p-[4.5em] py-[0.7em] rounded 
+  const linkClasses = ` table text-white bg-green-550 hover:bg-green-450 font-semibold py-[0.7em] rounded 
     ${className ? className : ''}`;
 
   return (
