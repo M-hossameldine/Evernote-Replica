@@ -8,6 +8,7 @@ import Notification from './UI/Notification/Notification';
 import DropdownMenu from './UI/DropdownMenu/';
 import Card from './UI/Card/Card';
 import RowCard from './UI/Card/RowCard/RowCard';
+import PricePlanCard from './UI/Card/PricePlanCard/PricePlanCard';
 import AutoGrowingTextArea from './UI/AutoGrowingTextArea/AutoGrowingTextArea';
 import LogoCarousel from './UI/carousels/LogoCarousel/LogoCarousel';
 import DefaultCarousel from './UI/carousels/DefaultCarousel/DefaultCarousel';
@@ -48,6 +49,7 @@ export {
   DropdownMenu,
   Card,
   RowCard,
+  PricePlanCard,
   AutoGrowingTextArea,
   AuthForm,
   MainPublicNav,

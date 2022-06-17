@@ -3,6 +3,7 @@ import {
   HeroSection,
   TestimonialSection,
   FeatureZigzagSection,
+  PricingPlansSection,
 } from '../../sections/';
 import { AUTHPAGE } from '../../constants/routes';
 import { TaskHeroImg, VideoModalImg } from '../../assets';
@@ -10,6 +11,7 @@ import {
   HOME_BASIC_FEATURE_DATA,
   Testimonial_CAROUSEL_DATA,
   HOME_FEATURE_ZIGZAG_DATA,
+  PRICE_PLAN_DATA,
 } from '../../utils/data';
 import {
   FEATURE_CAROUSEL_SETTINGS,
@@ -70,28 +72,26 @@ const PublicHomePage: React.FC = () => {
             />
           </ul>
         </div>
+      </div>
 
-        {/* Video Modal */}
-        <div className='text-center mt-32 md:mt-16 mb-16'>
-          <h2
-            className='text-6xl font-semibold px-8 leading-[150%] mb-3'
-            style={{ fontSize: 'clamp(2.2rem, 6vw, 3rem)' }}
-          >
-            Find your productivity happy place
-          </h2>
-          <p className='text-lg sm:text-2xl'>
-            See what's possible with Evernote
-          </p>
-          <div
-            className='max-w-[60rem] mx-auto'
-            style={{ paddingTop: 'clamp(3.5rem, 6vw, 6rem)' }}
-          >
-            <img
-              className='block'
-              src={VideoModalImg}
-              alt='Clickable image opens video to explain Evernote capabilites'
-            />
-          </div>
+      {/* Video Modal */}
+      <div className='wrapper text-center mt-32 md:mt-16 mb-16'>
+        <h2
+          className='text-6xl font-semibold px-8 leading-[150%] mb-3'
+          style={{ fontSize: 'clamp(2.2rem, 6vw, 3rem)' }}
+        >
+          Find your productivity happy place
+        </h2>
+        <p className='text-lg sm:text-2xl'>See what's possible with Evernote</p>
+        <div
+          className='max-w-[60rem] mx-auto'
+          style={{ paddingTop: 'clamp(3.5rem, 6vw, 6rem)' }}
+        >
+          <img
+            className='block'
+            src={VideoModalImg}
+            alt='Clickable image opens video to explain Evernote capabilites'
+          />
         </div>
       </div>
 
@@ -109,6 +109,13 @@ const PublicHomePage: React.FC = () => {
         className='wrapper pb-12'
         dataList={HOME_FEATURE_ZIGZAG_DATA}
       />
+
+      <section className='wrapper'>
+        <PricingPlansSection
+          data={PRICE_PLAN_DATA}
+          className='flex flex-col md:flex-row items-start gap-8 md:gap-6 lg:gap-8'
+        />
+      </section>
     </div>
   );
 };
