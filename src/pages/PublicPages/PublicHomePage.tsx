@@ -1,4 +1,8 @@
-import { SimpleFeatureBlock, FeatureCarousel } from '../../components';
+import {
+  SimpleFeatureBlock,
+  FeatureCarousel,
+  TextLink,
+} from '../../components';
 import {
   HeroSection,
   TestimonialSection,
@@ -6,7 +10,11 @@ import {
   PricingPlansSection,
 } from '../../sections/';
 import { AUTHPAGE } from '../../constants/routes';
-import { TaskHeroImg, VideoModalImg } from '../../assets';
+import {
+  TaskHeroImg,
+  VideoModalImg,
+  IoIosArrowRoundForward,
+} from '../../assets';
 import {
   HOME_BASIC_FEATURE_DATA,
   Testimonial_CAROUSEL_DATA,
@@ -110,7 +118,28 @@ const PublicHomePage: React.FC = () => {
         dataList={HOME_FEATURE_ZIGZAG_DATA}
       />
 
-      <section className='wrapper'>
+      {/* Price plans section */}
+      <section className='wrapper py-16'>
+        <div className='text-center mb-16'>
+          <h2 className='text-2xl md:text-4xl font-bold mb-8'>
+            Find you Evernote
+          </h2>
+          <p className='text-xl mb-4'>
+            Whether you want to get organized, keep your personal life on track,
+            or boost workplace productivity, Evernote has the right plan for
+            you.
+          </p>
+          <TextLink
+            text='Compare Plans'
+            route=''
+            icon={{
+              Icon: IoIosArrowRoundForward,
+              iconStyle: 'mt-1 text-xl',
+            }}
+            className='inline-flex jus items-center uppercase tracking-wider text-lg font-bold text-green-600 w-auto mx-auto'
+            underline={false}
+          />
+        </div>
         <PricingPlansSection
           data={PRICE_PLAN_DATA}
           className='flex flex-col md:flex-row items-start gap-8 md:gap-6 lg:gap-8'

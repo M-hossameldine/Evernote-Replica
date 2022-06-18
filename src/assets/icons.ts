@@ -13,8 +13,14 @@ export {
   IoMdClose,
   IoIosArrowRoundBack,
   IoIosArrowRoundUp,
+  IoIosArrowRoundForward,
 } from 'react-icons/io';
-export { BsSearch, BsPlus, BsSortDown } from 'react-icons/bs';
+export {
+  BsSearch,
+  BsPlus,
+  BsSortDown,
+  BsArrowRightCircleFill,
+} from 'react-icons/bs';
 export { BiFilterAlt, BiCheck } from 'react-icons/bi';
 export {
   FaAngleUp,
@@ -25,6 +31,7 @@ export {
   FaBars,
   FaQuoteLeft,
 } from 'react-icons/fa';
+export { FiArrowRight } from 'react-icons/fi';
 export { MdViewList, MdPostAdd, MdError } from 'react-icons/md';
 export { AiFillHome } from 'react-icons/ai';
 export { RiPriceTagFill, RiBookletFill, RiHomeGearFill } from 'react-icons/ri';
