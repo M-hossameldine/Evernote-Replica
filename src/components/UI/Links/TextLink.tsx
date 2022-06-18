@@ -19,11 +19,12 @@ const TextLink: React.FC<TEXT_LINK_INTERFACE> = (props) => {
   const { text, route, underline = true, className, icon, isExteranl } = props;
 
   let linkClasses = ` 
+      flex items-center gap-1
       ${className ? className : ''} 
       ${underline ? ' underline ' : ''} `;
 
   return (
-    <p>
+    <>
       {!isExteranl && (
         <Link to={route} className={linkClasses}>
           {text}
@@ -42,7 +43,7 @@ const TextLink: React.FC<TEXT_LINK_INTERFACE> = (props) => {
           className={linkClasses}
         />
       )}
-    </p>
+    </>
   );
 };
 
