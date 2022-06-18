@@ -28,7 +28,7 @@ const PublicHomePage: React.FC = () => {
         primeBtn={{
           text: 'Sign up for free',
           route: `${AUTHPAGE}/register`,
-          className: 'text-lg ',
+          className: 'text-lg px-[4.5em]',
         }}
         secondaryBtns={[
           {
