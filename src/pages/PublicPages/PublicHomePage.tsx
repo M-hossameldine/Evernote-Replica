@@ -8,6 +8,7 @@ import {
   TestimonialSection,
   FeatureZigzagSection,
   PricingPlansSection,
+  Footer,
 } from '../../sections/';
 import { AUTHPAGE } from '../../constants/routes';
 import {
@@ -28,27 +29,28 @@ import {
 
 const PublicHomePage: React.FC = () => {
   return (
-    <div className='pb-[40rem]'>
-      <HeroSection
-        title='Tame your work, organize your life'
-        description='Remember everything and tackle any project with your notes, tasks, and schedule all in one place.'
-        className='mt-24'
-        primeBtn={{
-          text: 'Sign up for free',
-          route: `${AUTHPAGE}/register`,
-          className: 'text-lg px-[4.5em]',
-        }}
-        secondaryBtns={[
-          {
-            text: 'Already have an account? Log in',
-            route: `${AUTHPAGE}/login`,
-            className:
-              'font-semibold text-lg text-neutral-500 hover:text-green-450',
-          },
-        ]}
-      />
-
+    <div>
+      {/* Hero Section */}
       <div className='wrapper '>
+        <HeroSection
+          title='Tame your work, organize your life'
+          description='Remember everything and tackle any project with your notes, tasks, and schedule all in one place.'
+          className='mt-24'
+          primeBtn={{
+            text: 'Sign up for free',
+            route: `${AUTHPAGE}/register`,
+            className: 'text-lg px-[4.5em]',
+          }}
+          secondaryBtns={[
+            {
+              text: 'Already have an account? Log in',
+              route: `${AUTHPAGE}/login`,
+              className:
+                'font-semibold text-lg text-neutral-500 hover:text-green-450',
+            },
+          ]}
+        />
+
         {/* Hero Row */}
         <div className='block md:flex flex-row items-center mt-14'>
           <div>
@@ -82,7 +84,7 @@ const PublicHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Video Modal */}
+      {/* Home Video Modal */}
       <div className='wrapper text-center mt-32 md:mt-16 mb-16'>
         <h2
           className='text-6xl font-semibold px-8 leading-[150%] mb-3'
@@ -145,6 +147,9 @@ const PublicHomePage: React.FC = () => {
           className='flex flex-col md:flex-row items-start gap-8 md:gap-6 lg:gap-8'
         />
       </section>
+
+      {/* Footer Section */}
+      <Footer className='wrapper' />
     </div>
   );
 };

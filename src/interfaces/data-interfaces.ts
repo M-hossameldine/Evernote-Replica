@@ -1,4 +1,19 @@
 import { REACT_ICON_INTERFACE } from '.';
+import { IconType } from 'react-icons';
+
+/**************************************************/
+// General Data Interfaces
+/**************************************************/
+
+export interface ICON_LINK_DATA_INTERFACE {
+  id: string;
+  Icon: IconType;
+  route: string;
+}
+
+/**************************************************/
+// Customized Data Interfaces
+/**************************************************/
 
 export interface Testimonial_CAROUSEL_DATA_INTERFACE {
   id: string;
@@ -27,6 +42,7 @@ export interface HOME_FEATURE_ZIGZAG_DATA_INTERFACE {
   };
 }
 
+// for each price plan card
 export interface PRICE_PLAN_DATA_INTERFACE {
   id: string; // card id
   title: string;
@@ -37,4 +53,14 @@ export interface PRICE_PLAN_DATA_INTERFACE {
     text: string;
     route: string;
   };
+}
+
+export interface FOOTER_DATA_INTERFACE {
+  colId: string;
+  colTitle: string;
+  colFeatures: {
+    id: string;
+    text: string;
+    route: string;
+  }[];
 }

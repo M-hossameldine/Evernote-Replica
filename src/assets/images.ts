@@ -2,6 +2,7 @@ import HomeImg from './images/home/home.jpg';
 import HorizontalLogo from './images/logo/horizontal-logo.svg';
 import VerticalLogo from './images/logo/vertical-logo.svg';
 import AuthBgImg from './images/backgrounds/auth-bg.png';
+import ElephantLogoImg from './images/logo/elephant-logo-icon.svg';
 
 // Public Home Page images
 import TaskHeroImg from './images/tasks/task_hero_image@2x__en.png';
@@ -28,6 +29,7 @@ import FeatureCalenderIcon from './images/tasks/feature_calendar_icon.svg';
 export {
   HorizontalLogo,
   VerticalLogo,
+  ElephantLogoImg,
   AuthBgImg,
   HomeImg,
   TaskHeroImg,
