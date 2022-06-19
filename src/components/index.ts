@@ -13,6 +13,7 @@ import PricePlanCard from './UI/Card/PricePlanCard/PricePlanCard';
 import AutoGrowingTextArea from './UI/AutoGrowingTextArea/AutoGrowingTextArea';
 import LogoCarousel from './UI/carousels/LogoCarousel/LogoCarousel';
 import DefaultCarousel from './UI/carousels/DefaultCarousel/DefaultCarousel';
+import CenteredModal from './UI/modals/CenteredModal';
 
 // Public flow
 import AuthForm from './Auth/AuthForm';
@@ -72,4 +73,5 @@ export {
   TestimonialCard,
   LogoCarousel,
   DefaultCarousel,
+  CenteredModal,
 };

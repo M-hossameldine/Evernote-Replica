@@ -6,6 +6,7 @@ import {
 import {
   HeroSection,
   TestimonialSection,
+  VideoModal,
   FeatureZigzagSection,
   PricingPlansSection,
   Footer,
@@ -103,6 +104,7 @@ const PublicHomePage: React.FC = () => {
             alt='Clickable image opens video to explain Evernote capabilites'
           />
         </div>
+        <VideoModal />
       </div>
 
       {/* Testimonial Carousel */}
