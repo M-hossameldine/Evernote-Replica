@@ -4,6 +4,7 @@ import ExternalLink from './UI/Links/ExternalLink';
 import TextLink from './UI/Links/TextLink';
 import ContainedLink from './UI/Links/ContainedLink';
 import GhostLink from './UI/Links/GhostLink';
+import ReactIconLink from './UI/Links/ReactIconLink';
 import Notification from './UI/Notification/Notification';
 import DropdownMenu from './UI/DropdownMenu/';
 import Card from './UI/Card/Card';
@@ -45,6 +46,7 @@ export {
   TextLink,
   ContainedLink,
   GhostLink,
+  ReactIconLink,
   Notification,
   DropdownMenu,
   Card,
