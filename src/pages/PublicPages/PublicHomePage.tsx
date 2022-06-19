@@ -99,9 +99,9 @@ const PublicHomePage: React.FC = () => {
       </div> */}
 
       {/* Testimonial Carousel */}
-      <section>
+      <section className=' bg-slate-50 '>
         <TestimonialSection
-          className='wrapper bg-slate-50 py-16 '
+          className='wrapper py-16 '
           data={Testimonial_CAROUSEL_DATA}
           trackSettings={TESTIMONIAL_CAROUSEL_SETTINGS}
         />
