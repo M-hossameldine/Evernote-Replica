@@ -23,7 +23,11 @@ const Footer: React.FC<{ className: string }> = (props) => {
       {/* Footer Columns */}
       <ul className={classes['footer-cols']}>
         {FOOTER_DATA.map((col) => (
-          <FooterColumn title={col.colTitle} featuresData={col.colFeatures} />
+          <FooterColumn
+            key={col.colId}
+            title={col.colTitle}
+            featuresData={col.colFeatures}
+          />
         ))}
       </ul>
 

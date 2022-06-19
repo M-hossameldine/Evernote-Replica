@@ -19,7 +19,7 @@ const PricingPlansSection: React.FC<PricingPlansSection_INTERFACE> = (
     <>
       <div className={accordionClasses} id='accordionExample5'>
         {data.map((card, index) => {
-          return <PricePlanCard cardData={card} index={index} />;
+          return <PricePlanCard key={card.id} cardData={card} index={index} />;
         })}
       </div>
       <div className='max-w-4xl mx-auto mt-10 p-5 border-2 border-neutral-200 rounded-xl'>
