@@ -12,11 +12,7 @@ import {
   Footer,
 } from '../../sections/';
 import { AUTHPAGE } from '../../constants/routes';
-import {
-  TaskHeroImg,
-  VideoModalImg,
-  IoIosArrowRoundForward,
-} from '../../assets';
+import { TaskHeroImg, IoIosArrowRoundForward } from '../../assets';
 import {
   HOME_BASIC_FEATURE_DATA,
   Testimonial_CAROUSEL_DATA,
@@ -98,13 +94,8 @@ const PublicHomePage: React.FC = () => {
           className='max-w-[60rem] mx-auto'
           style={{ paddingTop: 'clamp(3.5rem, 6vw, 6rem)' }}
         >
-          <img
-            className='block'
-            src={VideoModalImg}
-            alt='Clickable image opens video to explain Evernote capabilites'
-          />
+          <VideoModal />
         </div>
-        <VideoModal />
       </div>
 
       {/* Testimonial Carousel */}
