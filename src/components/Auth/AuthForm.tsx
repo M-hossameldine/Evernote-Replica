@@ -191,7 +191,7 @@ const AuthForm: React.FC = (props) => {
               <TextLink
                 text={isLogin ? 'Create account' : 'Sign in'}
                 route={`${AUTHPAGE}/${isLogin ? 'register' : 'login'}`}
-                className='text-base text-green-600'
+                className='inline-flex text-base text-green-600 '
                 underline={false}
               />
             </div>
