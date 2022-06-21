@@ -28,7 +28,7 @@ const PublicHomePage: React.FC = () => {
   return (
     <div>
       {/* Hero Section */}
-      <div className='wrapper '>
+      <div className='wrapper mb-32 md:mb-16'>
         <HeroSection
           title='Tame your work, organize your life'
           description='Remember everything and tackle any project with your notes, tasks, and schedule all in one place.'
@@ -82,7 +82,7 @@ const PublicHomePage: React.FC = () => {
       </div>
 
       {/* Home Video Modal */}
-      {/* <div className='wrapper text-center mt-32 md:mt-16 mb-16'>
+      {/* <div className='wrapper text-center mb-16'>
         <h2
           className='text-6xl font-semibold px-8 leading-[150%] mb-3'
           style={{ fontSize: 'clamp(2.2rem, 6vw, 3rem)' }}
