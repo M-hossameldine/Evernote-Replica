@@ -38,8 +38,9 @@ Evernote is an app designed for note taking, organizing, task management, and ar
 - [React Router Dom v.6](https://www.npmjs.com/package/react-router-dom/v/6.0.0) DOM binding for [React Router](https://reactrouter.com/)
 - [TypeScript](https://www.typescriptlang.org/) - Strongly typed programming language that build on JavaScript
 - [Redux](https://redux.js.org/) - State Management Library
-- [Redux-Toolkit](https://redux-toolkit.js.org/) - Efficient Redux development Toolset
+- [Redux-Toolkit](https://redux-toolkit.js.org/) - Efficient Redux development toolset
 - [Tailwind](https://tailwindcss.com/) - Utility-First CSS Framework
+- [Tailwind Elements](https://tailwind-elements.com/) - Bootstrap components recreated with Tailwind CSS.
 
 #### Server-Side (Database & Authentication)
 
