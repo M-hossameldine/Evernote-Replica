@@ -22,11 +22,11 @@ interface FormValuesInterface {
 }
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required Field"),
+  email: Yup.string().email("Invalid email").required("Email is required!"),
   password: Yup.string()
     .min(8, "Too Short, Min 8 Characters!")
     .max(25, "Too Long! Max 25 Characters")
-    .required("Required")
+    .required("Password is required!")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
       "Must contain lowercase, uppercase, numbers and special characters"
