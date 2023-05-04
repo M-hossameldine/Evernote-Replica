@@ -1,6 +1,6 @@
-import { Dispatch } from 'redux';
-import { login, logout } from '../index';
-import { authRequest } from '../../apis';
+import { Dispatch } from "redux";
+import { login, logout } from "../index";
+import { authRequest } from "../../apis";
 
 export let logoutTimer: ReturnType<typeof setTimeout> = setTimeout(() => {});
 
@@ -21,8 +21,8 @@ export const calculateRemainingTime = (expirationTime: string) => {
 // chain logout thunk
 const _logoutThunkHelper = async (dispatch: Dispatch) => {
   dispatch(logout());
-  localStorage.removeItem('token');
-  localStorage.removeItem('expirationTime');
+  localStorage.removeItem("token");
+  localStorage.removeItem("expirationTime");
 
   // clear the auto logout time when logging out
   if (logoutTimer) {
@@ -33,8 +33,8 @@ const _logoutThunkHelper = async (dispatch: Dispatch) => {
 export const userLogoutThunk = () => {
   return async (dispatch: Dispatch) => {
     dispatch(logout());
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationTime');
+    localStorage.removeItem("token");
+    localStorage.removeItem("expirationTime");
 
     // clear the auto logout time when logging out
     if (logoutTimer) {
@@ -52,7 +52,6 @@ export const userLoginThunk = (
   return async (dispatch: Dispatch) => {
     const sendRequest = async () => {
       const response = await authRequest(email, password, url);
-      // console.log('data', response.data);
 
       return response;
     };
@@ -68,8 +67,8 @@ export const userLoginThunk = (
       ).toISOString();
 
       // Save auth data in local storage to preserve login
-      localStorage.setItem('token', response.data.idToken);
-      localStorage.setItem('expirationTime', expirationTime);
+      localStorage.setItem("token", response.data.idToken);
+      localStorage.setItem("expirationTime", expirationTime);
 
       // set auto logout timer
       const remainingTime = calculateRemainingTime(expirationTime);
@@ -83,7 +82,7 @@ export const userLoginThunk = (
 
       dispatch(login(response.data));
     } catch (error: any) {
-      console.log('error', error.response.data.error.message);
+      console.log("error", error.response.data.error.message);
     }
   };
 };

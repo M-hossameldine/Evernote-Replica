@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { LOGIN_ENDPOINT, CHANGE_PASSWORD_ENDPOINT } from '../constants';
+import { LOGIN_ENDPOINT, CHANGE_PASSWORD_ENDPOINT } from "../constants";
 
 // login/signup requests
 export const authRequest = async (
@@ -9,7 +9,7 @@ export const authRequest = async (
   url: string
 ) => {
   const response = await axios({
-    method: 'POST',
+    method: "POST",
     url: url,
     data: JSON.stringify({
       email,
@@ -17,11 +17,10 @@ export const authRequest = async (
       returnSecureToken: true,
     }),
     headers: {
-      'Content-Type': 'application/',
+      "Content-Type": "application/",
     },
   });
 
-  console.log('auth api', response);
   return response;
 };
 
@@ -31,7 +30,7 @@ export const changePasswordRequest = async (
   returnSecureToken?: boolean
 ) => {
   const response = await axios({
-    method: 'POST',
+    method: "POST",
     url: CHANGE_PASSWORD_ENDPOINT,
     data: JSON.stringify({
       idToken,
@@ -39,7 +38,7 @@ export const changePasswordRequest = async (
       returnSecureToken: !!returnSecureToken,
     }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 };

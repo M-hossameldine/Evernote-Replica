@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
   useAppSelector,
   useAppDispatch,
   useLocationIndicator,
-} from '../../../hooks';
+} from "../../../hooks";
 
 import {
   selectNotes,
@@ -13,9 +13,9 @@ import {
   editNote,
   fillNoteEditor,
   showNotification,
-} from '../../../store';
-import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from '../../../interfaces';
-import { AutoGrowingTextArea, NoteEditorHeader } from '../../index';
+} from "../../../store";
+import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "../../../interfaces";
+import { AutoGrowingTextArea, NoteEditorHeader } from "../../index";
 
 const NoteEditor: React.FC = (props) => {
   const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ const NoteEditor: React.FC = (props) => {
 
   let notesList: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[] = [...notes];
 
-  const isInTrashPage = location.isInCurrentPath('trash');
+  const isInTrashPage = location.isInCurrentPath("trash");
   useEffect(() => {
     if (isInTrashPage) {
       // render trash list
@@ -48,15 +48,13 @@ const NoteEditor: React.FC = (props) => {
 
   let activeNote = notesList.find((note) => note.id === activeId);
 
-  console.log('editor activeNote', activeNote);
-
-  let titleText = '';
-  let bodyText = '';
+  let titleText = "";
+  let bodyText = "";
 
   if (activeNote) {
     titleText =
-      'title' in activeNote ? activeNote!.title : activeNote!.note.title;
-    bodyText = 'text' in activeNote ? activeNote!.text : activeNote!.note.text;
+      "title" in activeNote ? activeNote!.title : activeNote!.note.title;
+    bodyText = "text" in activeNote ? activeNote!.text : activeNote!.note.text;
   }
   // useEffect(() => {
   // }, [activeNote]);
@@ -107,32 +105,30 @@ const NoteEditor: React.FC = (props) => {
   };
 
   const trashNotificationHandler = () => {
-    console.log('field clicked');
     if (isInTrashPage) {
-      console.log('field cond clicked');
       dispatch(
         showNotification({
-          status: 'error',
-          message: 'You can not update a note in the Trash',
+          status: "error",
+          message: "You can not update a note in the Trash",
         })
       );
     }
   };
 
   return (
-    <div className='grow bg-white h-screen'>
+    <div className="grow bg-white h-screen">
       <NoteEditorHeader />
 
-      <div className='px-10 py-5' onClick={trashNotificationHandler}>
-        <div className='mb-4'>
+      <div className="px-10 py-5" onClick={trashNotificationHandler}>
+        <div className="mb-4">
           <AutoGrowingTextArea
             value={titleText}
-            placeholder='Title'
+            placeholder="Title"
             onChange={titleChangeHandler}
             className={{
               inputClasses:
-                'text-neutral-700 text-3xl font-semibold placeholder:font-semibold placeholder:text-3xl',
-              fallbackClasses: 'text-3xl',
+                "text-neutral-700 text-3xl font-semibold placeholder:font-semibold placeholder:text-3xl",
+              fallbackClasses: "text-3xl",
             }}
             disabled={isDisabled}
           />
@@ -140,11 +136,11 @@ const NoteEditor: React.FC = (props) => {
 
         <AutoGrowingTextArea
           value={bodyText}
-          placeholder='Start writing'
+          placeholder="Start writing"
           onChange={textChangeHandler}
           className={{
-            inputClasses: 'text-neutral-800 ',
-            fallbackClasses: '',
+            inputClasses: "text-neutral-800 ",
+            fallbackClasses: "",
           }}
           disabled={isDisabled}
         />

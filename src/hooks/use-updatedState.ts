@@ -4,11 +4,11 @@
  * The typical usuage case: adding and deleting notes
  */
 
-import { useEffect, useState } from 'react';
-import { Dispatch } from 'redux';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from './redux-hooks';
-import { RootState } from '../store';
+import { useEffect, useState } from "react";
+import { Dispatch } from "redux";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "./redux-hooks";
+import { RootState } from "../store";
 
 interface UPDATE_DATA_INTERFACE {
   asyncAction: (
@@ -17,7 +17,7 @@ interface UPDATE_DATA_INTERFACE {
   route: string;
   usedIndex: number;
   watchedState: any[];
-  operation: 'add' | 'delete' | 'update' | 'empty';
+  operation: "add" | "delete" | "update" | "empty";
 }
 
 export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
@@ -32,15 +32,14 @@ export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
 
   // set operations map that get the new updated list length value
   const operationMap = new Map();
-  operationMap.set('add', (length: number) => length + 1);
-  operationMap.set('delete', (length: number) => length - 1);
-  operationMap.set('empty', () => 0);
+  operationMap.set("add", (length: number) => length + 1);
+  operationMap.set("delete", (length: number) => length - 1);
+  operationMap.set("empty", () => 0);
 
   // execute the store action
   const dispatchActionHandler = (payload?: any) => {
     dispatch(asyncAction(payload));
     setIsListEdited({ isEdited: true, prevNotesLength: watchedState.length });
-    console.log('dropdown action isEdited', isListEdited);
   };
 
   // navigate to route after the watched list successfuly
@@ -54,8 +53,8 @@ export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
       const noteId =
         // watchedState[usedIndex] && 'id' in watchedState[usedIndex]
         usedIndex < watchedState.length - 1 // check if the last item is deleted
-          ? watchedState[usedIndex]['id']
-          : watchedState[watchedState.length - 1]['id'];
+          ? watchedState[usedIndex]["id"]
+          : watchedState[watchedState.length - 1]["id"];
 
       navigate(`${route}/${noteId}`);
       setIsListEdited({

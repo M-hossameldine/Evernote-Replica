@@ -1,59 +1,59 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { v4 as uuid } from 'uuid';
-import { NOTE_INTERFACE, createNote } from '../../interfaces/note-interface';
-import { RootState } from '../store';
-import { restoreItem } from '../trash-slice/trash-slice';
-import { TRASH_ITEM_INTERFACE } from '../../interfaces/trash-interface';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
+import { NOTE_INTERFACE, createNote } from "../../interfaces/note-interface";
+import { RootState } from "../store";
+import { restoreItem } from "../trash-slice/trash-slice";
+import { TRASH_ITEM_INTERFACE } from "../../interfaces/trash-interface";
 
 const DUMMY_NOTE_lIST: NOTE_INTERFACE[] = [
   {
-    id: '0',
-    title: '1st Note Title',
-    text: '1st Note text body',
+    id: "0",
+    title: "1st Note Title",
+    text: "1st Note text body",
     createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
+    updatedTimestamp: "",
   },
   {
-    id: '1',
-    title: '2nd Note Title',
-    text: '2nd Note text body',
+    id: "1",
+    title: "2nd Note Title",
+    text: "2nd Note text body",
     createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
+    updatedTimestamp: "",
   },
   {
-    id: '2',
-    title: '3rd Note Title',
-    text: '3rd Note text body',
+    id: "2",
+    title: "3rd Note Title",
+    text: "3rd Note text body",
     createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
+    updatedTimestamp: "",
   },
   {
-    id: '3',
-    title: '4th Note Title',
-    text: '4th Note text body',
+    id: "3",
+    title: "4th Note Title",
+    text: "4th Note text body",
     createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
+    updatedTimestamp: "",
   },
   {
-    id: '4',
-    title: '5th Note Title',
-    text: '5th Note text body',
+    id: "4",
+    title: "5th Note Title",
+    text: "5th Note text body",
     createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
+    updatedTimestamp: "",
   },
   {
-    id: '5',
-    title: '6th Note Title',
-    text: '6th Note text body',
+    id: "5",
+    title: "6th Note Title",
+    text: "6th Note text body",
     createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
+    updatedTimestamp: "",
   },
   {
-    id: '6',
-    title: '7th Note Title',
-    text: '7th Note text body',
+    id: "6",
+    title: "7th Note Title",
+    text: "7th Note text body",
     createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
+    updatedTimestamp: "",
   },
 ];
 
@@ -66,7 +66,7 @@ const initialState: NotesState = {
 };
 
 const NotesSlice = createSlice({
-  name: 'notes',
+  name: "notes",
   initialState,
   reducers: {
     // use the PayloadAction type to declare the contents of `action.payload`
@@ -91,7 +91,7 @@ const NotesSlice = createSlice({
       }>
     ) {
       const { title, text, id, updatedTimestamp } = action.payload;
-      console.log('id note-slice', id);
+
       const existedNoteIndex = state.notes.findIndex((note) => note.id === id);
       state.notes[existedNoteIndex].title = title;
       state.notes[existedNoteIndex].text = text;
