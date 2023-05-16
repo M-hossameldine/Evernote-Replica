@@ -5,7 +5,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 
-import { TRASHPAGE, NOTESPAGE, EDITORPAGE } from "../constants/routes";
+import { TRASHPAGE, NOTESPAGE, EDITORPAGE } from "utils/constants";
 
 export const locationType = [
   "trash",

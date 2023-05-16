@@ -14,7 +14,7 @@ import {
   HOMEPAGE,
   LOGIN_ENDPOINT,
   SIGNUP_ENDPOINT,
-} from "../../constants";
+} from "utils/constants";
 
 interface FormValuesInterface {
   email: string;

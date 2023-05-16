@@ -1,9 +1,9 @@
-import { useAppSelector } from '../../../../hooks/redux-hooks';
-import { useUpdatedState } from '../../../../hooks/use-updatedState';
+import { useAppSelector } from "../../../../hooks/redux-hooks";
+import { useUpdatedState } from "../../../../hooks/use-updatedState";
 
-import { selectTrashNotes } from '../../../../store/trash-slice/trash-slice';
-import { emptyTrashAction } from '../../../../store/trash-slice/trash-actions';
-import { TRASHPAGE } from '../../../../constants/routes';
+import { selectTrashNotes } from "../../../../store/trash-slice/trash-slice";
+import { emptyTrashAction } from "../../../../store/trash-slice/trash-actions";
+import { TRASHPAGE } from "utils/constants";
 
 const EmptyTrashButton: React.FC = (props) => {
   const trashNotes = useAppSelector(selectTrashNotes);
@@ -13,7 +13,7 @@ const EmptyTrashButton: React.FC = (props) => {
     route: TRASHPAGE,
     usedIndex: 0,
     watchedState: trashNotes,
-    operation: 'empty',
+    operation: "empty",
   });
 
   const emptyTrashHandler = () => {
@@ -22,7 +22,7 @@ const EmptyTrashButton: React.FC = (props) => {
 
   return (
     <button
-      className='ml-auto text-sm text-white bg-neutral-300 px-3 py-1 rounded'
+      className="ml-auto text-sm text-white bg-neutral-300 px-3 py-1 rounded"
       onClick={emptyTrashHandler}
     >
       Empty Trash

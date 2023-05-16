@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { useLocationIndicator } from './hooks/use-locationIndicator';
-import { useAppSelector, useAppDispatch, useTokenData } from './hooks';
+import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useLocationIndicator } from "./hooks/use-locationIndicator";
+import { useAppSelector, useAppDispatch, useTokenData } from "./hooks";
 
-import { selectNotification, selectIsloggedIn, setToken } from './store';
-import { Layout, Notification } from './components';
+import { selectNotification, selectIsloggedIn, setToken } from "./store";
+import { Layout, Notification } from "./components";
 import {
   AUTHPAGE,
   HOMEPAGE,
@@ -12,14 +12,14 @@ import {
   TRASHPAGE,
   EDITORPAGE,
   DOWNLOADPAGE,
-} from './constants/routes';
+} from "utils/constants";
 import {
   AuthPage,
   HomePage,
   NotesPage,
   TrashPage,
   DownloadPage,
-} from './pages';
+} from "./pages";
 
 function App() {
   const isLoggedIn = useAppSelector(selectIsloggedIn);
@@ -60,7 +60,7 @@ function App() {
               <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
             </>
           )}
-          <Route path='*' element={<Navigate to={`/`} />} />
+          <Route path="*" element={<Navigate to={`/`} />} />
         </Routes>
       </Layout>
     </>

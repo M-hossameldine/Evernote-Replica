@@ -5,7 +5,7 @@ import axios from "axios";
 import { addNote } from "./notes-slice";
 import { createNote } from "../../interfaces/note-interface";
 import { NOTE_INTERFACE } from "../../interfaces/note-interface";
-import { NOTESPAGE } from "../../constants/routes";
+import { NOTESPAGE } from "utils/constants";
 import { AppDispatch, RootState } from "../store";
 import { moveToTrash } from "./notes-slice";
 

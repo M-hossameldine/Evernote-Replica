@@ -8,7 +8,7 @@ import { selectNotes } from "../../../../store/notes-slice/notes-slice";
 import { selectTrashNotes } from "../../../../store/trash-slice/trash-slice";
 import { selectNoteEditor } from "../../../../store/noteEditor-slice/noteEditor-slice";
 
-import { NOTESPAGE, TRASHPAGE } from "../../../../constants/routes";
+import { NOTESPAGE, TRASHPAGE } from "utils/constants";
 import { NOTE_INTERFACE } from "../../../../interfaces/note-interface";
 import { TRASH_ITEM_INTERFACE } from "../../../../interfaces/trash-interface";
 import { findNoteById } from "../../../../utils/functions";

@@ -1,44 +1,44 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import { HorizontalLogo } from '../../../assets/index';
-import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from '../../../constants/routes';
-import { FaBars } from '../../../assets/index';
-import { GhostLink } from '../../index';
+import { HorizontalLogo } from "../../../assets/index";
+import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from "utils/constants";
+import { FaBars } from "../../../assets/index";
+import { GhostLink } from "../../index";
 
 const DesktopMenu: React.FC<{ onShowMenu: () => void }> = (props) => {
   return (
-    <div className=' flex p-5 items-center container max-w-[75rem] mx-auto  '>
+    <div className=" flex p-5 items-center container max-w-[75rem] mx-auto  ">
       <Link
         to={HOMEPAGE}
-        className='flex title-font font-medium items-center text-gray-900 mr-auto'
+        className="flex title-font font-medium items-center text-gray-900 mr-auto"
       >
-        <img src={HorizontalLogo} alt='Evernote logo' />
+        <img src={HorizontalLogo} alt="Evernote logo" />
       </Link>
 
       {/* top menu nav */}
 
       {/* Utility nav */}
-      <nav className='flex items-center text-base ml-auto'>
-        <ul className='hidden lg:flex gap-3 items-center'>
+      <nav className="flex items-center text-base ml-auto">
+        <ul className="hidden lg:flex gap-3 items-center">
           <Link
             to={`${AUTHPAGE}/login`}
-            className=' font-semibold text-lg  text-neutral-700 hover:text-green-600'
+            className=" font-semibold text-lg  text-neutral-700 hover:text-green-600"
           >
             Log In
           </Link>
           <GhostLink
-            text='Download'
+            text="Download"
             route={DOWNLOADPAGE}
             colors={{
-              textClr: 'text-green-550',
-              textHoverClr: 'text-green-450',
-              borderClr: 'border-green-550',
-              borderHoverClr: 'border-green-450',
+              textClr: "text-green-550",
+              textHoverClr: "text-green-450",
+              borderClr: "border-green-550",
+              borderHoverClr: "border-green-450",
             }}
           />
         </ul>
         <button onClick={props.onShowMenu}>
-          <FaBars className='lg:hidden shrink-0 text-2xl' />
+          <FaBars className="lg:hidden shrink-0 text-2xl" />
         </button>
       </nav>
     </div>

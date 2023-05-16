@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom';
-import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from '../../../constants/routes';
+import { useNavigate } from "react-router-dom";
+import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from "utils/constants";
 
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux-hooks';
-import { NavTabModel } from '../../../models/UI-Models';
-import { fillNoteEditor } from '../../../store/noteEditor-slice/noteEditor-slice';
-import { selectNotes } from '../../../store/notes-slice/notes-slice';
-import { selectTrashNotes } from '../../../store/trash-slice/trash-slice';
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks";
+import { NavTabModel } from "../../../models/UI-Models";
+import { fillNoteEditor } from "../../../store/noteEditor-slice/noteEditor-slice";
+import { selectNotes } from "../../../store/notes-slice/notes-slice";
+import { selectTrashNotes } from "../../../store/trash-slice/trash-slice";
 
-import SideNavTab from './SideNavTab';
-import DropdownList from '../../UI/Dropdown';
+import SideNavTab from "./SideNavTab";
+import DropdownList from "../../UI/Dropdown";
 import {
   AiFillHome,
   FaStar,
@@ -18,17 +18,17 @@ import {
   RiPriceTagFill,
   FaUserFriends,
   FaTrash,
-} from '../../../assets/index';
+} from "../../../assets/index";
 
 const TAB_CONTENT = {
-  home: new NavTabModel('Home', AiFillHome),
-  shortcuts: new NavTabModel('Shortcuts', FaStar),
-  notes: new NavTabModel('Notes', IoIosPaper),
-  tasks: new NavTabModel('Tasks', IoIosCheckmarkCircle),
-  notebooks: new NavTabModel('Notebooks', RiBookletFill),
-  tags: new NavTabModel('Tags', RiPriceTagFill),
-  sharedWithMe: new NavTabModel('Shared with me', FaUserFriends),
-  trash: new NavTabModel('Trash', FaTrash),
+  home: new NavTabModel("Home", AiFillHome),
+  shortcuts: new NavTabModel("Shortcuts", FaStar),
+  notes: new NavTabModel("Notes", IoIosPaper),
+  tasks: new NavTabModel("Tasks", IoIosCheckmarkCircle),
+  notebooks: new NavTabModel("Notebooks", RiBookletFill),
+  tags: new NavTabModel("Tags", RiPriceTagFill),
+  sharedWithMe: new NavTabModel("Shared with me", FaUserFriends),
+  trash: new NavTabModel("Trash", FaTrash),
 };
 
 const SideNavTabs: React.FC = () => {
@@ -57,9 +57,9 @@ const SideNavTabs: React.FC = () => {
   };
 
   return (
-    <ul className='flex flex-col '>
+    <ul className="flex flex-col ">
       <SideNavTab tab={TAB_CONTENT.home} onClick={() => navigate(HOMEPAGE)} />
-      <div className='flex flex-col'>
+      <div className="flex flex-col">
         {/* <SideNavTab tab={TAB_CONTENT.shortcuts} /> */}
         <SideNavTab tab={TAB_CONTENT.notes} onClick={activateNotesTabHandler} />
         {/* <SideNavTab tab={TAB_CONTENT.tasks} /> */}
@@ -68,7 +68,7 @@ const SideNavTabs: React.FC = () => {
         {/* <SideNavTab tab={TAB_CONTENT.sharedWithMe} /> */}
         <SideNavTab
           tab={TAB_CONTENT.trash}
-          className='mt-3'
+          className="mt-3"
           onClick={navigateTrashHandler}
         />
       </div>

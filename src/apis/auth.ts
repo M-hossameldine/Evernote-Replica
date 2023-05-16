@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { LOGIN_ENDPOINT, CHANGE_PASSWORD_ENDPOINT } from "../constants";
+import { LOGIN_ENDPOINT, CHANGE_PASSWORD_ENDPOINT } from "utils/constants";
 
 // login/signup requests
 export const authRequest = async (
