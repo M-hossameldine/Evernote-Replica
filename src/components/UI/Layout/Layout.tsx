@@ -1,6 +1,6 @@
 import { useAppSelector, useLocationIndicator } from "../../../hooks";
 import { MainUserSideNav, MainPublicNav } from "../..";
-import { selectIsloggedIn } from "../../../store";
+import { selectIsLoggedIn } from "../../../store";
 import { AUTHPAGE } from "utils/constants";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = (props) => {
-  const isLoggedIn = useAppSelector(selectIsloggedIn);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const location = useLocationIndicator();
 
   let layoutClasses = isLoggedIn ? " flex w-full h-screen " : " pt-12 ";

@@ -7,5 +7,5 @@ export interface USER_AUTH_DATA_INTERFACE {
   refreshToken: string;
   expiresIn: string;
   registered?: boolean;
-  localId?: string;
+  localId: string; // userId
 }

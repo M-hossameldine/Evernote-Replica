@@ -1,9 +1,8 @@
-import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useLocationIndicator } from "./hooks/use-locationIndicator";
 import { useAppSelector, useAppDispatch, useTokenData } from "./hooks";
 
-import { selectNotification, selectIsloggedIn, setToken } from "./store";
+import { selectNotification, selectIsLoggedIn, setToken } from "./store";
 import { Layout, Notification } from "./components";
 import {
   AUTHPAGE,
@@ -22,20 +21,14 @@ import {
 } from "./pages";
 
 function App() {
-  const isLoggedIn = useAppSelector(selectIsloggedIn);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const notification = useAppSelector(selectNotification);
   const dispatch = useAppDispatch();
   const location = useLocationIndicator();
+  const authState = useAppSelector((state) => state.auth);
 
   // preserve login using token stored data in the local storage
   useTokenData();
-  // useEffect(() => {
-  //   const authToken = localStorage.getItem('token');
-
-  //   if (authToken) {
-  //     dispatch(setToken({ token: authToken }));
-  //   }
-  // }, []);
 
   return (
     <>
