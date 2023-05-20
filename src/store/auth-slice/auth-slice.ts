@@ -68,5 +68,9 @@ export const { setToken, logout } = AuthSlice.actions;
 
 export const selectToken = (state: RootState) => state.auth.token;
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
+export const selectAuthLoading = (state: RootState) => state.auth.isLoading;
+export const selectHasAuthError = (state: RootState) => state.auth.hasError;
+export const selectAuthErrorMessage = (state: RootState) =>
+  state.auth.errorMessage;
 
 export default AuthSlice.reducer;
