@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useLocationIndicator } from "../../hooks";
-import { useAppDispatch } from "../../hooks";
+import { useLocationIndicator, useAppDispatch, useAppSelector } from "hooks";
 import { useNavigate, Link } from "react-router-dom";
 
-import { login, userLoginThunk } from "../../store";
-import { TextLink } from "../index";
-import { VerticalLogo } from "../../assets/index";
+import { loginThunk, selectAuthLoading } from "store";
 import {
   AUTHPAGE,
   API_KEY,
@@ -15,6 +12,10 @@ import {
   LOGIN_ENDPOINT,
   SIGNUP_ENDPOINT,
 } from "utils/constants";
+
+import { VerticalLogo } from "assets";
+
+import { TextLink, DefaultSpinner } from "components";
 
 interface FormValuesInterface {
   email: string;
@@ -33,75 +34,28 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-const AuthForm: React.FC = (props) => {
-  const [isLoading, setIsLoading] = useState(false); // show form submission loading style
+const AuthForm: React.FC = () => {
   const location = useLocationIndicator();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const authIsLoading = useAppSelector(selectAuthLoading);
 
   const isLogin = location.isInCurrentPath("login");
 
-  // const submitHandler = (event: React.FormEvent) => {
-  //   event.preventDefault();
-
-  //   setIsLoading(true);
-
-  //   let url = '';
-
-  //   if (isLogin) {
-  //     url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
-  //   } else {
-  //     url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
-  //   }
-
-  //   fetch(url, {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       email,
-  //       password,
-  //       returnSecureToken: true,
-  //     }),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then((res) => {
-  //       setIsLoading(false);
-
-  //       if (res.ok) {
-  //         return res.json();
-  //       } else {
-  //         return res.json().then((data) => {
-  //           let errorMessage = 'Authentication Failed';
-
-  //           if (data && data.error && data.error.message) {
-  //             errorMessage = data.error.message;
-  //           }
-
-  //           throw new Error(errorMessage);
-  //         });
-  //       }
-  //     })
-  //     .then((data) => {
-  //       dispatch(login(data.idToken));
-  //       navigate(HOMEPAGE);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.message);
-  //     });
-  // };
-
   const formikHandler = async (values: FormValuesInterface) => {
-    setIsLoading(true);
     let url = isLogin ? LOGIN_ENDPOINT : SIGNUP_ENDPOINT;
 
-    const submitSuccessfuly = () => {
-      setIsLoading(false);
+    const submitSuccessfully = () => {
       navigate(HOMEPAGE);
     };
 
     await dispatch(
-      userLoginThunk(values.email, values.password, url, submitSuccessfuly)
+      loginThunk({
+        email: values.email,
+        password: values.password,
+        url,
+        successHandler: submitSuccessfully,
+      })
     );
   };
 
@@ -149,11 +103,11 @@ const AuthForm: React.FC = (props) => {
 
             {/* Call to action */}
             <button
-              type="submit"
-              className="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
+              type={authIsLoading ? "button" : "submit"}
+              className="flex justify-center items-center text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
             >
-              {!isLogin ? "Sign up" : "Sign in"}
-              {false && "Continue"}
+              {!authIsLoading && (!isLogin ? "Sign up" : "Sign in")}
+              {authIsLoading && <DefaultSpinner />}
             </button>
 
             {isLogin && (
@@ -172,7 +126,7 @@ const AuthForm: React.FC = (props) => {
                 <button className="text-green-600">
                   Terms of Service
                 </button> and{" "}
-                <button className="text-green-600"> Pirvacy Plicy</button>
+                <button className="text-green-600"> Privacy Policy</button>
               </p>
             )}
 
