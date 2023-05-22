@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { moveToTrash } from '../notes-slice/notes-slice';
-import { RootState } from '../store';
-import { NOTE_INTERFACE } from '../../interfaces/note-interface';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { moveToTrash } from "../notes-slice/notes-slice";
+import { RootState } from "../store";
+import { NOTE_INTERFACE } from "../../interfaces/note-interface";
 
 import {
   TRASH_ITEM_INTERFACE,
   createTrashNote,
-} from '../../interfaces/trash-interface';
+} from "../../interfaces/trash-interface";
 
 export interface TRASH_STATE_INTERFACE {
   notes: TRASH_ITEM_INTERFACE[];
@@ -16,29 +16,29 @@ const initialState: TRASH_STATE_INTERFACE = {
   notes: [
     {
       note: {
-        id: '7',
-        title: '1st deleted note',
-        text: '1st deleted note text body',
+        id: "7",
+        title: "1st deleted note",
+        text: "1st deleted note text body",
         createdTimestamp: new Date().toISOString(),
       },
       deleteTimestamp: new Date().toISOString(),
-      id: '9',
+      id: "9",
     },
     {
       note: {
-        id: '8',
-        title: '2nd deleted note',
-        text: '2nd deleted note text body',
+        id: "8",
+        title: "2nd deleted note",
+        text: "2nd deleted note text body",
         createdTimestamp: new Date().toISOString(),
       },
       deleteTimestamp: new Date().toISOString(),
-      id: '11',
+      id: "11",
     },
   ],
 };
 
 const TrashSlice = createSlice({
-  name: 'Trash Slice',
+  name: "Trash Slice",
   initialState,
   reducers: {
     deleteItemPermanently: (state, action: PayloadAction<{ id: string }>) => {
@@ -64,8 +64,6 @@ const TrashSlice = createSlice({
       (state, action: PayloadAction<{ id: string; note: NOTE_INTERFACE }>) => {
         const newTrashNote = createTrashNote(action.payload.note);
         let notes = state.notes.unshift(newTrashNote);
-        console.log('state notes', notes);
-        console.log('payload', action.payload);
       }
     );
   },

@@ -9,7 +9,7 @@ interface AUTH_STATE_INTERFACE {
   userId: string;
   isLoading: boolean;
   hasError: boolean;
-  errorMessage: string;
+  errorMsgCode: string;
 }
 
 const initialState: AUTH_STATE_INTERFACE = {
@@ -18,7 +18,7 @@ const initialState: AUTH_STATE_INTERFACE = {
   userId: "",
   isLoading: false,
   hasError: false,
-  errorMessage: "",
+  errorMsgCode: "",
 };
 
 const AuthSlice = createSlice({
@@ -34,19 +34,22 @@ const AuthSlice = createSlice({
       state.isLoggedIn = false;
       state.userId = "";
     },
+    resetAuthErrors: (state) => {
+      state.hasError = false;
+      state.errorMsgCode = "";
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginThunk.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(loginThunk.rejected, (state) => {
-        state = {
-          ...state,
-          isLoading: false,
-          hasError: true,
-          errorMessage: "Failed to login",
-        };
+      .addCase(loginThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.hasError = true;
+        state.errorMsgCode = action.error.message
+          ? action.error.message
+          : "Generic_Error_Message";
       })
       .addCase(
         loginThunk.fulfilled,
@@ -55,7 +58,7 @@ const AuthSlice = createSlice({
 
           state.isLoading = false;
           state.hasError = false;
-          state.errorMessage = "";
+          state.errorMsgCode = "";
           state.isLoggedIn = true;
           state.token = idToken;
           state.userId = localId;
@@ -64,13 +67,13 @@ const AuthSlice = createSlice({
   },
 });
 
-export const { setToken, logout } = AuthSlice.actions;
+export const { setToken, logout, resetAuthErrors } = AuthSlice.actions;
 
 export const selectToken = (state: RootState) => state.auth.token;
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 export const selectAuthLoading = (state: RootState) => state.auth.isLoading;
 export const selectHasAuthError = (state: RootState) => state.auth.hasError;
-export const selectAuthErrorMessage = (state: RootState) =>
-  state.auth.errorMessage;
+export const selectAuthErrorMsgCode = (state: RootState) =>
+  state.auth.errorMsgCode;
 
 export default AuthSlice.reducer;

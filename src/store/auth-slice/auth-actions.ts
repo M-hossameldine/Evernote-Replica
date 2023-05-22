@@ -80,7 +80,7 @@ export const loginThunk = createAsyncThunk(
 
       return response.data;
     } catch (err: any) {
-      return err.response.data.error.message;
+      throw new Error(err.response.data.error.message);
     }
   }
 );

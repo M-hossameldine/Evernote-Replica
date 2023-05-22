@@ -1,6 +1,5 @@
 import { Dispatch } from "redux";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
 import { addNote } from "./notes-slice";
 import { createNote } from "../../interfaces/note-interface";
@@ -8,14 +7,6 @@ import { NOTE_INTERFACE } from "../../interfaces/note-interface";
 import { NOTESPAGE } from "utils/constants";
 import { AppDispatch, RootState } from "../store";
 import { moveToTrash } from "./notes-slice";
-
-// export const sendNewNoteData2 = createAsyncThunk(
-//   'notes/sendNewNoteStatus',
-//   async (noteData, thunkApi) => {
-//     const state = thunkApi.getState();
-//     const dispatch = thunkApi.dispatch;
-//   }
-// );
 
 export const sendNewNoteData = (payload?: {
   title?: string;
