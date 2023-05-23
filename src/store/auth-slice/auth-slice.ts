@@ -4,7 +4,8 @@ import { USER_AUTH_DATA_INTERFACE } from "../../interfaces";
 import { loginThunk } from "./auth-actions";
 
 interface AUTH_STATE_INTERFACE {
-  token: string | null;
+  email: string;
+  token: string;
   isLoggedIn: boolean;
   userId: string;
   isLoading: boolean;
@@ -13,6 +14,7 @@ interface AUTH_STATE_INTERFACE {
 }
 
 const initialState: AUTH_STATE_INTERFACE = {
+  email: "",
   token: "",
   isLoggedIn: false,
   userId: "",
@@ -30,9 +32,10 @@ const AuthSlice = createSlice({
       state.isLoggedIn = !!action.payload.token;
     },
     logout: (state) => {
-      state.token = null;
+      state.token = "null";
       state.isLoggedIn = false;
       state.userId = "";
+      state.email = "";
     },
     resetAuthErrors: (state) => {
       state.hasError = false;
@@ -54,11 +57,11 @@ const AuthSlice = createSlice({
       .addCase(
         loginThunk.fulfilled,
         (state, action: PayloadAction<USER_AUTH_DATA_INTERFACE>) => {
-          const { idToken, localId } = action.payload;
-
+          const { idToken, localId, email } = action.payload;
           state.isLoading = false;
           state.hasError = false;
           state.errorMsgCode = "";
+          state.email = email;
           state.isLoggedIn = true;
           state.token = idToken;
           state.userId = localId;
@@ -69,6 +72,7 @@ const AuthSlice = createSlice({
 
 export const { setToken, logout, resetAuthErrors } = AuthSlice.actions;
 
+export const selectUserEmail = (state: RootState) => state.auth.email;
 export const selectToken = (state: RootState) => state.auth.token;
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 export const selectAuthLoading = (state: RootState) => state.auth.isLoading;
