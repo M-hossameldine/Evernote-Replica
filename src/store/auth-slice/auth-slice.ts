@@ -49,7 +49,7 @@ const AuthSlice = createSlice({
         state.hasError = true;
         state.errorMsgCode = action.error.message
           ? action.error.message
-          : "Generic_Error_Message";
+          : "GENERIC_ERROR_MESSAGE";
       })
       .addCase(
         loginThunk.fulfilled,

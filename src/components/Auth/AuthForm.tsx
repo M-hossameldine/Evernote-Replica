@@ -103,8 +103,13 @@ const AuthForm: React.FC = () => {
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 shadow-even-1 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
 
-              {errors.email && touched.email ? (
-                <div className="text-xs text-red-700 mt-1">{errors.email}</div>
+              {(errors.email && touched.email) ||
+              ["EMAIL_EXISTS", "GENERIC_ERROR_MESSAGE"].includes(
+                authErrorCode
+              ) ? (
+                <div className="text-xs text-red-700 mt-1">
+                  {errors.email ?? ErrorsMap[authErrorCode]}
+                </div>
               ) : null}
             </div>
 
@@ -128,14 +133,14 @@ const AuthForm: React.FC = () => {
                 </div>
               ) : null}
 
-              {["EMAIL_NOT_FOUND", "INVALID_PASSWORD"].includes(
-                authErrorCode
-              ) && (
-                <div className="text-xs text-red-700 mt-1">
-                  {" "}
-                  {ErrorsMap[authErrorCode]}{" "}
-                </div>
-              )}
+              {authErrorCode &&
+                !["EMAIL_EXISTS", "GENERIC_ERROR_MESSAGE"].includes(
+                  authErrorCode
+                ) && (
+                  <div className="text-xs text-red-700 mt-1">
+                    {ErrorsMap[authErrorCode]}
+                  </div>
+                )}
             </div>
 
             {/* Call to action */}
