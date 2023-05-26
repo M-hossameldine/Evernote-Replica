@@ -1,4 +1,4 @@
-import { TEXT_INTERFACE } from '../../../interfaces';
+import { TEXT_INTERFACE } from "interfaces";
 
 interface COMPONENT_INTERFACE {
   title: TEXT_INTERFACE;
@@ -9,9 +9,9 @@ interface COMPONENT_INTERFACE {
 const SimpleFeatureBlock: React.FC<COMPONENT_INTERFACE> = (props) => {
   const { title, description, className } = props;
 
-  const blockClasses = className ? className : '';
-  const titleClasses = title.className ? title.className : '';
-  const descriptionClasses = description.className ? description.className : '';
+  const blockClasses = className ? className : "";
+  const titleClasses = title.className ? title.className : "";
+  const descriptionClasses = description.className ? description.className : "";
 
   return (
     <div className={blockClasses}>

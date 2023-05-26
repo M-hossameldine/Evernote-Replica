@@ -1,17 +1,11 @@
 import { Dispatch } from "redux";
 import { useParams } from "react-router-dom";
-import { useUpdatedState } from "../../../../hooks/use-updatedState";
-import { useAppSelector } from "../../../../hooks/redux-hooks";
-import { useLocationIndicator } from "../../../../hooks/use-locationIndicator";
+import { useUpdatedState, useAppSelector, useLocationIndicator } from "hooks";
 
-import { selectNotes } from "../../../../store/notes-slice/notes-slice";
-import { selectTrashNotes } from "../../../../store/trash-slice/trash-slice";
-import { selectNoteEditor } from "../../../../store/noteEditor-slice/noteEditor-slice";
+import { selectNotes, selectTrashNotes, selectNoteEditor } from "store";
 
 import { NOTESPAGE, TRASHPAGE } from "utils/constants";
-import { NOTE_INTERFACE } from "../../../../interfaces/note-interface";
-import { TRASH_ITEM_INTERFACE } from "../../../../interfaces/trash-interface";
-import { findNoteById } from "../../../../utils/functions";
+import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 
 const NoteActionsDropdownItem: React.FC<{
   text: string;

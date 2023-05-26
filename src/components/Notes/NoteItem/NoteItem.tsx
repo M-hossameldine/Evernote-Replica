@@ -1,11 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import classes from "./NoteItem.module.css";
 
-import { useAppDispatch } from "../../../hooks/redux-hooks";
-import { setActiveNoteIndex } from "../../../store/noteEditor-slice/noteEditor-slice";
-import { NOTE_INTERFACE } from "../../../interfaces/note-interface";
-import { TRASH_ITEM_INTERFACE } from "../../../interfaces/trash-interface";
-import { useLocationIndicator } from "../../../hooks/use-locationIndicator";
+import { useAppDispatch, useLocationIndicator } from "hooks";
+import { setActiveNoteIndex } from "store/noteEditor-slice/noteEditor-slice";
+import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 
 const NoteItem: React.FC<{
   note: NOTE_INTERFACE | TRASH_ITEM_INTERFACE;

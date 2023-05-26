@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { useAppSelector, useAppDispatch } from "hooks";
 
 import { selectUserEmail, userLogoutThunk } from "store";
-import { FaUserCircle, IoIosArrowDown } from "assets/index";
+import { FaUserCircle, IoIosArrowDown } from "assets";
 import { DropdownMenu, AddNewNoteTab, SideNavTabs } from "components";
 
 const SideNavBar: React.FC = () => {

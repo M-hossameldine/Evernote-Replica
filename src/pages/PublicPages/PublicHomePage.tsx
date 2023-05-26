@@ -1,8 +1,4 @@
-import {
-  SimpleFeatureBlock,
-  FeatureCarousel,
-  TextLink,
-} from "../../components";
+import { SimpleFeatureBlock, FeatureCarousel, TextLink } from "components";
 import {
   HeroSection,
   TestimonialSection,
@@ -10,19 +6,19 @@ import {
   FeatureZigzagSection,
   PricingPlansSection,
   Footer,
-} from "../../sections/";
+} from "sections/";
 import { AUTHPAGE } from "utils/constants";
-import { TaskHeroImg, IoIosArrowRoundForward } from "../../assets";
+import { TaskHeroImg, IoIosArrowRoundForward } from "assets";
 import {
   HOME_BASIC_FEATURE_DATA,
   Testimonial_CAROUSEL_DATA,
   HOME_FEATURE_ZIGZAG_DATA,
   PRICE_PLAN_DATA,
-} from "../../utils/data";
+} from "utils/data";
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,
-} from "../../utils/settings";
+} from "utils/settings";
 
 const PublicHomePage: React.FC = () => {
   return (

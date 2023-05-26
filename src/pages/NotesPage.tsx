@@ -1,26 +1,25 @@
-import { useAppSelector } from '../hooks/redux-hooks';
-import { selectNotes } from '../store/notes-slice/notes-slice';
-import { useLocationIndicator } from '../hooks/use-locationIndicator';
+import { useAppSelector, useLocationIndicator } from "hooks";
+import { selectNotes } from "store";
 
-import NoteEditor from '../components/Notes/NoteEditor/NoteEditor';
-import NoteEditorSidebar from '../components/Notes/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
-import { IoIosPaper, GiNotebook } from '../assets/index';
+import NoteEditor from "components/Notes/NoteEditor/NoteEditor";
+import NoteEditorSidebar from "components/Notes/NoteEditor/NoteEditorSidebar/NoteEditorSidebar";
+import { IoIosPaper, GiNotebook } from "assets";
 
 const NotesPage: React.FC = (props) => {
   const notes = useAppSelector(selectNotes);
   const location = useLocationIndicator();
 
   return (
-    <div className='flex'>
+    <div className="flex">
       {/* hide sidebar list in the editor page */}
-      {location.locationKey !== 'editor' && (
+      {location.locationKey !== "editor" && (
         <NoteEditorSidebar
           notes={notes}
-          header={{ title: 'Notes', icon: IoIosPaper }}
+          header={{ title: "Notes", icon: IoIosPaper }}
           fallbackData={{
             icon: GiNotebook,
-            title: 'Create your first note',
-            text: '',
+            title: "Create your first note",
+            text: "",
             action: noteFallbackAction,
           }}
         />

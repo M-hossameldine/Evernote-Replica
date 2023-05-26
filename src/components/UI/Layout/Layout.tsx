@@ -1,6 +1,6 @@
-import { useAppSelector, useLocationIndicator } from "../../../hooks";
-import { MainUserSideNav, MainPublicNav } from "../..";
-import { selectIsLoggedIn } from "../../../store";
+import { useAppSelector, useLocationIndicator } from "hooks";
+import { MainUserSideNav, MainPublicNav } from "components";
+import { selectIsLoggedIn } from "store";
 import { AUTHPAGE } from "utils/constants";
 
 type Props = {

@@ -1,7 +1,7 @@
-import { Dispatch } from 'redux';
-import { deleteItemPermanently, restoreItem, emptyTrash } from './trash-slice';
+import { Dispatch } from "redux";
+import { deleteItemPermanently, restoreItem, emptyTrash } from "./trash-slice";
 
-import { TRASH_ITEM_INTERFACE } from '../../interfaces/trash-interface';
+import { TRASH_ITEM_INTERFACE } from "interfaces";
 
 export const deleteItemPermanentlyAction = (payload: { id: string }) => {
   return async (dispatch: Dispatch) => {

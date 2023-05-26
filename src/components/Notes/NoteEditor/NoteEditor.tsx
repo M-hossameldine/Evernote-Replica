@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  useAppSelector,
-  useAppDispatch,
-  useLocationIndicator,
-} from "../../../hooks";
+import { useAppSelector, useAppDispatch, useLocationIndicator } from "hooks";
 
 import {
   selectNotes,
@@ -13,9 +9,9 @@ import {
   editNote,
   fillNoteEditor,
   showNotification,
-} from "../../../store";
-import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "../../../interfaces";
-import { AutoGrowingTextArea, NoteEditorHeader } from "../../index";
+} from "store";
+import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
+import { AutoGrowingTextArea, NoteEditorHeader } from "components";
 
 const NoteEditor: React.FC = (props) => {
   const dispatch = useAppDispatch();

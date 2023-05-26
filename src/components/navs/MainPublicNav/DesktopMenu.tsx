@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { HorizontalLogo } from "../../../assets/index";
+import { HorizontalLogo, FaBars } from "assets/index";
 import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from "utils/constants";
-import { FaBars } from "../../../assets/index";
-import { GhostLink } from "../../index";
+import { GhostLink } from "components";
 
 const DesktopMenu: React.FC<{ onShowMenu: () => void }> = (props) => {
   return (

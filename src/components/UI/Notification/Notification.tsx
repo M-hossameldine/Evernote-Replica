@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "hooks";
 
-import classes from './Notification.module.css';
-import { selectNotification, hideNotification } from '../../../store';
-import { IoMdClose, MdError } from '../../../assets';
+import classes from "./Notification.module.css";
+import { selectNotification, hideNotification } from "store";
+import { IoMdClose, MdError } from "assets";
 
 const Notification: React.FC = (props) => {
   const [showNotification, setShowNotification] = useState(false);
@@ -24,13 +24,13 @@ const Notification: React.FC = (props) => {
     }
   }, [notification]);
 
-  let statusClasses = '';
+  let statusClasses = "";
 
-  let visiblityClasses = showNotification ? classes.visible : '';
+  let visiblityClasses = showNotification ? classes.visible : "";
 
-  if (status === 'error') {
+  if (status === "error") {
     statusClasses = classes.error;
-  } else if (status === 'success') {
+  } else if (status === "success") {
     statusClasses = classes.success;
   }
 
@@ -39,11 +39,11 @@ const Notification: React.FC = (props) => {
   return (
     <div className={cssClasses}>
       <p className={classes.message}>
-        {status === 'error' && <MdError className='shrink-0' />}
+        {status === "error" && <MdError className="shrink-0" />}
         {notification && notification.message}
       </p>
       <button className={classes.btn} onClick={closeNotificationHandler}>
-        <IoMdClose className='shrink-0 text-xl' />
+        <IoMdClose className="shrink-0 text-xl" />
       </button>
     </div>
   );

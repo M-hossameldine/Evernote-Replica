@@ -1,12 +1,8 @@
-import './index.css';
+import "./index.css";
 
-import {
-  TestimonialCard,
-  LogoCarousel,
-  DefaultCarousel,
-} from '../../components';
-import { Testimonial_CAROUSEL_DATA } from '../../utils/data';
-import { Testimonial_CAROUSEL_DATA_INTERFACE } from '../../interfaces';
+import { TestimonialCard, LogoCarousel, DefaultCarousel } from "components";
+import { Testimonial_CAROUSEL_DATA } from "utils/data";
+import { Testimonial_CAROUSEL_DATA_INTERFACE } from "interfaces";
 
 const DefaultCarouselSettings = {
   dots: true,
@@ -17,7 +13,7 @@ const DefaultCarouselSettings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: true,
-  customPaging: () => <button className='before:mt-4'></button>,
+  customPaging: () => <button className="before:mt-4"></button>,
 };
 
 interface ComponentInterface {
@@ -41,15 +37,15 @@ const TestimonialSection: React.FC<ComponentInterface> = (props) => {
 
   return (
     <>
-      <div className={className ? className : ''}>
-        <div className='hidden sm:block'>
+      <div className={className ? className : ""}>
+        <div className="hidden sm:block">
           <LogoCarousel
             data={data}
             trackSettings={trackSettings}
             viewSettings={viewSettings}
           />
         </div>
-        <div className='sm:hidden'>
+        <div className="sm:hidden">
           <DefaultCarousel
             slides={carouselSlides}
             settings={DefaultCarouselSettings}

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import { USER_AUTH_DATA_INTERFACE } from "../../interfaces";
+import { RootState } from "store";
+import { USER_AUTH_DATA_INTERFACE } from "interfaces";
 import { loginThunk } from "./auth-actions";
 
 interface AUTH_STATE_INTERFACE {
