@@ -1,8 +1,8 @@
-import { useAppSelector } from "../hooks";
-import { selectIsLoggedIn } from "../store";
+import { useAppSelector } from "hooks";
+import { selectIsLoggedIn } from "store";
 
-import { HomePrivateHeader, WidgetsContainer } from "../components";
-import { PublicHomePage } from "./index";
+import { HomePrivateHeader, WidgetsContainer } from "components";
+import { PublicHomePage } from "pages";
 
 const HomePage: React.FC = (props) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);

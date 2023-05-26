@@ -1,8 +1,6 @@
-import { useAppSelector } from "../../../../hooks/redux-hooks";
-import { useUpdatedState } from "../../../../hooks/use-updatedState";
+import { useAppSelector, useUpdatedState } from "hooks";
+import { selectTrashNotes, emptyTrashAction } from "store";
 
-import { selectTrashNotes } from "../../../../store/trash-slice/trash-slice";
-import { emptyTrashAction } from "../../../../store/trash-slice/trash-actions";
 import { TRASHPAGE } from "utils/constants";
 
 const EmptyTrashButton: React.FC = (props) => {

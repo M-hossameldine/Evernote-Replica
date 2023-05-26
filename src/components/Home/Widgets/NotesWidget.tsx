@@ -1,15 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hooks/redux-hooks";
+import { useAppSelector } from "hooks/redux-hooks";
 import { v4 as uuid } from "uuid";
 
-import { selectNotes, sendNewNoteData } from "../../../store";
-import { DropdownMenu, Card, NoteItem, AddNoteWrapper } from "../../index";
+import { selectNotes, sendNewNoteData } from "store";
+import { DropdownMenu, Card, NoteItem, AddNoteWrapper } from "components";
 import { NOTESPAGE, EDITORPAGE } from "utils/constants";
-import { IoIosArrowForward, MdPostAdd, IoIosMore } from "../../../assets/index";
-import {
-  FUNCTION_ITEM_INTERFACE,
-  ACTION_ITEM_INTERFACE,
-} from "../../../interfaces/index";
+import { IoIosArrowForward, MdPostAdd, IoIosMore } from "assets";
+import { FUNCTION_ITEM_INTERFACE, ACTION_ITEM_INTERFACE } from "interfaces";
 
 const NotesWidget: React.FC<{ className?: string }> = (props) => {
   const notes = useAppSelector(selectNotes);

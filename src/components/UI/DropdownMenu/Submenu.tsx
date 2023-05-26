@@ -1,10 +1,6 @@
-import {
-  ACTION_ITEM_INTERFACE,
-  FUNCTION_ITEM_INTERFACE,
-  ELEMENT_ATTRIBUTES_INTERFACE,
-} from '../../../interfaces/index';
-import SubmenuFunctionItem from './SubmenuFunctionItem';
-import SubmenuActionItem from './SubmenuActionItem';
+import { ACTION_ITEM_INTERFACE, FUNCTION_ITEM_INTERFACE } from "interfaces";
+import SubmenuFunctionItem from "./SubmenuFunctionItem";
+import SubmenuActionItem from "./SubmenuActionItem";
 
 const Submenu: React.FC<{
   submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];
@@ -12,10 +8,10 @@ const Submenu: React.FC<{
   onClick?: () => void;
 }> = (props) => {
   return (
-    <ul className={props.className ? props.className : ''}>
+    <ul className={props.className ? props.className : ""}>
       {props.submenuItemsData.map((itemData) => {
         let item;
-        if ('asyncAction' in itemData) {
+        if ("asyncAction" in itemData) {
           const { id, content, asyncAction, asyncActionArgs, operation } =
             itemData;
           item = (

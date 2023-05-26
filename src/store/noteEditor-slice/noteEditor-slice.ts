@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { RootState } from '../store';
-import { addNote } from '../notes-slice/notes-slice';
-import { NOTE_INTERFACE } from '../../interfaces/note-interface';
+import { RootState } from "store";
+import { addNote } from "../notes-slice/notes-slice";
+import { NOTE_INTERFACE } from "interfaces";
 
 interface NoteEditorState {
   activeNoteIndex: number;
@@ -15,7 +15,7 @@ const initialState: NoteEditorState = {
 };
 
 const NoteEditorSlice = createSlice({
-  name: 'noteEditor',
+  name: "noteEditor",
   initialState,
   reducers: {
     fillNoteEditor(state, action: PayloadAction<{ id: string }>) {

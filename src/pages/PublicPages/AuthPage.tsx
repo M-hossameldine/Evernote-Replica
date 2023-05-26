@@ -1,5 +1,5 @@
-import { AuthForm } from '../../components';
-import { AuthBgImg } from '../../assets';
+import { AuthForm } from "components";
+import { AuthBgImg } from "assets";
 
 const AuthPage: React.FC = (props) => {
   return (

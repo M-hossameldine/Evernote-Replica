@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from "utils/constants";
 
-import { useAppDispatch, useAppSelector } from "../../../hooks/redux-hooks";
-import { NavTabModel } from "../../../models/UI-Models";
-import { fillNoteEditor } from "../../../store/noteEditor-slice/noteEditor-slice";
-import { selectNotes } from "../../../store/notes-slice/notes-slice";
-import { selectTrashNotes } from "../../../store/trash-slice/trash-slice";
+import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
+import { NavTabModel } from "models/UI-Models";
+import { fillNoteEditor, selectNotes, selectTrashNotes } from "store";
 
 import SideNavTab from "./SideNavTab";
 import DropdownList from "../../UI/Dropdown";

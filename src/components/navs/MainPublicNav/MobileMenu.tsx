@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { HorizontalLogo } from "../../../assets/index";
+import { HorizontalLogo, GrClose } from "assets";
 import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from "utils/constants/routes";
-import { GhostLink, ExecludeEventWrapper } from "../..";
-import { GrClose } from "../../../assets/index";
+import { GhostLink, ExecludeEventWrapper } from "components";
 
 const MobileMenu: React.FC<{
   onClose: () => void;

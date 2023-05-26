@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import { TestimonialCard } from '../../../';
-import { Testimonial_CAROUSEL_DATA_INTERFACE } from '../../../../interfaces';
+import { TestimonialCard } from "components";
+import { Testimonial_CAROUSEL_DATA_INTERFACE } from "interfaces";
 
 const LogoCarousel: React.FC<{
   className?: string;
@@ -18,9 +18,9 @@ const LogoCarousel: React.FC<{
   const [nav2, setNav2] = useState<Slider | null>(null);
 
   return (
-    <div className={className ? className : ''}>
+    <div className={className ? className : ""}>
       {/* View Slider */}
-      <div className='max-w-[925px] mx-auto text-center'>
+      <div className="max-w-[925px] mx-auto text-center">
         <Slider asNavFor={nav2!} ref={(slider1) => setNav1(slider1)}>
           {data.map((testimonial) => (
             <TestimonialCard
@@ -34,7 +34,7 @@ const LogoCarousel: React.FC<{
         </Slider>
       </div>
       {/* Logo Track Slider */}
-      <div className='testimonial-carousel__logo-track'>
+      <div className="testimonial-carousel__logo-track">
         <Slider
           asNavFor={nav1!}
           ref={(slider2) => setNav2(slider2)}
@@ -46,7 +46,7 @@ const LogoCarousel: React.FC<{
               className={`logo !block max-w-[150px] w-full max-h-full mx-auto cursor-pointer px-[1vw]`}
             >
               <img
-                className='block mx-auto w-full'
+                className="block mx-auto w-full"
                 src={testimonial.logo}
                 alt={testimonial.altText}
               />

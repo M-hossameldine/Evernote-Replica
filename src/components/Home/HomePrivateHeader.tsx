@@ -1,5 +1,4 @@
-import { HomeImg } from "../../assets/index";
-import { RiHomeGearFill } from "../../assets/index";
+import { HomeImg, RiHomeGearFill } from "assets";
 
 const HomePrivateHeader: React.FC = (props) => {
   // get home header date

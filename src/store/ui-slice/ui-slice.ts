@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "store";
 
 interface UI_STATE_INTERFACE {
   isTrashBin: boolean;
   notification: {
-    status: 'success' | 'error';
+    status: "success" | "error";
     message: JSX.Element | string;
   } | null;
 }
@@ -15,13 +15,13 @@ const initialState: UI_STATE_INTERFACE = {
 };
 
 const UiSlice = createSlice({
-  name: 'ui',
+  name: "ui",
   initialState,
   reducers: {
     showNotification: (
       state,
       action: PayloadAction<{
-        status: 'success' | 'error';
+        status: "success" | "error";
         message: JSX.Element | string;
       }>
     ) => {

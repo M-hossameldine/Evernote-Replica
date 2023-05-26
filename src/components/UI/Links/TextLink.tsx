@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import { IconType } from 'react-icons';
+import { Link } from "react-router-dom";
+import { IconType } from "react-icons";
 
-import { ExternalLink } from '../../index';
+import { ExternalLink } from "components";
 
 interface TEXT_LINK_INTERFACE {
   text: string;
@@ -20,8 +20,8 @@ const TextLink: React.FC<TEXT_LINK_INTERFACE> = (props) => {
 
   let linkClasses = ` 
       flex items-center gap-1
-      ${className ? className : ''} 
-      ${underline ? ' underline ' : ''} `;
+      ${className ? className : ""} 
+      ${underline ? " underline " : ""} `;
 
   return (
     <>
@@ -29,9 +29,9 @@ const TextLink: React.FC<TEXT_LINK_INTERFACE> = (props) => {
         <Link to={route} className={linkClasses}>
           {text}
           {icon ? (
-            <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
+            <icon.Icon className={icon.iconStyle ? icon.iconStyle : ""} />
           ) : (
-            ''
+            ""
           )}
         </Link>
       )}
