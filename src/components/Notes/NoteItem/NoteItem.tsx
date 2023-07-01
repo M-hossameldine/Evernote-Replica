@@ -17,7 +17,7 @@ const NoteItem = (props: PropsType): React.ReactElement => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const location = useLocationIndicator();
-  const { note, index, className, route, onClick } = props;
+  const { note, index, className, route } = props;
 
   const { text, title, createdTimestamp } = "note" in note ? note.note : note;
 

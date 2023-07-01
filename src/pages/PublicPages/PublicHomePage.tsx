@@ -2,7 +2,6 @@ import { SimpleFeatureBlock, FeatureCarousel, TextLink } from "components";
 import {
   HeroSection,
   TestimonialSection,
-  VideoModal,
   FeatureZigzagSection,
   PricingPlansSection,
   Footer,
@@ -49,7 +48,7 @@ const PublicHomePage: React.FC = () => {
           <div>
             <img
               src={TaskHeroImg}
-              alt="Image contians a loptop and mobile phone that use evernote app"
+              alt="a loptop and mobile phone that use evernote app"
             />
           </div>
 

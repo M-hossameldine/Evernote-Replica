@@ -1,7 +1,6 @@
-import { v4 as uuid } from 'uuid';
-import { ICON_LINK_DATA_INTERFACE } from '../../interfaces';
+import { v4 as uuid } from "uuid";
+import { ICON_LINK_DATA_INTERFACE, FOOTER_DATA_INTERFACE } from "interfaces";
 
-import { FOOTER_DATA_INTERFACE } from '../../interfaces';
 import {
   FaFacebookF,
   FaTwitter,
@@ -9,211 +8,211 @@ import {
   FaInstagram,
   FaYoutube,
   FaLinkedinIn,
-} from '../../assets';
+} from "../../assets";
 
 export const FOOTER_DATA: FOOTER_DATA_INTERFACE[] = [
   {
     colId: uuid(),
-    colTitle: 'Product',
+    colTitle: "Product",
     colFeatures: [
       {
         id: uuid(),
-        text: 'Why Evernote',
-        route: '',
+        text: "Why Evernote",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Evernote Free',
-        route: '',
+        text: "Evernote Free",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Evernote Personal',
-        route: '',
+        text: "Evernote Personal",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Evernote Professional',
-        route: '',
+        text: "Evernote Professional",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Evernote Teams',
-        route: '',
+        text: "Evernote Teams",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Compare Plans',
-        route: '',
+        text: "Compare Plans",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Student Discount',
-        route: '',
+        text: "Student Discount",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Download App',
-        route: '',
+        text: "Download App",
+        route: "",
       },
     ],
   },
   {
     colId: uuid(),
-    colTitle: 'Features',
+    colTitle: "Features",
     colFeatures: [
       {
         id: uuid(),
-        text: 'Web Clipper',
-        route: '',
+        text: "Web Clipper",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Templates',
-        route: '',
+        text: "Templates",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Spaces',
-        route: '',
+        text: "Spaces",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'ntegrations',
-        route: '',
+        text: "ntegrations",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Notes Sync',
-        route: '',
+        text: "Notes Sync",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'PDF & Doc Search',
-        route: '',
+        text: "PDF & Doc Search",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Search Handwriting',
-        route: '',
+        text: "Search Handwriting",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Document Scanning',
-        route: '',
+        text: "Document Scanning",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Notebooks & Tags',
-        route: '',
+        text: "Notebooks & Tags",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Tasks',
-        route: '',
+        text: "Tasks",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Calendar',
-        route: '',
+        text: "Calendar",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Home',
-        route: '',
+        text: "Home",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Search',
-        route: '',
+        text: "Search",
+        route: "",
       },
     ],
   },
   {
     colId: uuid(),
-    colTitle: 'Resources',
+    colTitle: "Resources",
     colFeatures: [
       {
         id: uuid(),
-        text: 'Resources',
-        route: '',
+        text: "Resources",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Make Connections',
-        route: '',
+        text: "Make Connections",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Become an Expert',
-        route: '',
+        text: "Become an Expert",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Find an Expert',
-        route: '',
+        text: "Find an Expert",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Early Access',
-        route: '',
+        text: "Early Access",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Affiliates',
-        route: '',
+        text: "Affiliates",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Developers',
-        route: '',
+        text: "Developers",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Blog',
-        route: '',
+        text: "Blog",
+        route: "",
       },
     ],
   },
   {
     colId: uuid(),
-    colTitle: 'Support',
+    colTitle: "Support",
     colFeatures: [
       {
         id: uuid(),
-        text: 'Help & Learning',
-        route: '',
+        text: "Help & Learning",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Troubleshooting',
-        route: '',
+        text: "Troubleshooting",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Forum',
-        route: '',
+        text: "Forum",
+        route: "",
       },
     ],
   },
   {
     colId: uuid(),
-    colTitle: 'Company',
+    colTitle: "Company",
     colFeatures: [
       {
         id: uuid(),
-        text: 'About Us',
-        route: '',
+        text: "About Us",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Careers',
-        route: '',
+        text: "Careers",
+        route: "",
       },
       {
         id: uuid(),
-        text: 'Contact Us',
-        route: '',
+        text: "Contact Us",
+        route: "",
       },
     ],
   },
@@ -223,32 +222,32 @@ export const FOOTER_SOCIAL_ICONS_DATA: ICON_LINK_DATA_INTERFACE[] = [
   {
     id: uuid(),
     Icon: FaFacebookF,
-    route: 'https://web.facebook.com/evernote',
+    route: "https://web.facebook.com/evernote",
   },
   {
     id: uuid(),
     Icon: FaTwitter,
-    route: 'https://twitter.com/evernote',
+    route: "https://twitter.com/evernote",
   },
   {
     id: uuid(),
     Icon: FaMediumM,
-    route: 'https://medium.com/@evernote',
+    route: "https://medium.com/@evernote",
   },
   {
     id: uuid(),
     Icon: FaInstagram,
-    route: 'https://www.instagram.com/evernote',
+    route: "https://www.instagram.com/evernote",
   },
   {
     id: uuid(),
     Icon: FaYoutube,
-    route: 'https://www.youtube.com/channel/UCr_JcNR6slxFcTtDZ8t6F0A',
+    route: "https://www.youtube.com/channel/UCr_JcNR6slxFcTtDZ8t6F0A",
   },
   {
     id: uuid(),
     Icon: FaLinkedinIn,
-    route: 'https://www.linkedin.com/company/evernote/',
+    route: "https://www.linkedin.com/company/evernote/",
   },
 ];
 
@@ -256,17 +255,17 @@ export const FOOTER_LEGAL_DATA: { id: string; text: string; route: string }[] =
   [
     {
       id: uuid(),
-      text: 'Security',
-      route: '',
+      text: "Security",
+      route: "",
     },
     {
       id: uuid(),
-      text: 'Legal',
-      route: '',
+      text: "Legal",
+      route: "",
     },
     {
       id: uuid(),
-      text: 'Privacy',
-      route: '',
+      text: "Privacy",
+      route: "",
     },
   ];

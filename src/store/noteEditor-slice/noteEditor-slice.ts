@@ -33,10 +33,9 @@ const NoteEditorSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(
-      addNote,
-      (state, action: PayloadAction<NOTE_INTERFACE>) => {}
-    );
+    builder.addCase(addNote, (state, action: PayloadAction<NOTE_INTERFACE>) => {
+      // todo: check if this extra reducer is still needed
+    });
   },
 });
 

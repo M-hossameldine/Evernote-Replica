@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form, Field, FieldProps } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useLocationIndicator, useAppDispatch, useAppSelector } from "hooks";
 import { useNavigate, Link } from "react-router-dom";
@@ -13,7 +13,6 @@ import {
 } from "store";
 import {
   AUTHPAGE,
-  API_KEY,
   HOMEPAGE,
   LOGIN_ENDPOINT,
   SIGNUP_ENDPOINT,
@@ -36,7 +35,7 @@ const validationSchema = Yup.object().shape({
     .max(25, "Too Long! Max 25 Characters")
     .required("Password is required!")
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
       "Must contain lowercase, uppercase, numbers and special characters"
     ),
 });
@@ -58,7 +57,7 @@ const AuthForm: React.FC = () => {
   }
 
   const formikHandler = async (values: FormValuesInterface) => {
-    let url = isLogin ? LOGIN_ENDPOINT : SIGNUP_ENDPOINT;
+    const url = isLogin ? LOGIN_ENDPOINT : SIGNUP_ENDPOINT;
 
     const submitSuccessfully = () => {
       navigate(HOMEPAGE);

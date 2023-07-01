@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from "react";
 
 // ref type: React.RefObject<ELEMENT_TYPE>
 export const useOutsideListener = (
