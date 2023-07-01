@@ -9,11 +9,15 @@ import NoteEditorSidebarHeader from "../NoteEditorSidebarHeader/NoteEditorSideba
 import NoteList from "../../NoteList/NoteList";
 import FallbackMsg from "components/UI/FallbackMsg/FallbackMsg";
 
-const NoteEditorSidebar: React.FC<{
+type NoteEditorSidebarProps = {
   notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
   header: HEADER_INTERFACE;
   fallbackData: FALLBACK_DATA_INTERFACE;
-}> = (props) => {
+};
+
+const NoteEditorSidebar = (
+  props: NoteEditorSidebarProps
+): React.ReactElement => {
   const { notes, header, fallbackData } = props;
 
   return (

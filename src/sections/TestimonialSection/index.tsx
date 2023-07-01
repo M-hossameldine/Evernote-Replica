@@ -19,10 +19,10 @@ const DefaultCarouselSettings = {
 interface ComponentInterface {
   className?: string;
   data: Testimonial_CAROUSEL_DATA_INTERFACE[];
-  trackSettings: {};
-  viewSettings?: {};
+  trackSettings: object;
+  viewSettings?: object;
 }
-const TestimonialSection: React.FC<ComponentInterface> = (props) => {
+const TestimonialSection = (props: ComponentInterface): React.ReactElement => {
   const { className, data, trackSettings, viewSettings } = props;
 
   const carouselSlides = Testimonial_CAROUSEL_DATA.map((slide) => (

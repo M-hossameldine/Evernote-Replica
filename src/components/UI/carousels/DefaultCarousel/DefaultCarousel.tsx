@@ -1,15 +1,15 @@
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 interface DefaultCarouselProps {
   children?: React.ReactNode;
-  settings: {};
+  settings: object;
   slides: React.ReactElement<any>[];
 }
 
-const DefaultCarousel: React.FC<DefaultCarouselProps> = (props) => {
-  const { children, settings, slides } = props;
+const DefaultCarousel = (props: DefaultCarouselProps): React.ReactElement => {
+  const { settings, slides } = props;
 
   return <Slider {...settings}>{slides}</Slider>;
 };

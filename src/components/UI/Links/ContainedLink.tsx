@@ -14,7 +14,7 @@ interface CONTAINED_LINK_INTERFACE {
   isExteranl?: boolean;
 }
 
-const ContainedLink: React.FC<CONTAINED_LINK_INTERFACE> = (props) => {
+const ContainedLink = (props: CONTAINED_LINK_INTERFACE): React.ReactElement => {
   const { text, icon, className, route, isExteranl } = props;
 
   const linkClasses = ` table text-white bg-green-550 hover:bg-green-450 font-semibold py-[0.7em] rounded 

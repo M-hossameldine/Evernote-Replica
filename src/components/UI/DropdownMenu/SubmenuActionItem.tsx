@@ -10,7 +10,9 @@ import {
   TRASH_ITEM_INTERFACE,
 } from "interfaces";
 
-const SubmenuActionItem: React.FC<ACTION_ITEM_INTERFACE> = (props) => {
+const SubmenuActionItem = (
+  props: ACTION_ITEM_INTERFACE
+): React.ReactElement => {
   const { content, asyncAction, asyncActionArgs, operation } = props;
 
   const editor = useAppSelector(selectNoteEditor);

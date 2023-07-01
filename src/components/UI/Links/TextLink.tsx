@@ -15,7 +15,7 @@ interface TEXT_LINK_INTERFACE {
   isExteranl?: boolean; // to define if the link will navigate to internal destination inside our app or exteranl destination
 }
 
-const TextLink: React.FC<TEXT_LINK_INTERFACE> = (props) => {
+const TextLink = (props: TEXT_LINK_INTERFACE): React.ReactElement => {
   const { text, route, underline = true, className, icon, isExteranl } = props;
 
   let linkClasses = ` 

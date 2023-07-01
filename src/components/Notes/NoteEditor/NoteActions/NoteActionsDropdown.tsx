@@ -17,7 +17,7 @@ import NoteActionsDropdownItem from "./NoteActionsDropdownItem";
 import { findNoteById } from "utils/functions";
 import { IoIosMore } from "assets";
 
-const NoteActionsDropdown: React.FC = (props) => {
+const NoteActionsDropdown: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const editor = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);

@@ -7,12 +7,16 @@ import { selectNotes, selectTrashNotes, selectNoteEditor } from "store";
 import { NOTESPAGE, TRASHPAGE } from "utils/constants";
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 
-const NoteActionsDropdownItem: React.FC<{
+type NoteActionsDropdownItemProps = {
   text: string;
   asyncAction: (payload?: any) => (dispatch: Dispatch) => Promise<void>;
-  asyncActionArgs: {};
+  asyncActionArgs: object;
   operation: "add" | "delete" | "update" | "empty";
-}> = (props) => {
+};
+
+const NoteActionsDropdownItem = (
+  props: NoteActionsDropdownItemProps
+): React.ReactElement => {
   const { text, asyncAction, asyncActionArgs, operation } = props;
 
   const editor = useAppSelector(selectNoteEditor);

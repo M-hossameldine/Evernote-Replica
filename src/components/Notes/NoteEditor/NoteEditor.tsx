@@ -13,7 +13,7 @@ import {
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 import { AutoGrowingTextArea, NoteEditorHeader } from "components";
 
-const NoteEditor: React.FC = (props) => {
+const NoteEditor: React.FC = () => {
   const dispatch = useAppDispatch();
   const { activeNoteIndex, defaultActive } = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);

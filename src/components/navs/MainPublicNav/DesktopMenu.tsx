@@ -4,7 +4,9 @@ import { HorizontalLogo, FaBars } from "assets/index";
 import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from "utils/constants";
 import { GhostLink } from "components";
 
-const DesktopMenu: React.FC<{ onShowMenu: () => void }> = (props) => {
+type Props = { onShowMenu: () => void };
+
+const DesktopMenu = (props: Props): React.ReactElement => {
   return (
     <div className=" flex p-5 items-center container max-w-[75rem] mx-auto  ">
       <Link

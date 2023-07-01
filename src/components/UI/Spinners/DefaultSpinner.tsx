@@ -6,7 +6,9 @@ interface DefaultSpinnerProps {
   borderSize?: string; // "border-3"
 }
 
-export const DefaultSpinner: React.FC<DefaultSpinnerProps> = (props) => {
+export const DefaultSpinner = (
+  props: DefaultSpinnerProps
+): React.ReactElement => {
   const {
     size = "h-6 w-6",
     borderColor = "border-current",

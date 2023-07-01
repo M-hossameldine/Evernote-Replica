@@ -3,7 +3,7 @@ import { selectTrashNotes, emptyTrashAction } from "store";
 
 import { TRASHPAGE } from "utils/constants";
 
-const EmptyTrashButton: React.FC = (props) => {
+const EmptyTrashButton: React.FC = () => {
   const trashNotes = useAppSelector(selectTrashNotes);
 
   const updatedTrashState = useUpdatedState({

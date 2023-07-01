@@ -2,7 +2,7 @@ import { useLocationIndicator } from "hooks";
 
 import { BsSortDown, BiFilterAlt, MdViewList } from "assets";
 
-const NoteListingOptions: React.FC = (props) => {
+const NoteListingOptions: React.FC = () => {
   const location = useLocationIndicator();
 
   return (

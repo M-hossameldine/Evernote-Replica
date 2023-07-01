@@ -5,19 +5,21 @@ import { useAppDispatch, useLocationIndicator } from "hooks";
 import { setActiveNoteIndex } from "store/noteEditor-slice/noteEditor-slice";
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 
-const NoteItem: React.FC<{
+type PropsType = {
   note: NOTE_INTERFACE | TRASH_ITEM_INTERFACE;
   index: number;
   className?: string;
   route?: string;
   onClick?: (noteIndex: number) => void;
-}> = (props) => {
+};
+
+const NoteItem = (props: PropsType): React.ReactElement => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const location = useLocationIndicator();
   const { note, index, className, route, onClick } = props;
 
-  let { text, title, createdTimestamp } = "note" in note ? note.note : note;
+  const { text, title, createdTimestamp } = "note" in note ? note.note : note;
 
   const { id: localNoteId } = note;
 
@@ -41,7 +43,7 @@ const NoteItem: React.FC<{
   })} ${createNoteTimestamp.getUTCDate()}`;
 
   // style
-  let noteItemClasses = ` ${classes.note} block
+  const noteItemClasses = ` ${classes.note} block
     ${localNoteId === params.noteId ? classes.active : ""} 
     ${className ? className : ""}`;
 

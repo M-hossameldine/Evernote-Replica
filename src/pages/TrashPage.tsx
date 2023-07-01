@@ -5,7 +5,7 @@ import NoteEditorSidebar from "components/Notes/NoteEditor/NoteEditorSidebar/Not
 import NoteEditor from "components/Notes/NoteEditor/NoteEditor";
 import { FaTrash } from "assets";
 
-const TrashPage: React.FC = (props) => {
+const TrashPage: React.FC = () => {
   const trashNotes = useAppSelector(selectTrashNotes);
 
   return (

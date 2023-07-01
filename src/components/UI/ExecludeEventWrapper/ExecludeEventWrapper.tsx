@@ -8,14 +8,13 @@ type Props = {
   listenerHandler: () => void;
 };
 
-const ExecludeEventWrapper: React.FC<Props> = (props) => {
-  const { className } = props;
+const ExecludeEventWrapper = (props: Props): React.ReactElement => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useOutsideListener(wrapperRef, "mousedown", props.listenerHandler);
 
   return (
-    <div ref={wrapperRef} className={className}>
+    <div ref={wrapperRef} className={props.className}>
       {props.children}
     </div>
   );

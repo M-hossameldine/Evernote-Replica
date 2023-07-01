@@ -11,7 +11,9 @@ interface REACT_ICON_LINK_INTERFACE {
   isExteranl?: boolean;
 }
 
-const ReactIconLink: React.FC<REACT_ICON_LINK_INTERFACE> = (props) => {
+const ReactIconLink = (
+  props: REACT_ICON_LINK_INTERFACE
+): React.ReactElement => {
   const { Icon, route, size, className, isExteranl } = props;
 
   const iconContainerClasses = `${className ? className : ""}`;

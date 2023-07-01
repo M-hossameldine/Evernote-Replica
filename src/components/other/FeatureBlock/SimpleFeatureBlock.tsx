@@ -6,7 +6,7 @@ interface COMPONENT_INTERFACE {
   className?: string;
 }
 
-const SimpleFeatureBlock: React.FC<COMPONENT_INTERFACE> = (props) => {
+const SimpleFeatureBlock = (props: COMPONENT_INTERFACE): React.ReactElement => {
   const { title, description, className } = props;
 
   const blockClasses = className ? className : "";
