@@ -50,7 +50,7 @@ const AuthForm: React.FC = () => {
 
   const isLogin = location.isInCurrentPath("login");
 
-  function resetAuthErrorHandler(e: React.FormEvent<HTMLTextAreaElement>) {
+  function resetAuthErrorHandler() {
     if (authHasError) {
       dispatch(resetAuthErrors());
     }
@@ -95,7 +95,7 @@ const AuthForm: React.FC = () => {
                 id="email"
                 name="email"
                 onChange={(e: React.ChangeEvent<any>) => {
-                  resetAuthErrorHandler(e);
+                  resetAuthErrorHandler();
                   handleChange(e);
                 }}
                 placeholder="Email"
@@ -116,7 +116,7 @@ const AuthForm: React.FC = () => {
               <Field
                 name="password"
                 onChange={(e: React.ChangeEvent<any>) => {
-                  resetAuthErrorHandler(e);
+                  resetAuthErrorHandler();
                   handleChange(e);
                 }}
                 onKey

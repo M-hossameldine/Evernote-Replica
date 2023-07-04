@@ -27,6 +27,7 @@ import {
 
 function App() {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  // Todo: handle notifications
   const notification = useAppSelector(selectNotification);
   const dispatch = useAppDispatch();
   const location = useLocationIndicator();

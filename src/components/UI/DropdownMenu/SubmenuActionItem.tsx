@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useUpdatedState, useAppSelector, useLocationIndicator } from "hooks";
 
 import { selectNotes, selectTrashNotes, selectNoteEditor } from "store";
@@ -19,7 +18,6 @@ const SubmenuActionItem = (
   const notes = useAppSelector(selectNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const location = useLocationIndicator();
-  const params = useParams();
 
   const isInTrash = location.isInCurrentPath("trash");
 
