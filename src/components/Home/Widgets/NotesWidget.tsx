@@ -8,7 +8,9 @@ import { NOTESPAGE, EDITORPAGE } from "utils/constants";
 import { IoIosArrowForward, MdPostAdd, IoIosMore } from "assets";
 import { FUNCTION_ITEM_INTERFACE, ACTION_ITEM_INTERFACE } from "interfaces";
 
-const NotesWidget: React.FC<{ className?: string }> = (props) => {
+type Props = { className?: string };
+
+const NotesWidget = (props: Props): React.ReactElement => {
   const notes = useAppSelector(selectNotes);
   const navigate = useNavigate();
 

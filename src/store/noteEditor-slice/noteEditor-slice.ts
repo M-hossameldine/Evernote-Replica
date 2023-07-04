@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "store";
 import { addNote } from "../notes-slice/notes-slice";
@@ -33,10 +34,9 @@ const NoteEditorSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(
-      addNote,
-      (state, action: PayloadAction<NOTE_INTERFACE>) => {}
-    );
+    builder.addCase(addNote, (state, action: PayloadAction<NOTE_INTERFACE>) => {
+      // todo: check if this extra reducer is still needed
+    });
   },
 });
 

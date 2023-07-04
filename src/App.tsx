@@ -1,8 +1,13 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useLocationIndicator } from "./hooks/use-locationIndicator";
-import { useAppSelector, useAppDispatch, useTokenData } from "./hooks";
 
-import { selectNotification, selectIsLoggedIn, setToken } from "./store";
+import {
+  useAppSelector,
+  useAppDispatch,
+  useTokenData,
+  useLocationIndicator,
+} from "hooks";
+
+import { selectNotification, selectIsLoggedIn } from "store";
 import { Layout, Notification } from "./components";
 import {
   AUTHPAGE,
@@ -22,6 +27,7 @@ import {
 
 function App() {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  // Todo: handle notifications
   const notification = useAppSelector(selectNotification);
   const dispatch = useAppDispatch();
   const location = useLocationIndicator();

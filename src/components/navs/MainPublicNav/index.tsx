@@ -3,7 +3,7 @@ import { useEventListener } from "hooks";
 
 import { DesktopMenu, MobileMenu } from "components";
 
-const MainPublicNav: React.FC = (props) => {
+const MainPublicNav: React.FC = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [navBoxShadow, setNavBoxShadow] = useState(false);
 

@@ -15,7 +15,7 @@ interface MENU_INTERFACE {
   };
 }
 
-const DropdownMenu: React.FC<MENU_INTERFACE> = (props) => {
+const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
   const { menuHeader } = props;
   const { placeSubmenu } = props;
   const [isExpanded, setIsExpanded] = useState(false); // set submenu visiblitily

@@ -5,7 +5,7 @@ import NoteEditor from "components/Notes/NoteEditor/NoteEditor";
 import NoteEditorSidebar from "components/Notes/NoteEditor/NoteEditorSidebar/NoteEditorSidebar";
 import { IoIosPaper, GiNotebook } from "assets";
 
-const NotesPage: React.FC = (props) => {
+const NotesPage: React.FC = () => {
   const notes = useAppSelector(selectNotes);
   const location = useLocationIndicator();
 
@@ -31,6 +31,6 @@ const NotesPage: React.FC = (props) => {
 
 export default NotesPage;
 
-const noteFallbackAction: React.FC = (props) => {
+const noteFallbackAction: React.FC = () => {
   return <p>Click the + New Note button in the sidebar to get started</p>;
 };

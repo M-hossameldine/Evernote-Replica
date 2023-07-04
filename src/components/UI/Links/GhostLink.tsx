@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 import { ExternalLink } from "components";
 
 interface LINK_INTERFACE {
@@ -19,12 +19,12 @@ interface LINK_INTERFACE {
   isExteranl?: boolean;
 }
 
-const GhostLink: React.FC<LINK_INTERFACE> = (props) => {
-  const { text, colors, className, icon, route, isExteranl } = props;
+const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
+  const { text, className, icon, route, isExteranl } = props;
   const { textClr, textHoverClr, borderClr, borderHoverClr } = props.colors;
 
-  let textHoverColor = ` hover:${textHoverClr} `;
-  let borderHoverColor = ` hover:${borderHoverClr} `;
+  const textHoverColor = ` hover:${textHoverClr} `;
+  const borderHoverColor = ` hover:${borderHoverClr} `;
 
   const linkClasses = `table ${textClr} ${textHoverColor}
     border-solid border-2 ${borderClr} ${borderHoverColor}

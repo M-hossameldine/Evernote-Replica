@@ -1,6 +1,6 @@
 import { HeroSection } from "sections";
 
-const DownloadPage: React.FC = (props) => {
+const DownloadPage: React.FC = () => {
   return (
     <div>
       <HeroSection

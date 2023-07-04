@@ -1,7 +1,11 @@
 import { NavTabModel } from "models/UI-Models";
 import SideNavTab from "./SideNavTab";
 
-const TapDropdown: React.FC<{ tabs: NavTabModel[] }> = (props) => {
+interface PropsType {
+  tabs: NavTabModel[];
+}
+
+const TapDropdown = (props: PropsType): React.ReactElement => {
   const { tabs } = props;
 
   return (

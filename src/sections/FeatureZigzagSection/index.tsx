@@ -6,7 +6,9 @@ interface ComponentInterface {
   className?: string;
 }
 
-const FeatureZigzagSection: React.FC<ComponentInterface> = (props) => {
+const FeatureZigzagSection = (
+  props: ComponentInterface
+): React.ReactElement => {
   const { className, dataList } = props;
 
   return (

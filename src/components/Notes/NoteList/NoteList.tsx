@@ -1,12 +1,16 @@
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 import NoteItem from "../NoteItem/NoteItem";
 
-const NoteList: React.FC<{
+type PropsType = {
   notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
-}> = (props) => {
+};
+
+const NoteList = (props: PropsType): React.ReactElement => {
   const { notes } = props;
 
-  const selectedNoteHandler = (noteIndex: number) => {};
+  const selectedNoteHandler = () => {
+    // todo: add selected note logic using noteIndex
+  };
 
   return (
     <div className="scrollbar-box overflow-scroll overflow-x-hidden ">

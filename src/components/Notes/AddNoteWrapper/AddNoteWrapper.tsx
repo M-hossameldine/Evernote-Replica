@@ -4,11 +4,11 @@ import { NOTESPAGE } from "utils/constants";
 
 type Props = {
   children?: React.ReactNode;
-  actionPayload?: {};
+  actionPayload?: object;
   className?: string;
 };
 
-const AddNoteWrapper: React.FC<Props> = (props) => {
+const AddNoteWrapper = (props: Props): React.ReactElement => {
   const { actionPayload, className } = props;
   const notes = useAppSelector(selectNotes);
 

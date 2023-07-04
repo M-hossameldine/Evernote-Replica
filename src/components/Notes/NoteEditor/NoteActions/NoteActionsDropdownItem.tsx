@@ -1,25 +1,31 @@
-import { Dispatch } from "redux";
-import { useParams } from "react-router-dom";
 import { useUpdatedState, useAppSelector, useLocationIndicator } from "hooks";
 
-import { selectNotes, selectTrashNotes, selectNoteEditor } from "store";
+import {
+  selectNotes,
+  selectTrashNotes,
+  selectNoteEditor,
+  AppDispatch,
+} from "store";
 
 import { NOTESPAGE, TRASHPAGE } from "utils/constants";
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 
-const NoteActionsDropdownItem: React.FC<{
+type NoteActionsDropdownItemProps = {
   text: string;
-  asyncAction: (payload?: any) => (dispatch: Dispatch) => Promise<void>;
-  asyncActionArgs: {};
+  asyncAction: (payload?: any) => (dispatch: AppDispatch) => Promise<void>;
+  asyncActionArgs: object;
   operation: "add" | "delete" | "update" | "empty";
-}> = (props) => {
+};
+
+const NoteActionsDropdownItem = (
+  props: NoteActionsDropdownItemProps
+): React.ReactElement => {
   const { text, asyncAction, asyncActionArgs, operation } = props;
 
   const editor = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const location = useLocationIndicator();
-  const params = useParams();
 
   const isInTrash = location.isInCurrentPath("trash");
 

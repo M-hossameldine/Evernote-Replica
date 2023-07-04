@@ -4,7 +4,6 @@ import { useLocationIndicator } from "hooks/use-locationIndicator";
 
 import { useAppSelector } from "hooks/redux-hooks";
 import {
-  selectNoteEditor,
   selectNotes,
   selectTrashNotes,
   MoveToTrashAction,
@@ -17,9 +16,8 @@ import NoteActionsDropdownItem from "./NoteActionsDropdownItem";
 import { findNoteById } from "utils/functions";
 import { IoIosMore } from "assets";
 
-const NoteActionsDropdown: React.FC = (props) => {
+const NoteActionsDropdown: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const editor = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const location = useLocationIndicator();
@@ -77,14 +75,14 @@ const NoteActionsDropdown: React.FC = (props) => {
           <IoIosMore className="text-xl shrink-0" />
         </button>
 
-        <div
+        <button
           className={`absolute right-0 top-[150%] z-10 bg-white whitespace-nowrap shadow-even-2 rounded text-sm ${
             isExpanded ? "scale-100" : "scale-0"
           }`}
           onClick={hideDropdonwHandler}
         >
           {actionsContent}
-        </div>
+        </button>
       </div>
     </ExecludeEventWrapper>
   );

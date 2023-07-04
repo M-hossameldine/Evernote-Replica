@@ -4,10 +4,14 @@ import { BiCheck, IoIosArrowRoundBack, IoIosArrowRoundUp } from "assets";
 import { ContainedLink } from "components";
 import { PRICE_PLAN_DATA_INTERFACE } from "interfaces";
 
-const PricePlanCard: React.FC<{
+type PropsType = {
   cardData: PRICE_PLAN_DATA_INTERFACE;
   index: number;
-}> = (props) => {
+};
+
+type AccordionBtnProps = { id: string; isCollapsed: boolean };
+
+const PricePlanCard = (props: PropsType): React.ReactElement => {
   const { id, title, price, note, features, callToAction } = props.cardData;
   const { index: cardIndex } = props;
   const showFeaturesByDefault = cardIndex === 0 ? "show" : "";
@@ -74,9 +78,7 @@ const PricePlanCard: React.FC<{
 
 export default PricePlanCard;
 
-const AccordionBtn: React.FC<{ id: string; isCollapsed: boolean }> = (
-  props
-) => {
+const AccordionBtn = (props: AccordionBtnProps): React.ReactElement => {
   const { id, isCollapsed } = props;
 
   const btnClasses = `accordion-button {collapseStyle} relative flex md:hidden items-center !shadow-none transition focus:outline-none after:rounded-full after:bg-green-550  

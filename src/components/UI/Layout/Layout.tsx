@@ -3,12 +3,12 @@ import { MainUserSideNav, MainPublicNav } from "components";
 import { selectIsLoggedIn } from "store";
 import { AUTHPAGE } from "utils/constants";
 
-type Props = {
+type PropsType = {
   children?: React.ReactNode;
   className?: string;
 };
 
-const Layout: React.FC<Props> = (props) => {
+const Layout = (props: PropsType): React.ReactElement => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const location = useLocationIndicator();
 

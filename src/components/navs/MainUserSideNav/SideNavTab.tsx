@@ -1,12 +1,15 @@
 import { NavTabModel } from "models/UI-Models";
+import { ReactElement } from "react";
 
-const SideNavTab: React.FC<{
+type SideNavTabProps = {
   tab: NavTabModel;
   className?: string;
   iconStyle?: string;
   textStyle?: string;
   onClick?: () => void;
-}> = (props) => {
+};
+
+const SideNavTab = (props: SideNavTabProps): ReactElement => {
   const {
     tab,
     className,

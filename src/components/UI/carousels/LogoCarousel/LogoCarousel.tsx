@@ -7,13 +7,15 @@ import "slick-carousel/slick/slick-theme.css";
 import { TestimonialCard } from "components";
 import { Testimonial_CAROUSEL_DATA_INTERFACE } from "interfaces";
 
-const LogoCarousel: React.FC<{
+interface PropsType {
   className?: string;
   data: Testimonial_CAROUSEL_DATA_INTERFACE[];
-  trackSettings: {};
-  viewSettings?: {};
-}> = (props) => {
-  const { className, data, trackSettings, viewSettings } = props;
+  trackSettings: object;
+  viewSettings?: object;
+}
+
+const LogoCarousel = (props: PropsType): React.ReactElement => {
+  const { className, data, trackSettings } = props;
   const [nav1, setNav1] = useState<Slider | null>(null);
   const [nav2, setNav2] = useState<Slider | null>(null);
 

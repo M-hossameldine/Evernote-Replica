@@ -6,7 +6,8 @@ import { FOOTER_DATA } from "utils/data/footer-data";
 import FooterColumn from "./FooterColumn";
 import FooterInfoRow from "./FooterInfoRow";
 
-const Footer: React.FC<{ className: string }> = (props) => {
+type PropsType = { className: string };
+const Footer = (props: PropsType): React.ReactElement => {
   const footerClasses = `pb-20 ${props.className} `;
 
   return (

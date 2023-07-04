@@ -1,3 +1,4 @@
+import React from "react";
 import { useAppSelector } from "hooks/redux-hooks";
 import { selectNotes } from "store";
 
@@ -5,7 +6,7 @@ import { IoIosPaper } from "assets";
 import NoteListingOptions from "./NoteListingOperations/NoteListingOptions";
 import NoteList from "./NoteList/NoteList";
 
-const Notes: React.FC = (props) => {
+const Notes: React.FC = () => {
   const notes = useAppSelector(selectNotes);
   const notesNumber = notes.length;
 

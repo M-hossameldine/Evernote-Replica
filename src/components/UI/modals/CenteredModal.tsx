@@ -5,7 +5,7 @@ interface MODAL_INTERFACE {
   modalContent: React.ReactNode;
 }
 
-const CenteredModal: React.FC<MODAL_INTERFACE> = (props) => {
+const CenteredModal = (props: MODAL_INTERFACE): React.ReactElement => {
   return (
     <div className="">
       {/* Triggering part */}
@@ -18,7 +18,7 @@ const CenteredModal: React.FC<MODAL_INTERFACE> = (props) => {
         <img
           className="block"
           src={VideoModalImg}
-          alt="Clickable image opens video to explain Evernote capabilites"
+          alt="Clickable video to explain Evernote capabilites"
         />
       </button>
 

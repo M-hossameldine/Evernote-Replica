@@ -19,7 +19,7 @@ interface HERO_INTERFACE {
   }[];
 }
 
-const HeroSection: React.FC<HERO_INTERFACE> = (props) => {
+const HeroSection = (props: HERO_INTERFACE): React.ReactElement => {
   const { title, description, className, primeBtn, secondaryBtns } = props;
 
   return (

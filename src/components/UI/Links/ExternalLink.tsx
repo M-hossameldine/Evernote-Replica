@@ -1,6 +1,6 @@
-import { IconType } from 'react-icons';
+import type { IconType } from "react-icons";
 
-const ExteranlLink: React.FC<{
+type PropsType = {
   text?: string;
   icon?: {
     Icon: IconType;
@@ -9,24 +9,26 @@ const ExteranlLink: React.FC<{
   };
   href: string;
   className?: string;
-}> = (props) => {
+};
+
+const ExteranlLink = (props: PropsType): React.ReactElement => {
   const { text, icon, href, className } = props;
 
   return (
     <a
-      target='_blank'
+      target="_blank"
       href={href}
-      rel='noopener noreferrer'
+      rel="noopener noreferrer"
       className={className}
     >
       {text}
       {icon ? (
         <icon.Icon
           size={icon.size}
-          className={icon.iconStyle ? icon.iconStyle : ''}
+          className={icon.iconStyle ? icon.iconStyle : ""}
         />
       ) : (
-        ''
+        ""
       )}
     </a>
   );

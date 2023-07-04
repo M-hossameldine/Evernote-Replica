@@ -4,15 +4,17 @@ import { HorizontalLogo, GrClose } from "assets";
 import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from "utils/constants/routes";
 import { GhostLink, ExecludeEventWrapper } from "components";
 
-const MobileMenu: React.FC<{
+type PropsType = {
   onClose: () => void;
   className?: string;
   showMenu: boolean;
-}> = (props) => {
+};
+
+const MobileMenu = (props: PropsType): React.ReactElement => {
   const { onClose, className, showMenu } = props;
 
   const outsideClickHandler = () => {
-    props.onClose();
+    onClose();
   };
 
   const menuClasses = `

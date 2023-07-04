@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { NOTE_INTERFACE, createNote, TRASH_ITEM_INTERFACE } from "interfaces";
 import { RootState } from "store";
 import { restoreItem } from "../trash-slice/trash-slice";

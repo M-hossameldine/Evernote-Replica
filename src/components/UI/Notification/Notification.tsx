@@ -5,12 +5,12 @@ import classes from "./Notification.module.css";
 import { selectNotification, hideNotification } from "store";
 import { IoMdClose, MdError } from "assets";
 
-const Notification: React.FC = (props) => {
+const Notification: React.FC = () => {
   const [showNotification, setShowNotification] = useState(false);
   const dispatch = useAppDispatch();
   const notification = useAppSelector(selectNotification);
 
-  let status = notification ? notification.status : null;
+  const status = notification ? notification.status : null;
 
   const closeNotificationHandler = () => {
     setShowNotification(false);
@@ -26,7 +26,7 @@ const Notification: React.FC = (props) => {
 
   let statusClasses = "";
 
-  let visiblityClasses = showNotification ? classes.visible : "";
+  const visiblityClasses = showNotification ? classes.visible : "";
 
   if (status === "error") {
     statusClasses = classes.error;

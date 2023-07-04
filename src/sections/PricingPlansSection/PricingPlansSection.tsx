@@ -9,9 +9,9 @@ interface PricingPlansSection_INTERFACE {
   className?: string;
   data: PRICE_PLAN_DATA_INTERFACE[];
 }
-const PricingPlansSection: React.FC<PricingPlansSection_INTERFACE> = (
-  props
-) => {
+const PricingPlansSection = (
+  props: PricingPlansSection_INTERFACE
+): React.ReactElement => {
   const { className, data } = props;
 
   const accordionClasses = `accordion ${className ? className : ""}`;

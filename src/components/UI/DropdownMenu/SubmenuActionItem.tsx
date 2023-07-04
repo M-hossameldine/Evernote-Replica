@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useUpdatedState, useAppSelector, useLocationIndicator } from "hooks";
 
 import { selectNotes, selectTrashNotes, selectNoteEditor } from "store";
@@ -10,14 +9,15 @@ import {
   TRASH_ITEM_INTERFACE,
 } from "interfaces";
 
-const SubmenuActionItem: React.FC<ACTION_ITEM_INTERFACE> = (props) => {
+const SubmenuActionItem = (
+  props: ACTION_ITEM_INTERFACE
+): React.ReactElement => {
   const { content, asyncAction, asyncActionArgs, operation } = props;
 
   const editor = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const location = useLocationIndicator();
-  const params = useParams();
 
   const isInTrash = location.isInCurrentPath("trash");
 

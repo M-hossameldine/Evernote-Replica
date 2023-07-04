@@ -5,7 +5,6 @@ import { useAppSelector, useAppDispatch, useLocationIndicator } from "hooks";
 import {
   selectNotes,
   selectTrashNotes,
-  selectNoteEditor,
   editNote,
   fillNoteEditor,
   showNotification,
@@ -13,9 +12,8 @@ import {
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 import { AutoGrowingTextArea, NoteEditorHeader } from "components";
 
-const NoteEditor: React.FC = (props) => {
+const NoteEditor: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { activeNoteIndex, defaultActive } = useAppSelector(selectNoteEditor);
   const notes = useAppSelector(selectNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const params = useParams();
@@ -40,9 +38,9 @@ const NoteEditor: React.FC = (props) => {
     notesList = trashNotes;
   }
 
-  let activeId = params.noteId;
+  const activeId = params.noteId;
 
-  let activeNote = notesList.find((note) => note.id === activeId);
+  const activeNote = notesList.find((note) => note.id === activeId);
 
   let titleText = "";
   let bodyText = "";

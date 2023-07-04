@@ -1,4 +1,4 @@
-import { Dispatch } from "redux";
+import { AppDispatch } from "store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { logout } from "../index";
 import { authRequest } from "../../apis";
@@ -27,7 +27,7 @@ export const calculateRemainingTime = (expirationTime: string) => {
 };
 
 // chain logout thunk
-export const _logoutThunkHelper = async (dispatch: Dispatch) => {
+export const _logoutThunkHelper = async (dispatch: AppDispatch) => {
   dispatch(logout());
   localStorage.removeItem("token");
   localStorage.removeItem("expirationTime");
@@ -39,7 +39,7 @@ export const _logoutThunkHelper = async (dispatch: Dispatch) => {
 };
 
 export const userLogoutThunk = () => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     dispatch(logout());
     localStorage.removeItem("token");
     localStorage.removeItem("expirationTime");

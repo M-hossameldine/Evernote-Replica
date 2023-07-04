@@ -1,4 +1,4 @@
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 import { TextLink } from "components";
 
 interface ROWCARD_INTERFACE {
@@ -18,7 +18,7 @@ interface ROWCARD_INTERFACE {
   className?: string;
 }
 
-const RowCard: React.FC<ROWCARD_INTERFACE> = (props) => {
+const RowCard = (props: ROWCARD_INTERFACE): React.ReactElement => {
   const {
     cardImg,
     header,

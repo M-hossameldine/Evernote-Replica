@@ -4,7 +4,7 @@ import { BsSearch } from "assets/index";
 
 const SEARCH_TAB = new NavTabModel("Search", BsSearch);
 
-const SearchBar: React.FC = (props) => {
+const SearchBar: React.FC = () => {
   return (
     <SideNavTab
       tab={SEARCH_TAB}

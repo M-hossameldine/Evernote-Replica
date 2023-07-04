@@ -6,8 +6,8 @@ interface FOOTER_COLUMN_INTERFACE {
   className?: string;
 }
 
-const FooterColumn: React.FC<FOOTER_COLUMN_INTERFACE> = (props) => {
-  const { featuresData, className, title } = props;
+const FooterColumn = (props: FOOTER_COLUMN_INTERFACE): React.ReactElement => {
+  const { featuresData, title } = props;
 
   return (
     <li className="sm:text-sm mb-10">

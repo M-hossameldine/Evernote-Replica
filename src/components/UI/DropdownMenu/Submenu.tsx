@@ -2,11 +2,12 @@ import { ACTION_ITEM_INTERFACE, FUNCTION_ITEM_INTERFACE } from "interfaces";
 import SubmenuFunctionItem from "./SubmenuFunctionItem";
 import SubmenuActionItem from "./SubmenuActionItem";
 
-const Submenu: React.FC<{
+interface PropsType {
   submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];
   className?: string;
   onClick?: () => void;
-}> = (props) => {
+}
+const Submenu = (props: PropsType): React.ReactElement => {
   return (
     <ul className={props.className ? props.className : ""}>
       {props.submenuItemsData.map((itemData) => {

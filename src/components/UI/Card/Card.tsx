@@ -1,9 +1,9 @@
-type Props = {
+type PropsType = {
   children?: React.ReactNode;
   className?: string;
 };
 
-const Card: React.FC<Props> = (props) => {
+const Card = (props: PropsType): React.ReactElement => {
   const cardClasses = props.className ? props.className : "";
 
   return (

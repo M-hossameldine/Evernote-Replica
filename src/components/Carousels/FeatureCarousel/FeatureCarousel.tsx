@@ -10,9 +10,12 @@ interface DATA_INTERFACE {
   description: string;
 }
 
-const FeatureCarousel: React.FC<{ data: DATA_INTERFACE[]; settings: {} }> = (
-  props
-) => {
+type PropsType = {
+  data: DATA_INTERFACE[];
+  settings: object;
+};
+
+const FeatureCarousel = (props: PropsType): React.ReactElement => {
   const { data, settings } = props;
 
   return (

@@ -9,10 +9,11 @@ import {
 
 import EmptyTrashButton from "./EmptyTrashButton";
 
-const NoteEditorSidebarHeader: React.FC<{
+type PropsType = {
   notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
   headerData: HEADER_INTERFACE;
-}> = (props) => {
+};
+const NoteEditorSidebarHeader = (props: PropsType): React.ReactElement => {
   const location = useLocationIndicator();
 
   const { notes, headerData } = props;
