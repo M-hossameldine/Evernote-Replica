@@ -1,4 +1,4 @@
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 import { TextLink } from "components";
 
 interface ROWCARD_INTERFACE {

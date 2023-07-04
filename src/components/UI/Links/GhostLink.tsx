@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 import { ExternalLink } from "components";
 
 interface LINK_INTERFACE {

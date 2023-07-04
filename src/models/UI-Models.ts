@@ -1,5 +1,5 @@
-import { IconType } from 'react-icons';
-import { v4 as uuid } from 'uuid';
+import type { IconType } from "react-icons";
+import { v4 as uuid } from "uuid";
 
 export class NavTabModel {
   id: string;
