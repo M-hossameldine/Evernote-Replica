@@ -5,7 +5,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { Dispatch } from "redux";
+import { AppDispatch } from "store";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "./redux-hooks";
 import { RootState } from "../store";
@@ -13,7 +13,7 @@ import { RootState } from "../store";
 interface UPDATE_DATA_INTERFACE {
   asyncAction: (
     payload?: any
-  ) => (dispatch: Dispatch, getState: () => RootState) => Promise<void>;
+  ) => (dispatch: AppDispatch, getState: () => RootState) => Promise<void>;
   route: string;
   usedIndex: number;
   watchedState: any[];

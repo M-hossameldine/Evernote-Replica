@@ -1,14 +1,18 @@
-import { Dispatch } from "redux";
 import { useUpdatedState, useAppSelector, useLocationIndicator } from "hooks";
 
-import { selectNotes, selectTrashNotes, selectNoteEditor } from "store";
+import {
+  selectNotes,
+  selectTrashNotes,
+  selectNoteEditor,
+  AppDispatch,
+} from "store";
 
 import { NOTESPAGE, TRASHPAGE } from "utils/constants";
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 
 type NoteActionsDropdownItemProps = {
   text: string;
-  asyncAction: (payload?: any) => (dispatch: Dispatch) => Promise<void>;
+  asyncAction: (payload?: any) => (dispatch: AppDispatch) => Promise<void>;
   asyncActionArgs: object;
   operation: "add" | "delete" | "update" | "empty";
 };

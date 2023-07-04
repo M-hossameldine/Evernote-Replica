@@ -1,14 +1,13 @@
-import { Dispatch } from "redux";
+import { AppDispatch } from "store";
 
 import { createNote } from "interfaces";
-import { addNote } from "./notes-slice";
-import { moveToTrash } from "./notes-slice";
+import { addNote, moveToTrash } from "./notes-slice";
 
 export const sendNewNoteData = (payload?: {
   title?: string;
   text?: string;
 }) => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const newTitle = payload && payload.title ? payload.title : "";
     const newText = payload && payload.text ? payload.text : "";
     const timestamp = new Date().toISOString();
@@ -30,7 +29,7 @@ export const sendNewNoteData = (payload?: {
 };
 
 export const MoveToTrashAction = (payload?: any) => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const sendRequest = async () => {
       //Todo: api request will be added
     };
