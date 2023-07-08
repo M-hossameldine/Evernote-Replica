@@ -30,7 +30,7 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
   };
 
   // submenu position
-  let submenuPosition = { x: "left-0", y: "top-[150%]" }; // default position bottom leftWinger
+  const submenuPosition = { x: "left-0", y: "top-[150%]" }; // default position bottom leftWinger
   if (placeSubmenu) {
     // Horizontal position
     if (placeSubmenu.x) {

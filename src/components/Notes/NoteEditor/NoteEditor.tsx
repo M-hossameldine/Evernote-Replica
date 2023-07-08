@@ -113,7 +113,11 @@ const NoteEditor: React.FC = () => {
     <div className="grow bg-white h-screen">
       <NoteEditorHeader />
 
-      <div className="px-10 py-5" onClick={trashNotificationHandler}>
+      <div
+        className="px-10 py-5"
+        onClick={trashNotificationHandler}
+        role="presentation"
+      >
         <div className="mb-4">
           <AutoGrowingTextArea
             value={titleText}
