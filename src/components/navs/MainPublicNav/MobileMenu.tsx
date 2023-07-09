@@ -52,7 +52,7 @@ const MobileMenu = (props: PropsType): React.ReactElement => {
               </li>
 
               {/* download App */}
-              <li onClick={props.onClose}>
+              <li>
                 <GhostLink
                   text="Download"
                   colors={{
@@ -63,6 +63,7 @@ const MobileMenu = (props: PropsType): React.ReactElement => {
                   }}
                   className="text-sm font-semibold px-[5em] mx-auto mt-12"
                   route={DOWNLOADPAGE}
+                  onClick={props.onClose}
                 />
               </li>
             </ul>

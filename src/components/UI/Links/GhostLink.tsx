@@ -16,6 +16,7 @@ interface LINK_INTERFACE {
     iconStyle?: string;
   };
   route: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   isExteranl?: boolean;
 }
 
@@ -34,7 +35,7 @@ const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
   return (
     <>
       {!isExteranl && (
-        <Link to={route} className={linkClasses}>
+        <Link to={route} className={linkClasses} onClick={props.onClick}>
           {text}
           {icon ? (
             <icon.Icon className={icon.iconStyle ? icon.iconStyle : ""} />

@@ -18,7 +18,7 @@ const SideNavTab = (props: SideNavTabProps): ReactElement => {
     onClick: tabClickHandler,
   } = props;
 
-  const tabClasses = `relative flex justify-center lg:justify-start items-center h-9 gap-[6px] lg:pl-5 py-1 hover:bg-neutral-700 cursor-pointer group  ${
+  const tabClasses = `relative flex justify-center lg:justify-start items-center h-9 gap-[6px] lg:pl-5 py-1 hover:bg-neutral-700 cursor-pointer group w-full  ${
     className ? className : ""
   } `;
 
@@ -26,18 +26,20 @@ const SideNavTab = (props: SideNavTabProps): ReactElement => {
 
   const textClasses = textStyle ? textStyle : "";
   return (
-    <li className={tabClasses} onClick={tabClickHandler}>
-      <span className={iconsClasses}>
-        <tab.icon />
-      </span>
-      <span
-        className={
-          "absolute lg:static top-0 left-[115%] text-sm lg:text-md bg-neutral-800 lg:bg-transparent whitespace-nowrap p-2 px-3 lg:p-0 rounded-md scale-0  lg:scale-100 group-hover:scale-100  transition ease-linear " +
-          textClasses
-        }
-      >
-        {tab.text}
-      </span>
+    <li>
+      <button className={tabClasses} onClick={tabClickHandler}>
+        <span className={iconsClasses}>
+          <tab.icon />
+        </span>
+        <span
+          className={
+            "absolute lg:static top-0 left-[115%] text-sm lg:text-md bg-neutral-800 lg:bg-transparent whitespace-nowrap p-2 px-3 lg:p-0 rounded-md scale-0  lg:scale-100 group-hover:scale-100  transition ease-linear " +
+            textClasses
+          }
+        >
+          {tab.text}
+        </span>
+      </button>
     </li>
   );
 };

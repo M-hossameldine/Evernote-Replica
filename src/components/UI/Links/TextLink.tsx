@@ -12,13 +12,14 @@ interface TEXT_LINK_INTERFACE {
     iconStyle?: string;
   };
   route: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   isExteranl?: boolean; // to define if the link will navigate to internal destination inside our app or exteranl destination
 }
 
 const TextLink = (props: TEXT_LINK_INTERFACE): React.ReactElement => {
   const { text, route, underline = true, className, icon, isExteranl } = props;
 
-  let linkClasses = ` 
+  const linkClasses = ` 
       flex items-center gap-1
       ${className ? className : ""} 
       ${underline ? " underline " : ""} `;
@@ -26,7 +27,7 @@ const TextLink = (props: TEXT_LINK_INTERFACE): React.ReactElement => {
   return (
     <>
       {!isExteranl && (
-        <Link to={route} className={linkClasses}>
+        <Link to={route} className={linkClasses} onClick={props.onClick}>
           {text}
           {icon ? (
             <icon.Icon className={icon.iconStyle ? icon.iconStyle : ""} />
