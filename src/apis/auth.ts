@@ -17,7 +17,7 @@ export const authRequest = async (
       returnSecureToken: true,
     }),
     headers: {
-      "Content-Type": "application/",
+      "Content-Type": "application/json",
     },
   });
 

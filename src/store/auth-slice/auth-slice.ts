@@ -1,15 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "store";
-import { USER_AUTH_DATA_INTERFACE } from "interfaces";
-import { loginThunk } from "./auth-actions";
+import { authApi } from "./authApiSlice";
+
+type ErrorType =
+  | {
+      error: {
+        status: number;
+        data: {
+          error: {
+            code: number;
+            message: string;
+          };
+        };
+      };
+    }
+  | any;
 
 interface AUTH_STATE_INTERFACE {
   email: string;
   token: string;
   isLoggedIn: boolean;
   userId: string;
-  isLoading: boolean;
   hasError: boolean;
   errorMsgCode: string;
 }
@@ -19,7 +31,6 @@ const initialState: AUTH_STATE_INTERFACE = {
   token: "",
   isLoggedIn: false,
   userId: "",
-  isLoading: false,
   hasError: false,
   errorMsgCode: "",
 };
@@ -45,27 +56,29 @@ const AuthSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginThunk.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(loginThunk.rejected, (state, action) => {
-        state.isLoading = false;
-        state.hasError = true;
-        state.errorMsgCode = action.error.message
-          ? action.error.message
-          : "GENERIC_ERROR_MESSAGE";
-      })
-      .addCase(
-        loginThunk.fulfilled,
-        (state, action: PayloadAction<USER_AUTH_DATA_INTERFACE>) => {
-          const { idToken, localId, email } = action.payload;
-          state.isLoading = false;
+      .addMatcher(
+        authApi.endpoints.login.matchFulfilled,
+        (state, { payload }) => {
+          const { idToken, localId, email } = payload;
+
+          // reset error
           state.hasError = false;
           state.errorMsgCode = "";
+
           state.email = email;
           state.isLoggedIn = true;
           state.token = idToken;
           state.userId = localId;
+        }
+      )
+      .addMatcher(
+        authApi.endpoints.login.matchRejected,
+        (state, { payload }) => {
+          const loginError: ErrorType = payload;
+          const loginErrorMsg = loginError?.error?.data?.message;
+
+          state.hasError = true;
+          state.errorMsgCode = loginErrorMsg || "GENERIC_ERROR_MESSAGE";
         }
       );
   },
@@ -76,7 +89,6 @@ export const { setToken, logout, resetAuthErrors } = AuthSlice.actions;
 export const selectUserEmail = (state: RootState) => state.auth.email;
 export const selectToken = (state: RootState) => state.auth.token;
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
-export const selectAuthLoading = (state: RootState) => state.auth.isLoading;
 export const selectHasAuthError = (state: RootState) => state.auth.hasError;
 export const selectAuthErrorMsgCode = (state: RootState) =>
   state.auth.errorMsgCode;
