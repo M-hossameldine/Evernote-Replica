@@ -5,19 +5,13 @@ import { useLocationIndicator, useAppDispatch, useAppSelector } from "hooks";
 import { useNavigate, Link } from "react-router-dom";
 
 import {
-  loginThunk,
-  selectAuthLoading,
   selectHasAuthError,
   selectAuthErrorMsgCode,
   resetAuthErrors,
+  useLoginMutation,
+  useSignupMutation,
 } from "store";
-import {
-  AUTHPAGE,
-  HOMEPAGE,
-  LOGIN_ENDPOINT,
-  SIGNUP_ENDPOINT,
-  ErrorsMap,
-} from "utils/constants";
+import { AUTHPAGE, HOMEPAGE, ErrorsMap } from "utils/constants";
 
 import { VerticalLogo } from "assets";
 
@@ -44,11 +38,17 @@ const AuthForm: React.FC = () => {
   const location = useLocationIndicator();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const authIsLoading = useAppSelector(selectAuthLoading);
   const authHasError = useAppSelector(selectHasAuthError);
   const authErrorCode = useAppSelector(selectAuthErrorMsgCode);
 
   const isLogin = location.isInCurrentPath("login");
+
+  const loginMutation = useLoginMutation();
+  const signupMutation = useSignupMutation();
+
+  const [authMutation, { isLoading }] = isLogin
+    ? loginMutation
+    : signupMutation;
 
   function resetAuthErrorHandler() {
     if (authHasError) {
@@ -57,20 +57,15 @@ const AuthForm: React.FC = () => {
   }
 
   const formikHandler = async (values: FormValuesInterface) => {
-    const url = isLogin ? LOGIN_ENDPOINT : SIGNUP_ENDPOINT;
-
     const submitSuccessfully = () => {
       navigate(HOMEPAGE);
     };
 
-    await dispatch(
-      loginThunk({
-        email: values.email,
-        password: values.password,
-        url,
-        successHandler: submitSuccessfully,
-      })
-    );
+    await authMutation({
+      email: values.email,
+      password: values.password,
+      onSuccess: submitSuccessfully,
+    });
   };
 
   return (
@@ -144,11 +139,11 @@ const AuthForm: React.FC = () => {
 
             {/* Call to action */}
             <button
-              type={authIsLoading ? "button" : "submit"}
+              type={isLoading ? "button" : "submit"}
               className="flex justify-center items-center text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
             >
-              {!authIsLoading && (!isLogin ? "Sign up" : "Sign in")}
-              {authIsLoading && <DefaultSpinner />}
+              {!isLoading && (!isLogin ? "Sign up" : "Sign in")}
+              {isLoading && <DefaultSpinner borderColor="border-white" />}
             </button>
 
             {isLogin && (

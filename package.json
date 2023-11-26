@@ -3,12 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.1",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/user-event": "^14.1.1",
-    "@types/jest": "^27.5.0",
-    "@types/node": "^17.0.31",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
@@ -24,7 +20,7 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.10.1",
-    "react-redux": "^8.0.1",
+    "react-redux": "^8.1.1",
     "react-router-dom": "^6.3.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
@@ -37,8 +33,12 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "test:all": "vitest",
+    "test:accessibility": "vitest accessibility --run",
+    "coverage": "vitest --coverage --run",
+    "test": "vitest",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -59,14 +59,20 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.1.2",
+    "@types/node": "^20.4.8",
     "@types/react-slick": "^0.23.8",
-    "@vitejs/plugin-react": "^4.0.1",
+    "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.7",
     "firebase-tools": "^11.30.0",
+    "jsdom": "^23.0.0",
+    "matchmedia-polyfill": "^0.3.2",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24",
-    "vite": "^4.3.9",
+    "vite": "^4.4.4",
     "vite-plugin-svgr": "^3.2.0",
-    "vite-tsconfig-paths": "^4.2.0"
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.34.6"
   }
 }

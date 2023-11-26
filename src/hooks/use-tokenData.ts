@@ -41,7 +41,7 @@ export const useTokenData = () => {
       dispatch(setToken({ token: tokenData.token }));
 
       setLogoutTimer(
-        setTimeout.bind(null, () => userLogoutThunk, tokenData.duration)
+        window.setTimeout.bind(null, () => userLogoutThunk, tokenData.duration)
       );
     }
   }, []);
