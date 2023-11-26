@@ -4,9 +4,12 @@
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": [
+      "vitest/globals",
+      "vitest/importMeta",
       "vite/client",
+      "node",
+      "vitest",
       "vite-plugin-svgr/client",
-      "jest",
       "@testing-library/jest-dom"
     ],
     "allowJs": false,
@@ -23,5 +26,18 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "vite.config.ts",
+    "./setupTests.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.js",
+    "src/**/*.spec.js",
+    "src/**/*.test.jsx",
+    "src/**/*.spec.jsx",
+    "src/**/*.d.ts"
+  ]
 }
