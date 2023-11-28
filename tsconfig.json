@@ -9,8 +9,8 @@
       "vite/client",
       "node",
       "vitest",
-      "vite-plugin-svgr/client",
-      "@testing-library/jest-dom"
+      "vite-plugin-svgr/client"
+      // "@testing-library/jest-dom" // todo: this line causes conflicts in global variables between jest & vitest, but is should provide type definitions for the matchers and IDE auto completion
     ],
     "allowJs": false,
     "skipLibCheck": false,
@@ -29,7 +29,7 @@
   "include": [
     "src",
     "vite.config.ts",
-    "./setupTests.ts",
+    "test/setupTests.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.tsx",
