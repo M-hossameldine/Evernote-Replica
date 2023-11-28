@@ -3,7 +3,7 @@
 #firebase
 .firebase/
 .firebaserc
-firebase.json
+# firebase.json
 
 # dependencies
 /node_modules
