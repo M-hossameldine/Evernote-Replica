@@ -2,7 +2,7 @@
 
 #firebase
 .firebase/
-.firebaserc
+# .firebaserc
 # firebase.json
 
 # dependencies
