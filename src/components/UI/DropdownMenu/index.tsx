@@ -10,7 +10,7 @@ interface MENU_INTERFACE {
   className?: string;
   placeSubmenu?: {
     // default
-    x?: "leftWinger" | "rightWinger" | "midfield" | string;
+    x?: "start" | "end" | "center" | string;
     y?: "top" | "bottom" | string;
   };
 }
@@ -30,18 +30,18 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
   };
 
   // submenu position
-  const submenuPosition = { x: "left-0", y: "top-[150%]" }; // default position bottom leftWinger
+  const submenuPosition = { x: "left-0", y: "top-[150%]" }; // default position bottom start
   if (placeSubmenu) {
     // Horizontal position
     if (placeSubmenu.x) {
       switch (placeSubmenu.x) {
-        case "rightWinger":
+        case "end":
           submenuPosition.x = "right-0";
           break;
-        case "leftWinger":
+        case "start":
           submenuPosition.x = "left-0";
           break;
-        case "midfield":
+        case "center":
           submenuPosition.x = "left-2/4 -translate-x-2/4";
           break;
         default:

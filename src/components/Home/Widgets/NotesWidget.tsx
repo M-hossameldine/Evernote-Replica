@@ -57,7 +57,7 @@ const NotesWidget = (props: Props): React.ReactElement => {
           }}
           className="ml-2"
           submenuItemsData={dropdownData}
-          placeSubmenu={{ x: "rightWinger", y: "bottom" }}
+          placeSubmenu={{ x: "end", y: "bottom" }}
         />
       </header>
 
