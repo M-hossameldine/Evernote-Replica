@@ -1,8 +1,8 @@
 import { useAppSelector } from "hooks";
 import { selectIsLoggedIn } from "store";
 
-import { HomePrivateHeader, WidgetsContainer } from "components";
 import { PublicHomePage } from "pages";
+import UserProfile from "modules/profile/pages/UserProfile";
 
 const HomePage: React.FC = () => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
@@ -13,12 +13,7 @@ const HomePage: React.FC = () => {
       {!isLoggedIn && <PublicHomePage />}
 
       {/* user is authorized */}
-      {isLoggedIn && (
-        <>
-          <HomePrivateHeader />
-          <WidgetsContainer />
-        </>
-      )}
+      {isLoggedIn && <UserProfile />}
     </>
   );
 };

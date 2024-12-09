@@ -1,13 +1,13 @@
-import HomePage from './HomePage';
+import HomePage from "./HomePage";
 
 // User pages
-import NotesPage from './NotesPage';
-import TrashPage from './TrashPage';
+import NotesPage from "../modules/notes/pages/NotesPage";
+import TrashPage from "../modules/notes/pages/TrashPage";
 
 // Public Pages
-import PublicHomePage from './PublicPages/PublicHomePage';
-import DownloadPage from './PublicPages/DownloadPage';
-import AuthPage from './PublicPages/AuthPage';
+import PublicHomePage from "../modules/main/pages/PublicHomePage";
+import DownloadPage from "../modules/main/pages/DownloadPage";
+import AuthPage from "../modules/auth/pages/AuthPage";
 
 export {
   AuthPage,
