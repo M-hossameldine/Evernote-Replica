@@ -11,10 +11,10 @@ import TestimonialCard from "./UI/Card/TestimonialCard/TestimonialCard";
 import Layout from "./UI/Layout/Layout";
 import MainUserSideNav from "./navs/MainUserSideNav";
 import SideNavTabs from "./navs/MainUserSideNav/SideNavTabs";
-import NoteItem from "./Notes/NoteItem/NoteItem";
-import AddNoteWrapper from "./Notes/AddNoteWrapper/AddNoteWrapper";
+import NoteItem from "../modules/notes/components/Notes/NoteItem/NoteItem";
+import AddNoteWrapper from "../modules/notes/components/Notes/AddNoteWrapper/AddNoteWrapper";
 import AddNewNoteTab from "./navs/MainUserSideNav/AddNewNoteTab";
-import NoteEditorHeader from "./Notes/NoteEditor/NoteEditorHeader/NoteEditorHeader";
+import NoteEditorHeader from "../modules/notes/components/Notes/NoteEditor/NoteEditorHeader/NoteEditorHeader";
 
 // Other components
 import SimpleFeatureBlock from "./other/FeatureBlock/SimpleFeatureBlock";
