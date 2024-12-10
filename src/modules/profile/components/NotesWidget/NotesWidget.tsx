@@ -10,7 +10,7 @@ import { FUNCTION_ITEM_INTERFACE, ACTION_ITEM_INTERFACE } from "interfaces";
 
 type Props = { className?: string };
 
-const NotesWidget = (props: Props): React.ReactElement => {
+export const NotesWidget = (props: Props): React.ReactElement => {
   const notes = useAppSelector(selectNotes);
   const navigate = useNavigate();
 

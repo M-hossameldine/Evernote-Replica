@@ -11,8 +11,6 @@ import TestimonialCard from "./UI/Card/TestimonialCard/TestimonialCard";
 import Layout from "./UI/Layout/Layout";
 import MainUserSideNav from "./navs/MainUserSideNav";
 import SideNavTabs from "./navs/MainUserSideNav/SideNavTabs";
-import HomePrivateHeader from "./Home/HomePrivateHeader";
-import WidgetsContainer from "./Home/WidgetsContainer";
 import NoteItem from "./Notes/NoteItem/NoteItem";
 import AddNoteWrapper from "./Notes/AddNoteWrapper/AddNoteWrapper";
 import AddNewNoteTab from "./navs/MainUserSideNav/AddNewNoteTab";
@@ -33,8 +31,6 @@ export {
   Layout,
   MainUserSideNav,
   SideNavTabs,
-  HomePrivateHeader,
-  WidgetsContainer,
   NoteItem,
   NoteEditorHeader,
   AddNoteWrapper,

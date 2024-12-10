@@ -1,6 +1,7 @@
-import { HomeImg, RiHomeGearFill } from "assets";
+import { RiHomeGearFill } from "assets";
+import { HomeImg } from "../../assets/images";
 
-const HomePrivateHeader: React.FC = () => {
+export const HomePrivateHeader: React.FC = () => {
   // get home header date
   const todayTimestamp = new Date().toLocaleString("en-US", {
     dateStyle: "full",
