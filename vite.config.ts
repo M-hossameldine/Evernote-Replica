@@ -10,7 +10,7 @@ const configuration: UserConfig = {
   },
   server: {
     open: true, //  open app on server start
-    port: 4500,
+    port: 4600,
   },
   plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
   optimizeDeps: {
