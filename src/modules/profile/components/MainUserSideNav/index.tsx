@@ -3,7 +3,9 @@ import { useAppSelector, useAppDispatch } from "hooks";
 
 import { selectUserEmail, userLogoutThunk } from "store";
 import { FaUserCircle, IoIosArrowDown } from "assets";
-import { DropdownMenu, AddNewNoteTab, SideNavTabs } from "components";
+import { DropdownMenu } from "components";
+import { SideNavTabs } from "./SideNavTabs";
+import { AddNewNoteTab } from "./AddNewNoteTab";
 
 const SideNavBar: React.FC = () => {
   const userEmail = useAppSelector(selectUserEmail);

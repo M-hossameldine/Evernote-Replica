@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-const AddNoteWrapper = (props: Props): React.ReactElement => {
+export const AddNoteWrapper = (props: Props): React.ReactElement => {
   const { actionPayload, className } = props;
   const notes = useAppSelector(selectNotes);
 

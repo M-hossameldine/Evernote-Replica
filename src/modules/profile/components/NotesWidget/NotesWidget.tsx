@@ -3,7 +3,10 @@ import { useAppSelector } from "hooks/redux-hooks";
 import { v4 as uuid } from "uuid";
 
 import { selectNotes, sendNewNoteData } from "store";
-import { DropdownMenu, Card, NoteItem, AddNoteWrapper } from "components";
+import { DropdownMenu, Card } from "components";
+import { NoteItem } from "modules/notes/components/Notes/NoteItem/NoteItem";
+import AddNoteWrapper from "modules/notes/components/Notes/AddNoteWrapper/AddNoteWrapper";
+
 import { NOTESPAGE, EDITORPAGE } from "utils/constants";
 import { IoIosArrowForward, MdPostAdd, IoIosMore } from "assets";
 import { FUNCTION_ITEM_INTERFACE, ACTION_ITEM_INTERFACE } from "interfaces";

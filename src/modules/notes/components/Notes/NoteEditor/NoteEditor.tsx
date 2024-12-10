@@ -10,7 +10,8 @@ import {
   showNotification,
 } from "store";
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
-import { AutoGrowingTextArea, NoteEditorHeader } from "components";
+import { AutoGrowingTextArea } from "components";
+import { NoteEditorHeader } from "./NoteEditorHeader/NoteEditorHeader";
 
 const NoteEditor: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import AddNoteWrapper from "modules/notes/components/Notes/AddNoteWrapper/AddNoteWrapper";
 import { BsPlus, IoIosArrowDown } from "assets";
 
-const AddNewNoteTab: React.FC = () => {
+export const AddNewNoteTab: React.FC = () => {
   return (
     <AddNoteWrapper
       aria-label="New Note"

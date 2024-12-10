@@ -15,7 +15,7 @@ type PropsType = {
   settings: object;
 };
 
-const FeatureCarousel = (props: PropsType): React.ReactElement => {
+export const FeatureCarousel = (props: PropsType): React.ReactElement => {
   const { data, settings } = props;
 
   return (

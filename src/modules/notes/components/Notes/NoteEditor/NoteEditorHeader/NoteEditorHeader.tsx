@@ -1,6 +1,6 @@
 import NoteActionsDropdown from "../NoteActions/NoteActionsDropdown";
 
-const NoteEditorHeader: React.FC = () => {
+export const NoteEditorHeader: React.FC = () => {
   return (
     <header className="h-[6.2rem] bg-neutral-100 border-l-[1px] border-b-[1px] border-neutral-300 px-3 py-3 text-neutral-400">
       <div className="flex items-center">

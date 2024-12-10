@@ -13,7 +13,7 @@ type PropsType = {
   onClick?: (noteIndex: number) => void;
 };
 
-const NoteItem = (props: PropsType): React.ReactElement => {
+export const NoteItem = (props: PropsType): React.ReactElement => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const location = useLocationIndicator();

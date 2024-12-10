@@ -6,7 +6,7 @@ import { NavTabModel } from "models/UI-Models";
 import { fillNoteEditor, selectNotes, selectTrashNotes } from "store";
 
 import SideNavTab from "./SideNavTab";
-import DropdownList from "../../UI/Dropdown";
+import DropdownList from "../../../../components/UI/Dropdown";
 import {
   AiFillHome,
   FaStar,
@@ -16,7 +16,7 @@ import {
   RiPriceTagFill,
   FaUserFriends,
   FaTrash,
-} from "../../../assets/index";
+} from "../../../../assets/index";
 
 const TAB_CONTENT = {
   home: new NavTabModel("Home", AiFillHome),
@@ -29,7 +29,7 @@ const TAB_CONTENT = {
   trash: new NavTabModel("Trash", FaTrash),
 };
 
-const SideNavTabs: React.FC = () => {
+export const SideNavTabs: React.FC = () => {
   const navigate = useNavigate();
   const notes = useAppSelector(selectNotes);
   const trashNotes = useAppSelector(selectTrashNotes);

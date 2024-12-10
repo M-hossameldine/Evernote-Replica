@@ -10,7 +10,7 @@ type PropsType = {
   showMenu: boolean;
 };
 
-const MobileMenu = (props: PropsType): React.ReactElement => {
+export const MobileMenu = (props: PropsType): React.ReactElement => {
   const { onClose, className, showMenu } = props;
 
   const outsideClickHandler = () => {

@@ -6,7 +6,7 @@ import { GhostLink } from "components";
 
 type Props = { onShowMenu: () => void };
 
-const DesktopMenu = (props: Props): React.ReactElement => {
+export const DesktopMenu = (props: Props): React.ReactElement => {
   return (
     <div className=" flex p-5 items-center container max-w-[75rem] mx-auto  ">
       <Link
