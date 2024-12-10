@@ -1,4 +1,5 @@
-import { SimpleFeatureBlock, FeatureCarousel, TextLink } from "components";
+import { SimpleFeatureBlock, TextLink } from "components";
+import { FeatureCarousel } from "../components/FeatureCarousel/FeatureCarousel";
 import {
   HeroSection,
   TestimonialSection,

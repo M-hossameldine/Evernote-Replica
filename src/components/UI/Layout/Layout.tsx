@@ -1,5 +1,6 @@
 import { useAppSelector, useLocationIndicator } from "hooks";
-import { MainUserSideNav, MainPublicNav } from "components";
+import MainUserSideNav from "modules/profile/components/MainUserSideNav";
+import { MainPublicNav } from "modules/main/components/MainPublicNav/";
 import { selectIsLoggedIn } from "store";
 import { AUTHPAGE } from "utils/constants";
 
