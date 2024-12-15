@@ -45,7 +45,7 @@ const PublicHomePage: React.FC = () => {
         />
 
         {/* Hero Row */}
-        <div className="block md:flex flex-row items-center mt-14">
+        <div className="mt-14 block flex-row items-center md:flex">
           <div>
             <img
               src={TaskHeroImg}
@@ -54,7 +54,7 @@ const PublicHomePage: React.FC = () => {
           </div>
 
           {/* desktop features*/}
-          <ul className="w-[15rem] shrink-0 hidden md:flex flex-col gap-4">
+          <ul className="hidden w-[15rem] shrink-0 flex-col gap-4 md:flex">
             {HOME_BASIC_FEATURE_DATA.map((feature) => (
               <SimpleFeatureBlock
                 key={feature.id}
@@ -95,9 +95,9 @@ const PublicHomePage: React.FC = () => {
       </div> */}
 
       {/* Testimonial Carousel */}
-      <section className=" bg-slate-50 ">
+      <section className="bg-slate-50">
         <TestimonialSection
-          className="wrapper py-16 "
+          className="wrapper py-16"
           data={Testimonial_CAROUSEL_DATA}
           trackSettings={TESTIMONIAL_CAROUSEL_SETTINGS}
         />
@@ -111,11 +111,11 @@ const PublicHomePage: React.FC = () => {
 
       {/* Price plans section */}
       <section className="wrapper py-16">
-        <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-4xl font-bold mb-8">
+        <div className="mb-16 text-center">
+          <h2 className="mb-8 text-2xl font-bold md:text-4xl">
             Find you Evernote
           </h2>
-          <p className="text-xl mb-4">
+          <p className="mb-4 text-xl">
             Whether you want to get organized, keep your personal life on track,
             or boost workplace productivity, Evernote has the right plan for
             you.
@@ -127,13 +127,13 @@ const PublicHomePage: React.FC = () => {
               Icon: IoIosArrowRoundForward,
               iconStyle: "mt-1 text-xl",
             }}
-            className="inline-flex jus items-center uppercase tracking-wider text-lg font-bold text-green-600 w-auto mx-auto"
+            className="jus mx-auto inline-flex w-auto items-center text-lg font-bold uppercase tracking-wider text-green-600"
             underline={false}
           />
         </div>
         <PricingPlansSection
           data={PRICE_PLAN_DATA}
-          className="flex flex-col md:flex-row items-start gap-8 md:gap-6 lg:gap-8"
+          className="flex flex-col items-start gap-8 md:flex-row md:gap-6 lg:gap-8"
         />
       </section>
 

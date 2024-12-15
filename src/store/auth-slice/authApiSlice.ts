@@ -21,7 +21,7 @@ let logoutTimer: ReturnType<typeof setTimeout> = setTimeout(() => ({}));
 
 // to allow initializing the logoutTimer from the useTokenData hook
 export const setLogoutTimer = (
-  logoutTimerValue: () => ReturnType<typeof setTimeout>
+  logoutTimerValue: () => ReturnType<typeof setTimeout>,
 ) => {
   logoutTimer = logoutTimerValue();
 };
@@ -77,14 +77,14 @@ export const authApi = apiSlice.injectEndpoints({
       }),
       async onQueryStarted(
         { onSuccess, onError },
-        { dispatch, queryFulfilled }
+        { dispatch, queryFulfilled },
       ) {
         try {
           const { data } = await queryFulfilled;
 
           // calculate token expiration time
           const expirationTime = new Date(
-            new Date().getTime() + +data.expiresIn * 1000
+            new Date().getTime() + +data.expiresIn * 1000,
           ).toISOString();
 
           // Save auth data in local storage to preserve login
@@ -96,7 +96,7 @@ export const authApi = apiSlice.injectEndpoints({
 
           logoutTimer = setTimeout(
             () => _logoutThunkHelper(dispatch),
-            remainingTime
+            remainingTime,
           );
 
           if (onSuccess) {

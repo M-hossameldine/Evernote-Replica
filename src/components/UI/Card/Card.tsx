@@ -7,7 +7,7 @@ const Card = (props: PropsType): React.ReactElement => {
   const cardClasses = props.className ? props.className : "";
 
   return (
-    <div className={`shadow-even-2 rounded-lg ${cardClasses}`}>
+    <div className={`rounded-lg shadow-even-2 ${cardClasses}`}>
       {props.children}
     </div>
   );

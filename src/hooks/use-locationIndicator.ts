@@ -23,7 +23,7 @@ export const useLocationIndicator = () => {
 
   const isInCurrentPath = useCallback(
     (page: string) => location.pathname.includes(page),
-    [location]
+    [location],
   );
 
   useEffect(() => {

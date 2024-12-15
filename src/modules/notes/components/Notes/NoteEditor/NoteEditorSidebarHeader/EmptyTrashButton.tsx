@@ -20,7 +20,7 @@ const EmptyTrashButton: React.FC = () => {
 
   return (
     <button
-      className="ml-auto text-sm text-white bg-neutral-300 px-3 py-1 rounded"
+      className="ml-auto rounded bg-neutral-300 px-3 py-1 text-sm text-white"
       onClick={emptyTrashHandler}
     >
       Empty Trash

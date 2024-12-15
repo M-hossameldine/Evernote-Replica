@@ -30,7 +30,7 @@ const validationSchema = Yup.object().shape({
     .required("Password is required!")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-      "Must contain lowercase, uppercase, numbers and special characters"
+      "Must contain lowercase, uppercase, numbers and special characters",
     ),
 });
 
@@ -75,13 +75,13 @@ export const AuthForm: React.FC = () => {
       onSubmit={formikHandler}
     >
       {({ errors, touched, handleChange }) => (
-        <Form className="w-full md:w-[32rem] h-screen md:h-auto bg-white rounded-lg p-8 py-16  mx-auto mt-10 md:mt-0 relative z-10 shadow-even-3">
-          <div className="flex flex-col max-w-[20rem] mx-auto">
-            <Link to="/" className="max-w-[11rem] mx-auto">
+        <Form className="relative z-10 mx-auto mt-10 h-screen w-full rounded-lg bg-white p-8 py-16 shadow-even-3 md:mt-0 md:h-auto md:w-[32rem]">
+          <div className="mx-auto flex max-w-[20rem] flex-col">
+            <Link to="/" className="mx-auto max-w-[11rem]">
               <img src={VerticalLogo} alt="Evernote Logo" />
             </Link>
 
-            <p className="text-neutral-600 mx-auto mt-5 mb-12">
+            <p className="mx-auto mb-12 mt-5 text-neutral-600">
               Remember everything important.
             </p>
             <div className="relative mb-4">
@@ -94,14 +94,14 @@ export const AuthForm: React.FC = () => {
                   handleChange(e);
                 }}
                 placeholder="Email"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 shadow-even-1 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
 
               {(errors.email && touched.email) ||
               ["EMAIL_EXISTS", "GENERIC_ERROR_MESSAGE"].includes(
-                authErrorCode
+                authErrorCode,
               ) ? (
-                <div className="text-xs text-red-700 mt-1">
+                <div className="mt-1 text-xs text-red-700">
                   {errors.email ?? ErrorsMap[authErrorCode]}
                 </div>
               ) : null}
@@ -118,20 +118,20 @@ export const AuthForm: React.FC = () => {
                 type="password"
                 id="password"
                 placeholder="Password"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 shadow-even-1 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
 
               {errors.password && touched.password ? (
-                <div className="text-xs text-red-700 mt-1">
+                <div className="mt-1 text-xs text-red-700">
                   {errors.password}
                 </div>
               ) : null}
 
               {authErrorCode &&
                 !["EMAIL_EXISTS", "GENERIC_ERROR_MESSAGE"].includes(
-                  authErrorCode
+                  authErrorCode,
                 ) && (
-                  <div className="text-xs text-red-700 mt-1">
+                  <div className="mt-1 text-xs text-red-700">
                     {ErrorsMap[authErrorCode]}
                   </div>
                 )}
@@ -140,7 +140,7 @@ export const AuthForm: React.FC = () => {
             {/* Call to action */}
             <button
               type={isLoading ? "button" : "submit"}
-              className="flex justify-center items-center text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
+              className="flex items-center justify-center rounded border-0 bg-green-500 px-6 py-2 text-lg text-white hover:bg-green-600 focus:outline-none"
             >
               {!isLoading && (!isLogin ? "Sign up" : "Sign in")}
               {isLoading && <DefaultSpinner borderColor="border-white" />}
@@ -151,13 +151,13 @@ export const AuthForm: React.FC = () => {
                 route=""
                 text="Forgot Password?"
                 underline={false}
-                className="table mx-auto mt-4 text-sm text-green-450 "
+                className="mx-auto mt-4 table text-sm text-green-450"
               />
             )}
 
             {/* Terms & Privacy */}
             {!isLogin && (
-              <p className="text-xs text-center text-gray-500 mt-3">
+              <p className="mt-3 text-center text-xs text-gray-500">
                 By creating an account, you are agreeing to our
                 <button className="text-green-600">
                   Terms of Service
@@ -167,7 +167,7 @@ export const AuthForm: React.FC = () => {
             )}
 
             {/* toggle auth form - login/register */}
-            <div className="text-sm text-center  pt-8">
+            <div className="pt-8 text-center text-sm">
               <p className="text-sm text-neutral-500">
                 {isLogin
                   ? "Don't have an account?"
@@ -177,7 +177,7 @@ export const AuthForm: React.FC = () => {
               <TextLink
                 text={isLogin ? "Create account" : "Sign in"}
                 route={`${AUTHPAGE}/${isLogin ? "register" : "login"}`}
-                className="inline-flex text-base text-green-600 "
+                className="inline-flex text-base text-green-600"
                 underline={false}
               />
             </div>

@@ -12,7 +12,7 @@ interface REACT_ICON_LINK_INTERFACE {
 }
 
 const ReactIconLink = (
-  props: REACT_ICON_LINK_INTERFACE
+  props: REACT_ICON_LINK_INTERFACE,
 ): React.ReactElement => {
   const { Icon, route, size, className, isExteranl } = props;
 

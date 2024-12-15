@@ -27,7 +27,7 @@ const NoteActionsDropdown: React.FC = () => {
 
   const selectedNote = findNoteById(
     isInTrash ? trashNotes : notes,
-    params.noteId!
+    params.noteId!,
   );
 
   // sebmenu visiblity handlers
@@ -69,14 +69,14 @@ const NoteActionsDropdown: React.FC = () => {
     <ExecludeEventWrapper listenerHandler={hideDropdonwHandler}>
       <div className="relative">
         <button
-          className="text-neutral-500 m-0 p-0"
+          className="m-0 p-0 text-neutral-500"
           onClick={toggleDropdonwHandler}
         >
-          <IoIosMore className="text-xl shrink-0" />
+          <IoIosMore className="shrink-0 text-xl" />
         </button>
 
         <button
-          className={`absolute right-0 top-[150%] z-10 bg-white whitespace-nowrap shadow-even-2 rounded text-sm ${
+          className={`absolute right-0 top-[150%] z-10 whitespace-nowrap rounded bg-white text-sm shadow-even-2 ${
             isExpanded ? "scale-100" : "scale-0"
           }`}
           onClick={hideDropdonwHandler}

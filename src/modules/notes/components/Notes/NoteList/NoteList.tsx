@@ -13,8 +13,8 @@ const NoteList = (props: PropsType): React.ReactElement => {
   };
 
   return (
-    <div className="scrollbar-box overflow-scroll overflow-x-hidden ">
-      <ul className="relative grow flex flex-col gap-3 p-3 pb-6 bg-neutral-100 cursor-pointer">
+    <div className="scrollbar-box overflow-scroll overflow-x-hidden">
+      <ul className="relative flex grow cursor-pointer flex-col gap-3 bg-neutral-100 p-3 pb-6">
         {notes.map((note, index) => (
           <NoteItem
             key={note.id}

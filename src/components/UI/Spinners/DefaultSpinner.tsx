@@ -7,7 +7,7 @@ interface DefaultSpinnerProps {
 }
 
 export const DefaultSpinner = (
-  props: DefaultSpinnerProps
+  props: DefaultSpinnerProps,
 ): React.ReactElement => {
   const {
     size = "h-6 w-6",

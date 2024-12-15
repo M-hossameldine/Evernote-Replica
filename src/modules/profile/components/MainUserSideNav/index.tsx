@@ -13,7 +13,7 @@ const SideNavBar: React.FC = () => {
 
   return (
     <div
-      className={`flex flex-col h-screen w-14 lg:w-56 bg-neutral-800 text-neutral-300`}
+      className={`flex h-screen w-14 flex-col bg-neutral-800 text-neutral-300 lg:w-56`}
     >
       {/* sidebar header */}
       <header className="flex flex-col gap-2 p-3">
@@ -21,10 +21,10 @@ const SideNavBar: React.FC = () => {
         <DropdownMenu
           menuHeader={{
             content: (
-              <div className="flex gap-2 cursor-pointer">
-                <FaUserCircle className="text-3xl shrink-0" />
+              <div className="flex cursor-pointer gap-2">
+                <FaUserCircle className="shrink-0 text-3xl" />
                 <div className="flex items-center gap-1">
-                  <small className="w-2/4 overflow-hidden scale-0 lg:scale-100 transition ease-out">
+                  <small className="w-2/4 scale-0 overflow-hidden transition ease-out lg:scale-100">
                     {userEmail}
                   </small>
                   <IoIosArrowDown size="10" />

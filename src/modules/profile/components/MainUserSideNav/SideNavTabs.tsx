@@ -55,7 +55,7 @@ export const SideNavTabs: React.FC = () => {
   };
 
   return (
-    <ul className="flex flex-col ">
+    <ul className="flex flex-col">
       <SideNavTab tab={TAB_CONTENT.home} onClick={() => navigate(HOMEPAGE)} />
       <div className="flex flex-col">
         {/* <SideNavTab tab={TAB_CONTENT.shortcuts} /> */}

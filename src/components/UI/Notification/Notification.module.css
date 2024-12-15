@@ -1,8 +1,5 @@
 .notification {
-  @apply fixed top-10 left-2/4 -translate-x-1/2 flex
-  text-white z-[-1] opacity-0
-  rounded-md
-  transition-all ease-in;
+  @apply fixed left-2/4 top-10 z-[-1] flex -translate-x-1/2 rounded-md text-white opacity-0 transition-all ease-in;
 }
 
 .message {
@@ -10,8 +7,7 @@
 }
 
 .btn {
-  @apply p-2 px-3
-  border-solid border-l-[1px] border-neutral-300;
+  @apply border-l-[1px] border-solid border-neutral-300 p-2 px-3;
 }
 
 .success {

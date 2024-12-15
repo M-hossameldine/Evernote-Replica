@@ -75,7 +75,7 @@ const NotesSlice = createSlice({
     },
     moveToTrash(
       state,
-      action: PayloadAction<{ id: string; note: NOTE_INTERFACE }>
+      action: PayloadAction<{ id: string; note: NOTE_INTERFACE }>,
     ) {
       const existedId = action.payload.id;
       state.notes = state.notes.filter((note) => note.id !== existedId);
@@ -87,7 +87,7 @@ const NotesSlice = createSlice({
         text: string;
         id: string;
         updatedTimestamp: string;
-      }>
+      }>,
     ) {
       const { title, text, id, updatedTimestamp } = action.payload;
 
@@ -102,12 +102,12 @@ const NotesSlice = createSlice({
       restoreItem,
       (
         state,
-        action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>
+        action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>,
       ) => {
         const restoredNote = action.payload.note.note;
 
         state.notes.unshift(restoredNote);
-      }
+      },
     );
   },
 });

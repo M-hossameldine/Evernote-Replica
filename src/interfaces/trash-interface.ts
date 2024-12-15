@@ -1,5 +1,5 @@
-import { v4 as uuid } from 'uuid';
-import { NOTE_INTERFACE } from './note-interface';
+import { v4 as uuid } from "uuid";
+import { NOTE_INTERFACE } from "./note-interface";
 
 export interface TRASH_ITEM_INTERFACE {
   note: NOTE_INTERFACE;

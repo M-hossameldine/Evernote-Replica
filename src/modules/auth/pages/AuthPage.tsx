@@ -4,7 +4,7 @@ import { AuthBgImg } from "assets";
 const AuthPage: React.FC = () => {
   return (
     <div
-      className={`flex items-center h-screen `}
+      className={`flex h-screen items-center`}
       style={{ backgroundImage: `url(${AuthBgImg})` }}
     >
       <AuthForm />

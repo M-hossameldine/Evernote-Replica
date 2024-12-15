@@ -33,7 +33,7 @@ const SideNavTab = (props: SideNavTabProps): ReactElement => {
         </span>
         <span
           className={
-            "absolute lg:static top-0 left-[115%] text-sm lg:text-md bg-neutral-800 lg:bg-transparent whitespace-nowrap p-2 px-3 lg:p-0 rounded-md scale-0  lg:scale-100 group-hover:scale-100  transition ease-linear " +
+            "lg:text-md absolute left-[115%] top-0 scale-0 whitespace-nowrap rounded-md bg-neutral-800 p-2 px-3 text-sm transition ease-linear group-hover:scale-100 lg:static lg:scale-100 lg:bg-transparent lg:p-0 " +
             textClasses
           }
         >

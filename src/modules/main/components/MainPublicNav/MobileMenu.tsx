@@ -29,10 +29,10 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
       {showMenu && (
         <ExecludeEventWrapper
           listenerHandler={outsideClickHandler}
-          className="w-full max-w-[26rem] h-screen p-5 bg-white ml-auto"
+          className="ml-auto h-screen w-full max-w-[26rem] bg-white p-5"
         >
-          <div className=" flex justify-between items-center mb-5 md:mb-0">
-            <Link to={HOMEPAGE} className="xs:hidden font-medium">
+          <div className="mb-5 flex items-center justify-between md:mb-0">
+            <Link to={HOMEPAGE} className="font-medium xs:hidden">
               <img src={HorizontalLogo} alt="Evernote logo" />
             </Link>
             {/* close Button */}
@@ -41,11 +41,11 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
             </button>
           </div>
           <nav>
-            <ul className="uppercase font-bold">
-              <li className="text-sm text-neutral-700 hover:text-green-550 py-4 border-b-[1px] border-neutral-100  ">
+            <ul className="font-bold uppercase">
+              <li className="border-b-[1px] border-neutral-100 py-4 text-sm text-neutral-700 hover:text-green-550">
                 <Link
                   to={`${AUTHPAGE}/login`}
-                  className="font-bold mr-5 text-neutral-700 hover:text-green-550"
+                  className="mr-5 font-bold text-neutral-700 hover:text-green-550"
                 >
                   Log In
                 </Link>
@@ -61,7 +61,7 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
                     borderClr: "border-green-550",
                     borderHoverClr: "border-green-450",
                   }}
-                  className="text-sm font-semibold px-[5em] mx-auto mt-12"
+                  className="mx-auto mt-12 px-[5em] text-sm font-semibold"
                   route={DOWNLOADPAGE}
                   onClick={props.onClose}
                 />

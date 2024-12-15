@@ -40,8 +40,7 @@ const AutoGrowingTextArea = (props: PropsType): React.ReactElement => {
 
       {/*For Height Auto Growing */}
       <div
-        className={`relative invisible break-words break-word-break whitespace-pre-wrap
-        w-full ${fallbackClasses}`}
+        className={`break-word-break invisible relative w-full whitespace-pre-wrap break-words ${fallbackClasses}`}
       >
         {textValue}t
       </div>

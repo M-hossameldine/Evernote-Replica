@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 export interface NOTE_INTERFACE {
   id: string;
   title: string;
@@ -10,13 +10,13 @@ export interface NOTE_INTERFACE {
 export function createNote(
   title: string,
   text: string,
-  createdTimestamp: string
+  createdTimestamp: string,
 ): NOTE_INTERFACE {
   return {
     id: uuid(),
     title,
     text,
     createdTimestamp,
-    updatedTimestamp: '',
+    updatedTimestamp: "",
   };
 }

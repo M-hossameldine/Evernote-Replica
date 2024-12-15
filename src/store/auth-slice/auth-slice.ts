@@ -69,7 +69,7 @@ const AuthSlice = createSlice({
           state.isLoggedIn = true;
           state.token = idToken;
           state.userId = localId;
-        }
+        },
       )
       .addMatcher(
         authApi.endpoints.login.matchRejected,
@@ -79,7 +79,7 @@ const AuthSlice = createSlice({
 
           state.hasError = true;
           state.errorMsgCode = loginErrorMsg || "GENERIC_ERROR_MESSAGE";
-        }
+        },
       );
   },
 });

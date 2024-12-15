@@ -1,2 +1,2 @@
-export * from './component-data';
-export * from './footer-data';
+export * from "./component-data";
+export * from "./footer-data";

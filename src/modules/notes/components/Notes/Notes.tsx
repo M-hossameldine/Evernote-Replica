@@ -11,14 +11,14 @@ const Notes: React.FC = () => {
   const notesNumber = notes.length;
 
   return (
-    <div className="flex flex-col bg-neutral-100 min-w-[18rem] h-screen">
+    <div className="flex h-screen min-w-[18rem] flex-col bg-neutral-100">
       {/* Notes bar header */}
-      <div className="  border-b-neutral-300 shadow-sm p-4 pl-5 pt-5 border-b-[1px]">
-        <h2 className="flex items-center gap-1 text-neutral-700 pb-3 ">
+      <div className="border-b-[1px] border-b-neutral-300 p-4 pl-5 pt-5 shadow-sm">
+        <h2 className="flex items-center gap-1 pb-3 text-neutral-700">
           <IoIosPaper size="22" className="shrink-0" />
           <span className="text-xl">Notes</span>
         </h2>
-        <div className="flex justify-between items-center text-neutral-500 ">
+        <div className="flex items-center justify-between text-neutral-500">
           <p className="text-sm">{notesNumber} notes</p>
           <NoteListingOptions />
         </div>
