@@ -1,7 +1,6 @@
 // states
 export * from "./store";
-export * from "./auth-slice/auth-slice";
-export * from "./auth-slice/authApiSlice";
+export * from "../modules/auth/data/local/authSlice";
 export * from "./noteEditor-slice/noteEditor-slice";
 export * from "./notes-slice/notes-slice";
 export * from "./notes-slice/notes-actions";

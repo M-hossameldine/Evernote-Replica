@@ -6,6 +6,9 @@ import {
   signOut,
   type UserCredential,
   type User as FirebaseUser,
+  setPersistence,
+  browserLocalPersistence,
+  onAuthStateChanged,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -35,6 +38,9 @@ const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
+// Set persistence to LOCAL (persists even after browser is closed)
+setPersistence(auth, browserLocalPersistence);
+
 export default firebaseApp;
 
 export {
@@ -43,6 +49,7 @@ export {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
   type UserCredential,
   type FirebaseUser,
   collection,

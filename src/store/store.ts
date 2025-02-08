@@ -4,7 +4,7 @@ import notesReducer from "./notes-slice/notes-slice";
 import noteEditorReducer from "./noteEditor-slice/noteEditor-slice";
 import trashReducer from "./trash-slice/trash-slice";
 import uiReducer from "./ui-slice/ui-slice";
-import authReducer from "./auth-slice/auth-slice";
+import authReducer from "../modules/auth/data/local/authSlice";
 import { apiSlice } from "./apiSlice";
 
 export const store = configureStore({
