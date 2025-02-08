@@ -17,17 +17,17 @@ export const HomePrivateHeader: React.FC = () => {
 
   return (
     <header
-      className="h-[28rem] py-4 px-6 bg-no-repeat bg-center bg-cover"
+      className="h-[28rem] bg-cover bg-center bg-no-repeat px-6 py-4"
       style={{
         backgroundImage: `url("${HomeImg}")`,
       }}
     >
-      <nav className="flex gap-4 justify-evenly items-center text-neutral-100">
+      <nav className="flex items-center justify-evenly gap-4 text-neutral-100">
         <p className="text-xl">Good {greeting}!</p>
         <small className="ml-auto uppercase"> {todayTimestamp}</small>
-        <button className="flex gap-1 items-center bg-neutral-100 rounded text-neutral-800 py-1 px-2">
+        <button className="flex items-center gap-1 rounded bg-neutral-100 px-2 py-1 text-neutral-800">
           <RiHomeGearFill size="20" className="shrink-0" />
-          <span className="text-sm hidden md:block">Customize</span>
+          <span className="hidden text-sm md:block">Customize</span>
         </button>
       </nav>
     </header>

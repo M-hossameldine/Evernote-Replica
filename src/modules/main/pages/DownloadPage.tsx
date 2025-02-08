@@ -6,7 +6,7 @@ const DownloadPage: React.FC = () => {
       <HeroSection
         title="Get Evernote"
         description="Evernote gives you everything you need to keep life organized—great note taking, project planning, and easy ways to find what you need, when you need it."
-        className=" mt-10 "
+        className="mt-10"
         primeBtn={{
           text: "Download",
           route:

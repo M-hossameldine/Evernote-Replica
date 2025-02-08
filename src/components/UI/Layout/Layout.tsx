@@ -28,7 +28,7 @@ const Layout = (props: PropsType): React.ReactElement => {
           !location.isInCurrentPath(AUTHPAGE) && <MainPublicNav />
         )}
         {isLoggedIn ? (
-          <div className="bg-neutral-200 w-full scrollbar-box overflow-y-scroll">
+          <div className="scrollbar-box w-full overflow-y-scroll bg-neutral-200">
             {props.children}
           </div>
         ) : (

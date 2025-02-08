@@ -21,10 +21,10 @@ const PricePlanCard = (props: PropsType): React.ReactElement => {
       {features.map((feature, featureIndex) => (
         <li
           key={feature.id}
-          className="flex items-start mb-2 font-[400] tracking-tight "
+          className="mb-2 flex items-start font-[400] tracking-tight"
         >
           <span
-            className={`inline-flex items-center justify-center flex-shrink-0 mr-2 text-green-600`}
+            className={`mr-2 inline-flex flex-shrink-0 items-center justify-center text-green-600`}
           >
             {cardIndex !== 0 && featureIndex === 0 ? (
               <FeatureArrowIcon />
@@ -39,25 +39,25 @@ const PricePlanCard = (props: PropsType): React.ReactElement => {
   );
 
   return (
-    <div className="w-full bg-neutral-100 rounded-xl p-4">
+    <div className="w-full rounded-xl bg-neutral-100 p-4">
       <div className="accordion-item">
         <h2 className="accordion-header mb-4" id={`heading${id}5`}>
-          <div className="flex justify-between items-center mb-3">
-            <h3 className="text-2xl font-semibold tracking-widest uppercase">
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="text-2xl font-semibold uppercase tracking-widest">
               {title}
             </h3>
             <AccordionBtn id={id} isCollapsed={cardIndex > 0 ? true : false} />
           </div>
-          <div className="flex items-end text-3xl font-bold leading-none lg:text-4xl ">
+          <div className="flex items-end text-3xl font-bold leading-none lg:text-4xl">
             ${price}
             {+price > 0 && (
-              <span className="text-base font-semibold uppercase ml-1">
+              <span className="ml-1 text-base font-semibold uppercase">
                 / month
               </span>
             )}
           </div>
         </h2>
-        <p className="text-lg font-semibold tracking-wider mt-6 mb-3">{note}</p>
+        <p className="mb-3 mt-6 text-lg font-semibold tracking-wider">{note}</p>
         <div
           id={`collapse${id}5`}
           className={`accordion-collapse collapse md:hidden ${showFeaturesByDefault}`}
@@ -69,7 +69,7 @@ const PricePlanCard = (props: PropsType): React.ReactElement => {
         <ContainedLink
           text={callToAction.text}
           route={callToAction.route}
-          className="w-full text-center font-semibold text-white bg-green-500 hover:bg-green-450 mt-4"
+          className="mt-4 w-full bg-green-500 text-center font-semibold text-white hover:bg-green-450"
         />
       </div>
     </div>
@@ -100,9 +100,9 @@ const AccordionBtn = (props: AccordionBtnProps): React.ReactElement => {
 const FeatureArrowIcon: React.FC = () => {
   return (
     <>
-      <IoIosArrowRoundUp className="md:hidden text-green-600" size="28" />
+      <IoIosArrowRoundUp className="text-green-600 md:hidden" size="28" />
       <IoIosArrowRoundBack
-        className="hidden md:block text-green-600"
+        className="hidden text-green-600 md:block"
         size="28"
       />
     </>

@@ -16,12 +16,12 @@ type NoteEditorSidebarProps = {
 };
 
 const NoteEditorSidebar = (
-  props: NoteEditorSidebarProps
+  props: NoteEditorSidebarProps,
 ): React.ReactElement => {
   const { notes, header, fallbackData } = props;
 
   return (
-    <div className="flex flex-col bg-neutral-100 min-w-[18rem] max-w-[24rem] h-screen">
+    <div className="flex h-screen min-w-[18rem] max-w-[24rem] flex-col bg-neutral-100">
       {/* sidebar header*/}
       <NoteEditorSidebarHeader notes={notes} headerData={header} />
 

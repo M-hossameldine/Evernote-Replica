@@ -5,11 +5,11 @@ export const AddNewNoteTab: React.FC = () => {
   return (
     <AddNoteWrapper
       aria-label="New Note"
-      className="flex items-center justify-center lg:justify-evenly text-white py-[6px] lg:px-2 rounded-3xl w-8 lg:w-auto aspect-square lg:aspect-auto bg-green-550 hover:opacity-90 cursor-pointer"
+      className="flex aspect-square w-8 cursor-pointer items-center justify-center rounded-3xl bg-green-550 py-[6px] text-white hover:opacity-90 lg:aspect-auto lg:w-auto lg:justify-evenly lg:px-2"
     >
-      <BsPlus className="text-2xl shrink-0 mx-auto lg:mx-[unset]" />
+      <BsPlus className="mx-auto shrink-0 text-2xl lg:mx-[unset]" />
       <span className="hidden lg:block">New</span>
-      <span className="hidden lg:block lg:ml-auto">
+      <span className="hidden lg:ml-auto lg:block">
         <IoIosArrowDown size="17" />
       </span>
     </AddNoteWrapper>

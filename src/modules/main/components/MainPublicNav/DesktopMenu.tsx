@@ -8,10 +8,10 @@ type Props = { onShowMenu: () => void };
 
 export const DesktopMenu = (props: Props): React.ReactElement => {
   return (
-    <div className=" flex p-5 items-center container max-w-[75rem] mx-auto  ">
+    <div className="container mx-auto flex max-w-[75rem] items-center p-5">
       <Link
         to={HOMEPAGE}
-        className="flex title-font font-medium items-center text-gray-900 mr-auto"
+        className="title-font mr-auto flex items-center font-medium text-gray-900"
       >
         <img src={HorizontalLogo} alt="Evernote logo" />
       </Link>
@@ -19,11 +19,11 @@ export const DesktopMenu = (props: Props): React.ReactElement => {
       {/* top menu nav */}
 
       {/* Utility nav */}
-      <nav className="flex items-center text-base ml-auto">
-        <ul className="hidden lg:flex gap-3 items-center">
+      <nav className="ml-auto flex items-center text-base">
+        <ul className="hidden items-center gap-3 lg:flex">
           <Link
             to={`${AUTHPAGE}/login`}
-            className=" font-semibold text-lg  text-neutral-700 hover:text-green-600"
+            className="text-lg font-semibold text-neutral-700 hover:text-green-600"
           >
             Log In
           </Link>
@@ -39,7 +39,7 @@ export const DesktopMenu = (props: Props): React.ReactElement => {
           />
         </ul>
         <button onClick={props.onShowMenu}>
-          <FaBars className="lg:hidden shrink-0 text-2xl" />
+          <FaBars className="shrink-0 text-2xl lg:hidden" />
         </button>
       </nav>
     </div>

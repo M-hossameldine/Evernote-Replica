@@ -40,16 +40,16 @@ export const NotesWidget = (props: Props): React.ReactElement => {
       <header className="flex items-center p-2">
         <Link
           to={`${NOTESPAGE}/${firstNote}`}
-          className="flex items-center uppercase text-neutral-800 hover:bg-neutral-100 p-1 rounded"
+          className="flex items-center rounded p-1 uppercase text-neutral-800 hover:bg-neutral-100"
         >
           Notes
           <IoIosArrowForward
             size="14"
-            className="shrink-0  text-green-500 mx-2 my-auto"
+            className="mx-2 my-auto shrink-0 text-green-500"
           />
         </Link>
 
-        <AddNoteWrapper className="ml-auto p-1 hover:bg-neutral-100 rounded">
+        <AddNoteWrapper className="ml-auto rounded p-1 hover:bg-neutral-100">
           <MdPostAdd size="20" className="shrink-0 text-neutral-600" />
         </AddNoteWrapper>
 
@@ -66,7 +66,7 @@ export const NotesWidget = (props: Props): React.ReactElement => {
 
       {/* notes list */}
       <div className="scrollbar-box overflow-hidden overflow-x-scroll p-3">
-        <ul className="flex gap-3 ">
+        <ul className="flex gap-3">
           {notes.map((note, index) => (
             <li
               key={note.id}

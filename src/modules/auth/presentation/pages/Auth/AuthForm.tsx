@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useLocationIndicator, useAppDispatch, useAppSelector } from "hooks";
+import { useLocationIndicator } from "hooks";
 import { useNavigate, Link } from "react-router-dom";
 
-import {
-  selectHasAuthError,
-  selectAuthErrorMsgCode,
-  resetAuthErrors,
-  useLoginMutation,
-  useSignupMutation,
-} from "store";
+import { useLogin, useSignup } from "modules/auth/data/remote/authApis";
 import { AUTHPAGE, HOMEPAGE, ErrorsMap } from "utils/constants";
-
+import {
+  isEmailAlreadyUsedError,
+  isUserNotFoundError,
+} from "modules/auth/presentation/helpers/validations";
 import { VerticalLogo } from "assets";
 
 import { TextLink, DefaultSpinner } from "components";
@@ -30,58 +27,69 @@ const validationSchema = Yup.object().shape({
     .required("Password is required!")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-      "Must contain lowercase, uppercase, numbers and special characters"
+      "Must contain lowercase, uppercase, numbers and special characters",
     ),
 });
 
 export const AuthForm: React.FC = () => {
   const location = useLocationIndicator();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const authHasError = useAppSelector(selectHasAuthError);
-  const authErrorCode = useAppSelector(selectAuthErrorMsgCode);
 
   const isLogin = location.isInCurrentPath("login");
+  const [requestErrorMessage, setRequestErrorMessage] = useState<string | null>(
+    null,
+  );
+  const isEmailAlreadyUsed = isEmailAlreadyUsedError(requestErrorMessage ?? "");
+  const isUserNotFound = isUserNotFoundError(requestErrorMessage ?? "");
 
-  const loginMutation = useLoginMutation();
-  const signupMutation = useSignupMutation();
+  const [loginMutation, { isLoading: loginLoading }] = useLogin();
+  const [signupMutation, { isLoading: signupLoading }] = useSignup();
 
-  const [authMutation, { isLoading }] = isLogin
-    ? loginMutation
-    : signupMutation;
+  const isLoading = loginLoading || signupLoading;
 
-  function resetAuthErrorHandler() {
-    if (authHasError) {
-      dispatch(resetAuthErrors());
-    }
-  }
-
-  const formikHandler = async (values: FormValuesInterface) => {
+  const submitHandler = async (values: FormValuesInterface) => {
     const submitSuccessfully = () => {
       navigate(HOMEPAGE);
     };
 
-    await authMutation({
-      email: values.email,
-      password: values.password,
-      onSuccess: submitSuccessfully,
-    });
+    if (isLogin) {
+      loginMutation({
+        payload: {
+          email: values.email,
+          password: values.password,
+        },
+        onError: (error) => {
+          setRequestErrorMessage(error.message);
+        },
+      });
+    } else {
+      signupMutation({
+        payload: {
+          email: values.email,
+          password: values.password,
+        },
+        onSuccess: submitSuccessfully,
+        onError: (error) => {
+          setRequestErrorMessage(error.message);
+        },
+      });
+    }
   };
 
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       validationSchema={validationSchema}
-      onSubmit={formikHandler}
+      onSubmit={submitHandler}
     >
       {({ errors, touched, handleChange }) => (
-        <Form className="w-full md:w-[32rem] h-screen md:h-auto bg-white rounded-lg p-8 py-16  mx-auto mt-10 md:mt-0 relative z-10 shadow-even-3">
-          <div className="flex flex-col max-w-[20rem] mx-auto">
-            <Link to="/" className="max-w-[11rem] mx-auto">
+        <Form className="relative z-10 mx-auto mt-10 h-screen w-full rounded-lg bg-white p-8 py-16 shadow-even-3 md:mt-0 md:h-auto md:w-[32rem]">
+          <div className="mx-auto flex max-w-[20rem] flex-col">
+            <Link to="/" className="mx-auto max-w-[11rem]">
               <img src={VerticalLogo} alt="Evernote Logo" />
             </Link>
 
-            <p className="text-neutral-600 mx-auto mt-5 mb-12">
+            <p className="mx-auto mb-12 mt-5 text-neutral-600">
               Remember everything important.
             </p>
             <div className="relative mb-4">
@@ -90,19 +98,18 @@ export const AuthForm: React.FC = () => {
                 id="email"
                 name="email"
                 onChange={(e: React.ChangeEvent<any>) => {
-                  resetAuthErrorHandler();
                   handleChange(e);
+                  setRequestErrorMessage(null);
                 }}
                 placeholder="Email"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 shadow-even-1 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
 
               {(errors.email && touched.email) ||
-              ["EMAIL_EXISTS", "GENERIC_ERROR_MESSAGE"].includes(
-                authErrorCode
-              ) ? (
-                <div className="text-xs text-red-700 mt-1">
-                  {errors.email ?? ErrorsMap[authErrorCode]}
+              isEmailAlreadyUsed ||
+              isUserNotFound ? (
+                <div className="mt-1 text-xs text-red-700">
+                  {errors.email ?? ErrorsMap[requestErrorMessage ?? ""]}
                 </div>
               ) : null}
             </div>
@@ -111,28 +118,26 @@ export const AuthForm: React.FC = () => {
               <Field
                 name="password"
                 onChange={(e: React.ChangeEvent<any>) => {
-                  resetAuthErrorHandler();
                   handleChange(e);
+                  setRequestErrorMessage(null);
                 }}
                 onKey
                 type="password"
                 id="password"
                 placeholder="Password"
-                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 shadow-even-1 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
 
               {errors.password && touched.password ? (
-                <div className="text-xs text-red-700 mt-1">
+                <div className="mt-1 text-xs text-red-700">
                   {errors.password}
                 </div>
               ) : null}
 
-              {authErrorCode &&
-                !["EMAIL_EXISTS", "GENERIC_ERROR_MESSAGE"].includes(
-                  authErrorCode
-                ) && (
-                  <div className="text-xs text-red-700 mt-1">
-                    {ErrorsMap[authErrorCode]}
+              {requestErrorMessage &&
+                !(isEmailAlreadyUsed || isUserNotFound) && (
+                  <div className="mt-1 text-xs text-red-700">
+                    {ErrorsMap[requestErrorMessage]}
                   </div>
                 )}
             </div>
@@ -140,7 +145,7 @@ export const AuthForm: React.FC = () => {
             {/* Call to action */}
             <button
               type={isLoading ? "button" : "submit"}
-              className="flex justify-center items-center text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
+              className="flex items-center justify-center rounded border-0 bg-green-500 px-6 py-2 text-lg text-white hover:bg-green-600 focus:outline-none"
             >
               {!isLoading && (!isLogin ? "Sign up" : "Sign in")}
               {isLoading && <DefaultSpinner borderColor="border-white" />}
@@ -151,13 +156,13 @@ export const AuthForm: React.FC = () => {
                 route=""
                 text="Forgot Password?"
                 underline={false}
-                className="table mx-auto mt-4 text-sm text-green-450 "
+                className="mx-auto mt-4 table text-sm text-green-450"
               />
             )}
 
             {/* Terms & Privacy */}
             {!isLogin && (
-              <p className="text-xs text-center text-gray-500 mt-3">
+              <p className="mt-3 text-center text-xs text-gray-500">
                 By creating an account, you are agreeing to our
                 <button className="text-green-600">
                   Terms of Service
@@ -167,7 +172,7 @@ export const AuthForm: React.FC = () => {
             )}
 
             {/* toggle auth form - login/register */}
-            <div className="text-sm text-center  pt-8">
+            <div className="pt-8 text-center text-sm">
               <p className="text-sm text-neutral-500">
                 {isLogin
                   ? "Don't have an account?"
@@ -177,7 +182,7 @@ export const AuthForm: React.FC = () => {
               <TextLink
                 text={isLogin ? "Create account" : "Sign in"}
                 route={`${AUTHPAGE}/${isLogin ? "register" : "login"}`}
-                className="inline-flex text-base text-green-600 "
+                className="inline-flex text-base text-green-600"
                 underline={false}
               />
             </div>

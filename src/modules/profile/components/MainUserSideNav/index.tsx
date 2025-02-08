@@ -1,19 +1,20 @@
 import { v4 as uuid } from "uuid";
-import { useAppSelector, useAppDispatch } from "hooks";
+import { useAppSelector } from "hooks";
+import { useLogout } from "modules/auth/data/remote/authApis";
 
-import { selectUserEmail, userLogoutThunk } from "store";
+import { selectUser } from "modules/auth/data/local/authSlice";
 import { FaUserCircle, IoIosArrowDown } from "assets";
 import { DropdownMenu } from "components";
 import { SideNavTabs } from "./SideNavTabs";
 import { AddNewNoteTab } from "./AddNewNoteTab";
 
 const SideNavBar: React.FC = () => {
-  const userEmail = useAppSelector(selectUserEmail);
-  const dispatch = useAppDispatch();
+  const userInfo = useAppSelector(selectUser);
+  const [logoutMutation] = useLogout();
 
   return (
     <div
-      className={`flex flex-col h-screen w-14 lg:w-56 bg-neutral-800 text-neutral-300`}
+      className={`flex h-screen w-14 flex-col bg-neutral-800 text-neutral-300 lg:w-56`}
     >
       {/* sidebar header */}
       <header className="flex flex-col gap-2 p-3">
@@ -21,11 +22,11 @@ const SideNavBar: React.FC = () => {
         <DropdownMenu
           menuHeader={{
             content: (
-              <div className="flex gap-2 cursor-pointer">
-                <FaUserCircle className="text-3xl shrink-0" />
+              <div className="flex cursor-pointer gap-2">
+                <FaUserCircle className="shrink-0 text-3xl" />
                 <div className="flex items-center gap-1">
-                  <small className="w-2/4 overflow-hidden scale-0 lg:scale-100 transition ease-out">
-                    {userEmail}
+                  <small className="w-2/4 scale-0 overflow-hidden transition ease-out lg:scale-100">
+                    {userInfo?.email}
                   </small>
                   <IoIosArrowDown size="10" />
                 </div>
@@ -36,9 +37,9 @@ const SideNavBar: React.FC = () => {
           submenuItemsData={[
             {
               id: uuid(),
-              content: `Sign out ${userEmail}`,
+              content: `Sign out ${userInfo?.email}`,
               onClick: () => {
-                dispatch(userLogoutThunk());
+                logoutMutation({});
               },
             },
           ]}

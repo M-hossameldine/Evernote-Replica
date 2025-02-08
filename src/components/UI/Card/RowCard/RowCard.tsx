@@ -34,29 +34,29 @@ const RowCard = (props: ROWCARD_INTERFACE): React.ReactElement => {
     <div
       className={`flex flex-col justify-between ${cardDirectionStyle} overflow-hidden ${className}`}
     >
-      <div className="max-w-[28rem] sm:max-w-[calc(50%-3rem)]  mx-auto sm:mx-0 mb-8 sm:mb-0">
+      <div className="mx-auto mb-8 max-w-[28rem] sm:mx-0 sm:mb-0 sm:max-w-[calc(50%-3rem)]">
         <img
-          className="block max-w-full max-h-[22rem] mx-auto"
+          className="mx-auto block max-h-[22rem] max-w-full"
           src={cardImg.img}
           alt={cardImg.altText}
         />
       </div>
-      <div className="sm:max-w-[calc(50%-3rem)] flex flex-col justify-center flex-1 ">
+      <div className="flex flex-1 flex-col justify-center sm:max-w-[calc(50%-3rem)]">
         {cardIcon && (
           <img
-            className="hidden sm:block max-w-[4rem] mb-5"
+            className="mb-5 hidden max-w-[4rem] sm:block"
             src={cardIcon.img}
             alt={cardIcon.altText}
           />
         )}
-        <div className="max-w-md sm:max-w-none mb-4 sm:mb-5">
-          <p className="text-2xl sm:text-4xl font-semibold">{header}</p>
-          <p className="text-lg sm:text-2xl mt-3 sm:mt-5 ">{description}</p>
+        <div className="mb-4 max-w-md sm:mb-5 sm:max-w-none">
+          <p className="text-2xl font-semibold sm:text-4xl">{header}</p>
+          <p className="mt-3 text-lg sm:mt-5 sm:text-2xl">{description}</p>
         </div>
 
         <TextLink
           text={callToAction.text}
-          className="flex flex-row gap-1 items-center uppercase text-base font-bold tracking-wider text-green-550 hover:text-green-500"
+          className="flex flex-row items-center gap-1 text-base font-bold uppercase tracking-wider text-green-550 hover:text-green-500"
           route={callToAction.route}
           underline={false}
           icon={{ Icon: callToAction.icon.Icon, iconStyle: "mt-1" }}

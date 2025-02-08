@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 export const useOutsideListener = (
   ref: React.RefObject<HTMLElement>,
   domEvent: string,
-  listenerHandler: () => void
+  listenerHandler: () => void,
 ) => {
   useEffect(() => {
     // fire event outside of element

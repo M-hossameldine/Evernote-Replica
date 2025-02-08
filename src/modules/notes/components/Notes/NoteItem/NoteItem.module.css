@@ -1,6 +1,5 @@
 .note {
-  @apply bg-white shadow-md
-  p-3 rounded-xl;
+  @apply rounded-xl bg-white p-3 shadow-md;
 }
 .note.active {
   @apply border-2 border-neutral-300;
@@ -10,7 +9,7 @@
 }
 
 .note__body {
-  @apply text-neutral-500 h-44 overflow-hidden;
+  @apply h-44 overflow-hidden text-neutral-500;
 }
 
 .note__timestamp {

@@ -8,7 +8,7 @@ export const FEATURE_CAROUSEL_SETTINGS = {
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: true,
-  customPaging: () => <button className='before:mt-4'></button>,
+  customPaging: () => <button className="before:mt-4"></button>,
 };
 
 // Testimonial Carousel Settngs

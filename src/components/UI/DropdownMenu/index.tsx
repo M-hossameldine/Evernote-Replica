@@ -70,9 +70,7 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
 
       {/* Submenu */}
       <Submenu
-        className={`absolute z-10 ${submenuPosition.x} ${submenuPosition.y} 
-        ${isExpanded ? "scale-100" : "scale-0"}
-        bg-white whitespace-nowrap shadow-even-2 rounded text-sm py-2`}
+        className={`absolute z-10 ${submenuPosition.x} ${submenuPosition.y} ${isExpanded ? "scale-100" : "scale-0"} whitespace-nowrap rounded bg-white py-2 text-sm shadow-even-2`}
         onClick={hideDropdonwHandler}
         submenuItemsData={props.submenuItemsData}
       />

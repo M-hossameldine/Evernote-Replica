@@ -1,7 +1,7 @@
 export const ErrorsMap: { [key: string]: string } = {
-  "GENERIC_ERROR_MESSAGE": "Something went wrong",
-  "EMAIL_NOT_FOUND": "Incorrect email or password",
-  "INVALID_PASSWORD": "Incorrect email or password",
-  "EMAIL_EXISTS": "Email already exists",
-  "TOO_MANY_ATTEMPTS_TRY_LATER": "Too many attempts, try again later",
+  GENERIC_ERROR_MESSAGE: "Something went wrong!",
+  "auth/user-not-found": "Incorrect email or password",
+  "auth/wrong-password": "Incorrect email or password",
+  "auth/email-already-in-use": "Email already exists",
+  "auth/too-many-requests": "Too many attempts, try again later",
 };

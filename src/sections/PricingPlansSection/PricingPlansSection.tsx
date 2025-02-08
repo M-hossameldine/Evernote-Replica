@@ -10,7 +10,7 @@ interface PricingPlansSection_INTERFACE {
   data: PRICE_PLAN_DATA_INTERFACE[];
 }
 const PricingPlansSection = (
-  props: PricingPlansSection_INTERFACE
+  props: PricingPlansSection_INTERFACE,
 ): React.ReactElement => {
   const { className, data } = props;
 
@@ -22,13 +22,13 @@ const PricingPlansSection = (
           return <PricePlanCard key={card.id} cardData={card} index={index} />;
         })}
       </div>
-      <div className="max-w-4xl mx-auto mt-10 p-5 border-2 border-neutral-200 rounded-xl">
+      <div className="mx-auto mt-10 max-w-4xl rounded-xl border-2 border-neutral-200 p-5">
         <div className="flex justify-between">
           <div>
-            <h3 className="text-2xl uppercase pb-3">Evernote Teams</h3>
-            <p className="text-4xl sm:text-[40px] font-semibold pb-6">
+            <h3 className="pb-3 text-2xl uppercase">Evernote Teams</h3>
+            <p className="pb-6 text-4xl font-semibold sm:text-[40px]">
               $14.99
-              <span className="text-base sm:text-lg uppercase font-semibold">
+              <span className="text-base font-semibold uppercase sm:text-lg">
                 {" "}
                 / user / month
               </span>
@@ -37,9 +37,9 @@ const PricingPlansSection = (
           <div className="text-green-600">
             <BsArrowRightCircleFill
               size="28"
-              className="block sm:hidden cursor-pointer"
+              className="block cursor-pointer sm:hidden"
             />
-            <div className="hidden sm:block rounded-full border-[3px] border-green-600 cursor-pointer p-5 mt-5">
+            <div className="mt-5 hidden cursor-pointer rounded-full border-[3px] border-green-600 p-5 sm:block">
               <FiArrowRight size="42" />
             </div>
           </div>

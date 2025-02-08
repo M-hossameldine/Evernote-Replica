@@ -13,7 +13,7 @@ const Footer = (props: PropsType): React.ReactElement => {
   return (
     <footer className={footerClasses}>
       {/* logo */}
-      <div className="border-b-2 border-black pb-14 mb-14">
+      <div className="mb-14 border-b-2 border-black pb-14">
         <img
           className="w-[9rem] sm:w-auto"
           src={HorizontalLogo}

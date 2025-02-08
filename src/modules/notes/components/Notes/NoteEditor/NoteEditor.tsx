@@ -67,7 +67,7 @@ const NoteEditor: React.FC = () => {
     dispatch(
       fillNoteEditor({
         id: activeId!,
-      })
+      }),
     );
     dispatch(
       editNote({
@@ -75,7 +75,7 @@ const NoteEditor: React.FC = () => {
         text: bodyText,
         id: activeId!,
         updatedTimestamp,
-      })
+      }),
     );
   };
 
@@ -87,7 +87,7 @@ const NoteEditor: React.FC = () => {
     dispatch(
       fillNoteEditor({
         id: activeId!,
-      })
+      }),
     );
     dispatch(
       editNote({
@@ -95,7 +95,7 @@ const NoteEditor: React.FC = () => {
         text: enteredText,
         id: activeId!,
         updatedTimestamp,
-      })
+      }),
     );
   };
 
@@ -105,13 +105,13 @@ const NoteEditor: React.FC = () => {
         showNotification({
           status: "error",
           message: "You can not update a note in the Trash",
-        })
+        }),
       );
     }
   };
 
   return (
-    <div className="grow bg-white h-screen">
+    <div className="h-screen grow bg-white">
       <NoteEditorHeader />
 
       <div
@@ -126,7 +126,7 @@ const NoteEditor: React.FC = () => {
             onChange={titleChangeHandler}
             className={{
               inputClasses:
-                "text-neutral-700 text-3xl font-semibold placeholder:font-semibold placeholder:text-3xl",
+                "text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold",
               fallbackClasses: "text-3xl",
             }}
             disabled={isDisabled}
@@ -138,7 +138,7 @@ const NoteEditor: React.FC = () => {
           placeholder="Start writing"
           onChange={textChangeHandler}
           className={{
-            inputClasses: "text-neutral-800 ",
+            inputClasses: "text-neutral-800",
             fallbackClasses: "",
           }}
           disabled={isDisabled}

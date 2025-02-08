@@ -12,7 +12,7 @@ import { RootState } from "../store";
 
 interface UPDATE_DATA_INTERFACE {
   asyncAction: (
-    payload?: any
+    payload?: any,
   ) => (dispatch: AppDispatch, getState: () => RootState) => Promise<void>;
   route: string;
   usedIndex: number;

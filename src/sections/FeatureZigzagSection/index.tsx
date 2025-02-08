@@ -7,7 +7,7 @@ interface ComponentInterface {
 }
 
 const FeatureZigzagSection = (
-  props: ComponentInterface
+  props: ComponentInterface,
 ): React.ReactElement => {
   const { className, dataList } = props;
 

@@ -6,7 +6,7 @@ import { CHANGE_PASSWORD_ENDPOINT } from "utils/constants";
 export const authRequest = async (
   email: string,
   password: string,
-  url: string
+  url: string,
 ) => {
   const response = await axios({
     method: "POST",
@@ -27,7 +27,7 @@ export const authRequest = async (
 export const changePasswordRequest = async (
   idToken: string,
   password: string,
-  returnSecureToken?: boolean
+  returnSecureToken?: boolean,
 ) => {
   const response = await axios({
     method: "POST",

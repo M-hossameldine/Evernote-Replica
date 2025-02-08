@@ -49,7 +49,7 @@ const TrashSlice = createSlice({
     },
     restoreItem: (
       state,
-      action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>
+      action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>,
     ) => {
       const itemId = action.payload.id;
 
@@ -65,7 +65,7 @@ const TrashSlice = createSlice({
       (state, action: PayloadAction<{ id: string; note: NOTE_INTERFACE }>) => {
         const newTrashNote = createTrashNote(action.payload.note);
         let notes = state.notes.unshift(newTrashNote);
-      }
+      },
     );
   },
 });

@@ -9,7 +9,7 @@ export interface ACTION_ITEM_INTERFACE {
   id: string;
   content: string | JSX.Element;
   asyncAction: (
-    payload?: any
+    payload?: any,
   ) => (dispatch: AppDispatch, getState: () => RootState) => Promise<void>;
   asyncActionArgs?: object;
   operation: "add" | "delete" | "update" | "empty";

@@ -22,7 +22,7 @@ const LogoCarousel = (props: PropsType): React.ReactElement => {
   return (
     <div className={className ? className : ""}>
       {/* View Slider */}
-      <div className="max-w-[925px] mx-auto text-center">
+      <div className="mx-auto max-w-[925px] text-center">
         <Slider asNavFor={nav2!} ref={(slider1) => setNav1(slider1)}>
           {data.map((testimonial) => (
             <TestimonialCard
@@ -45,10 +45,10 @@ const LogoCarousel = (props: PropsType): React.ReactElement => {
           {data.map((testimonial) => (
             <div
               key={testimonial.id}
-              className={`logo !block max-w-[150px] w-full max-h-full mx-auto cursor-pointer px-[1vw]`}
+              className={`logo mx-auto !block max-h-full w-full max-w-[150px] cursor-pointer px-[1vw]`}
             >
               <img
-                className="block mx-auto w-full"
+                className="mx-auto block w-full"
                 src={testimonial.logo}
                 alt={testimonial.altText}
               />

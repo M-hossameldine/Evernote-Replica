@@ -24,7 +24,7 @@ const UiSlice = createSlice({
       action: PayloadAction<{
         status: "success" | "error";
         message: JSX.Element | string;
-      }>
+      }>,
     ) => {
       const { status, message } = action.payload;
       state.notification = { status, message };
