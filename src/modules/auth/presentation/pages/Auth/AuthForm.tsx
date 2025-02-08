@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useLocationIndicator, useAppDispatch, useAppSelector } from "hooks";
+import { useLocationIndicator } from "hooks";
 import { useNavigate, Link } from "react-router-dom";
 
-import {
-  selectHasAuthError,
-  selectAuthErrorMsgCode,
-  resetAuthErrors,
-  useLoginMutation,
-  useSignupMutation,
-} from "store";
+import { useLogin, useSignup } from "modules/auth/data/remote/authApis";
 import { AUTHPAGE, HOMEPAGE, ErrorsMap } from "utils/constants";
-
+import {
+  isEmailAlreadyUsedError,
+  isUserNotFoundError,
+} from "modules/auth/presentation/helpers/validations";
 import { VerticalLogo } from "assets";
 
 import { TextLink, DefaultSpinner } from "components";
@@ -37,42 +34,53 @@ const validationSchema = Yup.object().shape({
 export const AuthForm: React.FC = () => {
   const location = useLocationIndicator();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const authHasError = useAppSelector(selectHasAuthError);
-  const authErrorCode = useAppSelector(selectAuthErrorMsgCode);
 
   const isLogin = location.isInCurrentPath("login");
+  const [requestErrorMessage, setRequestErrorMessage] = useState<string | null>(
+    null,
+  );
+  const isEmailAlreadyUsed = isEmailAlreadyUsedError(requestErrorMessage ?? "");
+  const isUserNotFound = isUserNotFoundError(requestErrorMessage ?? "");
 
-  const loginMutation = useLoginMutation();
-  const signupMutation = useSignupMutation();
+  const [loginMutation, { isLoading: loginLoading }] = useLogin();
+  const [signupMutation, { isLoading: signupLoading }] = useSignup();
 
-  const [authMutation, { isLoading }] = isLogin
-    ? loginMutation
-    : signupMutation;
+  const isLoading = loginLoading || signupLoading;
 
-  function resetAuthErrorHandler() {
-    if (authHasError) {
-      dispatch(resetAuthErrors());
-    }
-  }
-
-  const formikHandler = async (values: FormValuesInterface) => {
+  const submitHandler = async (values: FormValuesInterface) => {
     const submitSuccessfully = () => {
       navigate(HOMEPAGE);
     };
 
-    await authMutation({
-      email: values.email,
-      password: values.password,
-      onSuccess: submitSuccessfully,
-    });
+    if (isLogin) {
+      loginMutation({
+        payload: {
+          email: values.email,
+          password: values.password,
+        },
+        onError: (error) => {
+          setRequestErrorMessage(error.message);
+        },
+      });
+    } else {
+      signupMutation({
+        payload: {
+          email: values.email,
+          password: values.password,
+        },
+        onSuccess: submitSuccessfully,
+        onError: (error) => {
+          setRequestErrorMessage(error.message);
+        },
+      });
+    }
   };
 
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       validationSchema={validationSchema}
-      onSubmit={formikHandler}
+      onSubmit={submitHandler}
     >
       {({ errors, touched, handleChange }) => (
         <Form className="relative z-10 mx-auto mt-10 h-screen w-full rounded-lg bg-white p-8 py-16 shadow-even-3 md:mt-0 md:h-auto md:w-[32rem]">
@@ -90,19 +98,18 @@ export const AuthForm: React.FC = () => {
                 id="email"
                 name="email"
                 onChange={(e: React.ChangeEvent<any>) => {
-                  resetAuthErrorHandler();
                   handleChange(e);
+                  setRequestErrorMessage(null);
                 }}
                 placeholder="Email"
                 className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
 
               {(errors.email && touched.email) ||
-              ["EMAIL_EXISTS", "GENERIC_ERROR_MESSAGE"].includes(
-                authErrorCode,
-              ) ? (
+              isEmailAlreadyUsed ||
+              isUserNotFound ? (
                 <div className="mt-1 text-xs text-red-700">
-                  {errors.email ?? ErrorsMap[authErrorCode]}
+                  {errors.email ?? ErrorsMap[requestErrorMessage ?? ""]}
                 </div>
               ) : null}
             </div>
@@ -111,8 +118,8 @@ export const AuthForm: React.FC = () => {
               <Field
                 name="password"
                 onChange={(e: React.ChangeEvent<any>) => {
-                  resetAuthErrorHandler();
                   handleChange(e);
+                  setRequestErrorMessage(null);
                 }}
                 onKey
                 type="password"
@@ -127,12 +134,10 @@ export const AuthForm: React.FC = () => {
                 </div>
               ) : null}
 
-              {authErrorCode &&
-                !["EMAIL_EXISTS", "GENERIC_ERROR_MESSAGE"].includes(
-                  authErrorCode,
-                ) && (
+              {requestErrorMessage &&
+                !(isEmailAlreadyUsed || isUserNotFound) && (
                   <div className="mt-1 text-xs text-red-700">
-                    {ErrorsMap[authErrorCode]}
+                    {ErrorsMap[requestErrorMessage]}
                   </div>
                 )}
             </div>

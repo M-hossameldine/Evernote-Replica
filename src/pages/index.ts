@@ -7,7 +7,7 @@ import TrashPage from "../modules/notes/pages/TrashPage";
 // Public Pages
 import PublicHomePage from "../modules/main/pages/PublicHomePage";
 import DownloadPage from "../modules/main/pages/DownloadPage";
-import AuthPage from "../modules/auth/pages/AuthPage";
+import AuthPage from "../modules/auth/presentation/pages/Auth/AuthPage";
 
 export {
   AuthPage,
