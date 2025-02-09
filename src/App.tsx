@@ -1,7 +1,9 @@
+import React, { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { useInitAppAuth } from "modules/auth/data/remote";
 import { Layout, Notification } from "./components";
+import { DefaultSpinner } from "./components/UI/Spinners/DefaultSpinner";
 import {
   HOMEPAGE,
   NOTESPAGE,
@@ -9,15 +11,12 @@ import {
   EDITORPAGE,
   DOWNLOADPAGE,
 } from "utils/constants";
-import {
-  AuthPage,
-  HomePage,
-  NotesPage,
-  TrashPage,
-  DownloadPage,
-} from "./pages";
+import { HomePage, NotesPage, TrashPage, DownloadPage } from "./pages";
 
-import { AuthMode } from "constants/AppEnums/AuthEnums";
+const UserAuthPage = React.lazy(
+  () => import("./modules/auth/presentation/pages/UserAuth/UserAuth"),
+);
+
 import { AuthRouteVariants } from "constants/routeVariants";
 
 function App() {
@@ -28,31 +27,35 @@ function App() {
       <Notification />
 
       <Layout>
-        <Routes>
-          <Route path={HOMEPAGE} element={<HomePage />} />
+        <Suspense
+          fallback={
+            <div className="flex min-h-screen w-full items-center justify-center">
+              <DefaultSpinner size="h-12 w-12" borderSize="border-4" />
+            </div>
+          }
+        >
+          <Routes>
+            <Route path={HOMEPAGE} element={<HomePage />} />
 
-          {!isAuthorized && (
-            <>
-              <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
-              <Route
-                path={AuthRouteVariants.auth.pathname(AuthMode.LOGIN)}
-                element={<AuthPage />}
-              />
-              <Route
-                path={AuthRouteVariants.auth.pathname(AuthMode.REGISTER)}
-                element={<AuthPage />}
-              />
-            </>
-          )}
-          {isAuthorized && (
-            <>
-              <Route path={`${NOTESPAGE}/:noteId`} element={<NotesPage />} />
-              <Route path={`${EDITORPAGE}/:noteId`} element={<NotesPage />} />
-              <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
-            </>
-          )}
-          <Route path="*" element={<Navigate to={`/`} />} />
-        </Routes>
+            {!isAuthorized && (
+              <>
+                <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
+                <Route
+                  path={AuthRouteVariants.auth.route}
+                  element={<UserAuthPage />}
+                />
+              </>
+            )}
+            {isAuthorized && (
+              <>
+                <Route path={`${NOTESPAGE}/:noteId`} element={<NotesPage />} />
+                <Route path={`${EDITORPAGE}/:noteId`} element={<NotesPage />} />
+                <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
+              </>
+            )}
+            <Route path="*" element={<Navigate to={`/`} />} />
+          </Routes>
+        </Suspense>
       </Layout>
     </>
   );

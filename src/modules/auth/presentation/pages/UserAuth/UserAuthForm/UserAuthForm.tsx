@@ -34,7 +34,7 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-export const AuthForm: React.FC = () => {
+export const UserAuthForm: React.FC = () => {
   const location = useLocationIndicator();
   const navigate = useNavigate();
 
@@ -198,4 +198,4 @@ export const AuthForm: React.FC = () => {
   );
 };
 
-export default AuthForm;
+export default UserAuthForm;

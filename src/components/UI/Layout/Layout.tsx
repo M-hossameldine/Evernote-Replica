@@ -15,25 +15,21 @@ const Layout = (props: PropsType): React.ReactElement => {
   const match = useMatch(AuthRouteVariants.auth.route);
   const isAuthPage = !!match;
 
-  let layoutClasses = isLoggedIn ? " flex w-full h-screen " : " pt-12 ";
-
-  if (isAuthPage) {
-    layoutClasses = "";
-  }
+  const layoutClasses =
+    "min-h-screen" +
+    (isAuthPage ? "" : isLoggedIn ? " flex w-full h-screen " : " pt-12 ");
 
   return (
-    <>
-      <main className={layoutClasses}>
-        {isLoggedIn ? <MainUserSideNav /> : !isAuthPage && <MainPublicNav />}
-        {isLoggedIn ? (
-          <div className="scrollbar-box w-full overflow-y-scroll bg-neutral-200">
-            {props.children}
-          </div>
-        ) : (
-          props.children
-        )}
-      </main>
-    </>
+    <main className={layoutClasses}>
+      {isLoggedIn ? <MainUserSideNav /> : !isAuthPage && <MainPublicNav />}
+      {isLoggedIn ? (
+        <div className="scrollbar-box w-full overflow-y-scroll bg-neutral-200">
+          {props.children}
+        </div>
+      ) : (
+        props.children
+      )}
+    </main>
   );
 };
 

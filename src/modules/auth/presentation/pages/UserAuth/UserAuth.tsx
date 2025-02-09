@@ -1,15 +1,15 @@
-import { AuthForm } from "./AuthForm";
+import { UserAuthForm } from "./UserAuthForm/UserAuthForm";
 import { AuthBgImg } from "assets";
 
-const AuthPage: React.FC = () => {
+const UserAuth: React.FC = () => {
   return (
     <div
       className={`flex h-screen items-center`}
       style={{ backgroundImage: `url(${AuthBgImg})` }}
     >
-      <AuthForm />
+      <UserAuthForm />
     </div>
   );
 };
 
-export default AuthPage;
+export default UserAuth;
