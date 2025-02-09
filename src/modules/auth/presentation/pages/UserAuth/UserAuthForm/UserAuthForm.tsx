@@ -124,7 +124,6 @@ export const UserAuthForm: React.FC = () => {
                   handleChange(e);
                   setRequestErrorMessage(null);
                 }}
-                onKey
                 type="password"
                 id="password"
                 placeholder="Password"
