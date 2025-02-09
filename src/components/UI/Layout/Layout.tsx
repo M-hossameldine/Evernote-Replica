@@ -1,7 +1,7 @@
 import { useAppSelector } from "hooks";
 import { useMatch } from "react-router-dom";
 import MainUserSideNav from "modules/profile/components/MainUserSideNav";
-import { MainPublicNav } from "modules/main/components/MainPublicNav/";
+import { MainPublicNav } from "modules/AuthFree/presentation/components/MainPublicNav";
 import { selectIsLoggedIn } from "store";
 import { AuthRouteVariants } from "constants/routeVariants";
 
