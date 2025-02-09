@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 
 import { HorizontalLogo, FaBars } from "assets/index";
-import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from "utils/constants";
+import { HOMEPAGE, DOWNLOADPAGE } from "utils/constants";
 import { GhostLink } from "components";
+
+import { AuthRouteVariants } from "constants/routeVariants";
+import { AuthMode } from "constants/AppEnums/AuthEnums";
 
 type Props = { onShowMenu: () => void };
 
@@ -22,7 +25,7 @@ export const DesktopMenu = (props: Props): React.ReactElement => {
       <nav className="ml-auto flex items-center text-base">
         <ul className="hidden items-center gap-3 lg:flex">
           <Link
-            to={`${AUTHPAGE}/login`}
+            to={AuthRouteVariants.auth.pathname(AuthMode.LOGIN)}
             className="text-lg font-semibold text-neutral-700 hover:text-green-600"
           >
             Log In

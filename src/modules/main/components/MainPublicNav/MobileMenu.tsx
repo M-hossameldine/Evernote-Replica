@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
 import { HorizontalLogo, GrClose } from "assets";
-import { HOMEPAGE, AUTHPAGE, DOWNLOADPAGE } from "utils/constants/routes";
+import { HOMEPAGE, DOWNLOADPAGE } from "utils/constants/routes";
 import { GhostLink, ExecludeEventWrapper } from "components";
+import { AuthRouteVariants } from "constants/routeVariants";
+import { AuthMode } from "constants/AppEnums/AuthEnums";
 
 type PropsType = {
   onClose: () => void;
@@ -44,7 +46,7 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
             <ul className="font-bold uppercase">
               <li className="border-b-[1px] border-neutral-100 py-4 text-sm text-neutral-700 hover:text-green-550">
                 <Link
-                  to={`${AUTHPAGE}/login`}
+                  to={AuthRouteVariants.auth.pathname(AuthMode.LOGIN)}
                   className="mr-5 font-bold text-neutral-700 hover:text-green-550"
                 >
                   Log In

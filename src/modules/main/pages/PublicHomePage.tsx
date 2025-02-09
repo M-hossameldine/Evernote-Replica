@@ -7,7 +7,6 @@ import {
   PricingPlansSection,
   Footer,
 } from "sections/";
-import { AUTHPAGE } from "utils/constants";
 import { TaskHeroImg, IoIosArrowRoundForward } from "assets";
 import {
   HOME_BASIC_FEATURE_DATA,
@@ -20,6 +19,9 @@ import {
   TESTIMONIAL_CAROUSEL_SETTINGS,
 } from "utils/settings";
 
+import { AuthRouteVariants } from "constants/routeVariants";
+import { AuthMode } from "constants/AppEnums/AuthEnums";
+
 const PublicHomePage: React.FC = () => {
   return (
     <div>
@@ -31,13 +33,13 @@ const PublicHomePage: React.FC = () => {
           className="mt-24"
           primeBtn={{
             text: "Sign up for free",
-            route: `${AUTHPAGE}/register`,
+            route: AuthRouteVariants.auth.pathname(AuthMode.REGISTER),
             className: "text-lg px-[4.5em]",
           }}
           secondaryBtns={[
             {
               text: "Already have an account? Log in",
-              route: `${AUTHPAGE}/login`,
+              route: AuthRouteVariants.auth.pathname(AuthMode.LOGIN),
               className:
                 "font-semibold text-lg text-neutral-500 hover:text-green-450",
             },

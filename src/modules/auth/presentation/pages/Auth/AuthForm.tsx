@@ -5,7 +5,7 @@ import { useLocationIndicator } from "hooks";
 import { useNavigate, Link } from "react-router-dom";
 
 import { useLogin, useSignup } from "modules/auth/data/remote/authApis";
-import { AUTHPAGE, HOMEPAGE, ErrorsMap } from "utils/constants";
+import { HOMEPAGE, ErrorsMap } from "utils/constants";
 import {
   isEmailAlreadyUsedError,
   isUserNotFoundError,
@@ -13,6 +13,9 @@ import {
 import { VerticalLogo } from "assets";
 
 import { TextLink, DefaultSpinner } from "components";
+
+import { AuthRouteVariants } from "constants/routeVariants";
+import { AuthMode } from "constants/AppEnums/AuthEnums";
 
 interface FormValuesInterface {
   email: string;
@@ -181,7 +184,9 @@ export const AuthForm: React.FC = () => {
 
               <TextLink
                 text={isLogin ? "Create account" : "Sign in"}
-                route={`${AUTHPAGE}/${isLogin ? "register" : "login"}`}
+                route={AuthRouteVariants.auth.pathname(
+                  isLogin ? AuthMode.REGISTER : AuthMode.LOGIN,
+                )}
                 className="inline-flex text-base text-green-600"
                 underline={false}
               />

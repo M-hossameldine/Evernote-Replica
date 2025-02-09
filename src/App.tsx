@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useInitAppAuth } from "modules/auth/data/remote";
 import { Layout, Notification } from "./components";
 import {
-  AUTHPAGE,
   HOMEPAGE,
   NOTESPAGE,
   TRASHPAGE,
@@ -17,6 +16,9 @@ import {
   TrashPage,
   DownloadPage,
 } from "./pages";
+
+import { AuthMode } from "constants/AppEnums/AuthEnums";
+import { AuthRouteVariants } from "constants/routeVariants";
 
 function App() {
   const { isAuthorized } = useInitAppAuth();
@@ -32,8 +34,14 @@ function App() {
           {!isAuthorized && (
             <>
               <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
-              <Route path={`${AUTHPAGE}/login`} element={<AuthPage />} />
-              <Route path={`${AUTHPAGE}/register`} element={<AuthPage />} />
+              <Route
+                path={AuthRouteVariants.auth.pathname(AuthMode.LOGIN)}
+                element={<AuthPage />}
+              />
+              <Route
+                path={AuthRouteVariants.auth.pathname(AuthMode.REGISTER)}
+                element={<AuthPage />}
+              />
             </>
           )}
           {isAuthorized && (
