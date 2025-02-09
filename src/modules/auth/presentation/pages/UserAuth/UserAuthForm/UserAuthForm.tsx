@@ -5,7 +5,7 @@ import { useLocationIndicator } from "hooks";
 import { useNavigate, Link } from "react-router-dom";
 
 import { useLogin, useSignup } from "modules/auth/data/remote/authApis";
-import { AUTHPAGE, HOMEPAGE, ErrorsMap } from "utils/constants";
+import { HOMEPAGE, ErrorsMap } from "utils/constants";
 import {
   isEmailAlreadyUsedError,
   isUserNotFoundError,
@@ -13,6 +13,9 @@ import {
 import { VerticalLogo } from "assets";
 
 import { TextLink, DefaultSpinner } from "components";
+
+import { AuthRouteVariants } from "constants/routeVariants";
+import { AuthMode } from "constants/AppEnums/AuthEnums";
 
 interface FormValuesInterface {
   email: string;
@@ -31,7 +34,7 @@ const validationSchema = Yup.object().shape({
     ),
 });
 
-export const AuthForm: React.FC = () => {
+export const UserAuthForm: React.FC = () => {
   const location = useLocationIndicator();
   const navigate = useNavigate();
 
@@ -121,7 +124,6 @@ export const AuthForm: React.FC = () => {
                   handleChange(e);
                   setRequestErrorMessage(null);
                 }}
-                onKey
                 type="password"
                 id="password"
                 placeholder="Password"
@@ -145,6 +147,7 @@ export const AuthForm: React.FC = () => {
             {/* Call to action */}
             <button
               type={isLoading ? "button" : "submit"}
+              aria-label={"Form Submit"}
               className="flex items-center justify-center rounded border-0 bg-green-500 px-6 py-2 text-lg text-white hover:bg-green-600 focus:outline-none"
             >
               {!isLoading && (!isLogin ? "Sign up" : "Sign in")}
@@ -156,7 +159,7 @@ export const AuthForm: React.FC = () => {
                 route=""
                 text="Forgot Password?"
                 underline={false}
-                className="mx-auto mt-4 table text-sm text-green-450"
+                className="mx-auto mt-4 table text-sm text-green-600"
               />
             )}
 
@@ -164,10 +167,20 @@ export const AuthForm: React.FC = () => {
             {!isLogin && (
               <p className="mt-3 text-center text-xs text-gray-500">
                 By creating an account, you are agreeing to our
-                <button className="text-green-600">
+                <button
+                  aria-label={"Got to Terms of Service"}
+                  className="text-green-600"
+                >
                   Terms of Service
-                </button> and{" "}
-                <button className="text-green-600"> Privacy Policy</button>
+                </button>
+                and{" "}
+                <button
+                  aria-label="Go to Privacy Policy"
+                  className="text-green-600"
+                >
+                  {" "}
+                  Privacy Policy
+                </button>
               </p>
             )}
 
@@ -181,7 +194,9 @@ export const AuthForm: React.FC = () => {
 
               <TextLink
                 text={isLogin ? "Create account" : "Sign in"}
-                route={`${AUTHPAGE}/${isLogin ? "register" : "login"}`}
+                route={AuthRouteVariants.auth.pathname(
+                  isLogin ? AuthMode.REGISTER : AuthMode.LOGIN,
+                )}
                 className="inline-flex text-base text-green-600"
                 underline={false}
               />
@@ -193,4 +208,4 @@ export const AuthForm: React.FC = () => {
   );
 };
 
-export default AuthForm;
+export default UserAuthForm;

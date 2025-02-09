@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useEventListener } from "hooks";
 
-import { DesktopMenu } from "../../components/MainPublicNav/DesktopMenu";
-import { MobileMenu } from "../../components/MainPublicNav/MobileMenu";
+import { DesktopMenu } from "./DesktopMenu";
+import { MobileMenu } from "./MobileMenu";
 
 export const MainPublicNav: React.FC = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
