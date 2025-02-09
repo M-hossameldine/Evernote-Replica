@@ -1,7 +1,7 @@
 import { useAppSelector } from "hooks";
 import { selectIsLoggedIn } from "store";
 
-import { PublicHomePage } from "pages";
+import PublicHomePage from "modules/AuthFree/presentation/pages/PublicHomePage/PublicHomePage";
 import UserProfile from "modules/profile/pages/UserProfile";
 
 const HomePage: React.FC = () => {

@@ -11,13 +11,17 @@ import {
   EDITORPAGE,
   DOWNLOADPAGE,
 } from "utils/constants";
-import { HomePage, NotesPage, TrashPage, DownloadPage } from "./pages";
+import { AuthRouteVariants } from "constants/routeVariants";
 
 const UserAuthPage = React.lazy(
   () => import("./modules/auth/presentation/pages/UserAuth/UserAuth"),
 );
-
-import { AuthRouteVariants } from "constants/routeVariants";
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const NotesPage = React.lazy(() => import("./modules/notes/pages/NotesPage"));
+const TrashPage = React.lazy(() => import("./modules/notes/pages/TrashPage"));
+const DownloadPage = React.lazy(
+  () => import("./modules/AuthFree/presentation/pages/DownloadPage"),
+);
 
 function App() {
   const { isAuthorized } = useInitAppAuth();
