@@ -42,7 +42,11 @@ const Notification: React.FC = () => {
         {status === "error" && <MdError className="shrink-0" />}
         {notification && notification.message}
       </p>
-      <button className={classes.btn} onClick={closeNotificationHandler}>
+      <button
+        aria-label="Close Notification"
+        className={classes.btn}
+        onClick={closeNotificationHandler}
+      >
         <IoMdClose className="shrink-0 text-xl" />
       </button>
     </div>

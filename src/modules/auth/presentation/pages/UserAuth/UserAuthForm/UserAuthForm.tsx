@@ -147,6 +147,7 @@ export const UserAuthForm: React.FC = () => {
             {/* Call to action */}
             <button
               type={isLoading ? "button" : "submit"}
+              aria-label={"Form Submit"}
               className="flex items-center justify-center rounded border-0 bg-green-500 px-6 py-2 text-lg text-white hover:bg-green-600 focus:outline-none"
             >
               {!isLoading && (!isLogin ? "Sign up" : "Sign in")}
@@ -158,7 +159,7 @@ export const UserAuthForm: React.FC = () => {
                 route=""
                 text="Forgot Password?"
                 underline={false}
-                className="mx-auto mt-4 table text-sm text-green-450"
+                className="mx-auto mt-4 table text-sm text-green-600"
               />
             )}
 
@@ -166,10 +167,20 @@ export const UserAuthForm: React.FC = () => {
             {!isLogin && (
               <p className="mt-3 text-center text-xs text-gray-500">
                 By creating an account, you are agreeing to our
-                <button className="text-green-600">
+                <button
+                  aria-label={"Got to Terms of Service"}
+                  className="text-green-600"
+                >
                   Terms of Service
-                </button> and{" "}
-                <button className="text-green-600"> Privacy Policy</button>
+                </button>
+                and{" "}
+                <button
+                  aria-label="Go to Privacy Policy"
+                  className="text-green-600"
+                >
+                  {" "}
+                  Privacy Policy
+                </button>
               </p>
             )}
 
