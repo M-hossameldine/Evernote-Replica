@@ -1,5 +1,5 @@
 import { SimpleFeatureBlock, TextLink } from "components";
-import { FeatureCarousel } from "../components/FeatureCarousel/FeatureCarousel";
+import { FeatureCarousel } from "../../components/FeatureCarousel";
 import {
   HeroSection,
   TestimonialSection,
