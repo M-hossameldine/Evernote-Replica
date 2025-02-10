@@ -1,4 +1,4 @@
-import NoteActionsDropdown from "../NoteActions/NoteActionsDropdown";
+import NoteActionsDropdown from "../NoteEditor/NoteActions/NoteActionsDropdown";
 
 export const NoteEditorHeader: React.FC = () => {
   return (

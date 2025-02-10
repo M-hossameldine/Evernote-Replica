@@ -17,8 +17,12 @@ const UserAuthPage = React.lazy(
   () => import("./modules/auth/presentation/pages/UserAuth/UserAuth"),
 );
 const HomePage = React.lazy(() => import("./pages/HomePage"));
-const NotesPage = React.lazy(() => import("./modules/notes/pages/NotesPage"));
-const TrashPage = React.lazy(() => import("./modules/notes/pages/TrashPage"));
+const NotesPage = React.lazy(
+  () => import("./modules/notes/presentation/pages/NotesPage"),
+);
+const TrashPage = React.lazy(
+  () => import("./modules/notes/presentation/pages/TrashPage"),
+);
 const DownloadPage = React.lazy(
   () => import("./modules/AuthFree/presentation/pages/DownloadPage"),
 );

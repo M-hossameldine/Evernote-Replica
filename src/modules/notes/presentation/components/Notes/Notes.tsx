@@ -3,8 +3,8 @@ import { useAppSelector } from "hooks/redux-hooks";
 import { selectNotes } from "store";
 
 import { IoIosPaper } from "assets";
-import NoteListingOptions from "./NoteListingOperations/NoteListingOptions";
-import NoteList from "./NoteList/NoteList";
+import NoteListingOptions from "../NoteListingOperations/NoteListingOptions";
+import NoteList from "../NoteList/NoteList";
 
 const Notes: React.FC = () => {
   const notes = useAppSelector(selectNotes);
