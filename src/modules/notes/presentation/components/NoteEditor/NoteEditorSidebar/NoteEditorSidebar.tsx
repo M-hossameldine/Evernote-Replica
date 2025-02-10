@@ -5,7 +5,7 @@ import {
   FALLBACK_DATA_INTERFACE,
 } from "interfaces";
 
-import NoteEditorSidebarHeader from "../../NoteEditorSidebarHeader/NoteEditorSidebarHeader";
+import NoteEditorSidebarHeader from "../NoteEditorSidebarHeader/NoteEditorSidebarHeader";
 import NoteList from "../../NoteList/NoteList";
 import FallbackMsg from "components/UI/FallbackMsg/FallbackMsg";
 

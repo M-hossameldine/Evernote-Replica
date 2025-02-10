@@ -1,6 +1,6 @@
 import { useLocationIndicator } from "hooks";
 
-import NoteListingOptions from "../NoteListingOperations/NoteListingOptions";
+import NoteListingOptions from "../../NoteListingOperations/NoteListingOptions";
 import {
   NOTE_INTERFACE,
   TRASH_ITEM_INTERFACE,
