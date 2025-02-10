@@ -1,4 +1,4 @@
-import AddNoteWrapper from "modules/notes/components/Notes/AddNoteWrapper/AddNoteWrapper";
+import AddNoteWrapper from "modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper";
 import { BsPlus, IoIosArrowDown } from "assets";
 
 export const AddNewNoteTab: React.FC = () => {

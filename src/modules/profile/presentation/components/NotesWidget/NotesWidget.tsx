@@ -4,8 +4,8 @@ import { v4 as uuid } from "uuid";
 
 import { selectNotes, sendNewNoteData } from "store";
 import { DropdownMenu, Card } from "components";
-import { NoteItem } from "modules/notes/components/Notes/NoteItem/NoteItem";
-import AddNoteWrapper from "modules/notes/components/Notes/AddNoteWrapper/AddNoteWrapper";
+import { NoteItem } from "modules/notes/presentation/components/NoteItem/NoteItem";
+import AddNoteWrapper from "modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper";
 
 import { NOTESPAGE, EDITORPAGE } from "utils/constants";
 import { IoIosArrowForward, MdPostAdd, IoIosMore } from "assets";

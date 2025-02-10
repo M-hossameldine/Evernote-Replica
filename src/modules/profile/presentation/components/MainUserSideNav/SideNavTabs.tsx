@@ -6,7 +6,7 @@ import { NavTabModel } from "models/UI-Models";
 import { fillNoteEditor, selectNotes, selectTrashNotes } from "store";
 
 import SideNavTab from "./SideNavTab";
-import DropdownList from "../../../../components/UI/Dropdown";
+import DropdownList from "../../../../../components/UI/Dropdown";
 import {
   AiFillHome,
   FaStar,
@@ -16,7 +16,7 @@ import {
   RiPriceTagFill,
   FaUserFriends,
   FaTrash,
-} from "../../../../assets/index";
+} from "../../../../../assets";
 
 const TAB_CONTENT = {
   home: new NavTabModel("Home", AiFillHome),
