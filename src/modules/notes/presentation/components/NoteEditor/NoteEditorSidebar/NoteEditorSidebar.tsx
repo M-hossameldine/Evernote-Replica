@@ -1,18 +1,21 @@
-import {
-  NOTE_INTERFACE,
-  TRASH_ITEM_INTERFACE,
-  HEADER_INTERFACE,
-  FALLBACK_DATA_INTERFACE,
-} from "interfaces";
+import { Note, TrashNote } from "modules/notes/domain/interfaces";
+import type { IconType } from "react-icons";
 
-import NoteEditorSidebarHeader from "../NoteEditorSidebarHeader/NoteEditorSidebarHeader";
+import NoteEditorSidebarHeader, {
+  type NoteEditorSidebarHeaderProps,
+} from "../NoteEditorSidebarHeader/NoteEditorSidebarHeader";
 import NoteList from "../../NoteList/NoteList";
 import FallbackMsg from "components/UI/FallbackMsg/FallbackMsg";
 
 type NoteEditorSidebarProps = {
-  notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
-  header: HEADER_INTERFACE;
-  fallbackData: FALLBACK_DATA_INTERFACE;
+  notes: (Note | TrashNote)[];
+  header: NoteEditorSidebarHeaderProps["headerData"];
+  fallbackData: {
+    title: string;
+    text: string;
+    icon: IconType;
+    action?: React.FC;
+  };
 };
 
 const NoteEditorSidebar = (

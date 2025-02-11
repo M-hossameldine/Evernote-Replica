@@ -1,5 +1,5 @@
 import { AppDispatch } from "store";
-import { TRASH_ITEM_INTERFACE } from "interfaces";
+import type { TrashNote } from "modules/notes/domain/interfaces";
 import { deleteItemPermanently, restoreItem, emptyTrash } from "./trash-slice";
 
 export const deleteItemPermanentlyAction = (payload: { id: string }) => {
@@ -12,7 +12,7 @@ export const deleteItemPermanentlyAction = (payload: { id: string }) => {
 
 export const restoreItemFromTrashAction = (payload: {
   id: string;
-  note: TRASH_ITEM_INTERFACE;
+  note: TrashNote;
 }) => {
   return async (dispatch: AppDispatch) => {
     dispatch(restoreItem(payload));

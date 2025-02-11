@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { ICON_LINK_DATA_INTERFACE, FOOTER_DATA_INTERFACE } from "interfaces";
+import { ICON_LINK_DATA_INTERFACE } from "interfaces";
 
 import {
   FaFacebookF,
@@ -10,7 +10,17 @@ import {
   FaLinkedinIn,
 } from "../../assets";
 
-export const FOOTER_DATA: FOOTER_DATA_INTERFACE[] = [
+export interface FooterData {
+  colId: string;
+  colTitle: string;
+  colFeatures: {
+    id: string;
+    text: string;
+    route: string;
+  }[];
+}
+
+export const FOOTER_DATA: FooterData[] = [
   {
     colId: uuid(),
     colTitle: "Product",

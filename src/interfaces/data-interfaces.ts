@@ -54,13 +54,3 @@ export interface PRICE_PLAN_DATA_INTERFACE {
     route: string;
   };
 }
-
-export interface FOOTER_DATA_INTERFACE {
-  colId: string;
-  colTitle: string;
-  colFeatures: {
-    id: string;
-    text: string;
-    route: string;
-  }[];
-}

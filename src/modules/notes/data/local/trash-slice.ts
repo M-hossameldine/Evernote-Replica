@@ -1,16 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { moveToTrash } from "../notes-slice/notes-slice";
+import { moveToTrash } from "./notesSlice";
 import { RootState } from "store";
 
-import {
-  NOTE_INTERFACE,
-  TRASH_ITEM_INTERFACE,
-  createTrashNote,
-} from "interfaces";
+import { createTrashNote } from "./notesSlice.helpers";
+import type { Note, TrashNote } from "modules/notes/domain/interfaces";
 
 export interface TRASH_STATE_INTERFACE {
-  notes: TRASH_ITEM_INTERFACE[];
+  notes: TrashNote[];
 }
 
 const initialState: TRASH_STATE_INTERFACE = {
@@ -49,7 +46,7 @@ const TrashSlice = createSlice({
     },
     restoreItem: (
       state,
-      action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>,
+      action: PayloadAction<{ id: string; note: TrashNote }>,
     ) => {
       const itemId = action.payload.id;
 
@@ -62,9 +59,9 @@ const TrashSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       moveToTrash,
-      (state, action: PayloadAction<{ id: string; note: NOTE_INTERFACE }>) => {
+      (state, action: PayloadAction<{ id: string; note: Note }>) => {
         const newTrashNote = createTrashNote(action.payload.note);
-        let notes = state.notes.unshift(newTrashNote);
+        // let notes = state.notes.unshift(newTrashNote);
       },
     );
   },

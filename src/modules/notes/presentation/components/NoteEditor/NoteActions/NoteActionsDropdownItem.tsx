@@ -8,7 +8,7 @@ import {
 } from "store";
 
 import { NOTESPAGE, TRASHPAGE } from "utils/constants";
-import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
+import { Note, TrashNote } from "modules/notes/domain/interfaces";
 
 type NoteActionsDropdownItemProps = {
   text: string;
@@ -29,9 +29,7 @@ const NoteActionsDropdownItem = (
 
   const isInTrash = location.isInCurrentPath("trash");
 
-  const notesList: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[] = isInTrash
-    ? trashNotes
-    : notes;
+  const notesList: (Note | TrashNote)[] = isInTrash ? trashNotes : notes;
 
   const updatedState = useUpdatedState({
     asyncAction,

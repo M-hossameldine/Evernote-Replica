@@ -1,8 +1,8 @@
-import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
+import type { Note, TrashNote } from "modules/notes/domain/interfaces";
 import NoteItem from "../NoteItem/NoteItem";
 
 type PropsType = {
-  notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
+  notes: (Note | TrashNote)[];
 };
 
 const NoteList = (props: PropsType): React.ReactElement => {
