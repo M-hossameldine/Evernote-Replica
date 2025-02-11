@@ -1,16 +1,23 @@
 import { useLocationIndicator } from "hooks";
 
-import NoteListingOptions from "../../NoteListingOperations/NoteListingOptions";
-import { TRASH_ITEM_INTERFACE, HEADER_INTERFACE } from "interfaces";
+import { TRASH_ITEM_INTERFACE } from "interfaces";
+import type { IconType } from "react-icons";
 import { Note } from "modules/notes/domain/interfaces/Note";
 
+import NoteListingOptions from "../../NoteListingOperations/NoteListingOptions";
 import EmptyTrashButton from "./EmptyTrashButton";
 
-type PropsType = {
+export type NoteEditorSidebarHeaderProps = {
   notes: (Note | TRASH_ITEM_INTERFACE)[];
-  headerData: HEADER_INTERFACE;
+  headerData: {
+    title: string;
+    icon: IconType;
+  };
 };
-const NoteEditorSidebarHeader = (props: PropsType): React.ReactElement => {
+
+const NoteEditorSidebarHeader = (
+  props: NoteEditorSidebarHeaderProps,
+): React.ReactElement => {
   const location = useLocationIndicator();
 
   const { notes, headerData } = props;
