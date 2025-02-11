@@ -1,7 +1,4 @@
-import { TRASH_ITEM_INTERFACE } from "interfaces";
-import { Note } from "modules/notes/domain/interfaces/Note";
+import type { Note, TrashNote } from "modules/notes/domain/interfaces";
 
-export const findNoteById = (
-  notes: (Note | TRASH_ITEM_INTERFACE)[],
-  id: string,
-) => notes?.find((note) => note.id === id);
+export const findNoteById = (notes: (Note | TrashNote)[], id: string) =>
+  notes?.find((note) => note.id === id);

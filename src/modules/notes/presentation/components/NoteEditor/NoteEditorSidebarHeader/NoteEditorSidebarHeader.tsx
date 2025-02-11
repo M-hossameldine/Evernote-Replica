@@ -1,14 +1,13 @@
 import { useLocationIndicator } from "hooks";
 
-import { TRASH_ITEM_INTERFACE } from "interfaces";
 import type { IconType } from "react-icons";
-import { Note } from "modules/notes/domain/interfaces/Note";
+import type { Note, TrashNote } from "modules/notes/domain/interfaces";
 
 import NoteListingOptions from "../../NoteListingOperations/NoteListingOptions";
 import EmptyTrashButton from "./EmptyTrashButton";
 
 export type NoteEditorSidebarHeaderProps = {
-  notes: (Note | TRASH_ITEM_INTERFACE)[];
+  notes: (Note | TrashNote)[];
   headerData: {
     title: string;
     icon: IconType;

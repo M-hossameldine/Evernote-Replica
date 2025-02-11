@@ -3,10 +3,10 @@ import classes from "./NoteItem.module.css";
 
 import { useAppDispatch, useLocationIndicator } from "hooks";
 import { setActiveNoteIndex } from "modules/notes/data/local/noteEditor-slice";
-import { TRASH_ITEM_INTERFACE } from "interfaces";
-import { Note } from "modules/notes/domain/interfaces/Note";
+import type { Note, TrashNote } from "modules/notes/domain/interfaces";
+
 type PropsType = {
-  note: Note | TRASH_ITEM_INTERFACE;
+  note: Note | TrashNote;
   index: number;
   className?: string;
   route?: string;

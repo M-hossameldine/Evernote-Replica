@@ -3,10 +3,11 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { moveToTrash } from "./notesSlice";
 import { RootState } from "store";
 
-import { TRASH_ITEM_INTERFACE, createTrashNote } from "interfaces";
-import { Note } from "modules/notes/domain/interfaces/Note";
+import { createTrashNote } from "./notesSlice.helpers";
+import type { Note, TrashNote } from "modules/notes/domain/interfaces";
+
 export interface TRASH_STATE_INTERFACE {
-  notes: TRASH_ITEM_INTERFACE[];
+  notes: TrashNote[];
 }
 
 const initialState: TRASH_STATE_INTERFACE = {
@@ -45,7 +46,7 @@ const TrashSlice = createSlice({
     },
     restoreItem: (
       state,
-      action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>,
+      action: PayloadAction<{ id: string; note: TrashNote }>,
     ) => {
       const itemId = action.payload.id;
 

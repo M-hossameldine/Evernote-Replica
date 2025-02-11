@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { TRASH_ITEM_INTERFACE } from "interfaces";
 import { RootState } from "store";
 import { restoreItem } from "./trash-slice";
-import type { Note } from "modules/notes/domain/interfaces/Note";
+import type { Note, TrashNote } from "modules/notes/domain/interfaces";
 import { createNote } from "./notesSlice.helpers";
 
 const DUMMY_NOTE_lIST: Note[] = [
@@ -99,10 +98,7 @@ const notesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       restoreItem,
-      (
-        state,
-        action: PayloadAction<{ id: string; note: TRASH_ITEM_INTERFACE }>,
-      ) => {
+      (state, action: PayloadAction<{ id: string; note: TrashNote }>) => {
         const restoredNote = action.payload.note.note;
 
         state.notes.unshift(restoredNote);

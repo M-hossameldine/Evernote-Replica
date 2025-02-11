@@ -14,3 +14,12 @@ export function createNote(
     updatedTimestamp: "",
   };
 }
+
+export const createTrashNote = (note: Note) => {
+  const deleteTimestamp = new Date().toDateString();
+  return {
+    note,
+    deleteTimestamp,
+    id: uuid(),
+  };
+};

@@ -9,8 +9,7 @@ import {
   fillNoteEditor,
   showNotification,
 } from "store";
-import { TRASH_ITEM_INTERFACE } from "interfaces";
-import { Note } from "modules/notes/domain/interfaces/Note";
+import type { Note, TrashNote } from "modules/notes/domain/interfaces";
 
 import { AutoGrowingTextArea } from "components";
 import { NoteEditorHeader } from "./NoteEditorHeader/NoteEditorHeader";
@@ -23,7 +22,7 @@ const NoteEditor: React.FC = () => {
   const location = useLocationIndicator();
   const [isDisabled, setIsDisabled] = useState(false); // disable editor fields in trash page
 
-  let notesList: (Note | TRASH_ITEM_INTERFACE)[] = [...notes];
+  let notesList: (Note | TrashNote)[] = [...notes];
 
   const isInTrashPage = location.isInCurrentPath("trash");
   useEffect(() => {
