@@ -1,16 +1,13 @@
 import { useLocationIndicator } from "hooks";
 
 import NoteListingOptions from "../../NoteListingOperations/NoteListingOptions";
-import {
-  NOTE_INTERFACE,
-  TRASH_ITEM_INTERFACE,
-  HEADER_INTERFACE,
-} from "interfaces";
+import { TRASH_ITEM_INTERFACE, HEADER_INTERFACE } from "interfaces";
+import { Note } from "modules/notes/domain/interfaces/Note";
 
 import EmptyTrashButton from "./EmptyTrashButton";
 
 type PropsType = {
-  notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
+  notes: (Note | TRASH_ITEM_INTERFACE)[];
   headerData: HEADER_INTERFACE;
 };
 const NoteEditorSidebarHeader = (props: PropsType): React.ReactElement => {

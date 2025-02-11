@@ -1,13 +1,13 @@
 import { v4 as uuid } from "uuid";
-import { NOTE_INTERFACE } from "./note-interface";
+import type { Note } from "modules/notes/domain/interfaces/Note";
 
 export interface TRASH_ITEM_INTERFACE {
-  note: NOTE_INTERFACE;
+  note: Note;
   deleteTimestamp: string;
   id: string;
 }
 
-export const createTrashNote = (note: NOTE_INTERFACE) => {
+export const createTrashNote = (note: Note) => {
   const deleteTimestamp = new Date().toDateString();
   return {
     note,

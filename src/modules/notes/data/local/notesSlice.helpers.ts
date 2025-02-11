@@ -1,17 +1,11 @@
 import { v4 as uuid } from "uuid";
-export interface NOTE_INTERFACE {
-  id: string;
-  title: string;
-  text: string;
-  createdTimestamp: string;
-  updatedTimestamp?: string;
-}
+import { Note } from "modules/notes/domain/interfaces/Note";
 
 export function createNote(
   title: string,
   text: string,
   createdTimestamp: string,
-): NOTE_INTERFACE {
+): Note {
   return {
     id: uuid(),
     title,

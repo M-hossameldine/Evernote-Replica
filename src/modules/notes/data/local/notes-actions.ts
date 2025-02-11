@@ -1,7 +1,7 @@
 import { AppDispatch } from "store";
 
-import { createNote } from "interfaces";
-import { addNote, moveToTrash } from "./notes-slice";
+import { createNote } from "./notesSlice.helpers";
+import { addNote, moveToTrash } from "./notesSlice";
 
 export const sendNewNoteData = (payload?: {
   title?: string;

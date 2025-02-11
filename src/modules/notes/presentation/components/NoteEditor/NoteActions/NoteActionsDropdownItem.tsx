@@ -8,7 +8,8 @@ import {
 } from "store";
 
 import { NOTESPAGE, TRASHPAGE } from "utils/constants";
-import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
+import { TRASH_ITEM_INTERFACE } from "interfaces";
+import { Note } from "modules/notes/domain/interfaces/Note";
 
 type NoteActionsDropdownItemProps = {
   text: string;
@@ -29,7 +30,7 @@ const NoteActionsDropdownItem = (
 
   const isInTrash = location.isInCurrentPath("trash");
 
-  const notesList: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[] = isInTrash
+  const notesList: (Note | TRASH_ITEM_INTERFACE)[] = isInTrash
     ? trashNotes
     : notes;
 

@@ -3,11 +3,8 @@ import { useUpdatedState, useAppSelector, useLocationIndicator } from "hooks";
 import { selectNotes, selectTrashNotes, selectNoteEditor } from "store";
 
 import { NOTESPAGE, TRASHPAGE } from "utils/constants";
-import {
-  ACTION_ITEM_INTERFACE,
-  NOTE_INTERFACE,
-  TRASH_ITEM_INTERFACE,
-} from "interfaces";
+import { ACTION_ITEM_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
+import { Note } from "modules/notes/domain/interfaces/Note";
 
 const SubmenuActionItem = (
   props: ACTION_ITEM_INTERFACE,
@@ -21,7 +18,7 @@ const SubmenuActionItem = (
 
   const isInTrash = location.isInCurrentPath("trash");
 
-  const notesList: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[] = isInTrash
+  const notesList: (Note | TRASH_ITEM_INTERFACE)[] = isInTrash
     ? trashNotes
     : notes;
 

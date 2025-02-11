@@ -1,16 +1,16 @@
 import {
-  NOTE_INTERFACE,
   TRASH_ITEM_INTERFACE,
   HEADER_INTERFACE,
   FALLBACK_DATA_INTERFACE,
 } from "interfaces";
+import { Note } from "modules/notes/domain/interfaces/Note";
 
 import NoteEditorSidebarHeader from "../NoteEditorSidebarHeader/NoteEditorSidebarHeader";
 import NoteList from "../../NoteList/NoteList";
 import FallbackMsg from "components/UI/FallbackMsg/FallbackMsg";
 
 type NoteEditorSidebarProps = {
-  notes: (NOTE_INTERFACE | TRASH_ITEM_INTERFACE)[];
+  notes: (Note | TRASH_ITEM_INTERFACE)[];
   header: HEADER_INTERFACE;
   fallbackData: FALLBACK_DATA_INTERFACE;
 };
