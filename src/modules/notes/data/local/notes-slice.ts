@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { NOTE_INTERFACE, createNote, TRASH_ITEM_INTERFACE } from "interfaces";
 import { RootState } from "store";
-import { restoreItem } from "../trash-slice/trash-slice";
+import { restoreItem } from "./trash-slice";
 
 const DUMMY_NOTE_lIST: NOTE_INTERFACE[] = [
   {

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { moveToTrash } from "../notes-slice/notes-slice";
+import { moveToTrash } from "./notes-slice";
 import { RootState } from "store";
 
 import {
@@ -64,7 +64,7 @@ const TrashSlice = createSlice({
       moveToTrash,
       (state, action: PayloadAction<{ id: string; note: NOTE_INTERFACE }>) => {
         const newTrashNote = createTrashNote(action.payload.note);
-        let notes = state.notes.unshift(newTrashNote);
+        // let notes = state.notes.unshift(newTrashNote);
       },
     );
   },

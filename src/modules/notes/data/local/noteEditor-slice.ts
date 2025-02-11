@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "store";
-import { addNote } from "../notes-slice/notes-slice";
+import { addNote } from "./notes-slice";
 import { NOTE_INTERFACE } from "interfaces";
 
 interface NoteEditorState {

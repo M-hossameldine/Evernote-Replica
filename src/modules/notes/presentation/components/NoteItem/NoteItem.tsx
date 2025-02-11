@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import classes from "./NoteItem.module.css";
 
 import { useAppDispatch, useLocationIndicator } from "hooks";
-import { setActiveNoteIndex } from "store/noteEditor-slice/noteEditor-slice";
+import { setActiveNoteIndex } from "modules/notes/data/local/noteEditor-slice";
 import { NOTE_INTERFACE, TRASH_ITEM_INTERFACE } from "interfaces";
 
 type PropsType = {
