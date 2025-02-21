@@ -1,8 +1,10 @@
-import { TEXT_INTERFACE } from "interfaces";
-
+export type Text = {
+  text: string;
+  className?: string;
+};
 interface COMPONENT_INTERFACE {
-  title: TEXT_INTERFACE;
-  description: TEXT_INTERFACE;
+  title: Text;
+  description: Text;
   className?: string;
 }
 
