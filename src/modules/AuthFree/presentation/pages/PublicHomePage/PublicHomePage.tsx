@@ -79,23 +79,6 @@ const PublicHomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Home Video Modal */}
-      {/* <div className='wrapper text-center mb-16'>
-        <h2
-          className='text-6xl font-semibold px-8 leading-[150%] mb-3'
-          style={{ fontSize: 'clamp(2.2rem, 6vw, 3rem)' }}
-        >
-          Find your productivity happy place
-        </h2>
-        <p className='text-lg sm:text-2xl'>See what's possible with Evernote</p>
-        <div
-          className='max-w-[60rem] mx-auto'
-          style={{ paddingTop: 'clamp(3.5rem, 6vw, 6rem)' }}
-        >
-          <VideoModal />
-        </div>
-      </div> */}
-
       {/* Testimonial Carousel */}
       <section className="bg-slate-50">
         <TestimonialSection
