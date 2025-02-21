@@ -120,7 +120,6 @@ export const useDataSourceMutation = <
 
         isError = true;
         onError?.(formattedError);
-        console.error('Error: ', formattedError);
       } finally {
         onSettled?.();
       }

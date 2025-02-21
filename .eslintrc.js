@@ -31,6 +31,7 @@ module.exports = {
   rules: {
     // Add your own rules here to override ones from the extended configs.
     'react/react-in-jsx-scope': 'off', // suppress errors for missing 'import React' in files
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'react/forbid-dom-props': [2, { forbid: ['style'] }],
     'react/forbid-component-props': [2, { forbid: ['style'] }],
   },
