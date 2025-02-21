@@ -1,4 +1,4 @@
-import { AppDispatch } from 'store';
+import type { AppDispatch } from 'store';
 import type { TrashNote } from 'modules/notes/domain/interfaces';
 import { deleteItemPermanently, restoreItem, emptyTrash } from './trash-slice';
 

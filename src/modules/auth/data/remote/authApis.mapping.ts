@@ -1,4 +1,4 @@
-import { FirebaseUser } from 'libs/firebase';
+import type { FirebaseUser } from 'libs/firebase';
 import type { User } from 'modules/auth/domain/models';
 import type { SaveLoginActionPayload } from '../local/authSlice.interfaces';
 import type { AuthRequestResponse } from './authApis.interfaces';

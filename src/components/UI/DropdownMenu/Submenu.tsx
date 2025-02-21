@@ -1,4 +1,7 @@
-import { ACTION_ITEM_INTERFACE, FUNCTION_ITEM_INTERFACE } from 'interfaces';
+import type {
+  ACTION_ITEM_INTERFACE,
+  FUNCTION_ITEM_INTERFACE,
+} from 'interfaces';
 import SubmenuFunctionItem from './SubmenuFunctionItem';
 import SubmenuActionItem from './SubmenuActionItem';
 

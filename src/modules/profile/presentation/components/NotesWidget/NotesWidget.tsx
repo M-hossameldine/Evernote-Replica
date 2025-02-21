@@ -9,7 +9,10 @@ import AddNoteWrapper from 'modules/notes/presentation/components/AddNoteWrapper
 
 import { NOTESPAGE, EDITORPAGE } from 'utils/constants';
 import { IoIosArrowForward, MdPostAdd, IoIosMore } from 'assets';
-import { FUNCTION_ITEM_INTERFACE, ACTION_ITEM_INTERFACE } from 'interfaces';
+import type {
+  FUNCTION_ITEM_INTERFACE,
+  ACTION_ITEM_INTERFACE,
+} from 'interfaces';
 
 type Props = { className?: string };
 

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'store';
+import type { RootState } from 'store';
 import { restoreItem } from './trash-slice';
 import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
 import { createNote } from './notesSlice.helpers';

@@ -1,4 +1,4 @@
-import { FUNCTION_ITEM_INTERFACE } from 'interfaces/submenu-item-interfaces';
+import type { FUNCTION_ITEM_INTERFACE } from 'interfaces/submenu-item-interfaces';
 
 const SubmenuFunctionItem = (
   props: FUNCTION_ITEM_INTERFACE

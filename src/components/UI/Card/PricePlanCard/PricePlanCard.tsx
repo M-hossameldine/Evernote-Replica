@@ -2,7 +2,7 @@ import 'tw-elements';
 
 import { BiCheck, IoIosArrowRoundBack, IoIosArrowRoundUp } from 'assets';
 import { ContainedLink } from 'components';
-import { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
+import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 
 type PropsType = {
   cardData: PRICE_PLAN_DATA_INTERFACE;

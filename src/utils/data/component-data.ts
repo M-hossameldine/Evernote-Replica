@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import {
+import type {
   Testimonial_CAROUSEL_DATA_INTERFACE,
   REACT_ICON_INTERFACE,
   HOME_FEATURE_ZIGZAG_DATA_INTERFACE,

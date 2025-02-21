@@ -5,10 +5,10 @@
  */
 
 import { useEffect, useState } from 'react';
-import { AppDispatch } from 'store';
+import type { AppDispatch } from 'store';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './redux-hooks';
-import { RootState } from '../store';
+import type { RootState } from '../store';
 
 interface UPDATE_DATA_INTERFACE {
   asyncAction: (

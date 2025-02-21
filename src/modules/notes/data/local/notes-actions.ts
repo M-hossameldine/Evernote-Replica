@@ -1,4 +1,4 @@
-import { AppDispatch } from 'store';
+import type { AppDispatch } from 'store';
 
 import { createNote } from './notesSlice.helpers';
 import { addNote, moveToTrash } from './notesSlice';

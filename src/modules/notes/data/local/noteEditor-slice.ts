@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { RootState } from 'store';
+import type { RootState } from 'store';
 import { addNote } from './notesSlice';
-import { Note } from 'modules/notes/domain/interfaces/Note';
+import type { Note } from 'modules/notes/domain/interfaces/Note';
 
 interface NoteEditorState {
   activeNoteIndex: number;

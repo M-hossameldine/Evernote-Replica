@@ -2,7 +2,10 @@ import { useState } from 'react';
 
 import ExecludeEventWrapper from '../ExecludeEventWrapper/ExecludeEventWrapper';
 import Submenu from './Submenu';
-import { FUNCTION_ITEM_INTERFACE, ACTION_ITEM_INTERFACE } from 'interfaces';
+import type {
+  FUNCTION_ITEM_INTERFACE,
+  ACTION_ITEM_INTERFACE,
+} from 'interfaces';
 
 interface MENU_INTERFACE {
   menuHeader: { content: JSX.Element; className?: string };

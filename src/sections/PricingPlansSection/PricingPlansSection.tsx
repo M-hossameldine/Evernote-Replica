@@ -1,7 +1,7 @@
 import 'tw-elements';
 
 import { PricePlanCard } from 'components';
-import { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
+import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 
 import { BsArrowRightCircleFill, FiArrowRight } from 'assets';
 

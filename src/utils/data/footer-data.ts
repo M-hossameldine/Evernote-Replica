@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { ICON_LINK_DATA_INTERFACE } from 'interfaces';
+import type { ICON_LINK_DATA_INTERFACE } from 'interfaces';
 
 import {
   FaFacebookF,

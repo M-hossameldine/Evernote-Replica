@@ -3,7 +3,7 @@
  * customized specially to be used when the notes or trashNotes are manipulated through addition or deletion.
  */
 
-import { RootState, AppDispatch } from '../store';
+import type { RootState, AppDispatch } from '../store';
 
 export interface ACTION_ITEM_INTERFACE {
   id: string;

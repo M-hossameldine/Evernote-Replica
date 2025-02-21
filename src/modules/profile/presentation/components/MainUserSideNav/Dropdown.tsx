@@ -1,4 +1,4 @@
-import { NavTabModel } from 'models/UI-Models';
+import type { NavTabModel } from 'models/UI-Models';
 import SideNavTab from './SideNavTab';
 
 interface PropsType {

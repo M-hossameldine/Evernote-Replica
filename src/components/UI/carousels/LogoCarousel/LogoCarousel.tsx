@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { TestimonialCard } from 'components';
-import { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
+import type { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
 
 interface PropsType {
   className?: string;

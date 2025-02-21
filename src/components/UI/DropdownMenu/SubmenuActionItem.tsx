@@ -3,8 +3,8 @@ import { useUpdatedState, useAppSelector, useLocationIndicator } from 'hooks';
 import { selectNotes, selectTrashNotes, selectNoteEditor } from 'store';
 
 import { NOTESPAGE, TRASHPAGE } from 'utils/constants';
-import { ACTION_ITEM_INTERFACE } from 'interfaces';
-import { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import type { ACTION_ITEM_INTERFACE } from 'interfaces';
+import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
 
 const SubmenuActionItem = (
   props: ACTION_ITEM_INTERFACE

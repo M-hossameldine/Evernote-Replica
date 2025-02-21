@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'store';
-import { AuthSliceState, SaveLoginActionPayload } from './authSlice.interfaces';
+import type { RootState } from 'store';
+import type {
+  AuthSliceState,
+  SaveLoginActionPayload,
+} from './authSlice.interfaces';
 
 const initialState: AuthSliceState = {
   user: null,

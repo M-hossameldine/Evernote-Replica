@@ -2,7 +2,7 @@ import './index.css';
 
 import { TestimonialCard, LogoCarousel, DefaultCarousel } from 'components';
 import { Testimonial_CAROUSEL_DATA } from 'utils/data';
-import { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
+import type { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
 
 const DefaultCarouselSettings = {
   dots: true,
