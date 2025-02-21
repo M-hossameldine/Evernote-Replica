@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 
 import { TextLink, ContainedLink } from "components";
-
+import { StyledHeroSectionTitle } from "./HeroSection.styled";
 interface HERO_INTERFACE {
   title: string;
   description: string;
@@ -28,12 +28,9 @@ const HeroSection = (props: HERO_INTERFACE): React.ReactElement => {
         className ? className : ""
       } `}
     >
-      <h1
-        className="mb-2 mt-4 font-bold leading-[150%]"
-        style={{ fontSize: "clamp(2.2rem, 7vw, 3.5rem)", lineHeight: "" }}
-      >
+      <StyledHeroSectionTitle className="mb-2 mt-4 font-bold leading-[150%]">
         {title}
-      </h1>
+      </StyledHeroSectionTitle>
       <h5 className="mb-8 text-2xl">{description}</h5>
 
       {/* call to main action */}

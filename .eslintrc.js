@@ -10,6 +10,7 @@ module.exports = {
     // Make sure it's always the last config, so it gets the chance to override other configs.
     "eslint-config-prettier",
   ],
+  plugins: ["react"],
   env: {
     node: true,
   },
@@ -30,5 +31,7 @@ module.exports = {
   rules: {
     // Add your own rules here to override ones from the extended configs.
     "react/react-in-jsx-scope": "off", // suppress errors for missing 'import React' in files
+    "react/forbid-dom-props": [2, { forbid: ["style"] }],
+    "react/forbid-component-props": [2, { forbid: ["style"] }],
   },
 };

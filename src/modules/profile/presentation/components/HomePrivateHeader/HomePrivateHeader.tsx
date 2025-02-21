@@ -1,6 +1,5 @@
 import { RiHomeGearFill } from "assets";
-import { HomeImg } from "../../assets/images";
-
+import { StyledHomePrivateHeader } from "./HomePrivateHeader.styled";
 export const HomePrivateHeader: React.FC = () => {
   // get home header date
   const todayTimestamp = new Date().toLocaleString("en-US", {
@@ -16,12 +15,7 @@ export const HomePrivateHeader: React.FC = () => {
   }
 
   return (
-    <header
-      className="h-[28rem] bg-cover bg-center bg-no-repeat px-6 py-4"
-      style={{
-        backgroundImage: `url("${HomeImg}")`,
-      }}
-    >
+    <StyledHomePrivateHeader className="h-[28rem] bg-cover bg-center bg-no-repeat px-6 py-4">
       <nav className="flex items-center justify-evenly gap-4 text-neutral-100">
         <p className="text-xl">Good {greeting}!</p>
         <small className="ml-auto uppercase"> {todayTimestamp}</small>
@@ -30,7 +24,7 @@ export const HomePrivateHeader: React.FC = () => {
           <span className="hidden text-sm md:block">Customize</span>
         </button>
       </nav>
-    </header>
+    </StyledHomePrivateHeader>
   );
 };
 
