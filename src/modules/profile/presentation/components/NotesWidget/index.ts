@@ -1,1 +1,1 @@
-export * from "./NotesWidget";
+export * from './NotesWidget';

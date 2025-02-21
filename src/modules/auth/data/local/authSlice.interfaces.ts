@@ -1,4 +1,4 @@
-import { User } from "modules/auth/domain/models";
+import { User } from 'modules/auth/domain/models';
 
 export type AuthSliceState = {
   user: User | null;

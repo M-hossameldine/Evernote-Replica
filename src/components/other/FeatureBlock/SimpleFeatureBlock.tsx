@@ -11,9 +11,9 @@ interface COMPONENT_INTERFACE {
 const SimpleFeatureBlock = (props: COMPONENT_INTERFACE): React.ReactElement => {
   const { title, description, className } = props;
 
-  const blockClasses = className ? className : "";
-  const titleClasses = title.className ? title.className : "";
-  const descriptionClasses = description.className ? description.className : "";
+  const blockClasses = className ? className : '';
+  const titleClasses = title.className ? title.className : '';
+  const descriptionClasses = description.className ? description.className : '';
 
   return (
     <div className={blockClasses}>

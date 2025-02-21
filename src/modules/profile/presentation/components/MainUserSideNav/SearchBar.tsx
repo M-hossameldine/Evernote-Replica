@@ -1,8 +1,8 @@
-import SideNavTab from "./SideNavTab";
-import { NavTabModel } from "models/UI-Models";
-import { BsSearch } from "assets/index";
+import SideNavTab from './SideNavTab';
+import { NavTabModel } from 'models/UI-Models';
+import { BsSearch } from 'assets/index';
 
-const SEARCH_TAB = new NavTabModel("Search", BsSearch);
+const SEARCH_TAB = new NavTabModel('Search', BsSearch);
 
 const SearchBar: React.FC = () => {
   return (

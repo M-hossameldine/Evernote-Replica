@@ -1,17 +1,17 @@
-import { RiHomeGearFill } from "assets";
-import { StyledHomePrivateHeader } from "./HomePrivateHeader.styled";
+import { RiHomeGearFill } from 'assets';
+import { StyledHomePrivateHeader } from './HomePrivateHeader.styled';
 export const HomePrivateHeader: React.FC = () => {
   // get home header date
-  const todayTimestamp = new Date().toLocaleString("en-US", {
-    dateStyle: "full",
+  const todayTimestamp = new Date().toLocaleString('en-US', {
+    dateStyle: 'full',
   });
 
   // define proper greeting according to the day time
   const hour = new Date().getHours();
 
-  let greeting = "morning";
+  let greeting = 'morning';
   if ((hour >= 12 && hour <= 23) || (hour >= 0 && hour <= 3)) {
-    greeting = hour >= 12 && hour <= 16 ? "afternoon" : "evening";
+    greeting = hour >= 12 && hour <= 16 ? 'afternoon' : 'evening';
   }
 
   return (

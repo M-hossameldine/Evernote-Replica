@@ -39,7 +39,8 @@
     "test:accessibility": "vitest accessibility --run",
     "coverage": "vitest --coverage --run",
     "test": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write ."
   },
   "eslintConfig": {
     "extends": [

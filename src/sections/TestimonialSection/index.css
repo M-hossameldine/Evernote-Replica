@@ -15,9 +15,9 @@
   @apply opacity-100;
 }
 
-.testimonial-carousel__logo-track img[alt="Inc. Magazine"] {
+.testimonial-carousel__logo-track img[alt='Inc. Magazine'] {
   @apply max-w-[5.6rem];
 }
-.testimonial-carousel__logo-track img[alt="Forbes"] {
+.testimonial-carousel__logo-track img[alt='Forbes'] {
   @apply max-w-[7rem];
 }

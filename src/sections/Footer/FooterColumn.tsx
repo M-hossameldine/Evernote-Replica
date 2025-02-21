@@ -1,4 +1,4 @@
-import { TextLink } from "components";
+import { TextLink } from 'components';
 
 interface FOOTER_COLUMN_INTERFACE {
   title: string;
@@ -13,7 +13,7 @@ const FooterColumn = (props: FOOTER_COLUMN_INTERFACE): React.ReactElement => {
     <li className="mb-10 sm:text-sm">
       <h3 className="mb-6 font-bold uppercase">{title}</h3>
       <ul className="flex flex-col items-start">
-        {featuresData.map((feature) => (
+        {featuresData.map(feature => (
           <li key={feature.id}>
             <TextLink
               className="mb-6 hover:text-green-600"

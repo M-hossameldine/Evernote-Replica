@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import { useLocationIndicator } from "hooks";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { useLocationIndicator } from 'hooks';
+import { useNavigate, Link } from 'react-router-dom';
 
-import { useLogin, useSignup } from "modules/auth/data/remote/authApis";
-import { HOMEPAGE, ErrorsMap } from "utils/constants";
+import { useLogin, useSignup } from 'modules/auth/data/remote/authApis';
+import { HOMEPAGE, ErrorsMap } from 'utils/constants';
 import {
   isEmailAlreadyUsedError,
   isUserNotFoundError,
-} from "modules/auth/presentation/helpers/validations";
-import { VerticalLogo } from "assets";
+} from 'modules/auth/presentation/helpers/validations';
+import { VerticalLogo } from 'assets';
 
-import { TextLink, DefaultSpinner } from "components";
+import { TextLink, DefaultSpinner } from 'components';
 
-import { AuthRouteVariants } from "constants/routeVariants";
-import { AuthMode } from "constants/AppEnums/AuthEnums";
+import { AuthRouteVariants } from 'constants/routeVariants';
+import { AuthMode } from 'constants/AppEnums/AuthEnums';
 
 interface FormValuesInterface {
   email: string;
@@ -23,14 +23,14 @@ interface FormValuesInterface {
 }
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Email is required!"),
+  email: Yup.string().email('Invalid email').required('Email is required!'),
   password: Yup.string()
-    .min(8, "Too Short, Min 8 Characters!")
-    .max(25, "Too Long! Max 25 Characters")
-    .required("Password is required!")
+    .min(8, 'Too Short, Min 8 Characters!')
+    .max(25, 'Too Long! Max 25 Characters')
+    .required('Password is required!')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-      "Must contain lowercase, uppercase, numbers and special characters",
+      'Must contain lowercase, uppercase, numbers and special characters'
     ),
 });
 
@@ -38,12 +38,12 @@ export const UserAuthForm: React.FC = () => {
   const location = useLocationIndicator();
   const navigate = useNavigate();
 
-  const isLogin = location.isInCurrentPath("login");
+  const isLogin = location.isInCurrentPath('login');
   const [requestErrorMessage, setRequestErrorMessage] = useState<string | null>(
-    null,
+    null
   );
-  const isEmailAlreadyUsed = isEmailAlreadyUsedError(requestErrorMessage ?? "");
-  const isUserNotFound = isUserNotFoundError(requestErrorMessage ?? "");
+  const isEmailAlreadyUsed = isEmailAlreadyUsedError(requestErrorMessage ?? '');
+  const isUserNotFound = isUserNotFoundError(requestErrorMessage ?? '');
 
   const [loginMutation, { isLoading: loginLoading }] = useLogin();
   const [signupMutation, { isLoading: signupLoading }] = useSignup();
@@ -61,7 +61,7 @@ export const UserAuthForm: React.FC = () => {
           email: values.email,
           password: values.password,
         },
-        onError: (error) => {
+        onError: error => {
           setRequestErrorMessage(error.message);
         },
       });
@@ -72,7 +72,7 @@ export const UserAuthForm: React.FC = () => {
           password: values.password,
         },
         onSuccess: submitSuccessfully,
-        onError: (error) => {
+        onError: error => {
           setRequestErrorMessage(error.message);
         },
       });
@@ -81,7 +81,7 @@ export const UserAuthForm: React.FC = () => {
 
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={{ email: '', password: '' }}
       validationSchema={validationSchema}
       onSubmit={submitHandler}
     >
@@ -112,7 +112,7 @@ export const UserAuthForm: React.FC = () => {
               isEmailAlreadyUsed ||
               isUserNotFound ? (
                 <div className="mt-1 text-xs text-red-700">
-                  {errors.email ?? ErrorsMap[requestErrorMessage ?? ""]}
+                  {errors.email ?? ErrorsMap[requestErrorMessage ?? '']}
                 </div>
               ) : null}
             </div>
@@ -146,11 +146,11 @@ export const UserAuthForm: React.FC = () => {
 
             {/* Call to action */}
             <button
-              type={isLoading ? "button" : "submit"}
-              aria-label={"Form Submit"}
+              type={isLoading ? 'button' : 'submit'}
+              aria-label={'Form Submit'}
               className="flex items-center justify-center rounded border-0 bg-green-500 px-6 py-2 text-lg text-white hover:bg-green-600 focus:outline-none"
             >
-              {!isLoading && (!isLogin ? "Sign up" : "Sign in")}
+              {!isLoading && (!isLogin ? 'Sign up' : 'Sign in')}
               {isLoading && <DefaultSpinner borderColor="border-white" />}
             </button>
 
@@ -168,17 +168,17 @@ export const UserAuthForm: React.FC = () => {
               <p className="mt-3 text-center text-xs text-gray-500">
                 By creating an account, you are agreeing to our
                 <button
-                  aria-label={"Got to Terms of Service"}
+                  aria-label={'Got to Terms of Service'}
                   className="text-green-600"
                 >
                   Terms of Service
                 </button>
-                and{" "}
+                and{' '}
                 <button
                   aria-label="Go to Privacy Policy"
                   className="text-green-600"
                 >
-                  {" "}
+                  {' '}
                   Privacy Policy
                 </button>
               </p>
@@ -189,13 +189,13 @@ export const UserAuthForm: React.FC = () => {
               <p className="text-sm text-neutral-500">
                 {isLogin
                   ? "Don't have an account?"
-                  : "Already have an account?"}
+                  : 'Already have an account?'}
               </p>
 
               <TextLink
-                text={isLogin ? "Create account" : "Sign in"}
+                text={isLogin ? 'Create account' : 'Sign in'}
                 route={AuthRouteVariants.auth.pathname(
-                  isLogin ? AuthMode.REGISTER : AuthMode.LOGIN,
+                  isLogin ? AuthMode.REGISTER : AuthMode.LOGIN
                 )}
                 className="inline-flex text-base text-green-600"
                 underline={false}

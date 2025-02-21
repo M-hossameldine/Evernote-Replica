@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { HorizontalLogo, GrClose } from "assets";
-import { HOMEPAGE, DOWNLOADPAGE } from "utils/constants/routes";
-import { GhostLink, ExecludeEventWrapper } from "components";
-import { AuthRouteVariants } from "constants/routeVariants";
-import { AuthMode } from "constants/AppEnums/AuthEnums";
+import { HorizontalLogo, GrClose } from 'assets';
+import { HOMEPAGE, DOWNLOADPAGE } from 'utils/constants/routes';
+import { GhostLink, ExecludeEventWrapper } from 'components';
+import { AuthRouteVariants } from 'constants/routeVariants';
+import { AuthMode } from 'constants/AppEnums/AuthEnums';
 
 type PropsType = {
   onClose: () => void;
@@ -22,8 +22,8 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
   const menuClasses = `
     fixed top-0 left-0 w-full bg-black/[0.7]  
     transition-all duration-300 ease-in  
-    ${showMenu ? " z-10 opacity-100 " : " z-[-2] opacity-0 "} 
-    ${className ? className : ""}
+    ${showMenu ? ' z-10 opacity-100 ' : ' z-[-2] opacity-0 '} 
+    ${className ? className : ''}
   `;
 
   return (
@@ -58,10 +58,10 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
                 <GhostLink
                   text="Download"
                   colors={{
-                    textClr: "text-green-550",
-                    textHoverClr: "text-green-450",
-                    borderClr: "border-green-550",
-                    borderHoverClr: "border-green-450",
+                    textClr: 'text-green-550',
+                    textHoverClr: 'text-green-450',
+                    borderClr: 'border-green-550',
+                    borderHoverClr: 'border-green-450',
                   }}
                   className="mx-auto mt-12 px-[5em] text-sm font-semibold"
                   route={DOWNLOADPAGE}

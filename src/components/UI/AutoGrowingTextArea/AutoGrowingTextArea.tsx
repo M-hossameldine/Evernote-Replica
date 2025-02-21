@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type PropsType = {
   value?: string;
@@ -19,7 +19,7 @@ const AutoGrowingTextArea = (props: PropsType): React.ReactElement => {
   } = props;
 
   let textareaClasses = ` absolute resize-none overflow-hidden w-full h-full min-h-[2.5rem] outline-none  `;
-  const fallbackClasses = className ? className.fallbackClasses : "";
+  const fallbackClasses = className ? className.fallbackClasses : '';
 
   if (className) {
     textareaClasses += className.inputClasses;

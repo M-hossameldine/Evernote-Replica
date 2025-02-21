@@ -1,8 +1,8 @@
-import { AuthMode } from "constants/AppEnums";
+import { AuthMode } from 'constants/AppEnums';
 
 export const AuthRouteVariants = {
   auth: {
-    route: "/auth/:authMode",
+    route: '/auth/:authMode',
     pathname: (authType: AuthMode) => `/auth/${authType}`,
   },
 };

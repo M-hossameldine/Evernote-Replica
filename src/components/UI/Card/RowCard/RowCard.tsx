@@ -1,5 +1,5 @@
-import type { IconType } from "react-icons";
-import { TextLink } from "components";
+import type { IconType } from 'react-icons';
+import { TextLink } from 'components';
 
 interface ROWCARD_INTERFACE {
   cardImg: { img: string; altText: string };
@@ -28,7 +28,7 @@ const RowCard = (props: ROWCARD_INTERFACE): React.ReactElement => {
     reverseDir,
     className,
   } = props;
-  const cardDirectionStyle = reverseDir ? "sm:flex-row" : "sm:flex-row-reverse";
+  const cardDirectionStyle = reverseDir ? 'sm:flex-row' : 'sm:flex-row-reverse';
 
   return (
     <div
@@ -59,7 +59,7 @@ const RowCard = (props: ROWCARD_INTERFACE): React.ReactElement => {
           className="flex flex-row items-center gap-1 text-base font-bold uppercase tracking-wider text-green-550 hover:text-green-500"
           route={callToAction.route}
           underline={false}
-          icon={{ Icon: callToAction.icon.Icon, iconStyle: "mt-1" }}
+          icon={{ Icon: callToAction.icon.Icon, iconStyle: 'mt-1' }}
         />
       </div>
     </div>

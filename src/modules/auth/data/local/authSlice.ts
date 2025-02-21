@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "store";
-import { AuthSliceState, SaveLoginActionPayload } from "./authSlice.interfaces";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from 'store';
+import { AuthSliceState, SaveLoginActionPayload } from './authSlice.interfaces';
 
 const initialState: AuthSliceState = {
   user: null,
@@ -9,7 +9,7 @@ const initialState: AuthSliceState = {
 };
 
 const AuthSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     saveLogin: (state, action: PayloadAction<SaveLoginActionPayload>) => {
@@ -17,7 +17,7 @@ const AuthSlice = createSlice({
       state.user = user;
       state.isLoggedIn = !!user;
     },
-    saveLogout: (state) => {
+    saveLogout: state => {
       state.user = null;
       state.isLoggedIn = false;
     },

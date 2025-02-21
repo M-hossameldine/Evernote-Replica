@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
-import { onAuthStateChanged, auth } from "libs/firebase";
-import type { User } from "modules/auth/domain/models";
+import { useState, useEffect } from 'react';
+import { onAuthStateChanged, auth } from 'libs/firebase';
+import type { User } from 'modules/auth/domain/models';
 
-import { signUp, login, logout } from "./authApis.helpers";
+import { signUp, login, logout } from './authApis.helpers';
 import {
   mapFirebaseUserToAuthUser,
   mapAuthRequestResult,
-} from "./authApis.mapping";
-import { useDataSourceMutation } from "store/hooks";
+} from './authApis.mapping';
+import { useDataSourceMutation } from 'store/hooks';
 import type {
   AuthRequestPayload,
   AuthRequestResult,
   AuthRequestResponse,
-} from "./authApis.interfaces";
-import { useAppDispatch } from "hooks";
-import { saveLogin, saveLogout } from "../local/authSlice";
+} from './authApis.interfaces';
+import { useAppDispatch } from 'hooks';
+import { saveLogin, saveLogout } from '../local/authSlice';
 
 export const useInitAppAuth = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ export const useInitAppAuth = () => {
   const isAuthorized = !!user;
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
       const authUser = user ? mapFirebaseUserToAuthUser(user) : null;
       setUser(authUser);
       dispatch(saveLogin({ user: authUser }));

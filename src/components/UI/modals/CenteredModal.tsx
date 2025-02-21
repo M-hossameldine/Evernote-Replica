@@ -1,5 +1,5 @@
-import "tw-elements";
-import { IoMdClose, VideoModalImg } from "assets";
+import 'tw-elements';
+import { IoMdClose, VideoModalImg } from 'assets';
 
 interface MODAL_INTERFACE {
   modalContent: React.ReactNode;

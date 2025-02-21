@@ -1,15 +1,15 @@
-import { Note, TrashNote } from "modules/notes/domain/interfaces";
-import type { IconType } from "react-icons";
+import { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import type { IconType } from 'react-icons';
 
 import NoteEditorSidebarHeader, {
   type NoteEditorSidebarHeaderProps,
-} from "../NoteEditorSidebarHeader/NoteEditorSidebarHeader";
-import NoteList from "../../NoteList/NoteList";
-import FallbackMsg from "components/UI/FallbackMsg/FallbackMsg";
+} from '../NoteEditorSidebarHeader/NoteEditorSidebarHeader';
+import NoteList from '../../NoteList/NoteList';
+import FallbackMsg from 'components/UI/FallbackMsg/FallbackMsg';
 
 type NoteEditorSidebarProps = {
   notes: (Note | TrashNote)[];
-  header: NoteEditorSidebarHeaderProps["headerData"];
+  header: NoteEditorSidebarHeaderProps['headerData'];
   fallbackData: {
     title: string;
     text: string;
@@ -19,7 +19,7 @@ type NoteEditorSidebarProps = {
 };
 
 const NoteEditorSidebar = (
-  props: NoteEditorSidebarProps,
+  props: NoteEditorSidebarProps
 ): React.ReactElement => {
   const { notes, header, fallbackData } = props;
 

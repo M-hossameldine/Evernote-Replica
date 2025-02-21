@@ -1,8 +1,8 @@
-import { useAppSelector } from "hooks";
-import { selectIsLoggedIn } from "store";
+import { useAppSelector } from 'hooks';
+import { selectIsLoggedIn } from 'store';
 
-import PublicHomePage from "modules/AuthFree/presentation/pages/PublicHomePage/PublicHomePage";
-import UserProfile from "modules/profile/presentation/pages/UserProfile";
+import PublicHomePage from 'modules/AuthFree/presentation/pages/PublicHomePage/PublicHomePage';
+import UserProfile from 'modules/profile/presentation/pages/UserProfile';
 
 const HomePage: React.FC = () => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);

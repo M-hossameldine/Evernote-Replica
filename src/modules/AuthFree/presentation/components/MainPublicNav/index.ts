@@ -1,1 +1,1 @@
-export { MainPublicNav } from "./MainPublicNav";
+export { MainPublicNav } from './MainPublicNav';

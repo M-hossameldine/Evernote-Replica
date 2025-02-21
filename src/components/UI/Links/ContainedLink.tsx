@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import type { IconType } from "react-icons";
+import { Link } from 'react-router-dom';
+import type { IconType } from 'react-icons';
 
-import { ExternalLink } from "components";
+import { ExternalLink } from 'components';
 
 interface CONTAINED_LINK_INTERFACE {
   text: string;
@@ -18,7 +18,7 @@ const ContainedLink = (props: CONTAINED_LINK_INTERFACE): React.ReactElement => {
   const { text, icon, className, route, isExteranl } = props;
 
   const linkClasses = ` table text-white bg-green-550 hover:bg-green-450 font-semibold py-[0.7em] rounded 
-    ${className ? className : ""}`;
+    ${className ? className : ''}`;
 
   return (
     <>
@@ -26,9 +26,9 @@ const ContainedLink = (props: CONTAINED_LINK_INTERFACE): React.ReactElement => {
         <Link to={route} className={linkClasses}>
           {text}
           {icon ? (
-            <icon.Icon className={icon.iconStyle ? icon.iconStyle : ""} />
+            <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
           ) : (
-            ""
+            ''
           )}
         </Link>
       )}

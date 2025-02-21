@@ -1,1 +1,1 @@
-export * from "./HomePrivateHeader";
+export * from './HomePrivateHeader';

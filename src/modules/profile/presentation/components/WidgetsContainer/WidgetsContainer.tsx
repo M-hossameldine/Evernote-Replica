@@ -1,4 +1,4 @@
-import { NotesWidget } from "../NotesWidget";
+import { NotesWidget } from '../NotesWidget';
 
 export const WidgetsContainer: React.FC = () => {
   return (

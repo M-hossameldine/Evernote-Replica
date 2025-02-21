@@ -1,1 +1,1 @@
-export { FeatureCarousel } from "./FeatureCarousel";
+export { FeatureCarousel } from './FeatureCarousel';

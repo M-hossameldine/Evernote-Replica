@@ -1,6 +1,6 @@
-import { RequestParams } from "store/api.interfaces";
-import { SaveLoginActionPayload } from "../local/authSlice.interfaces";
-import type { UserCredential } from "libs/firebase";
+import { RequestParams } from 'store/api.interfaces';
+import { SaveLoginActionPayload } from '../local/authSlice.interfaces';
+import type { UserCredential } from 'libs/firebase';
 
 export type AuthRequestPayload = {
   email: string;

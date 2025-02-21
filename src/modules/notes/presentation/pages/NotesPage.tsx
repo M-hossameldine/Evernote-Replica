@@ -1,9 +1,9 @@
-import { useAppSelector, useLocationIndicator } from "hooks";
-import { selectNotes } from "store";
+import { useAppSelector, useLocationIndicator } from 'hooks';
+import { selectNotes } from 'store';
 
-import NoteEditor from "modules/notes/presentation/components/NoteEditor/NoteEditor";
-import NoteEditorSidebar from "modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar";
-import { IoIosPaper, GiNotebook } from "assets";
+import NoteEditor from 'modules/notes/presentation/components/NoteEditor/NoteEditor';
+import NoteEditorSidebar from 'modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
+import { IoIosPaper, GiNotebook } from 'assets';
 
 const NotesPage: React.FC = () => {
   const notes = useAppSelector(selectNotes);
@@ -12,14 +12,14 @@ const NotesPage: React.FC = () => {
   return (
     <div className="flex">
       {/* hide sidebar list in the editor page */}
-      {location.locationKey !== "editor" && (
+      {location.locationKey !== 'editor' && (
         <NoteEditorSidebar
           notes={notes}
-          header={{ title: "Notes", icon: IoIosPaper }}
+          header={{ title: 'Notes', icon: IoIosPaper }}
           fallbackData={{
             icon: GiNotebook,
-            title: "Create your first note",
-            text: "",
+            title: 'Create your first note',
+            text: '',
             action: noteFallbackAction,
           }}
         />

@@ -1,10 +1,10 @@
-import { useLocationIndicator } from "hooks";
+import { useLocationIndicator } from 'hooks';
 
-import type { IconType } from "react-icons";
-import type { Note, TrashNote } from "modules/notes/domain/interfaces";
+import type { IconType } from 'react-icons';
+import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
 
-import NoteListingOptions from "../../NoteListingOperations/NoteListingOptions";
-import EmptyTrashButton from "./EmptyTrashButton";
+import NoteListingOptions from '../../NoteListingOperations/NoteListingOptions';
+import EmptyTrashButton from './EmptyTrashButton';
 
 export type NoteEditorSidebarHeaderProps = {
   notes: (Note | TrashNote)[];
@@ -15,7 +15,7 @@ export type NoteEditorSidebarHeaderProps = {
 };
 
 const NoteEditorSidebarHeader = (
-  props: NoteEditorSidebarHeaderProps,
+  props: NoteEditorSidebarHeaderProps
 ): React.ReactElement => {
   const location = useLocationIndicator();
 
@@ -27,7 +27,7 @@ const NoteEditorSidebarHeader = (
       <div className="flex items-center gap-1 pb-3 text-neutral-700">
         <headerData.icon size="18" className="shrink-0" />
         <h2 className="text-xl">{headerData.title}</h2>
-        {location.isInCurrentPath("trash") && <EmptyTrashButton />}
+        {location.isInCurrentPath('trash') && <EmptyTrashButton />}
       </div>
 
       <div className="flex items-center justify-between text-neutral-500">

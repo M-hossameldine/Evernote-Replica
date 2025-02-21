@@ -1,8 +1,8 @@
-import "./index.css";
+import './index.css';
 
-import { TestimonialCard, LogoCarousel, DefaultCarousel } from "components";
-import { Testimonial_CAROUSEL_DATA } from "utils/data";
-import { Testimonial_CAROUSEL_DATA_INTERFACE } from "interfaces";
+import { TestimonialCard, LogoCarousel, DefaultCarousel } from 'components';
+import { Testimonial_CAROUSEL_DATA } from 'utils/data';
+import { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
 
 const DefaultCarouselSettings = {
   dots: true,
@@ -25,7 +25,7 @@ interface ComponentInterface {
 const TestimonialSection = (props: ComponentInterface): React.ReactElement => {
   const { className, data, trackSettings, viewSettings } = props;
 
-  const carouselSlides = Testimonial_CAROUSEL_DATA.map((slide) => (
+  const carouselSlides = Testimonial_CAROUSEL_DATA.map(slide => (
     <TestimonialCard
       key={slide.id}
       review={slide.review}
@@ -37,7 +37,7 @@ const TestimonialSection = (props: ComponentInterface): React.ReactElement => {
 
   return (
     <>
-      <div className={className ? className : ""}>
+      <div className={className ? className : ''}>
         <div className="hidden sm:block">
           <LogoCarousel
             data={data}

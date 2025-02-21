@@ -1,5 +1,5 @@
-import { HomePrivateHeader } from "../../components/HomePrivateHeader";
-import { WidgetsContainer } from "../../components/WidgetsContainer";
+import { HomePrivateHeader } from '../../components/HomePrivateHeader';
+import { WidgetsContainer } from '../../components/WidgetsContainer';
 
 export const UserProfile = () => {
   return (

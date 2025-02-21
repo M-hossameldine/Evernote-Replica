@@ -1,5 +1,5 @@
-import { UserAuthForm } from "./UserAuthForm/UserAuthForm";
-import { StyledUserAuth } from "./UserAuth.styled";
+import { UserAuthForm } from './UserAuthForm/UserAuthForm';
+import { StyledUserAuth } from './UserAuth.styled';
 
 const UserAuth: React.FC = () => {
   return (

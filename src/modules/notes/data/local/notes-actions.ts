@@ -1,15 +1,15 @@
-import { AppDispatch } from "store";
+import { AppDispatch } from 'store';
 
-import { createNote } from "./notesSlice.helpers";
-import { addNote, moveToTrash } from "./notesSlice";
+import { createNote } from './notesSlice.helpers';
+import { addNote, moveToTrash } from './notesSlice';
 
 export const sendNewNoteData = (payload?: {
   title?: string;
   text?: string;
 }) => {
   return async (dispatch: AppDispatch) => {
-    const newTitle = payload && payload.title ? payload.title : "";
-    const newText = payload && payload.text ? payload.text : "";
+    const newTitle = payload && payload.title ? payload.title : '';
+    const newText = payload && payload.text ? payload.text : '';
     const timestamp = new Date().toISOString();
 
     const note = createNote(newTitle, newText, timestamp);
