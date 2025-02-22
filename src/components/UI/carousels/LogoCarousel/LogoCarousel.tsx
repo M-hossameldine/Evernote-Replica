@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { TestimonialCard } from 'components';
+import TestimonialCard from 'components/Cards/TestimonialCard';
 import type { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
 
 interface PropsType {

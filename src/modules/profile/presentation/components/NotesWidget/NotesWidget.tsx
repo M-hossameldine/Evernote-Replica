@@ -3,7 +3,7 @@ import { useAppSelector } from 'hooks/redux-hooks';
 import { v4 as uuid } from 'uuid';
 
 import { selectNotes, sendNewNoteData } from 'store';
-import { Card } from 'components';
+import Card from 'components/Cards/Card';
 import DropdownMenu from 'components/DropdownMenu';
 import { NoteItem } from 'modules/notes/presentation/components/NoteItem/NoteItem';
 import AddNoteWrapper from 'modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';

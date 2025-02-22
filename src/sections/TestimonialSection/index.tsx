@@ -1,6 +1,7 @@
 import './index.css';
 
-import { TestimonialCard, LogoCarousel, DefaultCarousel } from 'components';
+import { LogoCarousel, DefaultCarousel } from 'components';
+import TestimonialCard from 'components/Cards/TestimonialCard';
 import { Testimonial_CAROUSEL_DATA } from 'utils/data';
 import type { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
 
