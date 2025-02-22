@@ -1,11 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import notesReducer from "modules/notes/data/local/notesSlice";
-import noteEditorReducer from "../modules/notes/data/local/noteEditor-slice";
-import trashReducer from "../modules/notes/data/local/trash-slice";
-import uiReducer from "./ui-slice/ui-slice";
-import authReducer from "../modules/auth/data/local/authSlice";
-import { apiSlice } from "./apiSlice";
+import notesReducer from 'modules/notes/data/local/notesSlice';
+import noteEditorReducer from '../modules/notes/data/local/noteEditor-slice';
+import trashReducer from '../modules/notes/data/local/trash-slice';
+import uiReducer from './ui-slice/ui-slice';
+import authReducer from '../modules/auth/data/local/authSlice';
+import { apiSlice } from './apiSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,7 +16,7 @@ export const store = configureStore({
     auth: authReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(apiSlice.middleware),
 });
 

@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useLocationIndicator } from "hooks/use-locationIndicator";
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useLocationIndicator } from 'hooks/use-locationIndicator';
 
-import { useAppSelector } from "hooks/redux-hooks";
+import { useAppSelector } from 'hooks/redux-hooks';
 import {
   selectNotes,
   selectTrashNotes,
   MoveToTrashAction,
   deleteItemPermanentlyAction,
   restoreItemFromTrashAction,
-} from "store";
+} from 'store';
 
-import ExecludeEventWrapper from "components/UI/ExecludeEventWrapper/ExecludeEventWrapper";
-import NoteActionsDropdownItem from "./NoteActionsDropdownItem";
-import { findNoteById } from "utils/functions";
-import { IoIosMore } from "assets";
+import ExecludeEventWrapper from 'components/UI/ExecludeEventWrapper/ExecludeEventWrapper';
+import NoteActionsDropdownItem from './NoteActionsDropdownItem';
+import { findNoteById } from 'utils/functions';
+import { IoIosMore } from 'assets';
 
 const NoteActionsDropdown: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -23,16 +23,16 @@ const NoteActionsDropdown: React.FC = () => {
   const location = useLocationIndicator();
   const params = useParams();
 
-  const isInTrash = location.isInCurrentPath("trash");
+  const isInTrash = location.isInCurrentPath('trash');
 
   const selectedNote = findNoteById(
     isInTrash ? trashNotes : notes,
-    params.noteId!,
+    params.noteId!
   );
 
   // sebmenu visiblity handlers
   const toggleDropdonwHandler = () => {
-    setIsExpanded((prevState) => !prevState);
+    setIsExpanded(prevState => !prevState);
   };
 
   const hideDropdonwHandler = () => {
@@ -77,7 +77,7 @@ const NoteActionsDropdown: React.FC = () => {
 
         <button
           className={`absolute right-0 top-[150%] z-10 whitespace-nowrap rounded bg-white text-sm shadow-even-2 ${
-            isExpanded ? "scale-100" : "scale-0"
+            isExpanded ? 'scale-100' : 'scale-0'
           }`}
           onClick={hideDropdonwHandler}
         >

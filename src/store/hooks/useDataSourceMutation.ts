@@ -1,8 +1,8 @@
-import { useCallback, useState } from "react";
-import type { RequestParams, ApiError } from "store/api.interfaces";
-import { useAppDispatch, useAppSelector } from "hooks";
-import type { Dispatch } from "@reduxjs/toolkit";
-import type { RootState } from "store";
+import { useCallback, useState } from 'react';
+import type { RequestParams, ApiError } from 'store/api.interfaces';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import type { Dispatch } from '@reduxjs/toolkit';
+import type { RootState } from 'store';
 
 interface UseDataSourceState<RESULT> {
   data: RESULT | null;
@@ -52,7 +52,7 @@ export const useDataSourceMutation = <
   RESPONSE_DATA,
   RESULT,
 >(
-  props: UseDataSourceMutationProps<PAYLOAD, EXTRA_PARAMS, RESPONSE_DATA>,
+  props: UseDataSourceMutationProps<PAYLOAD, EXTRA_PARAMS, RESPONSE_DATA>
 ): UseDataSourceMutationReturn<PAYLOAD, EXTRA_PARAMS, RESULT> => {
   const { apiEndpoint, mapResponseData, onQueryFinished } = props;
   const dispatch = useAppDispatch();
@@ -70,11 +70,11 @@ export const useDataSourceMutation = <
   const fetchData = useCallback(
     async (props: RequestParams<PAYLOAD, EXTRA_PARAMS, RESULT>) => {
       const { onSuccess, onError, onSettled } = props;
-      const payload = "payload" in props ? props.payload : undefined;
+      const payload = 'payload' in props ? props.payload : undefined;
       const extraParams =
-        "extraParams" in props ? props.extraParams : undefined;
+        'extraParams' in props ? props.extraParams : undefined;
 
-      setEndpointState((prev) => ({ ...prev, isLoading: true }));
+      setEndpointState(prev => ({ ...prev, isLoading: true }));
 
       let resultData;
       let resultError;
@@ -89,7 +89,7 @@ export const useDataSourceMutation = <
 
         const mappedData = mapResponseData ? mapResponseData(data) : data;
 
-        setEndpointState((prev) => ({
+        setEndpointState(prev => ({
           ...prev,
           isLoading: false,
           data: mappedData,
@@ -111,7 +111,7 @@ export const useDataSourceMutation = <
 
         resultError = formattedError;
 
-        setEndpointState((prev) => ({
+        setEndpointState(prev => ({
           ...prev,
           isLoading: false,
           isError: true,
@@ -120,7 +120,6 @@ export const useDataSourceMutation = <
 
         isError = true;
         onError?.(formattedError);
-        console.error("Error: ", formattedError);
       } finally {
         onSettled?.();
       }
@@ -138,7 +137,7 @@ export const useDataSourceMutation = <
       });
       return resultData;
     },
-    [apiEndpoint, mapResponseData, dispatch, state],
+    [apiEndpoint, mapResponseData, dispatch, state]
   );
 
   return [fetchData, endpointState];

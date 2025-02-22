@@ -1,12 +1,12 @@
-import { v4 as uuid } from "uuid";
-import { useAppSelector } from "hooks";
-import { useLogout } from "modules/auth/data/remote/authApis";
+import { v4 as uuid } from 'uuid';
+import { useAppSelector } from 'hooks';
+import { useLogout } from 'modules/auth/data/remote/authApis';
 
-import { selectUser } from "modules/auth/data/local/authSlice";
-import { FaUserCircle, IoIosArrowDown } from "assets";
-import { DropdownMenu } from "components";
-import { SideNavTabs } from "./SideNavTabs";
-import { AddNewNoteTab } from "./AddNewNoteTab";
+import { selectUser } from 'modules/auth/data/local/authSlice';
+import { FaUserCircle, IoIosArrowDown } from 'assets';
+import { DropdownMenu } from 'components';
+import { SideNavTabs } from './SideNavTabs';
+import { AddNewNoteTab } from './AddNewNoteTab';
 
 const SideNavBar: React.FC = () => {
   const userInfo = useAppSelector(selectUser);
@@ -32,7 +32,7 @@ const SideNavBar: React.FC = () => {
                 </div>
               </div>
             ),
-            className: "max-w-full",
+            className: 'max-w-full',
           }}
           submenuItemsData={[
             {

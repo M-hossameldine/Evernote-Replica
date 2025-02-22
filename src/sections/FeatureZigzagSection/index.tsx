@@ -1,5 +1,5 @@
-import { RowCard } from "components";
-import { HOME_FEATURE_ZIGZAG_DATA_INTERFACE } from "interfaces";
+import { RowCard } from 'components';
+import type { HOME_FEATURE_ZIGZAG_DATA_INTERFACE } from 'interfaces';
 
 interface ComponentInterface {
   dataList: HOME_FEATURE_ZIGZAG_DATA_INTERFACE[];
@@ -7,12 +7,12 @@ interface ComponentInterface {
 }
 
 const FeatureZigzagSection = (
-  props: ComponentInterface,
+  props: ComponentInterface
 ): React.ReactElement => {
   const { className, dataList } = props;
 
   return (
-    <section className={className ? className : ""}>
+    <section className={className ? className : ''}>
       {dataList.map((card, index) => {
         const isOdd = index % 2 !== 0; // reverse card direction
 

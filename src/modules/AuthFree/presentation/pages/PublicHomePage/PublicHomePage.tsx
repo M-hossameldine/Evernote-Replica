@@ -1,26 +1,26 @@
-import { SimpleFeatureBlock, TextLink } from "components";
-import { FeatureCarousel } from "../../components/FeatureCarousel";
+import { SimpleFeatureBlock, TextLink } from 'components';
+import { FeatureCarousel } from '../../components/FeatureCarousel';
 import {
   HeroSection,
   TestimonialSection,
   FeatureZigzagSection,
   PricingPlansSection,
   Footer,
-} from "sections/";
-import { TaskHeroImg, IoIosArrowRoundForward } from "assets";
+} from 'sections/';
+import { TaskHeroImg, IoIosArrowRoundForward } from 'assets';
 import {
   HOME_BASIC_FEATURE_DATA,
   Testimonial_CAROUSEL_DATA,
   HOME_FEATURE_ZIGZAG_DATA,
   PRICE_PLAN_DATA,
-} from "utils/data";
+} from 'utils/data';
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,
-} from "utils/settings";
+} from 'utils/settings';
 
-import { AuthRouteVariants } from "constants/routeVariants";
-import { AuthMode } from "constants/AppEnums/AuthEnums";
+import { AuthRouteVariants } from 'constants/routeVariants';
+import { AuthMode } from 'constants/AppEnums/AuthEnums';
 
 const PublicHomePage: React.FC = () => {
   return (
@@ -32,16 +32,16 @@ const PublicHomePage: React.FC = () => {
           description="Remember everything and tackle any project with your notes, tasks, and schedule all in one place."
           className="mt-24"
           primeBtn={{
-            text: "Sign up for free",
+            text: 'Sign up for free',
             route: AuthRouteVariants.auth.pathname(AuthMode.REGISTER),
-            className: "text-lg px-[4.5em]",
+            className: 'text-lg px-[4.5em]',
           }}
           secondaryBtns={[
             {
-              text: "Already have an account? Log in",
+              text: 'Already have an account? Log in',
               route: AuthRouteVariants.auth.pathname(AuthMode.LOGIN),
               className:
-                "font-semibold text-lg text-neutral-500 hover:text-green-450",
+                'font-semibold text-lg text-neutral-500 hover:text-green-450',
             },
           ]}
         />
@@ -57,12 +57,12 @@ const PublicHomePage: React.FC = () => {
 
           {/* desktop features*/}
           <ul className="hidden w-[15rem] shrink-0 flex-col gap-4 md:flex">
-            {HOME_BASIC_FEATURE_DATA.map((feature) => (
+            {HOME_BASIC_FEATURE_DATA.map(feature => (
               <SimpleFeatureBlock
                 key={feature.id}
                 title={{
                   text: feature.title,
-                  className: "text-lg font-semibold uppercase pb-2",
+                  className: 'text-lg font-semibold uppercase pb-2',
                 }}
                 description={{ text: feature.description }}
               />
@@ -78,23 +78,6 @@ const PublicHomePage: React.FC = () => {
           </ul>
         </div>
       </div>
-
-      {/* Home Video Modal */}
-      {/* <div className='wrapper text-center mb-16'>
-        <h2
-          className='text-6xl font-semibold px-8 leading-[150%] mb-3'
-          style={{ fontSize: 'clamp(2.2rem, 6vw, 3rem)' }}
-        >
-          Find your productivity happy place
-        </h2>
-        <p className='text-lg sm:text-2xl'>See what's possible with Evernote</p>
-        <div
-          className='max-w-[60rem] mx-auto'
-          style={{ paddingTop: 'clamp(3.5rem, 6vw, 6rem)' }}
-        >
-          <VideoModal />
-        </div>
-      </div> */}
 
       {/* Testimonial Carousel */}
       <section className="bg-slate-50">
@@ -127,7 +110,7 @@ const PublicHomePage: React.FC = () => {
             route=""
             icon={{
               Icon: IoIosArrowRoundForward,
-              iconStyle: "mt-1 text-xl",
+              iconStyle: 'mt-1 text-xl',
             }}
             className="jus mx-auto inline-flex w-auto items-center text-lg font-bold uppercase tracking-wider text-green-600"
             underline={false}

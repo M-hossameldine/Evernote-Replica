@@ -1,8 +1,8 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import { SimpleFeatureBlock } from "components";
+import { SimpleFeatureBlock } from 'components';
 
 interface DATA_INTERFACE {
   id: string;
@@ -20,13 +20,13 @@ export const FeatureCarousel = (props: PropsType): React.ReactElement => {
 
   return (
     <Slider {...settings}>
-      {data.map((feature) => (
+      {data.map(feature => (
         <SimpleFeatureBlock
           key={feature.id}
           className="text-center"
           title={{
             text: feature.title,
-            className: "text-xl font-semibold uppercase pb-2",
+            className: 'text-xl font-semibold uppercase pb-2',
           }}
           description={{ text: feature.description }}
         />

@@ -1,1 +1,1 @@
-export * from "./carousel-settings";
+export * from './carousel-settings';

@@ -1,7 +1,7 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from 'uuid';
 
-import { TextLink, ContainedLink } from "components";
-
+import { TextLink, ContainedLink } from 'components';
+import { StyledHeroSectionTitle } from './HeroSection.styled';
 interface HERO_INTERFACE {
   title: string;
   description: string;
@@ -25,34 +25,31 @@ const HeroSection = (props: HERO_INTERFACE): React.ReactElement => {
   return (
     <section
       className={`container mx-auto max-w-[75rem] px-4 text-center md:px-12 lg:px-24 ${
-        className ? className : ""
+        className ? className : ''
       } `}
     >
-      <h1
-        className="mb-2 mt-4 font-bold leading-[150%]"
-        style={{ fontSize: "clamp(2.2rem, 7vw, 3.5rem)", lineHeight: "" }}
-      >
+      <StyledHeroSectionTitle className="mb-2 mt-4 font-bold leading-[150%]">
         {title}
-      </h1>
+      </StyledHeroSectionTitle>
       <h5 className="mb-8 text-2xl">{description}</h5>
 
       {/* call to main action */}
       <ContainedLink
         route={primeBtn.route}
         text={primeBtn.text}
-        className={`mx-auto mb-4 ${primeBtn.className ? primeBtn.className : ""}`}
+        className={`mx-auto mb-4 ${primeBtn.className ? primeBtn.className : ''}`}
         isExteranl={primeBtn.isExteranl}
       />
 
       {/* optional call to extra actions */}
       <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
         {!!secondaryBtns &&
-          secondaryBtns.map((btn) => (
+          secondaryBtns.map(btn => (
             <li key={uuid()}>
               <TextLink
                 text={btn.text}
                 route={btn.route}
-                className={btn.className ? btn.className : ""}
+                className={btn.className ? btn.className : ''}
               />
             </li>
           ))}

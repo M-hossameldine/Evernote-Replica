@@ -6,8 +6,8 @@ import {
   setDoc,
   signInWithEmailAndPassword,
   signOut,
-} from "libs/firebase";
-import type { AuthRequestPayload } from "./authApis.interfaces";
+} from 'libs/firebase';
+import type { AuthRequestPayload } from './authApis.interfaces';
 
 export const signUp = async ({
   payload: { email, password },
@@ -17,12 +17,12 @@ export const signUp = async ({
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
-    password,
+    password
   );
   const user = userCredential.user;
 
   // Save user details in Firestore
-  await setDoc(doc(db, "users", user.uid), {
+  await setDoc(doc(db, 'users', user.uid), {
     email: user.email,
     createdAt: new Date().toISOString(),
   });

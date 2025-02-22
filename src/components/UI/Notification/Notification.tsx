@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "hooks";
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'hooks';
 
-import classes from "./Notification.module.css";
-import { selectNotification, hideNotification } from "store";
-import { IoMdClose, MdError } from "assets";
+import classes from './Notification.module.css';
+import { selectNotification, hideNotification } from 'store';
+import { IoMdClose, MdError } from 'assets';
 
 const Notification: React.FC = () => {
   const [showNotification, setShowNotification] = useState(false);
@@ -24,13 +24,13 @@ const Notification: React.FC = () => {
     }
   }, [notification]);
 
-  let statusClasses = "";
+  let statusClasses = '';
 
-  const visiblityClasses = showNotification ? classes.visible : "";
+  const visiblityClasses = showNotification ? classes.visible : '';
 
-  if (status === "error") {
+  if (status === 'error') {
     statusClasses = classes.error;
-  } else if (status === "success") {
+  } else if (status === 'success') {
     statusClasses = classes.success;
   }
 
@@ -39,7 +39,7 @@ const Notification: React.FC = () => {
   return (
     <div className={cssClasses}>
       <p className={classes.message}>
-        {status === "error" && <MdError className="shrink-0" />}
+        {status === 'error' && <MdError className="shrink-0" />}
         {notification && notification.message}
       </p>
       <button

@@ -1,13 +1,13 @@
-import { useUpdatedState, useAppSelector, useLocationIndicator } from "hooks";
+import { useUpdatedState, useAppSelector, useLocationIndicator } from 'hooks';
 
-import { selectNotes, selectTrashNotes, selectNoteEditor } from "store";
+import { selectNotes, selectTrashNotes, selectNoteEditor } from 'store';
 
-import { NOTESPAGE, TRASHPAGE } from "utils/constants";
-import { ACTION_ITEM_INTERFACE } from "interfaces";
-import { Note, TrashNote } from "modules/notes/domain/interfaces";
+import { NOTESPAGE, TRASHPAGE } from 'utils/constants';
+import type { ACTION_ITEM_INTERFACE } from 'interfaces';
+import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
 
 const SubmenuActionItem = (
-  props: ACTION_ITEM_INTERFACE,
+  props: ACTION_ITEM_INTERFACE
 ): React.ReactElement => {
   const { content, asyncAction, asyncActionArgs, operation } = props;
 
@@ -16,7 +16,7 @@ const SubmenuActionItem = (
   const trashNotes = useAppSelector(selectTrashNotes);
   const location = useLocationIndicator();
 
-  const isInTrash = location.isInCurrentPath("trash");
+  const isInTrash = location.isInCurrentPath('trash');
 
   const notesList: (Note | TrashNote)[] = isInTrash ? trashNotes : notes;
 

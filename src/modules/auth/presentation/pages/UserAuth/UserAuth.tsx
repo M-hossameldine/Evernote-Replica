@@ -1,14 +1,11 @@
-import { UserAuthForm } from "./UserAuthForm/UserAuthForm";
-import { AuthBgImg } from "assets";
+import { UserAuthForm } from './UserAuthForm/UserAuthForm';
+import { StyledUserAuth } from './UserAuth.styled';
 
 const UserAuth: React.FC = () => {
   return (
-    <div
-      className={`flex h-screen items-center`}
-      style={{ backgroundImage: `url(${AuthBgImg})` }}
-    >
+    <StyledUserAuth className={`flex h-screen items-center`}>
       <UserAuthForm />
-    </div>
+    </StyledUserAuth>
   );
 };
 

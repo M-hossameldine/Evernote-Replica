@@ -1,5 +1,5 @@
-import { REACT_ICON_INTERFACE } from ".";
-import type { IconType } from "react-icons";
+import type { IconType } from 'react-icons';
+import type { REACT_ICON_INTERFACE } from '.';
 
 /**************************************************/
 // General Data Interfaces

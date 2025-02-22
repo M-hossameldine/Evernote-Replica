@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import type { IconType } from "react-icons";
+import { Link } from 'react-router-dom';
+import type { IconType } from 'react-icons';
 
-import { ExternalLink } from "components";
+import { ExternalLink } from 'components';
 
 interface REACT_ICON_LINK_INTERFACE {
   Icon: IconType;
@@ -12,13 +12,13 @@ interface REACT_ICON_LINK_INTERFACE {
 }
 
 const ReactIconLink = (
-  props: REACT_ICON_LINK_INTERFACE,
+  props: REACT_ICON_LINK_INTERFACE
 ): React.ReactElement => {
   const { Icon, route, size, className, isExteranl } = props;
 
-  const iconContainerClasses = `${className ? className : ""}`;
+  const iconContainerClasses = `${className ? className : ''}`;
 
-  const iconClasses = "text-2xl sm:text-base";
+  const iconClasses = 'text-2xl sm:text-base';
   return (
     <>
       {!isExteranl && (

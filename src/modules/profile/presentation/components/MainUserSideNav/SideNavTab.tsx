@@ -1,5 +1,5 @@
-import { NavTabModel } from "models/UI-Models";
-import { ReactElement } from "react";
+import type { NavTabModel } from 'models/UI-Models';
+import type { ReactElement } from 'react';
 
 type SideNavTabProps = {
   tab: NavTabModel;
@@ -19,12 +19,12 @@ const SideNavTab = (props: SideNavTabProps): ReactElement => {
   } = props;
 
   const tabClasses = `relative flex justify-center lg:justify-start items-center h-9 gap-[6px] lg:pl-5 py-1 hover:bg-neutral-700 cursor-pointer group w-full  ${
-    className ? className : ""
+    className ? className : ''
   } `;
 
-  const iconsClasses = `${iconStyle ? iconStyle : "text-lg"}`;
+  const iconsClasses = `${iconStyle ? iconStyle : 'text-lg'}`;
 
-  const textClasses = textStyle ? textStyle : "";
+  const textClasses = textStyle ? textStyle : '';
   return (
     <li>
       <button className={tabClasses} onClick={tabClickHandler}>
@@ -33,7 +33,7 @@ const SideNavTab = (props: SideNavTabProps): ReactElement => {
         </span>
         <span
           className={
-            "lg:text-md absolute left-[115%] top-0 scale-0 whitespace-nowrap rounded-md bg-neutral-800 p-2 px-3 text-sm transition ease-linear group-hover:scale-100 lg:static lg:scale-100 lg:bg-transparent lg:p-0 " +
+            'lg:text-md absolute left-[115%] top-0 scale-0 whitespace-nowrap rounded-md bg-neutral-800 p-2 px-3 text-sm transition ease-linear group-hover:scale-100 lg:static lg:scale-100 lg:bg-transparent lg:p-0 ' +
             textClasses
           }
         >

@@ -1,15 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "hooks/redux-hooks";
-import { v4 as uuid } from "uuid";
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppSelector } from 'hooks/redux-hooks';
+import { v4 as uuid } from 'uuid';
 
-import { selectNotes, sendNewNoteData } from "store";
-import { DropdownMenu, Card } from "components";
-import { NoteItem } from "modules/notes/presentation/components/NoteItem/NoteItem";
-import AddNoteWrapper from "modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper";
+import { selectNotes, sendNewNoteData } from 'store';
+import { DropdownMenu, Card } from 'components';
+import { NoteItem } from 'modules/notes/presentation/components/NoteItem/NoteItem';
+import AddNoteWrapper from 'modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
 
-import { NOTESPAGE, EDITORPAGE } from "utils/constants";
-import { IoIosArrowForward, MdPostAdd, IoIosMore } from "assets";
-import { FUNCTION_ITEM_INTERFACE, ACTION_ITEM_INTERFACE } from "interfaces";
+import { NOTESPAGE, EDITORPAGE } from 'utils/constants';
+import { IoIosArrowForward, MdPostAdd, IoIosMore } from 'assets';
+import type {
+  FUNCTION_ITEM_INTERFACE,
+  ACTION_ITEM_INTERFACE,
+} from 'interfaces';
 
 type Props = { className?: string };
 
@@ -17,23 +20,23 @@ export const NotesWidget = (props: Props): React.ReactElement => {
   const notes = useAppSelector(selectNotes);
   const navigate = useNavigate();
 
-  const firstNote = notes.length > 0 ? notes[0].id : "empty";
+  const firstNote = notes.length > 0 ? notes[0].id : 'empty';
 
   const dropdownData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[] = [
     {
       id: uuid(),
-      content: "Go to notes",
+      content: 'Go to notes',
       onClick: () => navigate(`${NOTESPAGE}/${firstNote}`),
     },
     {
       id: uuid(),
-      content: "Create new note",
+      content: 'Create new note',
       asyncAction: sendNewNoteData,
-      operation: "add",
+      operation: 'add',
     },
   ];
 
-  const notesWidgetClasses = props.className ? props.className : "";
+  const notesWidgetClasses = props.className ? props.className : '';
 
   return (
     <Card className={` ${notesWidgetClasses} overflow-hidden`}>
@@ -56,11 +59,11 @@ export const NotesWidget = (props: Props): React.ReactElement => {
         <DropdownMenu
           menuHeader={{
             content: <IoIosMore />,
-            className: "text-neutral-500 hover:bg-neutral-100 rounded p-1",
+            className: 'text-neutral-500 hover:bg-neutral-100 rounded p-1',
           }}
           className="ml-2"
           submenuItemsData={dropdownData}
-          placeSubmenu={{ x: "end", y: "bottom" }}
+          placeSubmenu={{ x: 'end', y: 'bottom' }}
         />
       </header>
 

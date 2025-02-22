@@ -1,6 +1,9 @@
-import { ACTION_ITEM_INTERFACE, FUNCTION_ITEM_INTERFACE } from "interfaces";
-import SubmenuFunctionItem from "./SubmenuFunctionItem";
-import SubmenuActionItem from "./SubmenuActionItem";
+import type {
+  ACTION_ITEM_INTERFACE,
+  FUNCTION_ITEM_INTERFACE,
+} from 'interfaces';
+import SubmenuFunctionItem from './SubmenuFunctionItem';
+import SubmenuActionItem from './SubmenuActionItem';
 
 interface PropsType {
   submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];
@@ -9,10 +12,10 @@ interface PropsType {
 }
 const Submenu = (props: PropsType): React.ReactElement => {
   return (
-    <ul className={props.className ? props.className : ""}>
-      {props.submenuItemsData.map((itemData) => {
+    <ul className={props.className ? props.className : ''}>
+      {props.submenuItemsData.map(itemData => {
         let item;
-        if ("asyncAction" in itemData) {
+        if ('asyncAction' in itemData) {
           const { id, content, asyncAction, asyncActionArgs, operation } =
             itemData;
           item = (

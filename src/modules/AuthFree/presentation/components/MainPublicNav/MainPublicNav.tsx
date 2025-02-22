@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useEventListener } from "hooks";
+import { useState } from 'react';
+import { useEventListener } from 'hooks';
 
-import { DesktopMenu } from "./DesktopMenu";
-import { MobileMenu } from "./MobileMenu";
+import { DesktopMenu } from './DesktopMenu';
+import { MobileMenu } from './MobileMenu';
 
 export const MainPublicNav: React.FC = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -15,15 +15,15 @@ export const MainPublicNav: React.FC = () => {
       : setNavBoxShadow(true);
   };
 
-  useEventListener("scroll", windowScrollHandler);
+  useEventListener('scroll', windowScrollHandler);
 
   const toggleMobileMenu = () => {
-    setShowMobileMenu((prevState) => {
+    setShowMobileMenu(prevState => {
       return !prevState;
     });
   };
 
-  const boxShadowStyle = navBoxShadow ? "shadow-md" : "";
+  const boxShadowStyle = navBoxShadow ? 'shadow-md' : '';
 
   return (
     <div

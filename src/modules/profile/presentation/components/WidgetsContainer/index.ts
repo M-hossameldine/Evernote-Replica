@@ -1,1 +1,1 @@
-export * from "./WidgetsContainer";
+export * from './WidgetsContainer';

@@ -1,30 +1,30 @@
-import React, { Suspense } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import React, { Suspense } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { useInitAppAuth } from "modules/auth/data/remote";
-import { Layout, Notification } from "./components";
-import { DefaultSpinner } from "./components/UI/Spinners/DefaultSpinner";
+import { useInitAppAuth } from 'modules/auth/data/remote';
+import { Layout, Notification } from './components';
+import { DefaultSpinner } from './components/UI/Spinners/DefaultSpinner';
 import {
   HOMEPAGE,
   NOTESPAGE,
   TRASHPAGE,
   EDITORPAGE,
   DOWNLOADPAGE,
-} from "utils/constants";
-import { AuthRouteVariants } from "constants/routeVariants";
+} from 'utils/constants';
+import { AuthRouteVariants } from 'constants/routeVariants';
 
 const UserAuthPage = React.lazy(
-  () => import("./modules/auth/presentation/pages/UserAuth/UserAuth"),
+  () => import('./modules/auth/presentation/pages/UserAuth/UserAuth')
 );
-const HomePage = React.lazy(() => import("./pages/HomePage"));
+const HomePage = React.lazy(() => import('./pages/HomePage'));
 const NotesPage = React.lazy(
-  () => import("./modules/notes/presentation/pages/NotesPage"),
+  () => import('./modules/notes/presentation/pages/NotesPage')
 );
 const TrashPage = React.lazy(
-  () => import("./modules/notes/presentation/pages/TrashPage"),
+  () => import('./modules/notes/presentation/pages/TrashPage')
 );
 const DownloadPage = React.lazy(
-  () => import("./modules/AuthFree/presentation/pages/DownloadPage"),
+  () => import('./modules/AuthFree/presentation/pages/DownloadPage')
 );
 
 function App() {

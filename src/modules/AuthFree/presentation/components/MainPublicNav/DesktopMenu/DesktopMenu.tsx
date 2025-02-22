@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { HorizontalLogo, FaBars } from "assets/index";
-import { HOMEPAGE, DOWNLOADPAGE } from "utils/constants";
-import { GhostLink } from "components";
+import { HorizontalLogo, FaBars } from 'assets/index';
+import { HOMEPAGE, DOWNLOADPAGE } from 'utils/constants';
+import { GhostLink } from 'components';
 
-import { AuthRouteVariants } from "constants/routeVariants";
-import { AuthMode } from "constants/AppEnums/AuthEnums";
+import { AuthRouteVariants } from 'constants/routeVariants';
+import { AuthMode } from 'constants/AppEnums/AuthEnums';
 
 type Props = { onShowMenu: () => void };
 
@@ -34,10 +34,10 @@ export const DesktopMenu = (props: Props): React.ReactElement => {
             text="Download"
             route={DOWNLOADPAGE}
             colors={{
-              textClr: "text-green-550",
-              textHoverClr: "text-green-450",
-              borderClr: "border-green-550",
-              borderHoverClr: "border-green-450",
+              textClr: 'text-green-550',
+              textHoverClr: 'text-green-450',
+              borderClr: 'border-green-550',
+              borderHoverClr: 'border-green-450',
             }}
           />
         </ul>

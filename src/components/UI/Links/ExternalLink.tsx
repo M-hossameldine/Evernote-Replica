@@ -1,4 +1,4 @@
-import type { IconType } from "react-icons";
+import type { IconType } from 'react-icons';
 
 type PropsType = {
   text?: string;
@@ -25,10 +25,10 @@ const ExteranlLink = (props: PropsType): React.ReactElement => {
       {icon ? (
         <icon.Icon
           size={icon.size}
-          className={icon.iconStyle ? icon.iconStyle : ""}
+          className={icon.iconStyle ? icon.iconStyle : ''}
         />
       ) : (
-        ""
+        ''
       )}
     </a>
   );

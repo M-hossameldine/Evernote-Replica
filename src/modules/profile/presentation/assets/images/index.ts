@@ -1,3 +1,3 @@
-import HomeImg from "./home.jpg";
+import HomeImg from './home.jpg';
 
 export { HomeImg };

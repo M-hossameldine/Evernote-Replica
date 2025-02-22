@@ -1,9 +1,9 @@
-import { Link, useParams } from "react-router-dom";
-import classes from "./NoteItem.module.css";
+import { Link, useParams } from 'react-router-dom';
+import classes from './NoteItem.module.css';
 
-import { useAppDispatch, useLocationIndicator } from "hooks";
-import { setActiveNoteIndex } from "modules/notes/data/local/noteEditor-slice";
-import type { Note, TrashNote } from "modules/notes/domain/interfaces";
+import { useAppDispatch, useLocationIndicator } from 'hooks';
+import { setActiveNoteIndex } from 'modules/notes/data/local/noteEditor-slice';
+import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
 
 type PropsType = {
   note: Note | TrashNote;
@@ -19,7 +19,7 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
   const location = useLocationIndicator();
   const { note, index, className, route } = props;
 
-  const { text, title, createdTimestamp } = "note" in note ? note.note : note;
+  const { text, title, createdTimestamp } = 'note' in note ? note.note : note;
 
   const { id: localNoteId } = note;
 
@@ -38,14 +38,14 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
 
   // date form
   const createNoteTimestamp = new Date(createdTimestamp);
-  const noteTimestampValue = `${createNoteTimestamp.toLocaleString("default", {
-    month: "short",
+  const noteTimestampValue = `${createNoteTimestamp.toLocaleString('default', {
+    month: 'short',
   })} ${createNoteTimestamp.getUTCDate()}`;
 
   // style
   const noteItemClasses = ` ${classes.note} block
-    ${localNoteId === params.noteId ? classes.active : ""} 
-    ${className ? className : ""}`;
+    ${localNoteId === params.noteId ? classes.active : ''} 
+    ${className ? className : ''}`;
 
   return (
     <Link
@@ -53,11 +53,11 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
       to={navigationLink}
       onClick={noteFocusHandler}
     >
-      <h3 className={classes["note__title"]}>
-        {title.length > 0 ? title : "Untitled"}
+      <h3 className={classes['note__title']}>
+        {title.length > 0 ? title : 'Untitled'}
       </h3>
-      <p className={classes["note__body"]}>{text}</p>
-      <small className={classes["note__timestamp"]}>{noteTimestampValue}</small>
+      <p className={classes['note__body']}>{text}</p>
+      <small className={classes['note__timestamp']}>{noteTimestampValue}</small>
     </Link>
   );
 };

@@ -1,1 +1,1 @@
-export * from "./AuthRouteVariants";
+export * from './AuthRouteVariants';

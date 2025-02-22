@@ -1,1 +1,1 @@
-export { DefaultSpinner } from "./DefaultSpinner";
+export { DefaultSpinner } from './DefaultSpinner';

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import type { IconType } from "react-icons";
-import { ExternalLink } from "components";
+import { Link } from 'react-router-dom';
+import type { IconType } from 'react-icons';
+import { ExternalLink } from 'components';
 
 interface LINK_INTERFACE {
   text: string;
@@ -30,7 +30,7 @@ const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
   const linkClasses = `table ${textClr} ${textHoverColor}
     border-solid border-2 ${borderClr} ${borderHoverColor}
     p-[4em] py-[0.5em] rounded
-   ${className ? className : ""}`;
+   ${className ? className : ''}`;
 
   return (
     <>
@@ -38,9 +38,9 @@ const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
         <Link to={route} className={linkClasses} onClick={props.onClick}>
           {text}
           {icon ? (
-            <icon.Icon className={icon.iconStyle ? icon.iconStyle : ""} />
+            <icon.Icon className={icon.iconStyle ? icon.iconStyle : ''} />
           ) : (
-            ""
+            ''
           )}
         </Link>
       )}

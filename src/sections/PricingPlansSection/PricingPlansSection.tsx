@@ -1,20 +1,20 @@
-import "tw-elements";
+import 'tw-elements';
 
-import { PricePlanCard } from "components";
-import { PRICE_PLAN_DATA_INTERFACE } from "interfaces";
+import { PricePlanCard } from 'components';
+import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 
-import { BsArrowRightCircleFill, FiArrowRight } from "assets";
+import { BsArrowRightCircleFill, FiArrowRight } from 'assets';
 
 interface PricingPlansSection_INTERFACE {
   className?: string;
   data: PRICE_PLAN_DATA_INTERFACE[];
 }
 const PricingPlansSection = (
-  props: PricingPlansSection_INTERFACE,
+  props: PricingPlansSection_INTERFACE
 ): React.ReactElement => {
   const { className, data } = props;
 
-  const accordionClasses = `accordion ${className ? className : ""}`;
+  const accordionClasses = `accordion ${className ? className : ''}`;
   return (
     <>
       <div className={accordionClasses} id="accordionExample5">
@@ -29,7 +29,7 @@ const PricingPlansSection = (
             <p className="pb-6 text-4xl font-semibold sm:text-[40px]">
               $14.99
               <span className="text-base font-semibold uppercase sm:text-lg">
-                {" "}
+                {' '}
                 / user / month
               </span>
             </p>

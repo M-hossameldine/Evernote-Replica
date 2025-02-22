@@ -1,6 +1,6 @@
-import { useAppSelector, useUpdatedState } from "hooks";
-import { selectNotes, sendNewNoteData } from "store";
-import { NOTESPAGE } from "utils/constants";
+import { useAppSelector, useUpdatedState } from 'hooks';
+import { selectNotes, sendNewNoteData } from 'store';
+import { NOTESPAGE } from 'utils/constants';
 
 type Props = {
   children?: React.ReactNode;
@@ -17,7 +17,7 @@ export const AddNoteWrapper = (props: Props): React.ReactElement => {
     route: NOTESPAGE,
     usedIndex: 0,
     watchedState: notes,
-    operation: "add",
+    operation: 'add',
   });
 
   const addNoteHandler = () => {
@@ -25,7 +25,7 @@ export const AddNoteWrapper = (props: Props): React.ReactElement => {
   };
 
   return (
-    <button className={className ? className : ""} onClick={addNoteHandler}>
+    <button className={className ? className : ''} onClick={addNoteHandler}>
       {props.children}
     </button>
   );

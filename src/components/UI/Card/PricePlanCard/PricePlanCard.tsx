@@ -1,8 +1,8 @@
-import "tw-elements";
+import 'tw-elements';
 
-import { BiCheck, IoIosArrowRoundBack, IoIosArrowRoundUp } from "assets";
-import { ContainedLink } from "components";
-import { PRICE_PLAN_DATA_INTERFACE } from "interfaces";
+import { BiCheck, IoIosArrowRoundBack, IoIosArrowRoundUp } from 'assets';
+import { ContainedLink } from 'components';
+import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 
 type PropsType = {
   cardData: PRICE_PLAN_DATA_INTERFACE;
@@ -14,7 +14,7 @@ type AccordionBtnProps = { id: string; isCollapsed: boolean };
 const PricePlanCard = (props: PropsType): React.ReactElement => {
   const { id, title, price, note, features, callToAction } = props.cardData;
   const { index: cardIndex } = props;
-  const showFeaturesByDefault = cardIndex === 0 ? "show" : "";
+  const showFeaturesByDefault = cardIndex === 0 ? 'show' : '';
 
   const featureList = (
     <ul>
@@ -83,7 +83,7 @@ const AccordionBtn = (props: AccordionBtnProps): React.ReactElement => {
 
   const btnClasses = `accordion-button {collapseStyle} relative flex md:hidden items-center !shadow-none transition focus:outline-none after:rounded-full after:bg-green-550  
   after:flex after:items-center after:justify-center after:w-8 after:h-8 after:!bg-none after:content-arrow-angle-up after:p-[7px]
-  ${isCollapsed ? "collapsed" : ""}`;
+  ${isCollapsed ? 'collapsed' : ''}`;
 
   return (
     <button

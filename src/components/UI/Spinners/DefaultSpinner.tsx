@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface DefaultSpinnerProps {
   size?: string; //"h-6 w-6"
@@ -7,12 +7,12 @@ interface DefaultSpinnerProps {
 }
 
 export const DefaultSpinner = (
-  props: DefaultSpinnerProps,
+  props: DefaultSpinnerProps
 ): React.ReactElement => {
   const {
-    size = "h-6 w-6",
-    borderColor = "border-current",
-    borderSize = "border-2",
+    size = 'h-6 w-6',
+    borderColor = 'border-current',
+    borderSize = 'border-2',
   } = props;
   return (
     <div

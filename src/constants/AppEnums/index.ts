@@ -1,1 +1,1 @@
-export * from "./AuthEnums";
+export * from './AuthEnums';

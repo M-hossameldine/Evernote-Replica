@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import ExecludeEventWrapper from "../ExecludeEventWrapper/ExecludeEventWrapper";
-import Submenu from "./Submenu";
-import { FUNCTION_ITEM_INTERFACE, ACTION_ITEM_INTERFACE } from "interfaces";
+import ExecludeEventWrapper from '../ExecludeEventWrapper/ExecludeEventWrapper';
+import Submenu from './Submenu';
+import type {
+  FUNCTION_ITEM_INTERFACE,
+  ACTION_ITEM_INTERFACE,
+} from 'interfaces';
 
 interface MENU_INTERFACE {
   menuHeader: { content: JSX.Element; className?: string };
@@ -10,8 +13,8 @@ interface MENU_INTERFACE {
   className?: string;
   placeSubmenu?: {
     // default
-    x?: "start" | "end" | "center" | string;
-    y?: "top" | "bottom" | string;
+    x?: 'start' | 'end' | 'center' | string;
+    y?: 'top' | 'bottom' | string;
   };
 }
 
@@ -22,7 +25,7 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
 
   // sebmenu visiblity handlers
   const toggleDropdonwHandler = () => {
-    setIsExpanded((prevState) => !prevState);
+    setIsExpanded(prevState => !prevState);
   };
 
   const hideDropdonwHandler = () => {
@@ -30,19 +33,19 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
   };
 
   // submenu position
-  const submenuPosition = { x: "left-0", y: "top-[150%]" }; // default position bottom start
+  const submenuPosition = { x: 'left-0', y: 'top-[150%]' }; // default position bottom start
   if (placeSubmenu) {
     // Horizontal position
     if (placeSubmenu.x) {
       switch (placeSubmenu.x) {
-        case "end":
-          submenuPosition.x = "right-0";
+        case 'end':
+          submenuPosition.x = 'right-0';
           break;
-        case "start":
-          submenuPosition.x = "left-0";
+        case 'start':
+          submenuPosition.x = 'left-0';
           break;
-        case "center":
-          submenuPosition.x = "left-2/4 -translate-x-2/4";
+        case 'center':
+          submenuPosition.x = 'left-2/4 -translate-x-2/4';
           break;
         default:
           submenuPosition.x = placeSubmenu.x;
@@ -50,9 +53,9 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
     }
 
     // Vertical position
-    if (placeSubmenu.y === "top" || placeSubmenu.y === "bottom") {
+    if (placeSubmenu.y === 'top' || placeSubmenu.y === 'bottom') {
       submenuPosition.y =
-        placeSubmenu.y === "top" ? "bottom-[130%]" : "top-[130%]";
+        placeSubmenu.y === 'top' ? 'bottom-[130%]' : 'top-[130%]';
     } else if (placeSubmenu.y) {
       submenuPosition.y = placeSubmenu.y;
     }
@@ -61,7 +64,7 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
   return (
     <ExecludeEventWrapper
       listenerHandler={hideDropdonwHandler}
-      className={`relative ${props.className ? props.className : ""}`}
+      className={`relative ${props.className ? props.className : ''}`}
     >
       {/* Menu Header */}
       <button className={menuHeader.className} onClick={toggleDropdonwHandler}>
@@ -70,7 +73,7 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
 
       {/* Submenu */}
       <Submenu
-        className={`absolute z-10 ${submenuPosition.x} ${submenuPosition.y} ${isExpanded ? "scale-100" : "scale-0"} whitespace-nowrap rounded bg-white py-2 text-sm shadow-even-2`}
+        className={`absolute z-10 ${submenuPosition.x} ${submenuPosition.y} ${isExpanded ? 'scale-100' : 'scale-0'} whitespace-nowrap rounded bg-white py-2 text-sm shadow-even-2`}
         onClick={hideDropdonwHandler}
         submenuItemsData={props.submenuItemsData}
       />
