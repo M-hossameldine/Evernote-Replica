@@ -23,9 +23,9 @@ const NotesPage = React.lazy(
 const TrashPage = React.lazy(
   () => import('./modules/notes/presentation/pages/TrashPage')
 );
-const DownloadPage = React.lazy(
-  () => import('./modules/AuthFree/presentation/pages/DownloadPage')
-);
+// const DownloadPage = React.lazy(
+//   () => import('./modules/AuthFree/presentation/pages/DownloadPage')
+// );
 
 function App() {
   const { isAuthorized } = useInitAppAuth();
