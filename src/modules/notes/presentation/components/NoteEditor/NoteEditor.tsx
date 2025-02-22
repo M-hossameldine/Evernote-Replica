@@ -11,7 +11,7 @@ import {
 } from 'store';
 import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
 
-import { AutoGrowingTextArea } from 'components';
+import AutoGrowingTextArea from 'components/AutoGrowingTextArea';
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
 
 const NoteEditor: React.FC = () => {
