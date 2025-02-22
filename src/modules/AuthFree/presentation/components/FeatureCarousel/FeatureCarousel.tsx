@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { SimpleFeatureBlock } from 'components';
+import SimpleFeatureBlock from '../FeatureBlock';
 
 interface DATA_INTERFACE {
   id: string;
