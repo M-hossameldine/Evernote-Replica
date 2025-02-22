@@ -1,19 +1,21 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'hooks/redux-hooks';
+import { EDITORPAGE, NOTESPAGE } from 'constants/routes';
+import type {
+  ACTION_ITEM_INTERFACE,
+  FUNCTION_ITEM_INTERFACE,
+} from 'interfaces';
+import AddNoteWrapper from 'modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
+import { NoteItem } from 'modules/notes/presentation/components/NoteItem/NoteItem';
+import { selectNotes, sendNewNoteData } from 'store';
 import { v4 as uuid } from 'uuid';
 
-import { selectNotes, sendNewNoteData } from 'store';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { useAppSelector } from 'hooks/redux-hooks';
+
+import { IoIosArrowForward, IoIosMore, MdPostAdd } from 'assets';
+
 import Card from 'components/Cards/Card';
 import DropdownMenu from 'components/DropdownMenu';
-import { NoteItem } from 'modules/notes/presentation/components/NoteItem/NoteItem';
-import AddNoteWrapper from 'modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
-
-import { NOTESPAGE, EDITORPAGE } from 'utils/constants';
-import { IoIosArrowForward, MdPostAdd, IoIosMore } from 'assets';
-import type {
-  FUNCTION_ITEM_INTERFACE,
-  ACTION_ITEM_INTERFACE,
-} from 'interfaces';
 
 type Props = { className?: string };
 

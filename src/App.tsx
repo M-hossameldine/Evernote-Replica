@@ -1,18 +1,19 @@
-import React, { Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-
-import { useInitAppAuth } from 'modules/auth/data/remote';
-import Layout from './components/Layout';
-import Notification from './components/Notification';
-import { DefaultSpinner } from './components/Spinners';
+import { AuthRouteVariants } from 'constants/routeVariants';
 import {
+  DOWNLOADPAGE,
+  EDITORPAGE,
   HOMEPAGE,
   NOTESPAGE,
   TRASHPAGE,
-  EDITORPAGE,
-  DOWNLOADPAGE,
-} from 'utils/constants';
-import { AuthRouteVariants } from 'constants/routeVariants';
+} from 'constants/routes';
+import { useInitAppAuth } from 'modules/auth/data/remote';
+
+import React, { Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import Layout from './components/Layout';
+import Notification from './components/Notification';
+import { DefaultSpinner } from './components/Spinners';
 
 const UserAuthPage = React.lazy(
   () => import('./modules/auth/presentation/pages/UserAuth/UserAuth')

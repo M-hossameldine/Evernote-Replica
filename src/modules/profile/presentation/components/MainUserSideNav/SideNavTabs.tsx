@@ -1,22 +1,24 @@
-import { useNavigate } from 'react-router-dom';
-import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from 'utils/constants';
-
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from 'constants/routes';
 import { NavTabModel } from 'models/UI-Models';
 import { fillNoteEditor, selectNotes, selectTrashNotes } from 'store';
 
-import SideNavTab from './SideNavTab';
+import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
+
 import DropdownList from 'components/Dropdown';
+
 import {
   AiFillHome,
   FaStar,
-  IoIosPaper,
+  FaTrash,
+  FaUserFriends,
   IoIosCheckmarkCircle,
+  IoIosPaper,
   RiBookletFill,
   RiPriceTagFill,
-  FaUserFriends,
-  FaTrash,
 } from '../../../../../assets';
+import SideNavTab from './SideNavTab';
 
 const TAB_CONTENT = {
   home: new NavTabModel('Home', AiFillHome),

@@ -1,10 +1,9 @@
-import { useUpdatedState, useAppSelector, useLocationIndicator } from 'hooks';
-
-import { selectNotes, selectTrashNotes, selectNoteEditor } from 'store';
+import { NOTESPAGE, TRASHPAGE } from 'constants/routes';
+import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import { selectNoteEditor, selectNotes, selectTrashNotes } from 'store';
 import type { AppDispatch } from 'store';
 
-import { NOTESPAGE, TRASHPAGE } from 'utils/constants';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import { useAppSelector, useLocationIndicator, useUpdatedState } from 'hooks';
 
 type NoteActionsDropdownItemProps = {
   text: string;

@@ -1,6 +1,7 @@
-import { useAppSelector, useUpdatedState } from 'hooks';
+import { NOTESPAGE } from 'constants/routes';
 import { selectNotes, sendNewNoteData } from 'store';
-import { NOTESPAGE } from 'utils/constants';
+
+import { useAppSelector, useUpdatedState } from 'hooks';
 
 type Props = {
   children?: React.ReactNode;
