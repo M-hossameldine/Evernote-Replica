@@ -1,4 +1,4 @@
-import { TextLink } from 'components';
+import { TextLink } from 'components/Links';
 import FooterSocialIcons from './FooterSocialIcons';
 import { FOOTER_LEGAL_DATA } from 'utils/data';
 import { ElephantLogoImg } from 'assets';

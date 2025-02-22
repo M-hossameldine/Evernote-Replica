@@ -4,7 +4,7 @@ import { useLogout } from 'modules/auth/data/remote/authApis';
 
 import { selectUser } from 'modules/auth/data/local/authSlice';
 import { FaUserCircle, IoIosArrowDown } from 'assets';
-import { DropdownMenu } from 'components';
+import DropdownMenu from 'components/DropdownMenu';
 import { SideNavTabs } from './SideNavTabs';
 import { AddNewNoteTab } from './AddNewNoteTab';
 

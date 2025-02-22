@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 
 import { HorizontalLogo, GrClose } from 'assets';
 import { HOMEPAGE, DOWNLOADPAGE } from 'utils/constants/routes';
-import { GhostLink, ExecludeEventWrapper } from 'components';
+import ExcludeEventWrapper from 'components/ExcludeEventWrapper';
+import { GhostLink } from 'components/Links';
 import { AuthRouteVariants } from 'constants/routeVariants';
 import { AuthMode } from 'constants/AppEnums/AuthEnums';
 
@@ -29,7 +30,7 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
   return (
     <div className={menuClasses}>
       {showMenu && (
-        <ExecludeEventWrapper
+        <ExcludeEventWrapper
           listenerHandler={outsideClickHandler}
           className="ml-auto h-screen w-full max-w-[26rem] bg-white p-5"
         >
@@ -70,7 +71,7 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
               </li>
             </ul>
           </nav>
-        </ExecludeEventWrapper>
+        </ExcludeEventWrapper>
       )}
     </div>
   );

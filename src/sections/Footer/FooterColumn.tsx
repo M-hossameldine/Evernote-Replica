@@ -1,4 +1,4 @@
-import { TextLink } from 'components';
+import { TextLink } from 'components/Links';
 
 interface FOOTER_COLUMN_INTERFACE {
   title: string;

@@ -11,7 +11,7 @@ import {
   restoreItemFromTrashAction,
 } from 'store';
 
-import ExecludeEventWrapper from 'components/UI/ExecludeEventWrapper/ExecludeEventWrapper';
+import ExcludeEventWrapper from 'components/ExcludeEventWrapper';
 import NoteActionsDropdownItem from './NoteActionsDropdownItem';
 import { findNoteById } from 'utils/functions';
 import { IoIosMore } from 'assets';
@@ -66,7 +66,7 @@ const NoteActionsDropdown: React.FC = () => {
   );
 
   return (
-    <ExecludeEventWrapper listenerHandler={hideDropdonwHandler}>
+    <ExcludeEventWrapper listenerHandler={hideDropdonwHandler}>
       <div className="relative">
         <button
           className="m-0 p-0 text-neutral-500"
@@ -84,7 +84,7 @@ const NoteActionsDropdown: React.FC = () => {
           {actionsContent}
         </button>
       </div>
-    </ExecludeEventWrapper>
+    </ExcludeEventWrapper>
   );
 };
 

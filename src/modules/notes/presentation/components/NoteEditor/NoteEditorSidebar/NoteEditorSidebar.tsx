@@ -5,7 +5,7 @@ import NoteEditorSidebarHeader, {
   type NoteEditorSidebarHeaderProps,
 } from '../NoteEditorSidebarHeader/NoteEditorSidebarHeader';
 import NoteList from '../../NoteList/NoteList';
-import FallbackMsg from 'components/UI/FallbackMsg/FallbackMsg';
+import FallbackMsg from 'components/FallbackMsg';
 
 type NoteEditorSidebarProps = {
   notes: (Note | TrashNote)[];

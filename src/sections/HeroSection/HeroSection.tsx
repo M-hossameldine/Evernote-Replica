@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-import { TextLink, ContainedLink } from 'components';
+import { TextLink, ContainedLink } from 'components/Links';
 import { StyledHeroSectionTitle } from './HeroSection.styled';
 interface HERO_INTERFACE {
   title: string;
