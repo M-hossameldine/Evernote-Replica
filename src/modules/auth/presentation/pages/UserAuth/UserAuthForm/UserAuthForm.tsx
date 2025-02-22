@@ -12,7 +12,7 @@ import {
 } from 'modules/auth/presentation/helpers/validations';
 import { VerticalLogo } from 'assets';
 
-import { DefaultSpinner } from 'components';
+import { DefaultSpinner } from 'components/Spinners';
 import { TextLink } from 'components/Links';
 
 import { AuthRouteVariants } from 'constants/routeVariants';

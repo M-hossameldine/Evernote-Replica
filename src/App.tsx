@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { useInitAppAuth } from 'modules/auth/data/remote';
 import { Layout, Notification } from './components';
-import { DefaultSpinner } from './components/UI/Spinners/DefaultSpinner';
+import { DefaultSpinner } from './components/Spinners';
 import {
   HOMEPAGE,
   NOTESPAGE,
