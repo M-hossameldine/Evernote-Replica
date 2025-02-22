@@ -8,7 +8,7 @@ type Props = {
   listenerHandler: () => void;
 };
 
-const ExecludeEventWrapper = (props: Props): React.ReactElement => {
+const ExcludeEventWrapper = (props: Props): React.ReactElement => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useOutsideListener(wrapperRef, 'mousedown', props.listenerHandler);
@@ -20,4 +20,4 @@ const ExecludeEventWrapper = (props: Props): React.ReactElement => {
   );
 };
 
-export default ExecludeEventWrapper;
+export default ExcludeEventWrapper;

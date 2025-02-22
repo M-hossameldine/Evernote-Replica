@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import ExecludeEventWrapper from '../UI/ExecludeEventWrapper/ExecludeEventWrapper';
+import ExcludeEventWrapper from '../ExcludeEventWrapper';
 import Submenu from './Submenu';
 import type {
   FUNCTION_ITEM_INTERFACE,
@@ -62,7 +62,7 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
   }
 
   return (
-    <ExecludeEventWrapper
+    <ExcludeEventWrapper
       listenerHandler={hideDropdonwHandler}
       className={`relative ${props.className ? props.className : ''}`}
     >
@@ -77,7 +77,7 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
         onClick={hideDropdonwHandler}
         submenuItemsData={props.submenuItemsData}
       />
-    </ExecludeEventWrapper>
+    </ExcludeEventWrapper>
   );
 };
 
