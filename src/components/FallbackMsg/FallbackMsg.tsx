@@ -1,7 +1,7 @@
 import React from 'react';
 import type { IconType } from 'react-icons';
 
-type PropsType = {
+type FallbackMsgProps = {
   fallbackData: {
     title: string;
     text: string;
@@ -9,7 +9,7 @@ type PropsType = {
     action?: React.FC;
   };
 };
-const FallbackMsg = (props: PropsType): React.ReactElement => {
+const FallbackMsg = (props: FallbackMsgProps): React.ReactElement => {
   const { fallbackData } = props;
 
   return (
