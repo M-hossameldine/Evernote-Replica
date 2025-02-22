@@ -1,4 +1,4 @@
-import { SimpleFeatureBlock } from 'components';
+import SimpleFeatureBlock from '../../components/FeatureBlock';
 import { TextLink } from 'components/Links';
 import { FeatureCarousel } from '../../components/FeatureCarousel';
 import {

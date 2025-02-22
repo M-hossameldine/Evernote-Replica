@@ -6,7 +6,7 @@ import { NavTabModel } from 'models/UI-Models';
 import { fillNoteEditor, selectNotes, selectTrashNotes } from 'store';
 
 import SideNavTab from './SideNavTab';
-import DropdownList from '../../../../../components/UI/Dropdown';
+import DropdownList from 'components/Dropdown';
 import {
   AiFillHome,
   FaStar,
