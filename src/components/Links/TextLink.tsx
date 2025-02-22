@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { IconType } from 'react-icons';
 
-import { ExternalLink } from 'components';
+import { ExternalLink } from 'components/Links';
 
 interface TEXT_LINK_INTERFACE {
   text: string;
@@ -16,7 +16,7 @@ interface TEXT_LINK_INTERFACE {
   isExteranl?: boolean; // to define if the link will navigate to internal destination inside our app or exteranl destination
 }
 
-const TextLink = (props: TEXT_LINK_INTERFACE): React.ReactElement => {
+export const TextLink = (props: TEXT_LINK_INTERFACE): React.ReactElement => {
   const { text, route, underline = true, className, icon, isExteranl } = props;
 
   const linkClasses = ` 

@@ -1,4 +1,4 @@
-import { ReactIconLink } from 'components';
+import { ReactIconLink } from 'components/Links';
 
 import { FOOTER_SOCIAL_ICONS_DATA } from 'utils/data';
 

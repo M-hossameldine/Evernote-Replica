@@ -5,7 +5,7 @@ import TestimonialCard from './UI/Card/TestimonialCard/TestimonialCard';
 import Layout from './UI/Layout/Layout';
 
 // Other components
-import SimpleFeatureBlock from './other/FeatureBlock/SimpleFeatureBlock';
+import SimpleFeatureBlock from '../modules/AuthFree/presentation/components/FeatureBlock/SimpleFeatureBlock';
 
 // Sections
 import HeroSection from '../sections/HeroSection/HeroSection';

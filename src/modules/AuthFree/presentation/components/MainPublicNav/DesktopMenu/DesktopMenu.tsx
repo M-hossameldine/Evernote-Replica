@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { HorizontalLogo, FaBars } from 'assets/index';
 import { HOMEPAGE, DOWNLOADPAGE } from 'utils/constants';
-import { GhostLink } from 'components';
+import { GhostLink } from 'components/Links';
 
 import { AuthRouteVariants } from 'constants/routeVariants';
 import { AuthMode } from 'constants/AppEnums/AuthEnums';

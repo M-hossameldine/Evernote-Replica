@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { IconType } from 'react-icons';
 
-import { ExternalLink } from 'components';
+import { ExternalLink } from 'components/Links';
 
 interface CONTAINED_LINK_INTERFACE {
   text: string;
@@ -14,7 +14,9 @@ interface CONTAINED_LINK_INTERFACE {
   isExteranl?: boolean;
 }
 
-const ContainedLink = (props: CONTAINED_LINK_INTERFACE): React.ReactElement => {
+export const ContainedLink = (
+  props: CONTAINED_LINK_INTERFACE
+): React.ReactElement => {
   const { text, icon, className, route, isExteranl } = props;
 
   const linkClasses = ` table text-white bg-green-550 hover:bg-green-450 font-semibold py-[0.7em] rounded 

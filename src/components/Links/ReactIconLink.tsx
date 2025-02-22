@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import type { IconType } from 'react-icons';
 
-import { ExternalLink } from 'components';
+import { ExternalLink } from 'components/Links';
 
-interface REACT_ICON_LINK_INTERFACE {
+interface ReactIconLinkProps {
   Icon: IconType;
   route: string;
   size?: string;
@@ -11,8 +11,8 @@ interface REACT_ICON_LINK_INTERFACE {
   isExteranl?: boolean;
 }
 
-const ReactIconLink = (
-  props: REACT_ICON_LINK_INTERFACE
+export const ReactIconLink = (
+  props: ReactIconLinkProps
 ): React.ReactElement => {
   const { Icon, route, size, className, isExteranl } = props;
 

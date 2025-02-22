@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 
 import { HorizontalLogo, GrClose } from 'assets';
 import { HOMEPAGE, DOWNLOADPAGE } from 'utils/constants/routes';
-import { GhostLink, ExecludeEventWrapper } from 'components';
+import { ExecludeEventWrapper } from 'components';
+import { GhostLink } from 'components/Links';
 import { AuthRouteVariants } from 'constants/routeVariants';
 import { AuthMode } from 'constants/AppEnums/AuthEnums';
 

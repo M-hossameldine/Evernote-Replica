@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { IconType } from 'react-icons';
-import { ExternalLink } from 'components';
+import { ExternalLink } from 'components/Links';
 
 interface LINK_INTERFACE {
   text: string;
@@ -20,7 +20,7 @@ interface LINK_INTERFACE {
   isExteranl?: boolean;
 }
 
-const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
+export const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
   const { text, className, icon, route, isExteranl } = props;
   const { textClr, textHoverClr, borderClr, borderHoverClr } = props.colors;
 

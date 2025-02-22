@@ -11,7 +11,7 @@ type PropsType = {
   className?: string;
 };
 
-const ExteranlLink = (props: PropsType): React.ReactElement => {
+export const ExternalLink = (props: PropsType): React.ReactElement => {
   const { text, icon, href, className } = props;
 
   return (
@@ -34,4 +34,4 @@ const ExteranlLink = (props: PropsType): React.ReactElement => {
   );
 };
 
-export default ExteranlLink;
+export default ExternalLink;
