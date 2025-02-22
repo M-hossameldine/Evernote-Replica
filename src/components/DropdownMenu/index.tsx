@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import ExecludeEventWrapper from '../ExecludeEventWrapper/ExecludeEventWrapper';
+import ExecludeEventWrapper from '../UI/ExecludeEventWrapper/ExecludeEventWrapper';
 import Submenu from './Submenu';
 import type {
   FUNCTION_ITEM_INTERFACE,
