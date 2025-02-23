@@ -1,5 +1,6 @@
+import type { Note } from '~modules/notes/domain/interfaces/Note';
+
 import { v4 as uuid } from 'uuid';
-import type { Note } from 'modules/notes/domain/interfaces/Note';
 
 export function createNote(
   title: string,

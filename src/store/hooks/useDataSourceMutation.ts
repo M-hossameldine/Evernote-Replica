@@ -1,8 +1,11 @@
 import { useCallback, useState } from 'react';
-import type { RequestParams, ApiError } from 'store/api.interfaces';
-import { useAppDispatch, useAppSelector } from 'hooks';
+
 import type { Dispatch } from '@reduxjs/toolkit';
-import type { RootState } from 'store';
+
+import { useAppDispatch, useAppSelector } from '~hooks';
+
+import type { RootState } from '~store';
+import type { ApiError, RequestParams } from '~store/api.interfaces';
 
 interface UseDataSourceState<RESULT> {
   data: RESULT | null;
@@ -29,7 +32,7 @@ type UseDataSourceMutationProps<
   RESPONSE_DATA = any,
   RESULT = any,
 > = {
-  apiEndpoint: (props: {
+  apiEndpoint: (params: {
     payload: PAYLOAD;
     extraParams: EXTRA_PARAMS;
   }) => Promise<RESPONSE_DATA>;

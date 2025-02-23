@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 
-import { HorizontalLogo, GrClose } from 'assets';
-import { HOMEPAGE, DOWNLOADPAGE } from 'utils/constants/routes';
-import ExcludeEventWrapper from 'components/ExcludeEventWrapper';
-import { GhostLink } from 'components/Links';
-import { AuthRouteVariants } from 'constants/routeVariants';
-import { AuthMode } from 'constants/AppEnums/AuthEnums';
+import { AuthMode } from '~constants/AppEnums/AuthEnums';
+import { AuthRouteVariants } from '~constants/routeVariants';
+import { DOWNLOADPAGE, HOMEPAGE } from '~constants/routes';
+
+import { GrClose, HorizontalLogo } from '~assets';
+
+import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
+import { GhostLink } from '~components/Links';
 
 type PropsType = {
   onClose: () => void;

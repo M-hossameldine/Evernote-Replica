@@ -6,7 +6,8 @@ import {
   setDoc,
   signInWithEmailAndPassword,
   signOut,
-} from 'libs/firebase';
+} from '~libs/firebase';
+
 import type { AuthRequestPayload } from './authApis.interfaces';
 
 export const signUp = async ({

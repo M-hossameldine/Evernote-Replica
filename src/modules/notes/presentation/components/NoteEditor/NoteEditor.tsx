@@ -1,17 +1,20 @@
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppSelector, useAppDispatch, useLocationIndicator } from 'hooks';
+
+import { useAppDispatch, useAppSelector, useLocationIndicator } from '~hooks';
 
 import {
-  selectNotes,
-  selectTrashNotes,
   editNote,
   fillNoteEditor,
+  selectNotes,
+  selectTrashNotes,
   showNotification,
-} from 'store';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+} from '~store';
 
-import AutoGrowingTextArea from 'components/AutoGrowingTextArea';
+import AutoGrowingTextArea from '~components/AutoGrowingTextArea';
+
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
 
 const NoteEditor: React.FC = () => {
@@ -65,11 +68,7 @@ const NoteEditor: React.FC = () => {
     const updatedTimestamp = new Date().toISOString();
 
     // update store states
-    dispatch(
-      fillNoteEditor({
-        id: activeId!,
-      })
-    );
+    dispatch(fillNoteEditor());
     dispatch(
       editNote({
         title: titleValue,
@@ -85,11 +84,7 @@ const NoteEditor: React.FC = () => {
     const updatedTimestamp = new Date().toISOString();
 
     // update store states
-    dispatch(
-      fillNoteEditor({
-        id: activeId!,
-      })
-    );
+    dispatch(fillNoteEditor());
     dispatch(
       editNote({
         title: titleText,

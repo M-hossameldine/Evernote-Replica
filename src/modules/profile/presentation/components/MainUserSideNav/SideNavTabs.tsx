@@ -1,22 +1,26 @@
+import { NavTabModel } from '~models/UI-Models';
+
 import { useNavigate } from 'react-router-dom';
-import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from 'utils/constants';
 
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
-import { NavTabModel } from 'models/UI-Models';
-import { fillNoteEditor, selectNotes, selectTrashNotes } from 'store';
+import { useAppDispatch, useAppSelector } from '~hooks/redux-hooks';
 
-import SideNavTab from './SideNavTab';
-import DropdownList from 'components/Dropdown';
+import { fillNoteEditor, selectNotes, selectTrashNotes } from '~store';
+
+import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from '~constants/routes';
+
+import DropdownList from '~components/Dropdown';
+
 import {
   AiFillHome,
   FaStar,
-  IoIosPaper,
+  FaTrash,
+  FaUserFriends,
   IoIosCheckmarkCircle,
+  IoIosPaper,
   RiBookletFill,
   RiPriceTagFill,
-  FaUserFriends,
-  FaTrash,
 } from '../../../../../assets';
+import SideNavTab from './SideNavTab';
 
 const TAB_CONTENT = {
   home: new NavTabModel('Home', AiFillHome),
@@ -38,8 +42,8 @@ export const SideNavTabs: React.FC = () => {
   const activateNotesTabHandler = () => {
     if (notes.length > 0) {
       const { id } = notes[0];
-      dispatch(fillNoteEditor({ id }));
-      navigate(`${NOTESPAGE}/${notes[0].id}`);
+      dispatch(fillNoteEditor());
+      navigate(`${NOTESPAGE}/${id}`);
     } else {
       navigate(`${NOTESPAGE}/empty`);
     }

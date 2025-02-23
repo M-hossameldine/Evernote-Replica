@@ -1,11 +1,10 @@
 /*
  * Custom Hook detects whick page (route) the reusable component is part of
  */
-
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { TRASHPAGE, NOTESPAGE, EDITORPAGE } from 'utils/constants';
+import { EDITORPAGE, NOTESPAGE, TRASHPAGE } from '~constants/routes';
 
 export const locationType = [
   'trash',

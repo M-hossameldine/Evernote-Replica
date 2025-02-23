@@ -1,10 +1,9 @@
+import type { TrashNote } from '~modules/notes/domain/interfaces';
+
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { moveToTrash } from './notesSlice';
-import type { RootState } from 'store';
 
-import { createTrashNote } from './notesSlice.helpers';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import type { RootState } from '~store';
 
 export interface TRASH_STATE_INTERFACE {
   notes: TrashNote[];
@@ -55,15 +54,6 @@ const TrashSlice = createSlice({
     emptyTrash: state => {
       state.notes = [];
     },
-  },
-  extraReducers: builder => {
-    builder.addCase(
-      moveToTrash,
-      (state, action: PayloadAction<{ id: string; note: Note }>) => {
-        const newTrashNote = createTrashNote(action.payload.note);
-        // let notes = state.notes.unshift(newTrashNote);
-      }
-    );
   },
 });
 

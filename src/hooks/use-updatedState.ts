@@ -3,12 +3,13 @@
  * Specially the naviagtion after updating the state successfuly
  * The typical usuage case: adding and deleting notes
  */
-
 import { useEffect, useState } from 'react';
-import type { AppDispatch } from 'store';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from './redux-hooks';
+
+import type { AppDispatch } from '~store';
+
 import type { RootState } from '../store';
+import { useAppDispatch } from './redux-hooks';
 
 interface UPDATE_DATA_INTERFACE {
   asyncAction: (

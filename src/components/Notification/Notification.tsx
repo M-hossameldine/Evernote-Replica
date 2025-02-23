@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'hooks';
+
+import { useAppDispatch, useAppSelector } from '~hooks';
+
+import { hideNotification, selectNotification } from '~store';
+
+import { IoMdClose, MdError } from '~assets';
 
 import classes from './Notification.module.css';
-import { selectNotification, hideNotification } from 'store';
-import { IoMdClose, MdError } from 'assets';
 
 const Notification: React.FC = () => {
   const [showNotification, setShowNotification] = useState(false);

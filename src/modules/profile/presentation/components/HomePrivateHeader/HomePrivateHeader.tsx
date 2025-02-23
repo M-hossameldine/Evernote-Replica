@@ -1,5 +1,7 @@
-import { RiHomeGearFill } from 'assets';
+import { RiHomeGearFill } from '~assets';
+
 import { StyledHomePrivateHeader } from './HomePrivateHeader.styled';
+
 export const HomePrivateHeader: React.FC = () => {
   // get home header date
   const todayTimestamp = new Date().toLocaleString('en-US', {

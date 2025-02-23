@@ -1,5 +1,6 @@
 // tailwind custom icons
 import TwExpandIcon from './images/tw-icons/tw-expand-arrow.svg';
+
 export { TwExpandIcon };
 
 // React Icons

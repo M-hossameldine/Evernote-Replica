@@ -1,4 +1,5 @@
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+
 import NoteItem from '../NoteItem/NoteItem';
 
 type PropsType = {

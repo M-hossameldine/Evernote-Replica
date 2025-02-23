@@ -1,4 +1,5 @@
 import type { IconType } from 'react-icons';
+
 import type { REACT_ICON_INTERFACE } from '.';
 
 /**************************************************/

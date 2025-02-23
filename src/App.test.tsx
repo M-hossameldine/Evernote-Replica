@@ -1,8 +1,12 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from './store';
-import App from './App';
+import { expect, test } from 'vitest';
+
+// import React from 'react';
+// import { Provider } from 'react-redux';
+
+// import { render } from '@testing-library/react';
+
+// import App from './App';
+// import { store } from './store';
 
 test('renders learn react link', () => {
   // const { getByText } = render(
@@ -14,3 +18,5 @@ test('renders learn react link', () => {
   // expect(getByText(/learn/i)).toBeInTheDocument();
   expect(true).toBeTruthy();
 });
+
+// export {};

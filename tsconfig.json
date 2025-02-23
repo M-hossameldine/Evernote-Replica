@@ -1,6 +1,30 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
+    "paths": {
+      "~assets": ["./assets"],
+      "~assets/*": ["./assets/*"],
+      "~components/*": ["./components/*"],
+      "~components": ["./components"],
+      "~constants/*": ["./constants/*"],
+      "~constants": ["./constants"],
+      "~helpers/*": ["./helpers/*"],
+      "~helpers": ["./helpers"],
+      "~hooks/*": ["./hooks/*"],
+      "~hooks": ["./hooks"],
+      "~models/*": ["./models/*"],
+      "~models": ["./models"],
+      "~modules/*": ["./modules/*"],
+      "~modules": ["./modules"],
+      "~libs/*": ["./libs/*"],
+      "~libs": ["./libs"],
+      "~store/*": ["./store/*"],
+      "~store": ["./store"],
+      "~pages/*": ["./pages/*"],
+      "~pages": ["./pages"],
+      "~sections/*": ["./sections/*"],
+      "~sections": ["./sections"]
+    },
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": [
@@ -24,7 +48,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": [
     "src",

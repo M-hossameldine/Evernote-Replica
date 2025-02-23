@@ -1,4 +1,4 @@
-import { FaQuoteLeft } from 'assets';
+import { FaQuoteLeft } from '~assets';
 
 // logo and altText are passed only if this card is part of the default carousel
 interface TestimonialCardProps {

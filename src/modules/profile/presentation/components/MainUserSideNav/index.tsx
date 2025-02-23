@@ -1,12 +1,16 @@
 import { v4 as uuid } from 'uuid';
-import { useAppSelector } from 'hooks';
-import { useLogout } from 'modules/auth/data/remote/authApis';
 
-import { selectUser } from 'modules/auth/data/local/authSlice';
-import { FaUserCircle, IoIosArrowDown } from 'assets';
-import DropdownMenu from 'components/DropdownMenu';
-import { SideNavTabs } from './SideNavTabs';
+import { useAppSelector } from '~hooks';
+
+import { selectUser } from '~modules/auth/data/local/authSlice';
+import { useLogout } from '~modules/auth/data/remote/authApis';
+
+import { FaUserCircle, IoIosArrowDown } from '~assets';
+
+import DropdownMenu from '~components/DropdownMenu';
+
 import { AddNewNoteTab } from './AddNewNoteTab';
+import { SideNavTabs } from './SideNavTabs';
 
 const SideNavBar: React.FC = () => {
   const userInfo = useAppSelector(selectUser);

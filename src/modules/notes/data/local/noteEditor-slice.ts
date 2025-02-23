@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import type { RootState } from 'store';
-import { addNote } from './notesSlice';
-import type { Note } from 'modules/notes/domain/interfaces/Note';
+import type { RootState } from '~store';
 
 interface NoteEditorState {
   activeNoteIndex: number;
@@ -19,24 +17,17 @@ const NoteEditorSlice = createSlice({
   name: 'noteEditor',
   initialState,
   reducers: {
-    fillNoteEditor(state, action: PayloadAction<{ id: string }>) {
-      const { id } = action.payload;
-
+    fillNoteEditor(state) {
       state.defaultActive = false;
     },
     resetNoteEditor(state) {
-      state = initialState;
+      Object.assign(state, initialState);
     },
     setActiveNoteIndex(state, action: PayloadAction<{ index: number }>) {
       const { index } = action.payload;
 
       state.activeNoteIndex = index;
     },
-  },
-  extraReducers: builder => {
-    builder.addCase(addNote, (state, action: PayloadAction<Note>) => {
-      // todo: check if this extra reducer is still needed
-    });
   },
 });
 

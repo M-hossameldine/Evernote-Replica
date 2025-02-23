@@ -1,11 +1,13 @@
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+
 import type { IconType } from 'react-icons';
 
+import FallbackMsg from '~components/FallbackMsg';
+
+import NoteList from '../../NoteList/NoteList';
 import NoteEditorSidebarHeader, {
   type NoteEditorSidebarHeaderProps,
 } from '../NoteEditorSidebarHeader/NoteEditorSidebarHeader';
-import NoteList from '../../NoteList/NoteList';
-import FallbackMsg from 'components/FallbackMsg';
 
 type NoteEditorSidebarProps = {
   notes: (Note | TrashNote)[];

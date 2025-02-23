@@ -1,9 +1,9 @@
+import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 import 'tw-elements';
 
-import PricePlanCard from 'components/Cards/PricePlanCard';
-import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
+import { BsArrowRightCircleFill, FiArrowRight } from '~assets';
 
-import { BsArrowRightCircleFill, FiArrowRight } from 'assets';
+import PricePlanCard from '~components/Cards/PricePlanCard';
 
 interface PricingPlansSection_INTERFACE {
   className?: string;

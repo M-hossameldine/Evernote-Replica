@@ -1,10 +1,9 @@
-import { useUpdatedState, useAppSelector, useLocationIndicator } from 'hooks';
+import { useAppSelector, useLocationIndicator, useUpdatedState } from '~hooks';
 
-import { selectNotes, selectTrashNotes, selectNoteEditor } from 'store';
-import type { AppDispatch } from 'store';
+import type { AppDispatch } from '~store';
+import { selectNoteEditor, selectNotes, selectTrashNotes } from '~store';
 
-import { NOTESPAGE, TRASHPAGE } from 'utils/constants';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import { NOTESPAGE, TRASHPAGE } from '~constants/routes';
 
 type NoteActionsDropdownItemProps = {
   text: string;
@@ -24,8 +23,6 @@ const NoteActionsDropdownItem = (
   const location = useLocationIndicator();
 
   const isInTrash = location.isInCurrentPath('trash');
-
-  const notesList: (Note | TrashNote)[] = isInTrash ? trashNotes : notes;
 
   const updatedState = useUpdatedState({
     asyncAction,

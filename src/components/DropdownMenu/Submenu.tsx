@@ -2,8 +2,9 @@ import type {
   ACTION_ITEM_INTERFACE,
   FUNCTION_ITEM_INTERFACE,
 } from 'interfaces';
-import SubmenuFunctionItem from './SubmenuFunctionItem';
+
 import SubmenuActionItem from './SubmenuActionItem';
+import SubmenuFunctionItem from './SubmenuFunctionItem';
 
 interface PropsType {
   submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];

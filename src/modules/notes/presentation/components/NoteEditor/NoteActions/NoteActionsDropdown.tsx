@@ -1,20 +1,24 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useLocationIndicator } from 'hooks/use-locationIndicator';
 
-import { useAppSelector } from 'hooks/redux-hooks';
+import { useAppSelector } from '~hooks/redux-hooks';
+import { useLocationIndicator } from '~hooks/use-locationIndicator';
+
 import {
-  selectNotes,
-  selectTrashNotes,
   MoveToTrashAction,
   deleteItemPermanentlyAction,
   restoreItemFromTrashAction,
-} from 'store';
+  selectNotes,
+  selectTrashNotes,
+} from '~store';
 
-import ExcludeEventWrapper from 'components/ExcludeEventWrapper';
+import { findNoteById } from '~helpers';
+
+import { IoIosMore } from '~assets';
+
+import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
+
 import NoteActionsDropdownItem from './NoteActionsDropdownItem';
-import { findNoteById } from 'utils/functions';
-import { IoIosMore } from 'assets';
 
 const NoteActionsDropdown: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);

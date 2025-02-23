@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import type { IconType } from 'react-icons';
+import { Link } from 'react-router-dom';
 
-import { ExternalLink } from 'components/Links';
+import { ExternalLink } from '~components/Links';
 
 interface TEXT_LINK_INTERFACE {
   text: string;
