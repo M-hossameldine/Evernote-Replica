@@ -68,11 +68,7 @@ const NoteEditor: React.FC = () => {
     const updatedTimestamp = new Date().toISOString();
 
     // update store states
-    dispatch(
-      fillNoteEditor({
-        id: activeId!,
-      })
-    );
+    dispatch(fillNoteEditor());
     dispatch(
       editNote({
         title: titleValue,
@@ -88,11 +84,7 @@ const NoteEditor: React.FC = () => {
     const updatedTimestamp = new Date().toISOString();
 
     // update store states
-    dispatch(
-      fillNoteEditor({
-        id: activeId!,
-      })
-    );
+    dispatch(fillNoteEditor());
     dispatch(
       editNote({
         title: titleText,

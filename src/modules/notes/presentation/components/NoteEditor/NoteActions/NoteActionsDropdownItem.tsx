@@ -1,5 +1,3 @@
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
-
 import { useAppSelector, useLocationIndicator, useUpdatedState } from '~hooks';
 
 import type { AppDispatch } from '~store';
@@ -25,8 +23,6 @@ const NoteActionsDropdownItem = (
   const location = useLocationIndicator();
 
   const isInTrash = location.isInCurrentPath('trash');
-
-  const notesList: (Note | TrashNote)[] = isInTrash ? trashNotes : notes;
 
   const updatedState = useUpdatedState({
     asyncAction,

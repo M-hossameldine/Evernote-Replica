@@ -20,8 +20,8 @@ import {
 import type {
   HOME_FEATURE_ZIGZAG_DATA_INTERFACE,
   PRICE_PLAN_DATA_INTERFACE,
-  REACT_ICON_INTERFACE,
   Testimonial_CAROUSEL_DATA_INTERFACE,
+  // REACT_ICON_INTERFACE,
 } from '../../interfaces';
 
 // Public Home Hero Section - feature data

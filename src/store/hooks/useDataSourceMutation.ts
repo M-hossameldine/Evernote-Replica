@@ -32,7 +32,7 @@ type UseDataSourceMutationProps<
   RESPONSE_DATA = any,
   RESULT = any,
 > = {
-  apiEndpoint: (props: {
+  apiEndpoint: (params: {
     payload: PAYLOAD;
     extraParams: EXTRA_PARAMS;
   }) => Promise<RESPONSE_DATA>;

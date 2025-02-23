@@ -1,5 +1,3 @@
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
-
 import type { ACTION_ITEM_INTERFACE } from 'interfaces';
 
 import { useAppSelector, useLocationIndicator, useUpdatedState } from '~hooks';
@@ -19,8 +17,6 @@ const SubmenuActionItem = (
   const location = useLocationIndicator();
 
   const isInTrash = location.isInCurrentPath('trash');
-
-  const notesList: (Note | TrashNote)[] = isInTrash ? trashNotes : notes;
 
   const updatedState = useUpdatedState({
     asyncAction,
