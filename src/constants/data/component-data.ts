@@ -1,28 +1,28 @@
 import { v4 as uuid } from 'uuid';
-import type {
-  Testimonial_CAROUSEL_DATA_INTERFACE,
-  REACT_ICON_INTERFACE,
-  HOME_FEATURE_ZIGZAG_DATA_INTERFACE,
-  PRICE_PLAN_DATA_INTERFACE,
-} from '../../interfaces';
 
 import {
+  BusinessLogo,
+  EnterpreneurMagazineLogo,
+  FeatureCalenderIcon,
+  FeatureCalenderImg,
+  FeatureClipTheWebImg,
+  FeatureDocScanningIcon,
+  FeatureHitDeadlineIcon,
+  FeatureHitDeadlineImg,
+  FeaturePaperlessImg,
+  FeatureWebClippingIcon,
   ForbesLogo,
   IncLogo,
-  TheVergeLogo,
-  EnterpreneurMagazineLogo,
-  BusinessLogo,
-  WellPlusGoodLogo,
-  FeatureHitDeadlineImg,
-  FeatureHitDeadlineIcon,
-  FeaturePaperlessImg,
-  FeatureDocScanningIcon,
-  FeatureClipTheWebImg,
-  FeatureWebClippingIcon,
-  FeatureCalenderImg,
-  FeatureCalenderIcon,
   IoIosArrowForward,
+  TheVergeLogo,
+  WellPlusGoodLogo,
 } from '../../assets';
+import type {
+  HOME_FEATURE_ZIGZAG_DATA_INTERFACE,
+  PRICE_PLAN_DATA_INTERFACE,
+  REACT_ICON_INTERFACE,
+  Testimonial_CAROUSEL_DATA_INTERFACE,
+} from '../../interfaces';
 
 // Public Home Hero Section - feature data
 export const HOME_BASIC_FEATURE_DATA = [

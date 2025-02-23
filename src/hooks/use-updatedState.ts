@@ -3,10 +3,10 @@
  * Specially the naviagtion after updating the state successfuly
  * The typical usuage case: adding and deleting notes
  */
-import type { AppDispatch } from '~store';
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import type { AppDispatch } from '~store';
 
 import type { RootState } from '../store';
 import { useAppDispatch } from './redux-hooks';

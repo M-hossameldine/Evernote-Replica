@@ -1,12 +1,14 @@
-import { useAppSelector } from 'hooks/redux-hooks';
+import { Link, useNavigate } from 'react-router-dom';
+
 import type {
   ACTION_ITEM_INTERFACE,
   FUNCTION_ITEM_INTERFACE,
 } from 'interfaces';
 import { v4 as uuid } from 'uuid';
-import { selectNotes, sendNewNoteData } from '~store';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useAppSelector } from '~hooks/redux-hooks';
+
+import { selectNotes, sendNewNoteData } from '~store';
 
 import { EDITORPAGE, NOTESPAGE } from '~constants/routes';
 

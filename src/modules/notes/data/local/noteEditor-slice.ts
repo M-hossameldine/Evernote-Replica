@@ -1,6 +1,8 @@
+import type { Note } from '~modules/notes/domain/interfaces/Note';
+
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Note } from '~modules/notes/domain/interfaces/Note';
+
 import type { RootState } from '~store';
 
 import { addNote } from './notesSlice';

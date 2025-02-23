@@ -1,8 +1,10 @@
-import type { ACTION_ITEM_INTERFACE } from 'interfaces';
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
-import { selectNoteEditor, selectNotes, selectTrashNotes } from '~store';
+
+import type { ACTION_ITEM_INTERFACE } from 'interfaces';
 
 import { useAppSelector, useLocationIndicator, useUpdatedState } from '~hooks';
+
+import { selectNoteEditor, selectNotes, selectTrashNotes } from '~store';
 
 import { NOTESPAGE, TRASHPAGE } from '~constants/routes';
 

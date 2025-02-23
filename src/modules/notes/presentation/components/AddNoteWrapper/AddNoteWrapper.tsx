@@ -1,6 +1,6 @@
-import { selectNotes, sendNewNoteData } from '~store';
-
 import { useAppSelector, useUpdatedState } from '~hooks';
+
+import { selectNotes, sendNewNoteData } from '~store';
 
 import { NOTESPAGE } from '~constants/routes';
 

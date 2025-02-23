@@ -1,4 +1,10 @@
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector, useLocationIndicator } from '~hooks';
+
 import {
   editNote,
   fillNoteEditor,
@@ -6,11 +12,6 @@ import {
   selectTrashNotes,
   showNotification,
 } from '~store';
-
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-import { useAppDispatch, useAppSelector, useLocationIndicator } from '~hooks';
 
 import AutoGrowingTextArea from '~components/AutoGrowingTextArea';
 

@@ -1,8 +1,8 @@
-import { hideNotification, selectNotification } from '~store';
-
 import { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '~hooks';
+
+import { hideNotification, selectNotification } from '~store';
 
 import { IoMdClose, MdError } from '~assets';
 

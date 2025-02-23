@@ -1,25 +1,25 @@
 import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
+  type User as FirebaseUser,
+  type UserCredential,
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
   signOut,
-  type UserCredential,
-  type User as FirebaseUser,
-  setPersistence,
-  browserLocalPersistence,
-  onAuthStateChanged,
 } from 'firebase/auth';
 import {
-  getFirestore,
-  collection,
   addDoc,
-  setDoc,
+  collection,
+  deleteDoc,
   doc,
   getDocs,
-  updateDoc,
-  deleteDoc,
+  getFirestore,
   query,
+  setDoc,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 

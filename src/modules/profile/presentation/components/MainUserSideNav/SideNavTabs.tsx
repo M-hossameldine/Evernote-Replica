@@ -1,8 +1,10 @@
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks';
 import { NavTabModel } from '~models/UI-Models';
-import { fillNoteEditor, selectNotes, selectTrashNotes } from '~store';
 
 import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from '~hooks/redux-hooks';
+
+import { fillNoteEditor, selectNotes, selectTrashNotes } from '~store';
 
 import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from '~constants/routes';
 

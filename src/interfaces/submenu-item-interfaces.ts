@@ -2,8 +2,7 @@
  * Interface represents the needed requirement for actions that are followed by using the new updated store state
  * customized specially to be used when the notes or trashNotes are manipulated through addition or deletion.
  */
-
-import type { RootState, AppDispatch } from '../store';
+import type { AppDispatch, RootState } from '../store';
 
 export interface ACTION_ITEM_INTERFACE {
   id: string;

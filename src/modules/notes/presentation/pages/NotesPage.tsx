@@ -1,6 +1,6 @@
-import { selectNotes } from '~store';
-
 import { useAppSelector, useLocationIndicator } from '~hooks';
+
+import { selectNotes } from '~store';
 
 import { GiNotebook, IoIosPaper } from '~assets';
 

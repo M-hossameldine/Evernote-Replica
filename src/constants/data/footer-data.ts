@@ -1,13 +1,13 @@
-import { v4 as uuid } from 'uuid';
 import type { ICON_LINK_DATA_INTERFACE } from 'interfaces';
+import { v4 as uuid } from 'uuid';
 
 import {
   FaFacebookF,
-  FaTwitter,
-  FaMediumM,
   FaInstagram,
-  FaYoutube,
   FaLinkedinIn,
+  FaMediumM,
+  FaTwitter,
+  FaYoutube,
 } from '../../assets';
 
 export interface FooterData {

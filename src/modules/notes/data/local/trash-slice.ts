@@ -1,6 +1,8 @@
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+
 import type { RootState } from '~store';
 
 import { moveToTrash } from './notesSlice';

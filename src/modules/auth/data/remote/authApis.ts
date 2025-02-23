@@ -1,10 +1,11 @@
 import { auth, onAuthStateChanged } from '~libs/firebase';
 import type { User } from '~modules/auth/domain/models';
-import { useDataSourceMutation } from '~store/hooks';
 
 import { useEffect, useState } from 'react';
 
 import { useAppDispatch } from '~hooks';
+
+import { useDataSourceMutation } from '~store/hooks';
 
 import { saveLogin, saveLogout } from '../local/authSlice';
 import { login, logout, signUp } from './authApis.helpers';

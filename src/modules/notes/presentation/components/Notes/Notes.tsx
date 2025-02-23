@@ -1,7 +1,8 @@
-import { useAppSelector } from 'hooks/redux-hooks';
-import { selectNotes } from '~store';
-
 import React from 'react';
+
+import { useAppSelector } from '~hooks/redux-hooks';
+
+import { selectNotes } from '~store';
 
 import { IoIosPaper } from '~assets';
 

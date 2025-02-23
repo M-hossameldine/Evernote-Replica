@@ -1,5 +1,6 @@
-import { BsSearch } from 'assets/index';
 import { NavTabModel } from '~models/UI-Models';
+
+import { BsSearch } from '~assets/index';
 
 import SideNavTab from './SideNavTab';
 

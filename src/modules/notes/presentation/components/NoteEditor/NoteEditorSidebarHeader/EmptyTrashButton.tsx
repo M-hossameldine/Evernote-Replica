@@ -1,6 +1,6 @@
-import { emptyTrashAction, selectTrashNotes } from '~store';
-
 import { useAppSelector, useUpdatedState } from '~hooks';
+
+import { emptyTrashAction, selectTrashNotes } from '~store';
 
 import { TRASHPAGE } from '~constants/routes';
 

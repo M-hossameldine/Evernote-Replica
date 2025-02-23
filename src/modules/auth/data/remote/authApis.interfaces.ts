@@ -1,4 +1,5 @@
 import type { UserCredential } from '~libs/firebase';
+
 import type { RequestParams } from '~store/api.interfaces';
 
 import type { SaveLoginActionPayload } from '../local/authSlice.interfaces';

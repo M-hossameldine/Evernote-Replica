@@ -1,8 +1,8 @@
-import { selectIsLoggedIn } from '~store';
-
 import { useMatch } from 'react-router-dom';
 
 import { useAppSelector } from '~hooks';
+
+import { selectIsLoggedIn } from '~store';
 
 import { AuthRouteVariants } from '~constants/routeVariants';
 

@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 // TODO: Validate if this hook is still needed
 export const useFirebase = () => {

@@ -1,5 +1,9 @@
-import { useAppSelector } from 'hooks/redux-hooks';
-import { useLocationIndicator } from 'hooks/use-locationIndicator';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { useAppSelector } from '~hooks/redux-hooks';
+import { useLocationIndicator } from '~hooks/use-locationIndicator';
+
 import {
   MoveToTrashAction,
   deleteItemPermanentlyAction,
@@ -7,9 +11,6 @@ import {
   selectNotes,
   selectTrashNotes,
 } from '~store';
-
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { findNoteById } from '~helpers';
 

@@ -1,10 +1,11 @@
-import type { Dispatch } from '@reduxjs/toolkit';
-import type { RootState } from '~store';
-import type { ApiError, RequestParams } from '~store/api.interfaces';
-
 import { useCallback, useState } from 'react';
 
+import type { Dispatch } from '@reduxjs/toolkit';
+
 import { useAppDispatch, useAppSelector } from '~hooks';
+
+import type { RootState } from '~store';
+import type { ApiError, RequestParams } from '~store/api.interfaces';
 
 interface UseDataSourceState<RESULT> {
   data: RESULT | null;

@@ -1,6 +1,6 @@
-import { selectTrashNotes } from '~store';
-
 import { useAppSelector } from '~hooks';
+
+import { selectTrashNotes } from '~store';
 
 import { FaTrash } from '~assets';
 
