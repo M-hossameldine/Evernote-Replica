@@ -1,27 +1,30 @@
-import SimpleFeatureBlock from '../../components/FeatureBlock';
-import { TextLink } from 'components/Links';
-import { FeatureCarousel } from '../../components/FeatureCarousel';
-import {
-  HeroSection,
-  TestimonialSection,
-  FeatureZigzagSection,
-  PricingPlansSection,
-  Footer,
-} from 'sections/';
-import { TaskHeroImg, IoIosArrowRoundForward } from 'assets';
 import {
   HOME_BASIC_FEATURE_DATA,
-  Testimonial_CAROUSEL_DATA,
   HOME_FEATURE_ZIGZAG_DATA,
   PRICE_PLAN_DATA,
-} from 'utils/data';
+  Testimonial_CAROUSEL_DATA,
+} from '@constants/data';
+import {
+  FeatureZigzagSection,
+  Footer,
+  HeroSection,
+  PricingPlansSection,
+  TestimonialSection,
+} from 'sections/';
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,
 } from 'utils/settings';
 
-import { AuthRouteVariants } from 'constants/routeVariants';
 import { AuthMode } from 'constants/AppEnums/AuthEnums';
+import { AuthRouteVariants } from 'constants/routeVariants';
+
+import { IoIosArrowRoundForward, TaskHeroImg } from 'assets';
+
+import { TextLink } from 'components/Links';
+
+import SimpleFeatureBlock from '../../components/FeatureBlock';
+import { FeatureCarousel } from '../../components/FeatureCarousel';
 
 const PublicHomePage: React.FC = () => {
   return (

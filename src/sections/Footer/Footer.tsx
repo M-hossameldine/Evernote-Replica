@@ -1,8 +1,8 @@
-import classes from './Footer.module.css';
+import { FOOTER_DATA } from '@constants/data/footer-data';
 
 import { HorizontalLogo } from 'assets';
-import { FOOTER_DATA } from 'utils/data/footer-data';
 
+import classes from './Footer.module.css';
 import FooterColumn from './FooterColumn';
 import FooterInfoRow from './FooterInfoRow';
 

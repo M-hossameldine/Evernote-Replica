@@ -1,7 +1,10 @@
-import { TextLink } from 'components/Links';
-import FooterSocialIcons from './FooterSocialIcons';
-import { FOOTER_LEGAL_DATA } from 'utils/data';
+import { FOOTER_LEGAL_DATA } from '@constants/data';
+
 import { ElephantLogoImg } from 'assets';
+
+import { TextLink } from 'components/Links';
+
+import FooterSocialIcons from './FooterSocialIcons';
 
 const FooterInfoRow: React.FC = () => {
   return (
