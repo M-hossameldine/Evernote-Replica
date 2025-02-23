@@ -1,5 +1,6 @@
 import type { IconType } from 'react-icons';
-import { TextLink } from 'components/Links';
+
+import { TextLink } from '~components/Links';
 
 interface ROWCARD_INTERFACE {
   cardImg: { img: string; altText: string };

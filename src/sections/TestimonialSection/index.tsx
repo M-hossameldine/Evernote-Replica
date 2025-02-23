@@ -1,9 +1,10 @@
-import { Testimonial_CAROUSEL_DATA } from '@constants/data';
 import type { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
 
-import DefaultCarousel from 'components/AppCarousels/DefaultCarousel';
-import LogoCarousel from 'components/AppCarousels/LogoCarousel';
-import TestimonialCard from 'components/Cards/TestimonialCard';
+import { Testimonial_CAROUSEL_DATA } from '~constants/data';
+
+import DefaultCarousel from '~components/AppCarousels/DefaultCarousel';
+import LogoCarousel from '~components/AppCarousels/LogoCarousel';
+import TestimonialCard from '~components/Cards/TestimonialCard';
 
 import './index.css';
 

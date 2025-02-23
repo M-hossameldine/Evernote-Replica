@@ -1,5 +1,6 @@
-import RowCard from 'components/Cards/RowCard';
 import type { HOME_FEATURE_ZIGZAG_DATA_INTERFACE } from 'interfaces';
+
+import RowCard from '~components/Cards/RowCard';
 
 interface ComponentInterface {
   dataList: HOME_FEATURE_ZIGZAG_DATA_INTERFACE[];

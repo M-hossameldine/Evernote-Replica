@@ -1,20 +1,22 @@
-import { useState, useEffect } from 'react';
-import { onAuthStateChanged, auth } from 'libs/firebase';
-import type { User } from 'modules/auth/domain/models';
+import { auth, onAuthStateChanged } from '~libs/firebase';
+import type { User } from '~modules/auth/domain/models';
+import { useDataSourceMutation } from '~store/hooks';
 
-import { signUp, login, logout } from './authApis.helpers';
-import {
-  mapFirebaseUserToAuthUser,
-  mapAuthRequestResult,
-} from './authApis.mapping';
-import { useDataSourceMutation } from 'store/hooks';
+import { useEffect, useState } from 'react';
+
+import { useAppDispatch } from '~hooks';
+
+import { saveLogin, saveLogout } from '../local/authSlice';
+import { login, logout, signUp } from './authApis.helpers';
 import type {
   AuthRequestPayload,
-  AuthRequestResult,
   AuthRequestResponse,
+  AuthRequestResult,
 } from './authApis.interfaces';
-import { useAppDispatch } from 'hooks';
-import { saveLogin, saveLogout } from '../local/authSlice';
+import {
+  mapAuthRequestResult,
+  mapFirebaseUserToAuthUser,
+} from './authApis.mapping';
 
 export const useInitAppAuth = () => {
   const dispatch = useAppDispatch();

@@ -1,7 +1,8 @@
-import { NOTESPAGE } from 'constants/routes';
-import { selectNotes, sendNewNoteData } from 'store';
+import { selectNotes, sendNewNoteData } from '~store';
 
-import { useAppSelector, useUpdatedState } from 'hooks';
+import { useAppSelector, useUpdatedState } from '~hooks';
+
+import { NOTESPAGE } from '~constants/routes';
 
 type Props = {
   children?: React.ReactNode;

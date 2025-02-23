@@ -1,9 +1,13 @@
-import { useAppSelector } from 'hooks';
+import { selectIsLoggedIn } from '~store';
+
 import { useMatch } from 'react-router-dom';
-import MainUserSideNav from 'modules/profile/presentation/components/MainUserSideNav';
-import { MainPublicNav } from 'modules/AuthFree/presentation/components/MainPublicNav';
-import { selectIsLoggedIn } from 'store';
-import { AuthRouteVariants } from 'constants/routeVariants';
+
+import { useAppSelector } from '~hooks';
+
+import { AuthRouteVariants } from '~constants/routeVariants';
+
+import { MainPublicNav } from '~modules/AuthFree/presentation/components/MainPublicNav';
+import MainUserSideNav from '~modules/profile/presentation/components/MainUserSideNav';
 
 type PropsType = {
   children?: React.ReactNode;

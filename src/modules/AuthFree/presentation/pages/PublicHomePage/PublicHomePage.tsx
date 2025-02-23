@@ -1,27 +1,27 @@
 import {
-  HOME_BASIC_FEATURE_DATA,
-  HOME_FEATURE_ZIGZAG_DATA,
-  PRICE_PLAN_DATA,
-  Testimonial_CAROUSEL_DATA,
-} from '@constants/data';
-import {
   FeatureZigzagSection,
   Footer,
   HeroSection,
   PricingPlansSection,
   TestimonialSection,
-} from 'sections/';
+} from '~sections';
+
+import { AuthMode } from '~constants/AppEnums/AuthEnums';
+import {
+  HOME_BASIC_FEATURE_DATA,
+  HOME_FEATURE_ZIGZAG_DATA,
+  PRICE_PLAN_DATA,
+  Testimonial_CAROUSEL_DATA,
+} from '~constants/data';
+import { AuthRouteVariants } from '~constants/routeVariants';
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,
-} from 'utils/settings';
+} from '~constants/settings';
 
-import { AuthMode } from 'constants/AppEnums/AuthEnums';
-import { AuthRouteVariants } from 'constants/routeVariants';
+import { IoIosArrowRoundForward, TaskHeroImg } from '~assets';
 
-import { IoIosArrowRoundForward, TaskHeroImg } from 'assets';
-
-import { TextLink } from 'components/Links';
+import { TextLink } from '~components/Links';
 
 import SimpleFeatureBlock from '../../components/FeatureBlock';
 import { FeatureCarousel } from '../../components/FeatureCarousel';

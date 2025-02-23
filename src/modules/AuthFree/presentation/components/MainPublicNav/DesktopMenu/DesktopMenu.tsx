@@ -1,12 +1,12 @@
-import { AuthMode } from 'constants/AppEnums/AuthEnums';
-import { AuthRouteVariants } from 'constants/routeVariants';
-import { DOWNLOADPAGE, HOMEPAGE } from 'constants/routes';
+import { FaBars, HorizontalLogo } from 'assets/index';
 
 import { Link } from 'react-router-dom';
 
-import { FaBars, HorizontalLogo } from 'assets/index';
+import { AuthMode } from '~constants/AppEnums/AuthEnums';
+import { AuthRouteVariants } from '~constants/routeVariants';
+import { DOWNLOADPAGE, HOMEPAGE } from '~constants/routes';
 
-import { GhostLink } from 'components/Links';
+import { GhostLink } from '~components/Links';
 
 type Props = { onShowMenu: () => void };
 

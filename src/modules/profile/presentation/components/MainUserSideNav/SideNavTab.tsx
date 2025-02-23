@@ -1,4 +1,5 @@
-import type { NavTabModel } from 'models/UI-Models';
+import type { NavTabModel } from '~models/UI-Models';
+
 import type { ReactElement } from 'react';
 
 type SideNavTabProps = {

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-import { useOutsideListener } from 'hooks';
+import { useOutsideListener } from '~hooks';
 
 type Props = {
   children?: React.ReactNode;

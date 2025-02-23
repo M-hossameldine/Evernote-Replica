@@ -1,8 +1,9 @@
+import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 import 'tw-elements';
 
-import { BiCheck, IoIosArrowRoundBack, IoIosArrowRoundUp } from 'assets';
-import { ContainedLink } from 'components/Links';
-import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
+import { BiCheck, IoIosArrowRoundBack, IoIosArrowRoundUp } from '~assets';
+
+import { ContainedLink } from '~components/Links';
 
 type PropsType = {
   cardData: PRICE_PLAN_DATA_INTERFACE;

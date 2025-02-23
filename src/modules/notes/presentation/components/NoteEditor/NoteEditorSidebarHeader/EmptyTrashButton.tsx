@@ -1,7 +1,8 @@
-import { TRASHPAGE } from 'constants/routes';
-import { emptyTrashAction, selectTrashNotes } from 'store';
+import { emptyTrashAction, selectTrashNotes } from '~store';
 
-import { useAppSelector, useUpdatedState } from 'hooks';
+import { useAppSelector, useUpdatedState } from '~hooks';
+
+import { TRASHPAGE } from '~constants/routes';
 
 const EmptyTrashButton: React.FC = () => {
   const trashNotes = useAppSelector(selectTrashNotes);

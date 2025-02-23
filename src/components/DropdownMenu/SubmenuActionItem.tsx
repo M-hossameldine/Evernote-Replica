@@ -1,9 +1,10 @@
-import { NOTESPAGE, TRASHPAGE } from 'constants/routes';
 import type { ACTION_ITEM_INTERFACE } from 'interfaces';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
-import { selectNoteEditor, selectNotes, selectTrashNotes } from 'store';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+import { selectNoteEditor, selectNotes, selectTrashNotes } from '~store';
 
-import { useAppSelector, useLocationIndicator, useUpdatedState } from 'hooks';
+import { useAppSelector, useLocationIndicator, useUpdatedState } from '~hooks';
+
+import { NOTESPAGE, TRASHPAGE } from '~constants/routes';
 
 const SubmenuActionItem = (
   props: ACTION_ITEM_INTERFACE

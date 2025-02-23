@@ -1,8 +1,10 @@
+import { hideNotification, selectNotification } from '~store';
+
 import { useEffect, useState } from 'react';
 
-import { IoMdClose, MdError } from 'assets';
-import { useAppDispatch, useAppSelector } from 'hooks';
-import { hideNotification, selectNotification } from 'store';
+import { useAppDispatch, useAppSelector } from '~hooks';
+
+import { IoMdClose, MdError } from '~assets';
 
 import classes from './Notification.module.css';
 

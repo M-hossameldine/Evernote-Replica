@@ -1,9 +1,11 @@
-import { useAppSelector, useLocationIndicator } from 'hooks';
-import { selectNotes } from 'store';
+import { selectNotes } from '~store';
 
-import NoteEditor from 'modules/notes/presentation/components/NoteEditor/NoteEditor';
-import NoteEditorSidebar from 'modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
-import { IoIosPaper, GiNotebook } from 'assets';
+import { useAppSelector, useLocationIndicator } from '~hooks';
+
+import { GiNotebook, IoIosPaper } from '~assets';
+
+import NoteEditor from '~modules/notes/presentation/components/NoteEditor/NoteEditor';
+import NoteEditorSidebar from '~modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
 
 const NotesPage: React.FC = () => {
   const notes = useAppSelector(selectNotes);

@@ -1,6 +1,6 @@
-import { FOOTER_SOCIAL_ICONS_DATA } from '@constants/data';
+import { FOOTER_SOCIAL_ICONS_DATA } from '~constants/data';
 
-import { ReactIconLink } from 'components/Links';
+import { ReactIconLink } from '~components/Links';
 
 const FooterSocialIcons: React.FC = () => {
   return (

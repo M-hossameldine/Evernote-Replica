@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useAppSelector, useAppDispatch, useLocationIndicator } from 'hooks';
-
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 import {
-  selectNotes,
-  selectTrashNotes,
   editNote,
   fillNoteEditor,
+  selectNotes,
+  selectTrashNotes,
   showNotification,
-} from 'store';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+} from '~store';
 
-import AutoGrowingTextArea from 'components/AutoGrowingTextArea';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector, useLocationIndicator } from '~hooks';
+
+import AutoGrowingTextArea from '~components/AutoGrowingTextArea';
+
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
 
 const NoteEditor: React.FC = () => {

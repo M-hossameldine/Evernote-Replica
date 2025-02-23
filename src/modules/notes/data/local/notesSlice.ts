@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from 'store';
-import { restoreItem } from './trash-slice';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+import type { RootState } from '~store';
+
 import { createNote } from './notesSlice.helpers';
+import { restoreItem } from './trash-slice';
 
 const DUMMY_NOTE_lIST: Note[] = [
   {

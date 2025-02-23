@@ -1,6 +1,7 @@
-import type { AppDispatch } from 'store';
-import type { TrashNote } from 'modules/notes/domain/interfaces';
-import { deleteItemPermanently, restoreItem, emptyTrash } from './trash-slice';
+import type { TrashNote } from '~modules/notes/domain/interfaces';
+import type { AppDispatch } from '~store';
+
+import { deleteItemPermanently, emptyTrash, restoreItem } from './trash-slice';
 
 export const deleteItemPermanentlyAction = (payload: { id: string }) => {
   return async (dispatch: AppDispatch) => {

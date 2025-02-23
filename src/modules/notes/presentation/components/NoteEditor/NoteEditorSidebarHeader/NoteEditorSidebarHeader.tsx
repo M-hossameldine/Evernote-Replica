@@ -1,7 +1,8 @@
-import { useLocationIndicator } from 'hooks';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
 import type { IconType } from 'react-icons';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
+
+import { useLocationIndicator } from '~hooks';
 
 import NoteListingOptions from '../../NoteListingOperations/NoteListingOptions';
 import EmptyTrashButton from './EmptyTrashButton';

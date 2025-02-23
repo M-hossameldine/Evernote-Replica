@@ -1,6 +1,6 @@
-import { useLocationIndicator } from 'hooks';
+import { useLocationIndicator } from '~hooks';
 
-import { BsSortDown, BiFilterAlt, MdViewList } from 'assets';
+import { BiFilterAlt, BsSortDown, MdViewList } from '~assets';
 
 const NoteListingOptions: React.FC = () => {
   const location = useLocationIndicator();

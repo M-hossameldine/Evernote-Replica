@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useEventListener } from 'hooks';
+
+import { useEventListener } from '~hooks';
 
 import { DesktopMenu } from './DesktopMenu';
 import { MobileMenu } from './MobileMenu';

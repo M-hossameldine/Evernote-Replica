@@ -1,15 +1,16 @@
-import { AuthRouteVariants } from 'constants/routeVariants';
+import React, { Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import { useInitAppAuth } from '~modules/auth/data/remote';
+
+import { AuthRouteVariants } from '~constants/routeVariants';
 import {
   DOWNLOADPAGE,
   EDITORPAGE,
   HOMEPAGE,
   NOTESPAGE,
   TRASHPAGE,
-} from 'constants/routes';
-import { useInitAppAuth } from 'modules/auth/data/remote';
-
-import React, { Suspense } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+} from '~constants/routes';
 
 import Layout from './components/Layout';
 import Notification from './components/Notification';

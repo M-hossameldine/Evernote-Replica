@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { moveToTrash } from './notesSlice';
-import type { RootState } from 'store';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+import type { RootState } from '~store';
 
+import { moveToTrash } from './notesSlice';
 import { createTrashNote } from './notesSlice.helpers';
-import type { Note, TrashNote } from 'modules/notes/domain/interfaces';
 
 export interface TRASH_STATE_INTERFACE {
   notes: TrashNote[];

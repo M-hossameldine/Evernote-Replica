@@ -4,24 +4,24 @@ import * as Yup from 'yup';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useLocationIndicator } from 'hooks';
+import { useLocationIndicator } from '~hooks';
 
-import { useLogin, useSignup } from 'modules/auth/data/remote/authApis';
+import { useLogin, useSignup } from '~modules/auth/data/remote/authApis';
 
 import {
   isEmailAlreadyUsedError,
   isUserNotFoundError,
-} from 'modules/auth/presentation/helpers/validations';
+} from '~modules/auth/presentation/helpers/validations';
 
-import { AuthMode } from 'constants/AppEnums/AuthEnums';
-import { ErrorsMap } from 'constants/errors';
-import { AuthRouteVariants } from 'constants/routeVariants';
-import { HOMEPAGE } from 'constants/routes';
+import { AuthMode } from '~constants/AppEnums/AuthEnums';
+import { ErrorsMap } from '~constants/errors';
+import { AuthRouteVariants } from '~constants/routeVariants';
+import { HOMEPAGE } from '~constants/routes';
 
-import { VerticalLogo } from 'assets';
+import { VerticalLogo } from '~assets';
 
-import { TextLink } from 'components/Links';
-import { DefaultSpinner } from 'components/Spinners';
+import { TextLink } from '~components/Links';
+import { DefaultSpinner } from '~components/Spinners';
 
 interface FormValuesInterface {
   email: string;
