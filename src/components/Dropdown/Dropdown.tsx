@@ -1,5 +1,5 @@
 const Dropdown: React.FC = () => {
-  return <></>;
+  return null;
 };
 
 export default Dropdown;
