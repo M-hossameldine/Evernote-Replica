@@ -8,7 +8,7 @@ type PropsType = {
   onChange: (e: React.FormEvent<HTMLTextAreaElement>) => void;
   onClick?: () => void;
 };
-const AutoGrowingTextArea = (props: PropsType): React.ReactElement => {
+export const AutoGrowingTextArea = (props: PropsType): React.ReactElement => {
   const {
     value: textValue,
     placeholder,

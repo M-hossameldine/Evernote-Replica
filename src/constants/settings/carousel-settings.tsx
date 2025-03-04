@@ -11,7 +11,7 @@ export const FEATURE_CAROUSEL_SETTINGS = {
   customPaging: () => <button className="before:mt-4"></button>,
 };
 
-// Testimonial Carousel Settngs
+// Testimonial Carousel Settings
 export const TESTIMONIAL_CAROUSEL_SETTINGS = {
   slidesToShow: 6,
   swipeToSlide: true,
