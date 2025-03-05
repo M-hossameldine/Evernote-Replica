@@ -40,23 +40,21 @@ const TestimonialSection = (props: ComponentInterface): React.ReactElement => {
   ));
 
   return (
-    <>
-      <div className={className ? className : ''}>
-        <div className="hidden sm:block">
-          <LogoCarousel
-            data={data}
-            trackSettings={trackSettings}
-            viewSettings={viewSettings}
-          />
-        </div>
-        <div className="sm:hidden">
-          <DefaultCarousel
-            slides={carouselSlides}
-            settings={DefaultCarouselSettings}
-          />
-        </div>
+    <div className={className ? className : ''}>
+      <div className="hidden sm:block">
+        <LogoCarousel
+          data={data}
+          trackSettings={trackSettings}
+          viewSettings={viewSettings}
+        />
       </div>
-    </>
+      <div className="sm:hidden">
+        <DefaultCarousel
+          slides={carouselSlides}
+          settings={DefaultCarouselSettings}
+        />
+      </div>
+    </div>
   );
 };
 

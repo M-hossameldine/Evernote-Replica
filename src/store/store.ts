@@ -5,7 +5,7 @@ import notesReducer from '~modules/notes/data/local/notesSlice';
 import authReducer from '../modules/auth/data/local/authSlice';
 import noteEditorReducer from '../modules/notes/data/local/noteEditor-slice';
 import trashReducer from '../modules/notes/data/local/trash-slice';
-import { apiSlice } from './apiSlice';
+import { appApi } from './Apis/appApis';
 import uiReducer from './ui-slice/ui-slice';
 
 export const store = configureStore({
@@ -15,10 +15,10 @@ export const store = configureStore({
     trash: trashReducer,
     ui: uiReducer,
     auth: authReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [appApi.reducerPath]: appApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
+    getDefaultMiddleware().concat(appApi.middleware),
 });
 
 // Infer `RootState` and `AppDispatch` types from the store itself

@@ -1,14 +1,13 @@
 /**
  * This custom hooks provides the ability to use the updated state when the redux state slices are manipulated
- * Specially the naviagtion after updating the state successfuly
- * The typical usuage case: adding and deleting notes
+ * Specially the navigation after updating the state successfully
+ * The typical usage case: adding and deleting notes
  */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { AppDispatch } from '~store';
+import type { AppDispatch, RootState } from '~store';
 
-import type { RootState } from '../store';
 import { useAppDispatch } from './redux-hooks';
 
 interface UPDATE_DATA_INTERFACE {
@@ -52,7 +51,6 @@ export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
       watchedState.length !== 0
     ) {
       const noteId =
-        // watchedState[usedIndex] && 'id' in watchedState[usedIndex]
         usedIndex < watchedState.length - 1 // check if the last item is deleted
           ? watchedState[usedIndex]['id']
           : watchedState[watchedState.length - 1]['id'];
@@ -64,11 +62,6 @@ export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
       });
     } else if (watchedState.length === 0) {
       navigate(`${route}/empty`);
-      // // causes an infinity loop
-      // setIsListEdited({
-      //   isEdited: false,
-      //   prevNotesLength: watchedState.length,
-      // });
     }
   }, [isListEdited, watchedState]);
 
