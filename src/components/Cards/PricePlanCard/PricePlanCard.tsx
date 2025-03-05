@@ -22,7 +22,7 @@ const PricePlanCard = (props: PropsType): React.ReactElement => {
     <ul>
       {features.map((feature, featureIndex) => (
         <li
-          key={feature.id}
+          key={featureIndex}
           className="mb-2 flex items-start font-[400] tracking-tight"
         >
           <span
@@ -95,7 +95,7 @@ const AccordionBtn = (props: AccordionBtnProps): React.ReactElement => {
       data-bs-target={`#collapse${id}5`}
       aria-expanded="true"
       aria-controls={`collapse${id}5`}
-    ></button>
+    />
   );
 };
 

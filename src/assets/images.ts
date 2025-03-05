@@ -6,12 +6,6 @@ export { default as ElephantLogoImg } from './images/logo/elephant-logo-icon.svg
 // components
 export { default as VideoModalImg } from './images/components/repackaging-video@2x.png';
 
-export { default as ForbesLogo } from './images/logos/logo-forbes.png';
-export { default as IncLogo } from './images/logos/logo-inc.png';
-export { default as TheVergeLogo } from './images/logos/logo-the-verge.png';
-export { default as EntrepreneurMagazineLogo } from './images/logos/logo-entrepreneur-magazine.png';
-export { default as BusinessLogo } from './images/logos/logo-business.png';
-export { default as WellPlusGoodLogo } from './images/logos/logo-well-good.png';
 export { default as FeatureHitDeadlineImg } from './images/tasks/feature_hit_deadline.png';
 export { default as FeatureHitDeadlineIcon } from './images/tasks/feature_hit_deadline-icon.svg';
 export { default as FeaturePaperlessImg } from './images/tasks/feature_go_paperless.png';

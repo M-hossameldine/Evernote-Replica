@@ -1,17 +1,19 @@
+import { FeatureZigzagSection, HeroSection } from '~sections';
 import {
-  FeatureZigzagSection,
-  HeroSection,
+  Footer,
+  TestimonialSection,
   PricingPlansSection,
-} from '~sections';
-import { Footer, TestimonialSection } from '../../sections';
+} from '../../sections';
 import { TextLink } from '~components/Links';
 import SimpleFeatureBlock from '../../components/FeatureBlock';
 import { FeatureCarousel } from '../../components/FeatureCarousel';
 
+import { TaskHeroImg } from '../../assets/images';
+
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
-import { HOME_FEATURE_ZIGZAG_DATA, PRICE_PLAN_DATA } from '~constants/data';
-import { TaskHeroImg, HOME_BASIC_FEATURE_DATA } from '../../assets';
 import { AuthRouteVariants } from '~constants/routeVariants';
+import { HOME_FEATURE_ZIGZAG_DATA, PRICE_PLAN_DATA } from '~constants/data';
+import { HOME_BASIC_FEATURE_DATA } from '../../assets/StaticData';
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,

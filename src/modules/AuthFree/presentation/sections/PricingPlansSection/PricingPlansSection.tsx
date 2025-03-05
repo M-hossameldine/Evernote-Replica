@@ -6,12 +6,13 @@ import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 import { FiArrowRight } from 'react-icons/fi';
 import { BsArrowRightCircleFill } from 'react-icons/bs';
 
-interface PricingPlansSection_INTERFACE {
+interface PricingPlansSectionProps {
   className?: string;
   data: PRICE_PLAN_DATA_INTERFACE[];
 }
-const PricingPlansSection = (
-  props: PricingPlansSection_INTERFACE
+
+export const PricingPlansSection = (
+  props: PricingPlansSectionProps
 ): React.ReactElement => {
   const { className, data } = props;
 

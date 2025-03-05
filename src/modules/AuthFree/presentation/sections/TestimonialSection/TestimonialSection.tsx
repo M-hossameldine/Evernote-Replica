@@ -4,7 +4,7 @@ import DefaultCarousel from './DefaultCarousel';
 import LogoCarousel from './LogoCarousel';
 import TestimonialCard from '~components/Cards/TestimonialCard';
 
-import { Testimonial_CAROUSEL_DATA } from '~constants/data';
+import { Testimonial_CAROUSEL_DATA } from '../../assets/StaticData';
 
 const DefaultCarouselSettings = {
   dots: true,

@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 
 import TestimonialCard from '~components/Cards/TestimonialCard';
 
-import { Testimonial_CAROUSEL_DATA } from '~constants/data';
+import { Testimonial_CAROUSEL_DATA } from '../../../assets/StaticData';
 
 interface LogoCarouselProps {
   className?: string;
