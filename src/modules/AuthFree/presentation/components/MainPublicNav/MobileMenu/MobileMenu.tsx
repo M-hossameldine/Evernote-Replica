@@ -4,7 +4,8 @@ import { AuthMode } from '~constants/AppEnums/AuthEnums';
 import { AuthRouteVariants } from '~constants/routeVariants';
 import { DOWNLOADPAGE, HOMEPAGE } from '~constants/routes';
 
-import { GrClose, HorizontalLogo } from '~assets';
+import { HorizontalLogo } from '~assets';
+import { GrClose } from 'react-icons/gr';
 
 import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
 import { GhostLink } from '~components/Links';

@@ -1,30 +1,25 @@
+import { FeatureZigzagSection, HeroSection } from '~sections';
 import {
-  FeatureZigzagSection,
   Footer,
-  HeroSection,
-  PricingPlansSection,
   TestimonialSection,
-} from '~sections';
+  PricingPlansSection,
+} from '../../sections';
+import { TextLink } from '~components/Links';
+import SimpleFeatureBlock from '../../components/FeatureBlock';
+import { FeatureCarousel } from '../../components/FeatureCarousel';
+
+import { TaskHeroImg } from '../../assets/images';
 
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
-import {
-  HOME_BASIC_FEATURE_DATA,
-  HOME_FEATURE_ZIGZAG_DATA,
-  PRICE_PLAN_DATA,
-  Testimonial_CAROUSEL_DATA,
-} from '~constants/data';
 import { AuthRouteVariants } from '~constants/routeVariants';
+import { HOME_FEATURE_ZIGZAG_DATA } from '~constants/data';
+import { HOME_BASIC_FEATURE_DATA } from '../../assets/StaticData';
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,
 } from '~constants/settings';
 
-import { IoIosArrowRoundForward, TaskHeroImg } from '~assets';
-
-import { TextLink } from '~components/Links';
-
-import SimpleFeatureBlock from '../../components/FeatureBlock';
-import { FeatureCarousel } from '../../components/FeatureCarousel';
+import { IoIosArrowRoundForward } from 'react-icons/io';
 
 const PublicHomePage: React.FC = () => {
   return (
@@ -61,9 +56,9 @@ const PublicHomePage: React.FC = () => {
 
           {/* desktop features*/}
           <ul className="hidden w-[15rem] shrink-0 flex-col gap-4 md:flex">
-            {HOME_BASIC_FEATURE_DATA.map(feature => (
+            {HOME_BASIC_FEATURE_DATA.map((feature, index) => (
               <SimpleFeatureBlock
-                key={feature.id}
+                key={index + feature.title}
                 title={{
                   text: feature.title,
                   className: 'text-lg font-semibold uppercase pb-2',
@@ -87,7 +82,6 @@ const PublicHomePage: React.FC = () => {
       <section className="bg-slate-50">
         <TestimonialSection
           className="wrapper py-16"
-          data={Testimonial_CAROUSEL_DATA}
           trackSettings={TESTIMONIAL_CAROUSEL_SETTINGS}
         />
       </section>
@@ -120,10 +114,7 @@ const PublicHomePage: React.FC = () => {
             underline={false}
           />
         </div>
-        <PricingPlansSection
-          data={PRICE_PLAN_DATA}
-          className="flex flex-col items-start gap-8 md:flex-row md:gap-6 lg:gap-8"
-        />
+        <PricingPlansSection className="flex flex-col items-start gap-8 md:flex-row md:gap-6 lg:gap-8" />
       </section>
 
       {/* Footer Section */}

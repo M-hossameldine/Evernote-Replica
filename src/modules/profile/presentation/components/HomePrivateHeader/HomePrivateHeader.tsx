@@ -1,6 +1,6 @@
-import { RiHomeGearFill } from '~assets';
-
 import { StyledHomePrivateHeader } from './HomePrivateHeader.styled';
+
+import { RiHomeGearFill } from 'react-icons/ri';
 
 export const HomePrivateHeader: React.FC = () => {
   // get home header date

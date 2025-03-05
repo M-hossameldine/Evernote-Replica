@@ -8,25 +8,25 @@ interface ReactIconLinkProps {
   route: string;
   size?: string;
   className?: string;
-  isExteranl?: boolean;
+  isExternal?: boolean;
 }
 
 export const ReactIconLink = (
   props: ReactIconLinkProps
 ): React.ReactElement => {
-  const { Icon, route, size, className, isExteranl } = props;
+  const { Icon, route, size, className, isExternal } = props;
 
   const iconContainerClasses = `${className ? className : ''}`;
 
   const iconClasses = 'text-2xl sm:text-base';
   return (
     <>
-      {!isExteranl && (
+      {!isExternal && (
         <Link to={route} className={iconContainerClasses}>
           <Icon size={size} className={iconClasses} />
         </Link>
       )}
-      {isExteranl && (
+      {isExternal && (
         <ExternalLink
           href={route}
           className={iconClasses}

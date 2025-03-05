@@ -1,6 +1,6 @@
 import { NavTabModel } from '~models/UI-Models';
 
-import { BsSearch } from '~assets/index';
+import { BsSearch } from 'react-icons/bs';
 
 import SideNavTab from './SideNavTab';
 

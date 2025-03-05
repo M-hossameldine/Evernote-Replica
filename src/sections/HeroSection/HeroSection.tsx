@@ -4,14 +4,14 @@ import { ContainedLink, TextLink } from '~components/Links';
 
 import { StyledHeroSectionTitle } from './HeroSection.styled';
 
-interface HERO_INTERFACE {
+interface HeroSectionProps {
   title: string;
   description: string;
   className?: string;
   primeBtn: {
     text: string;
     route: string;
-    isExteranl?: boolean;
+    isExternal?: boolean;
     className?: string;
   };
   secondaryBtns?: {
@@ -21,7 +21,7 @@ interface HERO_INTERFACE {
   }[];
 }
 
-const HeroSection = (props: HERO_INTERFACE): React.ReactElement => {
+const HeroSection = (props: HeroSectionProps): React.ReactElement => {
   const { title, description, className, primeBtn, secondaryBtns } = props;
 
   return (
@@ -40,7 +40,7 @@ const HeroSection = (props: HERO_INTERFACE): React.ReactElement => {
         route={primeBtn.route}
         text={primeBtn.text}
         className={`mx-auto mb-4 ${primeBtn.className ? primeBtn.className : ''}`}
-        isExteranl={primeBtn.isExteranl}
+        isExternal={primeBtn.isExternal}
       />
 
       {/* optional call to extra actions */}

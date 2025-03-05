@@ -1,11 +1,10 @@
 import { useAppSelector } from '~hooks';
-
 import { selectTrashNotes } from '~store';
-
-import { FaTrash } from '~assets';
 
 import NoteEditor from '~modules/notes/presentation/components/NoteEditor/NoteEditor';
 import NoteEditorSidebar from '~modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
+
+import { FaTrash } from 'react-icons/fa';
 
 const TrashPage: React.FC = () => {
   const trashNotes = useAppSelector(selectTrashNotes);

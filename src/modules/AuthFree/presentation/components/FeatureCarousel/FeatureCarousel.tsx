@@ -6,7 +6,6 @@ import 'slick-carousel/slick/slick.css';
 import SimpleFeatureBlock from '../FeatureBlock';
 
 interface DATA_INTERFACE {
-  id: string;
   title: string;
   description: string;
 }
@@ -21,9 +20,9 @@ export const FeatureCarousel = (props: PropsType): React.ReactElement => {
 
   return (
     <Slider {...settings}>
-      {data.map(feature => (
+      {data.map((feature, index) => (
         <SimpleFeatureBlock
-          key={feature.id}
+          key={index + feature.title}
           className="text-center"
           title={{
             text: feature.title,

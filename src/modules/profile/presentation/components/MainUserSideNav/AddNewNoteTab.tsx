@@ -1,4 +1,5 @@
-import { BsPlus, IoIosArrowDown } from '~assets';
+import { BsPlus } from 'react-icons/bs';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import AddNoteWrapper from '~modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
 

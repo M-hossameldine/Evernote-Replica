@@ -7,7 +7,7 @@ import type { AuthRequestResponse } from './authApis.interfaces';
 export const mapFirebaseUserToAuthUser = (user: FirebaseUser): User => {
   return {
     id: user.uid,
-    email: user.email,
+    email: user.email!,
     name: user.displayName,
   };
 };

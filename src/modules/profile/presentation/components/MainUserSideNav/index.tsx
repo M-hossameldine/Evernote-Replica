@@ -3,9 +3,10 @@ import { v4 as uuid } from 'uuid';
 import { useAppSelector } from '~hooks';
 
 import { selectUser } from '~modules/auth/data/local/authSlice';
-import { useLogout } from '~modules/auth/data/remote/authApis';
+import { useLogoutMutation } from '~modules/auth/data/remote/authApis';
 
-import { FaUserCircle, IoIosArrowDown } from '~assets';
+import { IoIosArrowDown } from 'react-icons/io';
+import { FaUserCircle } from 'react-icons/fa';
 
 import DropdownMenu from '~components/DropdownMenu';
 
@@ -14,7 +15,7 @@ import { SideNavTabs } from './SideNavTabs';
 
 const SideNavBar: React.FC = () => {
   const userInfo = useAppSelector(selectUser);
-  const [logoutMutation] = useLogout();
+  const [logoutMutation] = useLogoutMutation();
 
   return (
     <div

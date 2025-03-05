@@ -1,18 +1,16 @@
-import { auth, onAuthStateChanged } from '~libs/firebase';
-import type { User } from '~modules/auth/domain/models';
-
 import { useEffect, useState } from 'react';
-
 import { useAppDispatch } from '~hooks';
 
-import { useDataSourceMutation } from '~store/hooks';
+import { auth, onAuthStateChanged } from '~libs/firebase';
+import type { User } from '~modules/auth/domain/models';
+import { appApi, createEndpoint } from '~store';
 
 import { saveLogin, saveLogout } from '../local/authSlice';
-import { login, logout, signUp } from './authApis.helpers';
+import { login, logout, signUp } from './authApis.endpoints';
 import type {
-  AuthRequestPayload,
+  AuthRequestParams,
   AuthRequestResponse,
-  AuthRequestResult,
+  LogoutRequestParams,
 } from './authApis.interfaces';
 import {
   mapAuthRequestResult,
@@ -39,47 +37,34 @@ export const useInitAppAuth = () => {
   return { isAuthorized, isLoading };
 };
 
-export const useLogin = () => {
-  return useDataSourceMutation<
-    AuthRequestPayload,
-    void,
-    AuthRequestResponse,
-    AuthRequestResult
-  >({
-    apiEndpoint: login,
-    mapResponseData: mapAuthRequestResult,
-    onQueryFinished: ({ dispatch, response }) => {
-      if (response.isSuccess) {
-        dispatch(saveLogin(response.result));
-      }
-    },
-  });
-};
+export const authApi = appApi.injectEndpoints({
+  endpoints: builder => ({
+    signup: builder.mutation<AuthRequestResponse, AuthRequestParams>(
+      createEndpoint<AuthRequestResponse, AuthRequestParams>({
+        endpoint: signUp,
+        mapData: mapAuthRequestResult,
+        onQuerySuccess: (dispatch, mappedData) =>
+          dispatch(saveLogin(mappedData)),
+      })
+    ),
 
-export const useSignup = () => {
-  return useDataSourceMutation<
-    AuthRequestPayload,
-    void,
-    AuthRequestResponse,
-    AuthRequestResult
-  >({
-    apiEndpoint: signUp,
-    mapResponseData: mapAuthRequestResult,
-    onQueryFinished: ({ dispatch, response }) => {
-      if (response.isSuccess) {
-        dispatch(saveLogin(response.result));
-      }
-    },
-  });
-};
+    login: builder.mutation<AuthRequestResponse, AuthRequestParams>(
+      createEndpoint<AuthRequestResponse, AuthRequestParams>({
+        endpoint: login,
+        mapData: mapAuthRequestResult,
+        onQuerySuccess: (dispatch, mappedData) =>
+          dispatch(saveLogin(mappedData)),
+      })
+    ),
 
-export const useLogout = () => {
-  return useDataSourceMutation<void, void, void, void>({
-    apiEndpoint: logout,
-    onQueryFinished: ({ dispatch, response }) => {
-      if (response.isSuccess) {
-        dispatch(saveLogout());
-      }
-    },
-  });
-};
+    logout: builder.mutation<void, LogoutRequestParams>(
+      createEndpoint<void, LogoutRequestParams>({
+        endpoint: logout,
+        onQuerySuccess: dispatch => dispatch(saveLogout()),
+      })
+    ),
+  }),
+});
+
+export const { useSignupMutation, useLoginMutation, useLogoutMutation } =
+  authApi;

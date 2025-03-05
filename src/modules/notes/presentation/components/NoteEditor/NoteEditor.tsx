@@ -13,7 +13,7 @@ import {
   showNotification,
 } from '~store';
 
-import AutoGrowingTextArea from '~components/AutoGrowingTextArea';
+import { AutoGrowingTextArea } from '~components/FormInputs';
 
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
 

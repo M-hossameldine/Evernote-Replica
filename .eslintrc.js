@@ -38,5 +38,12 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'react/forbid-dom-props': [2, { forbid: ['style'] }],
     'react/forbid-component-props': [2, { forbid: ['style'] }],
+    'react/jsx-no-useless-fragment': [
+      2,
+      {
+        allowExpressions: false,
+        allowEmpty: false,
+      },
+    ],
   },
 };
