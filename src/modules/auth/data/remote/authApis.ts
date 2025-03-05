@@ -3,7 +3,7 @@ import { useAppDispatch } from '~hooks';
 
 import { auth, onAuthStateChanged } from '~libs/firebase';
 import type { User } from '~modules/auth/domain/models';
-import { appApi, createMutation } from '~store';
+import { appApi, createEndpoint } from '~store';
 
 import { saveLogin, saveLogout } from '../local/authSlice';
 import { login, logout, signUp } from './authApis.endpoints';
@@ -40,25 +40,27 @@ export const useInitAppAuth = () => {
 export const authApi = appApi.injectEndpoints({
   endpoints: builder => ({
     signup: builder.mutation<AuthRequestResponse, AuthRequestParams>(
-      createMutation<AuthRequestResponse, AuthRequestParams>({
+      createEndpoint<AuthRequestResponse, AuthRequestParams>({
         endpoint: signUp,
         mapData: mapAuthRequestResult,
-        onSuccess: (dispatch, mappedData) => dispatch(saveLogin(mappedData)),
+        onQuerySuccess: (dispatch, mappedData) =>
+          dispatch(saveLogin(mappedData)),
       })
     ),
 
     login: builder.mutation<AuthRequestResponse, AuthRequestParams>(
-      createMutation<AuthRequestResponse, AuthRequestParams>({
+      createEndpoint<AuthRequestResponse, AuthRequestParams>({
         endpoint: login,
         mapData: mapAuthRequestResult,
-        onSuccess: (dispatch, mappedData) => dispatch(saveLogin(mappedData)),
+        onQuerySuccess: (dispatch, mappedData) =>
+          dispatch(saveLogin(mappedData)),
       })
     ),
 
     logout: builder.mutation<void, LogoutRequestParams>(
-      createMutation<void, LogoutRequestParams>({
+      createEndpoint<void, LogoutRequestParams>({
         endpoint: logout,
-        onSuccess: dispatch => dispatch(saveLogout()),
+        onQuerySuccess: dispatch => dispatch(saveLogout()),
       })
     ),
   }),

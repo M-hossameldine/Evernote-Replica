@@ -48,28 +48,36 @@ export const createOnQueryStarted =
     }
   };
 
-interface CreateMutationOptions<
+interface CreateEndpointOptions<
   TResponse,
-  TParams extends MutationRequestParams,
+  TParams extends MutationRequestParams | QueryRequestParams,
 > {
   endpoint: (params: TParams) => Promise<TResponse>;
   mapData?: (
     data: TResponse
-  ) => TParams extends MutationRequestParams<infer R> ? R : TResponse;
-  onSuccess?: (
+  ) => TParams extends
+    | MutationRequestParams<infer R>
+    | QueryRequestParams<infer R>
+    ? R
+    : TResponse;
+  onQuerySuccess?: (
     dispatch: any,
-    mappedData: TParams extends MutationRequestParams<infer R> ? R : TResponse
+    mappedData: TParams extends
+      | MutationRequestParams<infer R>
+      | QueryRequestParams<infer R>
+      ? R
+      : TResponse
   ) => void;
 }
 
-export const createMutation = <
+export const createEndpoint = <
   TResponse,
-  TParams extends MutationRequestParams = MutationRequestParams,
+  TParams extends MutationRequestParams | QueryRequestParams,
 >({
   endpoint,
   mapData = (data: TResponse) => data as any,
-  onSuccess,
-}: CreateMutationOptions<TResponse, TParams>) => ({
+  onQuerySuccess,
+}: CreateEndpointOptions<TResponse, TParams>) => ({
   queryFn: async (params: TParams) => {
     return await createQuery({
       endpoint,
@@ -77,13 +85,13 @@ export const createMutation = <
     });
   },
   onQueryStarted: async (
-    { onSuccess: handlerSuccess, onError, onSettled }: TParams,
+    { onSuccess: successHandler, onError, onSettled }: TParams,
     { dispatch, queryFulfilled }: any
   ) => {
     const onSuccessCustom = (data: TResponse) => {
       const mappedData = mapData(data);
-      onSuccess?.(dispatch, mappedData);
-      handlerSuccess?.(mappedData);
+      onQuerySuccess?.(dispatch, mappedData);
+      successHandler?.(mappedData);
     };
 
     await createOnQueryStarted()(
