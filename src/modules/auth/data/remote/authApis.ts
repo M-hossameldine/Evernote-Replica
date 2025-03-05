@@ -1,18 +1,16 @@
-import { auth, onAuthStateChanged } from '~libs/firebase';
-import type { User } from '~modules/auth/domain/models';
-
 import { useEffect, useState } from 'react';
-
 import { useAppDispatch } from '~hooks';
 
-import { useDataSourceMutation } from '~store/hooks';
+import { auth, onAuthStateChanged } from '~libs/firebase';
+import type { User } from '~modules/auth/domain/models';
+import { appApi, createOnQueryStarted, createQuery } from '~store';
 
 import { saveLogin, saveLogout } from '../local/authSlice';
-import { login, logout, signUp } from './authApis.helpers';
+import { login, logout, signUp } from './authApis.endpoints';
 import type {
-  AuthRequestPayload,
+  AuthRequestParams,
   AuthRequestResponse,
-  AuthRequestResult,
+  LogoutRequestParams,
 } from './authApis.interfaces';
 import {
   mapAuthRequestResult,
@@ -39,47 +37,80 @@ export const useInitAppAuth = () => {
   return { isAuthorized, isLoading };
 };
 
-export const useLogin = () => {
-  return useDataSourceMutation<
-    AuthRequestPayload,
-    void,
-    AuthRequestResponse,
-    AuthRequestResult
-  >({
-    apiEndpoint: login,
-    mapResponseData: mapAuthRequestResult,
-    onQueryFinished: ({ dispatch, response }) => {
-      if (response.isSuccess) {
-        dispatch(saveLogin(response.result));
-      }
-    },
-  });
-};
+export const authApi = appApi.injectEndpoints({
+  endpoints: builder => ({
+    signup: builder.mutation<any, AuthRequestParams>({
+      queryFn: async params => {
+        return await createQuery({
+          endpoint: signUp,
+          requestParams: params,
+        });
+      },
+      onQueryStarted: async (
+        { onSuccess, onError, onSettled }: any,
+        { dispatch, queryFulfilled }: any
+      ) => {
+        const onSuccessCustom = (data: AuthRequestResponse) => {
+          const mappedData = mapAuthRequestResult(data);
 
-export const useSignup = () => {
-  return useDataSourceMutation<
-    AuthRequestPayload,
-    void,
-    AuthRequestResponse,
-    AuthRequestResult
-  >({
-    apiEndpoint: signUp,
-    mapResponseData: mapAuthRequestResult,
-    onQueryFinished: ({ dispatch, response }) => {
-      if (response.isSuccess) {
-        dispatch(saveLogin(response.result));
-      }
-    },
-  });
-};
+          dispatch(saveLogin(mappedData));
+          onSuccess?.(mappedData);
+        };
 
-export const useLogout = () => {
-  return useDataSourceMutation<void, void, void, void>({
-    apiEndpoint: logout,
-    onQueryFinished: ({ dispatch, response }) => {
-      if (response.isSuccess) {
-        dispatch(saveLogout());
-      }
-    },
-  });
-};
+        await createOnQueryStarted()(
+          { onSuccess: onSuccessCustom, onError, onSettled },
+          { dispatch, queryFulfilled }
+        );
+      },
+    }),
+    login: builder.mutation<any, AuthRequestParams>({
+      queryFn: async params => {
+        return await createQuery({
+          endpoint: login,
+          requestParams: params,
+        });
+      },
+      onQueryStarted: async (
+        { onSuccess, onError, onSettled }: any,
+        { dispatch, queryFulfilled }: any
+      ) => {
+        const onSuccessCustom = (data: AuthRequestResponse) => {
+          const mappedData = mapAuthRequestResult(data);
+
+          dispatch(saveLogin(mappedData));
+          onSuccess?.(mappedData);
+        };
+
+        await createOnQueryStarted()(
+          { onSuccess: onSuccessCustom, onError, onSettled },
+          { dispatch, queryFulfilled }
+        );
+      },
+    }),
+    logout: builder.mutation<any, LogoutRequestParams>({
+      queryFn: async params => {
+        return await createQuery({
+          endpoint: logout,
+          requestParams: params,
+        });
+      },
+      onQueryStarted: async (
+        { onSuccess, onError, onSettled }: any,
+        { dispatch, queryFulfilled }: any
+      ) => {
+        const onSuccessCustom = () => {
+          dispatch(saveLogout());
+          onSuccess?.();
+        };
+
+        await createOnQueryStarted()(
+          { onSuccess: onSuccessCustom, onError, onSettled },
+          { dispatch, queryFulfilled }
+        );
+      },
+    }),
+  }),
+});
+
+export const { useSignupMutation, useLoginMutation, useLogoutMutation } =
+  authApi;

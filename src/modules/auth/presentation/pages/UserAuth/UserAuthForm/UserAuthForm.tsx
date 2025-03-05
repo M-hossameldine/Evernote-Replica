@@ -6,7 +6,10 @@ import * as Yup from 'yup';
 
 import { useLocationIndicator } from '~hooks';
 
-import { useLogin, useSignup } from '~modules/auth/data/remote/authApis';
+import {
+  useSignupMutation,
+  useLoginMutation,
+} from '~modules/auth/data/remote/authApis';
 
 import {
   isEmailAlreadyUsedError,
@@ -51,8 +54,8 @@ export const UserAuthForm: React.FC = () => {
   const isEmailAlreadyUsed = isEmailAlreadyUsedError(requestErrorMessage ?? '');
   const isUserNotFound = isUserNotFoundError(requestErrorMessage ?? '');
 
-  const [loginMutation, { isLoading: loginLoading }] = useLogin();
-  const [signupMutation, { isLoading: signupLoading }] = useSignup();
+  const [signupMutation, { isLoading: signupLoading }] = useSignupMutation();
+  const [loginMutation, { isLoading: loginLoading }] = useLoginMutation();
 
   const isLoading = loginLoading || signupLoading;
 
