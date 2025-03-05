@@ -7,6 +7,8 @@ import {
   WellPlusGoodLogo,
 } from '../../assets/images';
 
+export * from './PricePlanData';
+
 // Public Home Hero Section - feature data
 export const HOME_BASIC_FEATURE_DATA = [
   {

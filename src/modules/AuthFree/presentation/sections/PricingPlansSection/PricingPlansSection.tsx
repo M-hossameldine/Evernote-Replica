@@ -1,27 +1,27 @@
 import 'tw-elements';
 
-import PricePlanCard from '~components/Cards/PricePlanCard';
-import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
+import PricePlanCard from './PricePlanCard';
 
 import { FiArrowRight } from 'react-icons/fi';
 import { BsArrowRightCircleFill } from 'react-icons/bs';
 
+import { PRICE_PLAN_DATA } from '../../assets/StaticData';
+
 interface PricingPlansSectionProps {
   className?: string;
-  data: PRICE_PLAN_DATA_INTERFACE[];
 }
 
 export const PricingPlansSection = (
   props: PricingPlansSectionProps
 ): React.ReactElement => {
-  const { className, data } = props;
+  const { className } = props;
 
   const accordionClasses = `accordion ${className ? className : ''}`;
   return (
     <>
       <div className={accordionClasses} id="accordionExample5">
-        {data.map((card, index) => {
-          return <PricePlanCard key={card.id} cardData={card} index={index} />;
+        {PRICE_PLAN_DATA.map((card, index) => {
+          return <PricePlanCard key={index} cardData={card} index={index} />;
         })}
       </div>
       <div className="mx-auto mt-10 max-w-4xl rounded-xl border-2 border-neutral-200 p-5">

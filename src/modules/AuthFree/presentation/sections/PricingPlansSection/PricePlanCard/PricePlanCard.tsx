@@ -1,4 +1,4 @@
-import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
+import type { PricePlanCardData } from '~modules/AuthFree/presentation/assets/StaticData';
 import 'tw-elements';
 
 import { BiCheck } from 'react-icons/bi';
@@ -7,7 +7,7 @@ import { IoIosArrowRoundBack, IoIosArrowRoundUp } from 'react-icons/io';
 import { ContainedLink } from '~components/Links';
 
 type PropsType = {
-  cardData: PRICE_PLAN_DATA_INTERFACE;
+  cardData: PricePlanCardData;
   index: number;
 };
 

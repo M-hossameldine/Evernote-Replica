@@ -12,7 +12,7 @@ import { TaskHeroImg } from '../../assets/images';
 
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
 import { AuthRouteVariants } from '~constants/routeVariants';
-import { HOME_FEATURE_ZIGZAG_DATA, PRICE_PLAN_DATA } from '~constants/data';
+import { HOME_FEATURE_ZIGZAG_DATA } from '~constants/data';
 import { HOME_BASIC_FEATURE_DATA } from '../../assets/StaticData';
 import {
   FEATURE_CAROUSEL_SETTINGS,
@@ -114,10 +114,7 @@ const PublicHomePage: React.FC = () => {
             underline={false}
           />
         </div>
-        <PricingPlansSection
-          data={PRICE_PLAN_DATA}
-          className="flex flex-col items-start gap-8 md:flex-row md:gap-6 lg:gap-8"
-        />
+        <PricingPlansSection className="flex flex-col items-start gap-8 md:flex-row md:gap-6 lg:gap-8" />
       </section>
 
       {/* Footer Section */}
