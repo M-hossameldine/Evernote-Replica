@@ -2,7 +2,8 @@ import { useAppSelector, useLocationIndicator } from '~hooks';
 
 import { selectNotes } from '~store';
 
-import { GiNotebook, IoIosPaper } from '~assets';
+import { IoIosPaper } from '~assets';
+import { GiNotebook } from 'react-icons/gi';
 
 import NoteEditor from '~modules/notes/presentation/components/NoteEditor/NoteEditor';
 import NoteEditorSidebar from '~modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';

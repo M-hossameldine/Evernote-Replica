@@ -13,10 +13,11 @@ import {
   FeatureWebClippingIcon,
   ForbesLogo,
   IncLogo,
-  IoIosArrowForward,
   TheVergeLogo,
   WellPlusGoodLogo,
 } from '../../assets';
+import { IoIosArrowForward } from 'react-icons/io';
+
 import type {
   HOME_FEATURE_ZIGZAG_DATA_INTERFACE,
   PRICE_PLAN_DATA_INTERFACE,

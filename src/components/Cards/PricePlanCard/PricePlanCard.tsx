@@ -1,7 +1,8 @@
 import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 import 'tw-elements';
 
-import { BiCheck, IoIosArrowRoundBack, IoIosArrowRoundUp } from '~assets';
+import { BiCheck } from 'react-icons/bi';
+import { IoIosArrowRoundBack, IoIosArrowRoundUp } from 'react-icons/io';
 
 import { ContainedLink } from '~components/Links';
 

@@ -12,7 +12,8 @@ import { selectNotes, sendNewNoteData } from '~store';
 
 import { EDITORPAGE, NOTESPAGE } from '~constants/routes';
 
-import { IoIosArrowForward, IoIosMore, MdPostAdd } from '~assets';
+import { MdPostAdd } from 'react-icons/md';
+import { IoIosArrowForward, IoIosMore } from 'react-icons/io';
 
 import Card from '~components/Cards/Card';
 import DropdownMenu from '~components/DropdownMenu';

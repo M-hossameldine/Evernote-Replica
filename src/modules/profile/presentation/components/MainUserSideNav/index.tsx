@@ -5,7 +5,8 @@ import { useAppSelector } from '~hooks';
 import { selectUser } from '~modules/auth/data/local/authSlice';
 import { useLogoutMutation } from '~modules/auth/data/remote/authApis';
 
-import { FaUserCircle, IoIosArrowDown } from '~assets';
+import { IoIosArrowDown } from 'react-icons/io';
+import { FaUserCircle } from 'react-icons/fa';
 
 import DropdownMenu from '~components/DropdownMenu';
 

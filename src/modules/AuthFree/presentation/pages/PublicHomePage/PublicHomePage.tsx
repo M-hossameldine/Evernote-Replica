@@ -5,6 +5,9 @@ import {
   TestimonialSection,
 } from '~sections';
 import { Footer } from '../../sections/Footer';
+import { TextLink } from '~components/Links';
+import SimpleFeatureBlock from '../../components/FeatureBlock';
+import { FeatureCarousel } from '../../components/FeatureCarousel';
 
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
 import {
@@ -19,12 +22,8 @@ import {
   TESTIMONIAL_CAROUSEL_SETTINGS,
 } from '~constants/settings';
 
-import { IoIosArrowRoundForward, TaskHeroImg } from '~assets';
-
-import { TextLink } from '~components/Links';
-
-import SimpleFeatureBlock from '../../components/FeatureBlock';
-import { FeatureCarousel } from '../../components/FeatureCarousel';
+import { TaskHeroImg } from '~assets';
+import { IoIosArrowRoundForward } from 'react-icons/io';
 
 const PublicHomePage: React.FC = () => {
   return (

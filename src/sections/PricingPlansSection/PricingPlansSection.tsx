@@ -1,9 +1,10 @@
-import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
 import 'tw-elements';
 
-import { BsArrowRightCircleFill, FiArrowRight } from '~assets';
-
 import PricePlanCard from '~components/Cards/PricePlanCard';
+import type { PRICE_PLAN_DATA_INTERFACE } from 'interfaces';
+
+import { FiArrowRight } from 'react-icons/fi';
+import { BsArrowRightCircleFill } from 'react-icons/bs';
 
 interface PricingPlansSection_INTERFACE {
   className?: string;

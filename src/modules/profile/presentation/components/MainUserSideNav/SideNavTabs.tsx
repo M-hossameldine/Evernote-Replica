@@ -10,16 +10,10 @@ import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from '~constants/routes';
 
 import DropdownList from '~components/Dropdown';
 
-import {
-  AiFillHome,
-  FaStar,
-  FaTrash,
-  FaUserFriends,
-  IoIosCheckmarkCircle,
-  IoIosPaper,
-  RiBookletFill,
-  RiPriceTagFill,
-} from '../../../../../assets';
+import { RiPriceTagFill, RiBookletFill } from 'react-icons/ri';
+import { AiFillHome } from 'react-icons/ai';
+import { FaUserFriends, FaTrash, FaStar } from 'react-icons/fa';
+import { IoIosCheckmarkCircle, IoIosPaper } from 'react-icons/io';
 import SideNavTab from './SideNavTab';
 
 const TAB_CONTENT = {
