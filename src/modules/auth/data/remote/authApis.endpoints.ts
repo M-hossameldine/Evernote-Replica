@@ -8,11 +8,12 @@ import {
   signOut,
 } from '~libs/firebase';
 
+import type { UserCredential } from 'firebase/auth';
 import type { AuthRequestParams } from './authApis.interfaces';
 
 export const signUp = async ({
   payload: { email, password },
-}: AuthRequestParams) => {
+}: AuthRequestParams): Promise<UserCredential> => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
@@ -26,34 +27,13 @@ export const signUp = async ({
     createdAt: new Date().toISOString(),
   });
 
-  //* serialize the result
-  return {
-    user: {
-      uid: userCredential.user.uid,
-      email: userCredential.user.email,
-      displayName: userCredential.user.displayName,
-      photoURL: userCredential.user.photoURL,
-    },
-    providerId: userCredential.providerId,
-    operationType: userCredential.operationType,
-  };
+  return userCredential;
 };
 
 export const login = async ({
   payload: { email, password },
-}: AuthRequestParams) => {
-  const result = await signInWithEmailAndPassword(auth, email, password);
-
-  return {
-    user: {
-      uid: result.user.uid,
-      email: result.user.email,
-      displayName: result.user.displayName,
-      photoURL: result.user.photoURL,
-    },
-    providerId: result.providerId,
-    operationType: result.operationType,
-  };
+}: AuthRequestParams): Promise<UserCredential> => {
+  return await signInWithEmailAndPassword(auth, email, password);
 };
 
 export const logout = async () => {

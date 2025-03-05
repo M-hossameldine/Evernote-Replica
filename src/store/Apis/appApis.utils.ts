@@ -47,3 +47,48 @@ export const createOnQueryStarted =
       if (onSettled) onSettled();
     }
   };
+
+interface CreateMutationOptions<
+  TResponse,
+  TParams extends MutationRequestParams,
+> {
+  endpoint: (params: TParams) => Promise<TResponse>;
+  mapData?: (
+    data: TResponse
+  ) => TParams extends MutationRequestParams<infer R> ? R : TResponse;
+  onSuccess?: (
+    dispatch: any,
+    mappedData: TParams extends MutationRequestParams<infer R> ? R : TResponse
+  ) => void;
+}
+
+export const createMutation = <
+  TResponse,
+  TParams extends MutationRequestParams = MutationRequestParams,
+>({
+  endpoint,
+  mapData = (data: TResponse) => data as any,
+  onSuccess,
+}: CreateMutationOptions<TResponse, TParams>) => ({
+  queryFn: async (params: TParams) => {
+    return await createQuery({
+      endpoint,
+      requestParams: params,
+    });
+  },
+  onQueryStarted: async (
+    { onSuccess: handlerSuccess, onError, onSettled }: TParams,
+    { dispatch, queryFulfilled }: any
+  ) => {
+    const onSuccessCustom = (data: TResponse) => {
+      const mappedData = mapData(data);
+      onSuccess?.(dispatch, mappedData);
+      handlerSuccess?.(mappedData);
+    };
+
+    await createOnQueryStarted()(
+      { onSuccess: onSuccessCustom, onError, onSettled },
+      { dispatch, queryFulfilled }
+    );
+  },
+});
