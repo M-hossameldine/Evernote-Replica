@@ -3,7 +3,7 @@ import ElephantLogoImg from './images/logo/elephant-logo-icon.svg';
 import HorizontalLogo from './images/logo/horizontal-logo.svg';
 import VerticalLogo from './images/logo/vertical-logo.svg';
 import BusinessLogo from './images/logos/logo-business.png';
-import EnterpreneurMagazineLogo from './images/logos/logo-entrepreneur-magazine.png';
+import EntrepreneurMagazineLogo from './images/logos/logo-entrepreneur-magazine.png';
 // Carousel logo images
 import ForbesLogo from './images/logos/logo-forbes.png';
 import IncLogo from './images/logos/logo-inc.png';
@@ -32,7 +32,7 @@ export {
   ForbesLogo,
   IncLogo,
   TheVergeLogo,
-  EnterpreneurMagazineLogo,
+  EntrepreneurMagazineLogo,
   BusinessLogo,
   WellPlusGoodLogo,
   FeatureHitDeadlineImg,

@@ -44,14 +44,12 @@ const NoteActionsDropdown: React.FC = () => {
   };
 
   const actionsContent = !isInTrash ? (
-    <>
-      <NoteActionsDropdownItem
-        text="Move To Trash"
-        asyncAction={MoveToTrashAction}
-        asyncActionArgs={{ id: params.noteId, note: selectedNote! }}
-        operation="delete"
-      />
-    </>
+    <NoteActionsDropdownItem
+      text="Move To Trash"
+      asyncAction={MoveToTrashAction}
+      asyncActionArgs={{ id: params.noteId, note: selectedNote! }}
+      operation="delete"
+    />
   ) : (
     <>
       <NoteActionsDropdownItem

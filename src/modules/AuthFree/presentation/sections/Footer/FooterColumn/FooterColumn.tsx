@@ -1,20 +1,20 @@
 import { TextLink } from '~components/Links';
 
-interface FOOTER_COLUMN_INTERFACE {
+interface FooterColumnProps {
   title: string;
-  featuresData: { id: string; text: string; route: string }[];
+  featuresData: { text: string; route: string }[];
   className?: string;
 }
 
-const FooterColumn = (props: FOOTER_COLUMN_INTERFACE): React.ReactElement => {
+export const FooterColumn = (props: FooterColumnProps): React.ReactElement => {
   const { featuresData, title } = props;
 
   return (
     <li className="mb-10 sm:text-sm">
       <h3 className="mb-6 font-bold uppercase">{title}</h3>
       <ul className="flex flex-col items-start">
-        {featuresData.map(feature => (
-          <li key={feature.id}>
+        {featuresData.map((feature, index) => (
+          <li key={index + feature.text}>
             <TextLink
               className="mb-6 hover:text-green-600"
               underline={false}

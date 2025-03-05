@@ -1,10 +1,10 @@
 import {
   FeatureZigzagSection,
-  Footer,
   HeroSection,
   PricingPlansSection,
   TestimonialSection,
 } from '~sections';
+import { Footer } from '../../sections/Footer';
 
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
 import {

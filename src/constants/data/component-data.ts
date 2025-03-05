@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 import {
   BusinessLogo,
-  EnterpreneurMagazineLogo,
+  EntrepreneurMagazineLogo,
   FeatureCalenderIcon,
   FeatureCalenderImg,
   FeatureClipTheWebImg,
@@ -84,7 +84,7 @@ export const Testimonial_CAROUSEL_DATA: Testimonial_CAROUSEL_DATA_INTERFACE[] =
       review:
         'A few years ago, after my computer broke down and I lost all of the notes I had saved to my desktop, I finally decided to embrace the cloud and download Evernote. Since then, I haven’t looked back.',
       reviewer: 'Entrepreneur Magazine',
-      logo: EnterpreneurMagazineLogo,
+      logo: EntrepreneurMagazineLogo,
       altText: 'Entrepreneur Magazine',
     },
     {

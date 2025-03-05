@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ExternalLink } from '~components/Links';
 
-interface TEXT_LINK_INTERFACE {
+interface TextLinkProps {
   text: string;
   underline?: boolean;
   className?: string;
@@ -13,11 +13,11 @@ interface TEXT_LINK_INTERFACE {
   };
   route: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-  isExteranl?: boolean; // to define if the link will navigate to internal destination inside our app or exteranl destination
+  isExternal?: boolean; // to define if the link will navigate to internal destination inside our app or external destination
 }
 
-export const TextLink = (props: TEXT_LINK_INTERFACE): React.ReactElement => {
-  const { text, route, underline = true, className, icon, isExteranl } = props;
+export const TextLink = (props: TextLinkProps): React.ReactElement => {
+  const { text, route, underline = true, className, icon, isExternal } = props;
 
   const linkClasses = ` 
       flex items-center gap-1
@@ -26,7 +26,7 @@ export const TextLink = (props: TEXT_LINK_INTERFACE): React.ReactElement => {
 
   return (
     <>
-      {!isExteranl && (
+      {!isExternal && (
         <Link to={route} className={linkClasses} onClick={props.onClick}>
           {text}
           {icon ? (
@@ -36,7 +36,7 @@ export const TextLink = (props: TEXT_LINK_INTERFACE): React.ReactElement => {
           )}
         </Link>
       )}
-      {isExteranl && (
+      {isExternal && (
         <ExternalLink
           text={text}
           icon={icon}

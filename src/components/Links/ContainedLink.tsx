@@ -11,20 +11,20 @@ interface CONTAINED_LINK_INTERFACE {
   };
   className?: string;
   route: string;
-  isExteranl?: boolean;
+  isExternal?: boolean;
 }
 
 export const ContainedLink = (
   props: CONTAINED_LINK_INTERFACE
 ): React.ReactElement => {
-  const { text, icon, className, route, isExteranl } = props;
+  const { text, icon, className, route, isExternal } = props;
 
   const linkClasses = ` table text-white bg-green-550 hover:bg-green-450 font-semibold py-[0.7em] rounded 
     ${className ? className : ''}`;
 
   return (
     <>
-      {!isExteranl && (
+      {!isExternal && (
         <Link to={route} className={linkClasses}>
           {text}
           {icon ? (
@@ -34,7 +34,7 @@ export const ContainedLink = (
           )}
         </Link>
       )}
-      {isExteranl && (
+      {isExternal && (
         <ExternalLink
           href={route}
           className={linkClasses}

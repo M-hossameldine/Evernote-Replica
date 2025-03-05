@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ExternalLink } from '~components/Links';
 
-interface LINK_INTERFACE {
+interface LinkProps {
   text: string;
   colors: {
     textClr: string;
@@ -18,11 +18,11 @@ interface LINK_INTERFACE {
   };
   route: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-  isExteranl?: boolean;
+  isExternal?: boolean;
 }
 
-export const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
-  const { text, className, icon, route, isExteranl } = props;
+export const GhostLink = (props: LinkProps): React.ReactElement => {
+  const { text, className, icon, route, isExternal } = props;
   const { textClr, textHoverClr, borderClr, borderHoverClr } = props.colors;
 
   const textHoverColor = ` hover:${textHoverClr} `;
@@ -35,7 +35,7 @@ export const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
 
   return (
     <>
-      {!isExteranl && (
+      {!isExternal && (
         <Link to={route} className={linkClasses} onClick={props.onClick}>
           {text}
           {icon ? (
@@ -45,7 +45,7 @@ export const GhostLink = (props: LINK_INTERFACE): React.ReactElement => {
           )}
         </Link>
       )}
-      {isExteranl && (
+      {isExternal && (
         <ExternalLink
           href={route}
           text={text}

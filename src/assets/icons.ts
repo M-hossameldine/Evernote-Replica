@@ -31,12 +31,6 @@ export {
   FaTrash,
   FaBars,
   FaQuoteLeft,
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaMediumM,
-  FaYoutube,
-  FaLinkedinIn,
 } from 'react-icons/fa';
 export { FiArrowRight } from 'react-icons/fi';
 export { MdViewList, MdPostAdd, MdError } from 'react-icons/md';

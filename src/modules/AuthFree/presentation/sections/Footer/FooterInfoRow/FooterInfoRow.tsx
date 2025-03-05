@@ -1,12 +1,12 @@
-import { FOOTER_LEGAL_DATA } from '~constants/data';
+import { FOOTER_LEGAL_DATA } from '../../../constants';
 
 import { ElephantLogoImg } from '~assets';
 
 import { TextLink } from '~components/Links';
 
-import FooterSocialIcons from './FooterSocialIcons';
+import FooterSocialIcons from '../FooterSocialIcons/FooterSocialIcons';
 
-const FooterInfoRow: React.FC = () => {
+export const FooterInfoRow: React.FC = () => {
   return (
     <div>
       {/* Social Media Row */}
@@ -27,8 +27,8 @@ const FooterInfoRow: React.FC = () => {
         />
         <p className="">© 2022 Evernote Corporation. All rights reserved.</p>
         <ul className="flex w-full justify-between gap-8 sm:w-auto">
-          {FOOTER_LEGAL_DATA.map(link => (
-            <li key={link.id} className="hover:text-neutral-800">
+          {FOOTER_LEGAL_DATA.map((link, index) => (
+            <li key={index} className="hover:text-neutral-800">
               <TextLink text={link.text} route={link.route} underline={false} />
             </li>
           ))}

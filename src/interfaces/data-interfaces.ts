@@ -1,16 +1,4 @@
-import type { IconType } from 'react-icons';
-
 import type { REACT_ICON_INTERFACE } from '.';
-
-/**************************************************/
-// General Data Interfaces
-/**************************************************/
-
-export interface ICON_LINK_DATA_INTERFACE {
-  id: string;
-  Icon: IconType;
-  route: string;
-}
 
 /**************************************************/
 // Customized Data Interfaces
