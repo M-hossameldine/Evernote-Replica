@@ -2,7 +2,7 @@ import { useAppSelector, useLocationIndicator } from '~hooks';
 
 import { selectNotes } from '~store';
 
-import { IoIosPaper } from '~assets';
+import { IoIosPaper } from 'react-icons/io';
 import { GiNotebook } from 'react-icons/gi';
 
 import NoteEditor from '~modules/notes/presentation/components/NoteEditor/NoteEditor';

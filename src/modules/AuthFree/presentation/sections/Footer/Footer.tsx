@@ -1,10 +1,10 @@
-import { FOOTER_DATA } from '../../constants';
-
-import { HorizontalLogo } from '~assets';
-
 import classes from './Footer.module.css';
+
 import FooterColumn from './FooterColumn/FooterColumn';
 import FooterInfoRow from './FooterInfoRow/FooterInfoRow';
+
+import { FOOTER_DATA } from '../../constants';
+import { HorizontalLogo } from '~assets';
 
 type FooterProps = { className: string };
 

@@ -1,12 +1,10 @@
-import type { Testimonial_CAROUSEL_DATA_INTERFACE } from 'interfaces';
+import './TestimonialSection.css';
 
-import { Testimonial_CAROUSEL_DATA } from '~constants/data';
-
-import DefaultCarousel from '~components/AppCarousels/DefaultCarousel';
-import LogoCarousel from '~components/AppCarousels/LogoCarousel';
+import DefaultCarousel from './DefaultCarousel';
+import LogoCarousel from './LogoCarousel';
 import TestimonialCard from '~components/Cards/TestimonialCard';
 
-import './index.css';
+import { Testimonial_CAROUSEL_DATA } from '~constants/data';
 
 const DefaultCarouselSettings = {
   dots: true,
@@ -22,16 +20,17 @@ const DefaultCarouselSettings = {
 
 interface ComponentInterface {
   className?: string;
-  data: Testimonial_CAROUSEL_DATA_INTERFACE[];
   trackSettings: object;
   viewSettings?: object;
 }
-const TestimonialSection = (props: ComponentInterface): React.ReactElement => {
-  const { className, data, trackSettings, viewSettings } = props;
+export const TestimonialSection = (
+  props: ComponentInterface
+): React.ReactElement => {
+  const { className, trackSettings, viewSettings } = props;
 
-  const carouselSlides = Testimonial_CAROUSEL_DATA.map(slide => (
+  const carouselSlides = Testimonial_CAROUSEL_DATA.map((slide, index) => (
     <TestimonialCard
-      key={slide.id}
+      key={index + slide.reviewer}
       review={slide.review}
       reviewer={slide.reviewer}
       logo={slide.logo}
@@ -43,7 +42,6 @@ const TestimonialSection = (props: ComponentInterface): React.ReactElement => {
     <div className={className ? className : ''}>
       <div className="hidden sm:block">
         <LogoCarousel
-          data={data}
           trackSettings={trackSettings}
           viewSettings={viewSettings}
         />

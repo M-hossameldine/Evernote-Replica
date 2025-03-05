@@ -2,27 +2,21 @@ import {
   FeatureZigzagSection,
   HeroSection,
   PricingPlansSection,
-  TestimonialSection,
 } from '~sections';
-import { Footer } from '../../sections/Footer';
+import { Footer, TestimonialSection } from '../../sections';
 import { TextLink } from '~components/Links';
 import SimpleFeatureBlock from '../../components/FeatureBlock';
 import { FeatureCarousel } from '../../components/FeatureCarousel';
 
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
-import {
-  HOME_BASIC_FEATURE_DATA,
-  HOME_FEATURE_ZIGZAG_DATA,
-  PRICE_PLAN_DATA,
-  Testimonial_CAROUSEL_DATA,
-} from '~constants/data';
+import { HOME_FEATURE_ZIGZAG_DATA, PRICE_PLAN_DATA } from '~constants/data';
+import { TaskHeroImg, HOME_BASIC_FEATURE_DATA } from '../../assets';
 import { AuthRouteVariants } from '~constants/routeVariants';
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,
 } from '~constants/settings';
 
-import { TaskHeroImg } from '~assets';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 
 const PublicHomePage: React.FC = () => {
@@ -60,9 +54,9 @@ const PublicHomePage: React.FC = () => {
 
           {/* desktop features*/}
           <ul className="hidden w-[15rem] shrink-0 flex-col gap-4 md:flex">
-            {HOME_BASIC_FEATURE_DATA.map(feature => (
+            {HOME_BASIC_FEATURE_DATA.map((feature, index) => (
               <SimpleFeatureBlock
-                key={feature.id}
+                key={index + feature.title}
                 title={{
                   text: feature.title,
                   className: 'text-lg font-semibold uppercase pb-2',
@@ -86,7 +80,6 @@ const PublicHomePage: React.FC = () => {
       <section className="bg-slate-50">
         <TestimonialSection
           className="wrapper py-16"
-          data={Testimonial_CAROUSEL_DATA}
           trackSettings={TESTIMONIAL_CAROUSEL_SETTINGS}
         />
       </section>

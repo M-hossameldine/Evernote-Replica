@@ -4,7 +4,7 @@ import { AuthMode } from '~constants/AppEnums/AuthEnums';
 import { AuthRouteVariants } from '~constants/routeVariants';
 import { DOWNLOADPAGE, HOMEPAGE } from '~constants/routes';
 
-import { HorizontalLogo } from '~assets/index';
+import { HorizontalLogo } from '~assets';
 import { FaBars } from 'react-icons/fa';
 
 import { GhostLink } from '~components/Links';

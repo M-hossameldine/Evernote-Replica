@@ -1,16 +1,13 @@
-import type { REACT_ICON_INTERFACE } from '.';
+import type { IconType } from 'react-icons';
+
+export interface REACT_ICON_INTERFACE {
+  Icon: IconType;
+  iconStyle?: string;
+}
 
 /**************************************************/
 // Customized Data Interfaces
 /**************************************************/
-
-export interface Testimonial_CAROUSEL_DATA_INTERFACE {
-  id: string;
-  reviewer: string;
-  review: string;
-  logo: string;
-  altText: string;
-}
 
 export interface HOME_FEATURE_ZIGZAG_DATA_INTERFACE {
   id: string;
