@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
-// ref type: React.RefObject<ELEMENT_TYPE>
-export const useOutsideListener = (
+export const useOutsideClickListener = (
   ref: React.RefObject<HTMLElement>,
   domEvent: string,
   listenerHandler: () => void

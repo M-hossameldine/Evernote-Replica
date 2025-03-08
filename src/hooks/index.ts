@@ -1,5 +1,7 @@
+export * from './useEventListener';
+export * from './useOutsideClickListener';
+
 export * from './use-locationIndicator';
-export * from './use-outsideListener';
+export * from './useOutsideClickListener';
 export * from './use-updatedState';
 export * from './redux-hooks';
-export * from './useEventListener';

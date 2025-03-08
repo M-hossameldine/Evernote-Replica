@@ -1,17 +1,19 @@
 import { useRef } from 'react';
 
-import { useOutsideListener } from '~hooks';
+import { useOutsideClickListener } from '~hooks';
 
-type Props = {
+type ExcludeEventWrapperProps = {
   children?: React.ReactNode;
   className?: string;
   listenerHandler: () => void;
 };
 
-const ExcludeEventWrapper = (props: Props): React.ReactElement => {
+const ExcludeEventWrapper = (
+  props: ExcludeEventWrapperProps
+): React.ReactElement => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  useOutsideListener(wrapperRef, 'mousedown', props.listenerHandler);
+  useOutsideClickListener(wrapperRef, 'mousedown', props.listenerHandler);
 
   return (
     <div ref={wrapperRef} className={props.className}>
