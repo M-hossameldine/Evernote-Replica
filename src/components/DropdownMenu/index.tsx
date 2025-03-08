@@ -6,7 +6,7 @@ import type { SubmenuActionItemProps } from './SubmenuActionItem';
 import ExcludeEventWrapper from '../ExcludeEventWrapper';
 import Submenu from './Submenu';
 
-interface MENU_INTERFACE {
+interface DropdownMenuProps {
   menuHeader: { content: JSX.Element; className?: string };
   submenuItemsData: (SubmenuFunctionItemProps | SubmenuActionItemProps)[];
   className?: string;
@@ -17,7 +17,7 @@ interface MENU_INTERFACE {
   };
 }
 
-const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
+const DropdownMenu = (props: DropdownMenuProps): React.ReactElement => {
   const { menuHeader } = props;
   const { placeSubmenu } = props;
   const [isExpanded, setIsExpanded] = useState(false); // set submenu visibility

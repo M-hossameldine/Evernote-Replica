@@ -5,11 +5,11 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '~store';
 
-export interface TRASH_STATE_INTERFACE {
+export interface TrashSliceState {
   notes: TrashNote[];
 }
 
-const initialState: TRASH_STATE_INTERFACE = {
+const initialState: TrashSliceState = {
   notes: [
     {
       note: {

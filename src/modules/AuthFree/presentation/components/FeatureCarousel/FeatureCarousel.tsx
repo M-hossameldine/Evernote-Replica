@@ -5,13 +5,13 @@ import 'slick-carousel/slick/slick.css';
 
 import SimpleFeatureBlock from '../FeatureBlock';
 
-interface DATA_INTERFACE {
+interface FeatureCarouselDataItem {
   title: string;
   description: string;
 }
 
 type PropsType = {
-  data: DATA_INTERFACE[];
+  data: FeatureCarouselDataItem[];
   settings: object;
 };
 

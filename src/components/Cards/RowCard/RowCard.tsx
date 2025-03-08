@@ -2,7 +2,7 @@ import type { IconType } from 'react-icons';
 
 import { TextLink } from '~components/Links';
 
-interface ROWCARD_INTERFACE {
+interface RowCardProps {
   cardImg: { img: string; altText: string };
   header: string;
   description: string;
@@ -19,7 +19,7 @@ interface ROWCARD_INTERFACE {
   className?: string;
 }
 
-const RowCard = (props: ROWCARD_INTERFACE): React.ReactElement => {
+const RowCard = (props: RowCardProps): React.ReactElement => {
   const {
     cardImg,
     header,

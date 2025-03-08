@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import type { AppDispatch, RootState } from '~store';
 import { useAppDispatch } from '~store';
 
-interface UPDATE_DATA_INTERFACE {
+interface UseUpdatedStateProps {
   asyncAction: (
     payload?: any
   ) => (dispatch: AppDispatch, getState: () => RootState) => Promise<void>;
@@ -19,7 +19,7 @@ interface UPDATE_DATA_INTERFACE {
   operation: 'add' | 'delete' | 'update' | 'empty';
 }
 
-export const useUpdatedState = (updatedStateData: UPDATE_DATA_INTERFACE) => {
+export const useUpdatedState = (updatedStateData: UseUpdatedStateProps) => {
   const { asyncAction, route, usedIndex, watchedState, operation } =
     updatedStateData;
   const [isListEdited, setIsListEdited] = useState<{
