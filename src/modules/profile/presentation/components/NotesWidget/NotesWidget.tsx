@@ -1,9 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import type {
-  ACTION_ITEM_INTERFACE,
-  FUNCTION_ITEM_INTERFACE,
-} from 'interfaces';
 import { v4 as uuid } from 'uuid';
 
 import { useAppSelector } from '~hooks/redux-hooks';
@@ -17,6 +13,8 @@ import { IoIosArrowForward, IoIosMore } from 'react-icons/io';
 
 import Card from '~components/Cards/Card';
 import DropdownMenu from '~components/DropdownMenu';
+import { type SubmenuActionItemProps } from '~components/DropdownMenu/SubmenuActionItem';
+import { type SubmenuFunctionItemProps } from '~components/DropdownMenu/SubmenuFunctionItem';
 import AddNoteWrapper from '~modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
 import { NoteItem } from '~modules/notes/presentation/components/NoteItem/NoteItem';
 
@@ -28,7 +26,7 @@ export const NotesWidget = (props: Props): React.ReactElement => {
 
   const firstNote = notes.length > 0 ? notes[0].id : 'empty';
 
-  const dropdownData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[] = [
+  const dropdownData: (SubmenuFunctionItemProps | SubmenuActionItemProps)[] = [
     {
       id: uuid(),
       content: 'Go to notes',

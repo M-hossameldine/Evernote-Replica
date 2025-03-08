@@ -1,4 +1,4 @@
-import type { ACTION_ITEM_INTERFACE } from 'interfaces';
+import type { AppDispatch, RootState } from '~store';
 
 import { useAppSelector, useLocationIndicator, useUpdatedState } from '~hooks';
 
@@ -6,8 +6,18 @@ import { selectNoteEditor, selectNotes, selectTrashNotes } from '~store';
 
 import { NOTESPAGE, TRASHPAGE } from '~constants/routes';
 
+export interface SubmenuActionItemProps {
+  id: string;
+  content: string | JSX.Element;
+  asyncAction: (
+    payload?: any
+  ) => (dispatch: AppDispatch, getState: () => RootState) => Promise<void>;
+  asyncActionArgs?: object;
+  operation: 'add' | 'delete' | 'update' | 'empty';
+}
+
 const SubmenuActionItem = (
-  props: ACTION_ITEM_INTERFACE
+  props: SubmenuActionItemProps
 ): React.ReactElement => {
   const { content, asyncAction, asyncActionArgs, operation } = props;
 

@@ -12,10 +12,8 @@ import {
 } from '../../assets';
 import { IoIosArrowForward } from 'react-icons/io';
 
-import type { HOME_FEATURE_ZIGZAG_DATA_INTERFACE } from '../../interfaces';
-
 // Public Home - Feature Zigzag Section
-export const HOME_FEATURE_ZIGZAG_DATA: HOME_FEATURE_ZIGZAG_DATA_INTERFACE[] = [
+export const HOME_FEATURE_ZIGZAG_DATA = [
   {
     id: uuid(),
     header: 'Hit every deadline',

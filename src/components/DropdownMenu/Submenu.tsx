@@ -1,13 +1,12 @@
-import type {
-  ACTION_ITEM_INTERFACE,
-  FUNCTION_ITEM_INTERFACE,
-} from 'interfaces';
-
-import SubmenuActionItem from './SubmenuActionItem';
-import SubmenuFunctionItem from './SubmenuFunctionItem';
+import SubmenuActionItem, {
+  type SubmenuActionItemProps,
+} from './SubmenuActionItem';
+import SubmenuFunctionItem, {
+  type SubmenuFunctionItemProps,
+} from './SubmenuFunctionItem';
 
 interface PropsType {
-  submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];
+  submenuItemsData: (SubmenuFunctionItemProps | SubmenuActionItemProps)[];
   className?: string;
   onClick?: () => void;
 }

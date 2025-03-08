@@ -12,7 +12,6 @@ import { TaskHeroImg } from '../../assets/images';
 
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
 import { AuthRouteVariants } from '~constants/routeVariants';
-import { HOME_FEATURE_ZIGZAG_DATA } from '~constants/data';
 import { HOME_BASIC_FEATURE_DATA } from '../../assets/StaticData';
 import {
   FEATURE_CAROUSEL_SETTINGS,
@@ -87,10 +86,7 @@ const PublicHomePage: React.FC = () => {
       </section>
 
       {/* Zigzag Feature Rows */}
-      <FeatureZigzagSection
-        className="wrapper pb-12"
-        dataList={HOME_FEATURE_ZIGZAG_DATA}
-      />
+      <FeatureZigzagSection className="wrapper pb-12" />
 
       {/* Price plans section */}
       <section className="wrapper py-16">

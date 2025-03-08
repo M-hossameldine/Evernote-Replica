@@ -1,16 +1,14 @@
 import { useState } from 'react';
 
-import type {
-  ACTION_ITEM_INTERFACE,
-  FUNCTION_ITEM_INTERFACE,
-} from 'interfaces';
+import type { SubmenuFunctionItemProps } from './SubmenuFunctionItem';
+import type { SubmenuActionItemProps } from './SubmenuActionItem';
 
 import ExcludeEventWrapper from '../ExcludeEventWrapper';
 import Submenu from './Submenu';
 
 interface MENU_INTERFACE {
   menuHeader: { content: JSX.Element; className?: string };
-  submenuItemsData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[];
+  submenuItemsData: (SubmenuFunctionItemProps | SubmenuActionItemProps)[];
   className?: string;
   placeSubmenu?: {
     // default
@@ -22,14 +20,14 @@ interface MENU_INTERFACE {
 const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
   const { menuHeader } = props;
   const { placeSubmenu } = props;
-  const [isExpanded, setIsExpanded] = useState(false); // set submenu visiblitily
+  const [isExpanded, setIsExpanded] = useState(false); // set submenu visibility
 
-  // sebmenu visiblity handlers
-  const toggleDropdonwHandler = () => {
+  // submenu visibility handlers
+  const toggleDropdownHandler = () => {
     setIsExpanded(prevState => !prevState);
   };
 
-  const hideDropdonwHandler = () => {
+  const hideDropdownHandler = () => {
     setIsExpanded(false);
   };
 
@@ -64,18 +62,18 @@ const DropdownMenu = (props: MENU_INTERFACE): React.ReactElement => {
 
   return (
     <ExcludeEventWrapper
-      listenerHandler={hideDropdonwHandler}
+      listenerHandler={hideDropdownHandler}
       className={`relative ${props.className ? props.className : ''}`}
     >
       {/* Menu Header */}
-      <button className={menuHeader.className} onClick={toggleDropdonwHandler}>
+      <button className={menuHeader.className} onClick={toggleDropdownHandler}>
         {menuHeader.content}
       </button>
 
       {/* Submenu */}
       <Submenu
         className={`absolute z-10 ${submenuPosition.x} ${submenuPosition.y} ${isExpanded ? 'scale-100' : 'scale-0'} whitespace-nowrap rounded bg-white py-2 text-sm shadow-even-2`}
-        onClick={hideDropdonwHandler}
+        onClick={hideDropdownHandler}
         submenuItemsData={props.submenuItemsData}
       />
     </ExcludeEventWrapper>
