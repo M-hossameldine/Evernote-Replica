@@ -6,7 +6,7 @@ interface ComponentInterface {
   className?: string;
 }
 
-const FeatureZigzagSection = (
+export const FeatureZigzagSection = (
   props: ComponentInterface
 ): React.ReactElement => {
   const { className } = props;

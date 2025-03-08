@@ -1,4 +1,4 @@
-import { HeroSection } from '~sections';
+import { HeroSection } from '../../sections';
 
 const DownloadPage: React.FC = () => {
   return (

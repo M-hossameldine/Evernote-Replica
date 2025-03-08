@@ -1,8 +1,9 @@
-import { FeatureZigzagSection, HeroSection } from '~sections';
 import {
+  HeroSection,
   Footer,
   TestimonialSection,
   PricingPlansSection,
+  FeatureZigzagSection,
 } from '../../sections';
 import { TextLink } from '~components/Links';
 import SimpleFeatureBlock from '../../components/FeatureBlock';

@@ -21,7 +21,7 @@ interface HeroSectionProps {
   }[];
 }
 
-const HeroSection = (props: HeroSectionProps): React.ReactElement => {
+export const HeroSection = (props: HeroSectionProps): React.ReactElement => {
   const { title, description, className, primeBtn, secondaryBtns } = props;
 
   return (
