@@ -2,7 +2,8 @@ import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
 import { Link, useParams } from 'react-router-dom';
 
-import { useAppDispatch, useLocationIndicator } from '~hooks';
+import { useLocationIndicator } from '~hooks';
+import { useAppDispatch } from '~store';
 
 import { setActiveNoteIndex } from '~modules/notes/data/local/noteEditor-slice';
 

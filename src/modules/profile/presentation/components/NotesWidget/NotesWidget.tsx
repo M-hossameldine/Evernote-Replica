@@ -1,15 +1,7 @@
+import { v4 as uuid } from 'uuid';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { v4 as uuid } from 'uuid';
-
-import { useAppSelector } from '~hooks/redux-hooks';
-
-import { selectNotes, sendNewNoteData } from '~store';
-
-import { EDITORPAGE, NOTESPAGE } from '~constants/routes';
-
-import { MdPostAdd } from 'react-icons/md';
-import { IoIosArrowForward, IoIosMore } from 'react-icons/io';
+import { useAppSelector, selectNotes, sendNewNoteData } from '~store';
 
 import Card from '~components/Cards/Card';
 import DropdownMenu from '~components/DropdownMenu';
@@ -18,9 +10,14 @@ import { type SubmenuFunctionItemProps } from '~components/DropdownMenu/SubmenuF
 import AddNoteWrapper from '~modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
 import { NoteItem } from '~modules/notes/presentation/components/NoteItem/NoteItem';
 
-type Props = { className?: string };
+import { MdPostAdd } from 'react-icons/md';
+import { IoIosArrowForward, IoIosMore } from 'react-icons/io';
 
-export const NotesWidget = (props: Props): React.ReactElement => {
+import { EDITORPAGE, NOTESPAGE } from '~constants/routes';
+
+type NotesWidgetProps = { className?: string };
+
+export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
   const notes = useAppSelector(selectNotes);
   const navigate = useNavigate();
 

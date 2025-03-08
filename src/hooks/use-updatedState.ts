@@ -7,8 +7,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type { AppDispatch, RootState } from '~store';
-
-import { useAppDispatch } from './redux-hooks';
+import { useAppDispatch } from '~store';
 
 interface UPDATE_DATA_INTERFACE {
   asyncAction: (

@@ -1,8 +1,12 @@
+import { useLocationIndicator, useUpdatedState } from '~hooks';
+
 import type { AppDispatch, RootState } from '~store';
-
-import { useAppSelector, useLocationIndicator, useUpdatedState } from '~hooks';
-
-import { selectNoteEditor, selectNotes, selectTrashNotes } from '~store';
+import {
+  useAppSelector,
+  selectNoteEditor,
+  selectNotes,
+  selectTrashNotes,
+} from '~store';
 
 import { NOTESPAGE, TRASHPAGE } from '~constants/routes';
 

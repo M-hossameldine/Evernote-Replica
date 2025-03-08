@@ -1,5 +1,4 @@
-import { useAppSelector } from '~hooks';
-import { selectTrashNotes } from '~store';
+import { useAppSelector, selectTrashNotes } from '~store';
 
 import NoteEditor from '~modules/notes/presentation/components/NoteEditor/NoteEditor';
 import NoteEditorSidebar from '~modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';

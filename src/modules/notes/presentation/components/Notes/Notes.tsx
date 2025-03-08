@@ -1,6 +1,5 @@
 import React from 'react';
-import { useAppSelector } from '~hooks/redux-hooks';
-import { selectNotes } from '~store';
+import { useAppSelector, selectNotes } from '~store';
 
 import NoteList from '../NoteList/NoteList';
 import NoteListingOptions from '../NoteListingOperations/NoteListingOptions';

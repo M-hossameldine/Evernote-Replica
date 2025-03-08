@@ -2,8 +2,12 @@ import classes from './Notification.module.css';
 
 import { useEffect, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '~hooks';
-import { hideNotification, selectNotification } from '~store';
+import {
+  hideNotification,
+  selectNotification,
+  useAppDispatch,
+  useAppSelector,
+} from '~store';
 
 import { MdError } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';

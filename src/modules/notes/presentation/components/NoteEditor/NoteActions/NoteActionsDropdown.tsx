@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLocationIndicator } from '~hooks/use-locationIndicator';
 
-import { useAppSelector } from '~hooks/redux-hooks';
 import {
+  useAppSelector,
   MoveToTrashAction,
   deleteItemPermanentlyAction,
   restoreItemFromTrashAction,

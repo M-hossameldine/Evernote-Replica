@@ -3,7 +3,7 @@ import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector, useLocationIndicator } from '~hooks';
+import { useLocationIndicator } from '~hooks';
 
 import {
   editNote,
@@ -11,6 +11,8 @@ import {
   selectNotes,
   selectTrashNotes,
   showNotification,
+  useAppDispatch,
+  useAppSelector,
 } from '~store';
 
 import { AutoGrowingTextArea } from '~components/FormInputs';

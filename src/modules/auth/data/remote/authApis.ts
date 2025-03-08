@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch } from '~hooks';
 
 import { auth, onAuthStateChanged } from '~libs/firebase';
 import type { User } from '~modules/auth/domain/models';
-import { appApi, createEndpoint } from '~store';
+import { appApi, createEndpoint, useAppDispatch } from '~store';
 
 import { saveLogin, saveLogout } from '../local/authSlice';
 import { login, logout, signUp } from './authApis.endpoints';
