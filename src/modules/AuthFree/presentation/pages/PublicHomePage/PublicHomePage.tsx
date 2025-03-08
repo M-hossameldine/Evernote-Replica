@@ -16,7 +16,7 @@ import { HOME_BASIC_FEATURE_DATA } from '../../assets/StaticData';
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,
-} from '~constants/settings';
+} from '~modules/AuthFree/presentation/constants/settings';
 
 import { IoIosArrowRoundForward } from 'react-icons/io';
 
