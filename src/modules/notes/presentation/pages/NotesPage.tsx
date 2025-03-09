@@ -13,8 +13,8 @@ const NotesPage: React.FC = () => {
 
   return (
     <div className="flex">
-      {/* hide sidebar list in the editor page */}
-      {location.locationKey !== 'editor' && (
+      {/* hide sidebar list in the homepage-note page */}
+      {location.locationKey !== 'homepage-note' && (
         <NoteEditorSidebar
           notes={notes}
           header={{ title: 'Notes', icon: IoIosPaper }}

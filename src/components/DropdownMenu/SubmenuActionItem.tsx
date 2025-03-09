@@ -8,7 +8,7 @@ import {
   selectTrashNotes,
 } from '~store';
 
-import { NOTESPAGE, TRASHPAGE } from '~constants/routes';
+import { NoteStatus } from '~constants';
 
 export interface SubmenuActionItemProps {
   id: string;
@@ -35,7 +35,7 @@ const SubmenuActionItem = (
   const updatedState = useUpdatedState({
     asyncAction,
     watchedState: isInTrash ? trashNotes : notes,
-    route: isInTrash ? TRASHPAGE : NOTESPAGE,
+    status: isInTrash ? NoteStatus.TRASH : NoteStatus.ACTIVE,
     usedIndex: editor.activeNoteIndex,
     operation,
   });

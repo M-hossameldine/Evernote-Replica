@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -16,15 +15,14 @@ import {
   isUserNotFoundError,
 } from '~modules/auth/presentation/helpers/validations';
 
-import { AuthMode } from '~constants/AppEnums/AuthEnums';
-import { ErrorsMap } from '~constants/errors';
-import { AuthRouteVariants } from '~constants/routeVariants';
-import { HOMEPAGE } from '~constants/routes';
+import { TextLink } from '~components/Links';
+import { DefaultSpinner } from '~components/Spinners';
 
 import { VerticalLogo } from '~assets';
 
-import { TextLink } from '~components/Links';
-import { DefaultSpinner } from '~components/Spinners';
+import { AuthMode } from '~constants/AppEnums/AuthEnums';
+import { ErrorsMap } from '~constants/errors';
+import { CommonRouteVariants, AuthRouteVariants } from '~constants';
 
 interface FormValuesInterface {
   email: string;
@@ -61,7 +59,7 @@ export const UserAuthForm: React.FC = () => {
 
   const submitHandler = async (values: FormValuesInterface) => {
     const submitSuccessfully = () => {
-      navigate(HOMEPAGE);
+      navigate(CommonRouteVariants.home.pathname());
     };
 
     if (isLogin) {

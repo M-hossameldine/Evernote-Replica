@@ -17,7 +17,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { FaUserFriends, FaTrash, FaStar } from 'react-icons/fa';
 import { IoIosCheckmarkCircle, IoIosPaper } from 'react-icons/io';
 
-import { HOMEPAGE, NOTESPAGE, TRASHPAGE } from '~constants/routes';
+import { CommonRouteVariants, NotesRouteVariants } from '~constants';
 
 const TAB_CONTENT = {
   home: new NavTabModel('Home', AiFillHome),
@@ -40,24 +40,27 @@ export const SideNavTabs: React.FC = () => {
     if (notes.length > 0) {
       const { id } = notes[0];
       dispatch(fillNoteEditor());
-      navigate(`${NOTESPAGE}/${id}`);
+      navigate(NotesRouteVariants.notes.pathname(id));
     } else {
-      navigate(`${NOTESPAGE}/empty`);
+      navigate(NotesRouteVariants.notes.pathname('empty'));
     }
   };
 
   const navigateTrashHandler = () => {
     if (trashNotes.length > 0) {
       const firstTrashNote = trashNotes[0].id;
-      navigate(`${TRASHPAGE}/${firstTrashNote}`);
+      navigate(NotesRouteVariants.trashNotes.pathname(firstTrashNote));
     } else {
-      navigate(`${TRASHPAGE}/empty`);
+      navigate(NotesRouteVariants.trashNotes.pathname('empty'));
     }
   };
 
   return (
     <ul className="flex flex-col">
-      <SideNavTab tab={TAB_CONTENT.home} onClick={() => navigate(HOMEPAGE)} />
+      <SideNavTab
+        tab={TAB_CONTENT.home}
+        onClick={() => navigate(CommonRouteVariants.home.pathname())}
+      />
       <div className="flex flex-col">
         {/* <SideNavTab tab={TAB_CONTENT.shortcuts} /> */}
         <SideNavTab tab={TAB_CONTENT.notes} onClick={activateNotesTabHandler} />

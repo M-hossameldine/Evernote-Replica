@@ -57,13 +57,6 @@ const NoteEditor: React.FC = () => {
       'title' in activeNote ? activeNote!.title : activeNote!.note.title;
     bodyText = 'text' in activeNote ? activeNote!.text : activeNote!.note.text;
   }
-  // useEffect(() => {
-  // }, [activeNote]);
-
-  // if (defaultActive) {
-  //   titleText = notes[0].title;
-  //   bodyText = notes[0].text;
-  // }
 
   const titleChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const titleValue = e.currentTarget.value;

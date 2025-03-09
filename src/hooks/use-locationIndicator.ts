@@ -4,13 +4,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { EDITORPAGE, NOTESPAGE, TRASHPAGE } from '~constants/routes';
-
 export const locationType = [
   'trash',
   'notes',
   'notebooks',
-  'editor',
+  'homepage-note',
   'generic',
 ] as const;
 
@@ -26,12 +24,12 @@ export const useLocationIndicator = () => {
   );
 
   useEffect(() => {
-    if (isInCurrentPath(TRASHPAGE)) {
+    if (isInCurrentPath('trash')) {
       setLocationKey('trash');
-    } else if (isInCurrentPath(NOTESPAGE)) {
+    } else if (isInCurrentPath('active')) {
       setLocationKey('notes');
-    } else if (isInCurrentPath(EDITORPAGE)) {
-      setLocationKey('editor');
+    } else if (isInCurrentPath('/note/')) {
+      setLocationKey('homepage-note');
     } else {
       setLocationKey(null);
     }

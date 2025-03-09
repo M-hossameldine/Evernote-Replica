@@ -2,7 +2,6 @@ import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
 import { Link, useParams } from 'react-router-dom';
 
-import { useLocationIndicator } from '~hooks';
 import { useAppDispatch } from '~store';
 
 import { setActiveNoteIndex } from '~modules/notes/data/local/noteEditor-slice';
@@ -13,14 +12,13 @@ type PropsType = {
   note: Note | TrashNote;
   index: number;
   className?: string;
-  route?: string;
+  route: string;
   onClick?: (noteIndex: number) => void;
 };
 
 export const NoteItem = (props: PropsType): React.ReactElement => {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const location = useLocationIndicator();
   const { note, index, className, route } = props;
 
   const { text, title, createdTimestamp } = 'note' in note ? note.note : note;
@@ -35,11 +33,6 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
     }
   };
 
-  // navigation link
-  const navigationLink = route
-    ? `${route}/${localNoteId}`
-    : `/${location.locationKey}/${localNoteId}`;
-
   // date form
   const createNoteTimestamp = new Date(createdTimestamp);
   const noteTimestampValue = `${createNoteTimestamp.toLocaleString('default', {
@@ -52,11 +45,7 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
     ${className ? className : ''}`;
 
   return (
-    <Link
-      className={noteItemClasses}
-      to={navigationLink}
-      onClick={noteFocusHandler}
-    >
+    <Link className={noteItemClasses} to={route} onClick={noteFocusHandler}>
       <h3 className={classes['note__title']}>
         {title.length > 0 ? title : 'Untitled'}
       </h3>

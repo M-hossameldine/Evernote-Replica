@@ -1,6 +1,8 @@
+import { useMatch } from 'react-router-dom';
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
 import NoteItem from '../NoteItem/NoteItem';
+import { NotesRouteVariants } from '~constants/routeVariants';
 
 type PropsType = {
   notes: (Note | TrashNote)[];
@@ -8,6 +10,7 @@ type PropsType = {
 
 const NoteList = (props: PropsType): React.ReactElement => {
   const { notes } = props;
+  const isTrashNotes = useMatch(NotesRouteVariants.trashNotes.route);
 
   const selectedNoteHandler = () => {
     // todo: add selected note logic using noteIndex
@@ -22,6 +25,11 @@ const NoteList = (props: PropsType): React.ReactElement => {
             note={note}
             index={index}
             onClick={selectedNoteHandler}
+            route={
+              isTrashNotes
+                ? NotesRouteVariants.trashNotes.pathname(note.id)
+                : NotesRouteVariants.note.pathname(note.id)
+            }
           />
         ))}
       </ul>

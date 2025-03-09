@@ -2,24 +2,30 @@ import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useInitAppAuth } from '~modules/auth/data/remote';
-
-import { AuthRouteVariants } from '~constants/routeVariants';
-import {
-  DOWNLOADPAGE,
-  EDITORPAGE,
-  HOMEPAGE,
-  NOTESPAGE,
-  TRASHPAGE,
-} from '~constants/routes';
+import { useAppSelector, selectIsLoggedIn } from '~store';
 
 import Layout from './components/Layout';
 import Notification from './components/Notification';
 import { DefaultSpinner } from './components/Spinners';
 
+import {
+  CommonRouteVariants,
+  AuthRouteVariants,
+  NotesRouteVariants,
+} from '~constants/routeVariants';
+
+const PublicHomePage = React.lazy(
+  () =>
+    import(
+      './modules/AuthFree/presentation/pages/PublicHomePage/PublicHomePage'
+    )
+);
+const UserProfile = React.lazy(
+  () => import('./modules/profile/presentation/pages/UserProfile')
+);
 const UserAuthPage = React.lazy(
   () => import('./modules/auth/presentation/pages/UserAuth/UserAuth')
 );
-const HomePage = React.lazy(() => import('./pages/HomePage'));
 const NotesPage = React.lazy(
   () => import('./modules/notes/presentation/pages/NotesPage')
 );
@@ -32,6 +38,7 @@ const DownloadPage = React.lazy(
 
 function App() {
   const { isAuthorized } = useInitAppAuth();
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   return (
     <>
@@ -46,11 +53,17 @@ function App() {
           }
         >
           <Routes>
-            <Route path={HOMEPAGE} element={<HomePage />} />
+            <Route
+              path={CommonRouteVariants.home.route}
+              element={isLoggedIn ? <UserProfile /> : <PublicHomePage />}
+            />
 
             {!isAuthorized && (
               <>
-                <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
+                <Route
+                  path={CommonRouteVariants.download.route}
+                  element={<DownloadPage />}
+                />
                 <Route
                   path={AuthRouteVariants.auth.route}
                   element={<UserAuthPage />}
@@ -59,9 +72,18 @@ function App() {
             )}
             {isAuthorized && (
               <>
-                <Route path={`${NOTESPAGE}/:noteId`} element={<NotesPage />} />
-                <Route path={`${EDITORPAGE}/:noteId`} element={<NotesPage />} />
-                <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
+                <Route
+                  path={NotesRouteVariants.notes.route}
+                  element={<NotesPage />}
+                />
+                <Route
+                  path={NotesRouteVariants.note.route}
+                  element={<NotesPage />}
+                />
+                <Route
+                  path={NotesRouteVariants.trashNotes.route}
+                  element={<TrashPage />}
+                />
               </>
             )}
             <Route path="*" element={<Navigate to={`/`} />} />

@@ -9,18 +9,20 @@ import { useNavigate } from 'react-router-dom';
 import type { AppDispatch, RootState } from '~store';
 import { useAppDispatch } from '~store';
 
+import { NotesRouteVariants, NoteStatus } from '~constants';
+
 interface UseUpdatedStateProps {
   asyncAction: (
     payload?: any
   ) => (dispatch: AppDispatch, getState: () => RootState) => Promise<void>;
-  route: string;
+  status: NoteStatus;
   usedIndex: number;
   watchedState: any[];
   operation: 'add' | 'delete' | 'update' | 'empty';
 }
 
 export const useUpdatedState = (updatedStateData: UseUpdatedStateProps) => {
-  const { asyncAction, route, usedIndex, watchedState, operation } =
+  const { asyncAction, status, usedIndex, watchedState, operation } =
     updatedStateData;
   const [isListEdited, setIsListEdited] = useState<{
     isEdited: boolean;
@@ -41,8 +43,14 @@ export const useUpdatedState = (updatedStateData: UseUpdatedStateProps) => {
     setIsListEdited({ isEdited: true, prevNotesLength: watchedState.length });
   };
 
-  // navigate to route after the watched list successfuly
+  // navigate to status after the watched list successfully
   useEffect(() => {
+    const isActiveNote = status === NoteStatus.ACTIVE;
+
+    const getPathname = isActiveNote
+      ? NotesRouteVariants.notes.pathname
+      : NotesRouteVariants.trashNotes.pathname;
+
     if (
       isListEdited.isEdited &&
       watchedState.length ===
@@ -54,13 +62,13 @@ export const useUpdatedState = (updatedStateData: UseUpdatedStateProps) => {
           ? watchedState[usedIndex]['id']
           : watchedState[watchedState.length - 1]['id'];
 
-      navigate(`${route}/${noteId}`);
+      navigate(getPathname(noteId));
       setIsListEdited({
         isEdited: false,
         prevNotesLength: watchedState.length,
       });
     } else if (watchedState.length === 0) {
-      navigate(`${route}/empty`);
+      navigate(getPathname('empty'));
     }
   }, [isListEdited, watchedState]);
 

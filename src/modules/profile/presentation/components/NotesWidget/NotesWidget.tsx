@@ -13,7 +13,7 @@ import { NoteItem } from '~modules/notes/presentation/components/NoteItem/NoteIt
 import { MdPostAdd } from 'react-icons/md';
 import { IoIosArrowForward, IoIosMore } from 'react-icons/io';
 
-import { EDITORPAGE, NOTESPAGE } from '~constants/routes';
+import { NotesRouteVariants } from '~constants';
 
 type NotesWidgetProps = { className?: string };
 
@@ -27,7 +27,9 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
     {
       id: uuid(),
       content: 'Go to notes',
-      onClick: () => navigate(`${NOTESPAGE}/${firstNote}`),
+      onClick: () => {
+        navigate(NotesRouteVariants.notes.pathname(firstNote));
+      },
     },
     {
       id: uuid(),
@@ -43,7 +45,7 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
     <Card className={` ${notesWidgetClasses} overflow-hidden`}>
       <header className="flex items-center p-2">
         <Link
-          to={`${NOTESPAGE}/${firstNote}`}
+          to={NotesRouteVariants.notes.pathname(firstNote)}
           className="flex items-center rounded p-1 uppercase text-neutral-800 hover:bg-neutral-100"
         >
           Notes
@@ -80,7 +82,7 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
                 note={note}
                 index={index}
                 className="p2"
-                route={EDITORPAGE}
+                route={NotesRouteVariants.note.pathname(note.id)}
               />
             </li>
           ))}

@@ -8,7 +8,7 @@ import {
   selectTrashNotes,
 } from '~store';
 
-import { NOTESPAGE, TRASHPAGE } from '~constants/routes';
+import { NoteStatus } from '~constants';
 
 type NoteActionsDropdownItemProps = {
   text: string;
@@ -27,12 +27,12 @@ const NoteActionsDropdownItem = (
   const trashNotes = useAppSelector(selectTrashNotes);
   const location = useLocationIndicator();
 
-  const isInTrash = location.isInCurrentPath('trash');
+  const isInTrash = location.isInCurrentPath(NoteStatus.TRASH);
 
   const updatedState = useUpdatedState({
     asyncAction,
     watchedState: isInTrash ? trashNotes : notes,
-    route: isInTrash ? TRASHPAGE : NOTESPAGE,
+    status: isInTrash ? NoteStatus.TRASH : NoteStatus.ACTIVE,
     usedIndex: editor.activeNoteIndex,
     operation,
   });

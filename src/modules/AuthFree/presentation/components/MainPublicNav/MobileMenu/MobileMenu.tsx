@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import { AuthMode } from '~constants/AppEnums/AuthEnums';
-import { AuthRouteVariants } from '~constants/routeVariants';
-import { DOWNLOADPAGE, HOMEPAGE } from '~constants/routes';
+import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
+import { GhostLink } from '~components/Links';
 
 import { HorizontalLogo } from '~assets';
 import { GrClose } from 'react-icons/gr';
 
-import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
-import { GhostLink } from '~components/Links';
+import { AuthMode, CommonRouteVariants, AuthRouteVariants } from '~constants';
 
 type PropsType = {
   onClose: () => void;
@@ -38,7 +36,10 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
           className="ml-auto h-screen w-full max-w-[26rem] bg-white p-5"
         >
           <div className="mb-5 flex items-center justify-between md:mb-0">
-            <Link to={HOMEPAGE} className="font-medium xs:hidden">
+            <Link
+              to={CommonRouteVariants.home.pathname()}
+              className="font-medium xs:hidden"
+            >
               <img src={HorizontalLogo} alt="Evernote logo" />
             </Link>
             {/* close Button */}
@@ -68,7 +69,7 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
                     borderHoverClr: 'border-green-450',
                   }}
                   className="mx-auto mt-12 px-[5em] text-sm font-semibold"
-                  route={DOWNLOADPAGE}
+                  route={CommonRouteVariants.download.pathname()}
                   onClick={props.onClose}
                 />
               </li>
