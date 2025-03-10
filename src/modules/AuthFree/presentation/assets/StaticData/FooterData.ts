@@ -185,7 +185,7 @@ export const FooterData: FooterDataColumn[] = [
   },
 ];
 
-export const FOOTER_SOCIAL_ICONS_DATA: {
+export const FooterSocialIconsData: {
   Icon: IconType;
   route: string;
 }[] = [
@@ -215,7 +215,7 @@ export const FOOTER_SOCIAL_ICONS_DATA: {
   },
 ];
 
-export const FOOTER_LEGAL_DATA: { text: string; route: string }[] = [
+export const FooterLegalData: { text: string; route: string }[] = [
   {
     text: 'Security',
     route: '',

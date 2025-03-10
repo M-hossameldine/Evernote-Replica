@@ -1,4 +1,4 @@
-import { FOOTER_LEGAL_DATA } from '../../../constants';
+import { FooterLegalData } from '../../../assets/StaticData';
 
 import { ElephantLogoImg } from '~assets';
 
@@ -27,7 +27,7 @@ export const FooterInfoRow: React.FC = () => {
         />
         <p className="">© 2022 Evernote Corporation. All rights reserved.</p>
         <ul className="flex w-full justify-between gap-8 sm:w-auto">
-          {FOOTER_LEGAL_DATA.map((link, index) => (
+          {FooterLegalData.map((link, index) => (
             <li key={index} className="hover:text-neutral-800">
               <TextLink text={link.text} route={link.route} underline={false} />
             </li>
