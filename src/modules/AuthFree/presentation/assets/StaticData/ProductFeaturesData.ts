@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid';
-
 import {
   FeatureCalenderIcon,
   FeatureCalenderImg,
@@ -9,13 +7,12 @@ import {
   FeatureHitDeadlineImg,
   FeaturePaperlessImg,
   FeatureWebClippingIcon,
-} from '../../assets';
+} from '~assets';
 import { IoIosArrowForward } from 'react-icons/io';
 
 // Public Home - Feature Zigzag Section
-export const HOME_FEATURE_ZIGZAG_DATA = [
+export const ProductFeaturesData = [
   {
-    id: uuid(),
     header: 'Hit every deadline',
     description:
       'Create and assign tasks inside your notes with due dates, flags, and reminders so nothing falls through the cracks.',
@@ -36,7 +33,6 @@ export const HOME_FEATURE_ZIGZAG_DATA = [
     },
   },
   {
-    id: uuid(),
     header: 'Go paperless',
     description:
       'Scan important documents and keep them handy on all your devices. Save the information—not the clutter.',
@@ -57,7 +53,6 @@ export const HOME_FEATURE_ZIGZAG_DATA = [
     },
   },
   {
-    id: uuid(),
     header: 'Clip the web',
     description:
       'Save web pages (without the ads) and mark them up with arrows, highlights, and text to make them more useful.',
@@ -78,7 +73,6 @@ export const HOME_FEATURE_ZIGZAG_DATA = [
     },
   },
   {
-    id: uuid(),
     header: 'Connect your Google Calendar',
     description:
       'Make your schedule work for you. Your meetings and notes have context so nothing gets lost in the shuffle.',

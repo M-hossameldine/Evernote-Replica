@@ -9,7 +9,7 @@ import {
   FaLinkedinIn,
 } from 'react-icons/fa';
 
-export interface FooterData {
+interface FooterDataColumn {
   colTitle: string;
   colFeatures: {
     text: string;
@@ -17,7 +17,7 @@ export interface FooterData {
   }[];
 }
 
-export const FOOTER_DATA: FooterData[] = [
+export const FooterData: FooterDataColumn[] = [
   {
     colTitle: 'Product',
     colFeatures: [

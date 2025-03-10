@@ -3,7 +3,7 @@ import {
   Footer,
   TestimonialSection,
   PricingPlansSection,
-  FeatureZigzagSection,
+  ProductFeaturesSection,
 } from '../../sections';
 import { TextLink } from '~components/Links';
 import SimpleFeatureBlock from '../../components/FeatureBlock';
@@ -13,7 +13,7 @@ import { TaskHeroImg } from '../../assets/images';
 
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
 import { AuthRouteVariants } from '~constants/routeVariants';
-import { HOME_BASIC_FEATURE_DATA } from '../../assets/StaticData';
+import { ProductValuesData } from '../../assets/StaticData';
 import {
   FEATURE_CAROUSEL_SETTINGS,
   TESTIMONIAL_CAROUSEL_SETTINGS,
@@ -56,7 +56,7 @@ const PublicHomePage: React.FC = () => {
 
           {/* desktop features*/}
           <ul className="hidden w-[15rem] shrink-0 flex-col gap-4 md:flex">
-            {HOME_BASIC_FEATURE_DATA.map((feature, index) => (
+            {ProductValuesData.map((feature, index) => (
               <SimpleFeatureBlock
                 key={index + feature.title}
                 title={{
@@ -72,7 +72,7 @@ const PublicHomePage: React.FC = () => {
           <ul className="block md:hidden">
             <FeatureCarousel
               settings={FEATURE_CAROUSEL_SETTINGS}
-              data={HOME_BASIC_FEATURE_DATA}
+              data={ProductValuesData}
             />
           </ul>
         </div>
@@ -87,7 +87,7 @@ const PublicHomePage: React.FC = () => {
       </section>
 
       {/* Zigzag Feature Rows */}
-      <FeatureZigzagSection className="wrapper pb-12" />
+      <ProductFeaturesSection className="wrapper pb-12" />
 
       {/* Price plans section */}
       <section className="wrapper py-16">
