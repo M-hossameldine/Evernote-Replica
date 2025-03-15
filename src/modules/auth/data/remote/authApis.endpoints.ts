@@ -27,6 +27,15 @@ export const signUp = async ({
     createdAt: new Date().toISOString(),
   });
 
+  // TODO: handle this with add note thunk
+  // Initialize empty notes collection for the user
+  await setDoc(doc(db, 'users', user.uid, 'notes', 'welcome'), {
+    title: 'Welcome to Evernote!',
+    text: 'Start creating your notes...',
+    createdTimestamp: new Date().toISOString(),
+    updatedTimestamp: new Date().toISOString(),
+  });
+
   return userCredential;
 };
 
