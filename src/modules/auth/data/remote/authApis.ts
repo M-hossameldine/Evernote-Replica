@@ -39,20 +39,22 @@ export const useInitAppAuth = () => {
 export const authApi = appApi.injectEndpoints({
   endpoints: builder => ({
     signup: builder.mutation<AuthRequestResponse, AuthRequestParams>(
-      createEndpoint<AuthRequestResponse, AuthRequestParams>({
+      createEndpoint<AuthRequestResponse, AuthRequestParams, false>({
         endpoint: signUp,
         mapData: mapAuthRequestResult,
         onQuerySuccess: (dispatch, mappedData) =>
           dispatch(saveLogin(mappedData)),
+        requiresAuth: false,
       })
     ),
 
     login: builder.mutation<AuthRequestResponse, AuthRequestParams>(
-      createEndpoint<AuthRequestResponse, AuthRequestParams>({
+      createEndpoint<AuthRequestResponse, AuthRequestParams, false>({
         endpoint: login,
         mapData: mapAuthRequestResult,
         onQuerySuccess: (dispatch, mappedData) =>
           dispatch(saveLogin(mappedData)),
+        requiresAuth: false,
       })
     ),
 
