@@ -8,7 +8,7 @@ import { IoIosPaper } from 'react-icons/io';
 
 const Notes: React.FC = () => {
   const notes = useAppSelector(selectNotes);
-  const notesNumber = notes.length;
+  const notesNumber = notes?.length;
 
   return (
     <div className="flex h-screen min-w-[18rem] flex-col bg-neutral-100">

@@ -19,7 +19,7 @@ const TrashPage: React.FC = () => {
           text: "When you have notes in the trash, click '...' to restore or delete them.",
         }}
       />
-      {trashNotes.length > 0 && <NoteEditor />}
+      {trashNotes?.length > 0 && <NoteEditor />}
     </div>
   );
 };

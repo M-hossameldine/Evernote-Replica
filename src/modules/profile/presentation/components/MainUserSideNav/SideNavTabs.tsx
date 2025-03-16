@@ -37,7 +37,7 @@ export const SideNavTabs: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const activateNotesTabHandler = () => {
-    if (notes.length > 0) {
+    if (notes?.length > 0) {
       const { id } = notes[0];
       dispatch(fillNoteEditor());
       navigate(NotesRouteVariants.notes.pathname(id));
@@ -47,7 +47,7 @@ export const SideNavTabs: React.FC = () => {
   };
 
   const navigateTrashHandler = () => {
-    if (trashNotes.length > 0) {
+    if (trashNotes?.length > 0) {
       const firstTrashNote = trashNotes[0].id;
       navigate(NotesRouteVariants.trashNotes.pathname(firstTrashNote));
     } else {

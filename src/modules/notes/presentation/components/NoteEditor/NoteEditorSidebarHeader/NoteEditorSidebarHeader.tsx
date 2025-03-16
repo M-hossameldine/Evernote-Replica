@@ -21,7 +21,7 @@ const NoteEditorSidebarHeader = (
   const location = useLocationIndicator();
 
   const { notes, headerData } = props;
-  const notesNumber = notes.length;
+  const notesNumber = notes?.length;
 
   return (
     <div className="border-b-[1px] border-b-neutral-300 p-4 pl-5 pt-5 shadow-sm">

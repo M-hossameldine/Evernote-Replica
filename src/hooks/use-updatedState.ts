@@ -27,7 +27,7 @@ export const useUpdatedState = (updatedStateData: UseUpdatedStateProps) => {
   const [isListEdited, setIsListEdited] = useState<{
     isEdited: boolean;
     prevNotesLength: number;
-  }>({ isEdited: false, prevNotesLength: watchedState.length });
+  }>({ isEdited: false, prevNotesLength: watchedState?.length });
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -40,7 +40,7 @@ export const useUpdatedState = (updatedStateData: UseUpdatedStateProps) => {
   // execute the store action
   const dispatchActionHandler = (payload?: any) => {
     dispatch(asyncAction(payload));
-    setIsListEdited({ isEdited: true, prevNotesLength: watchedState.length });
+    setIsListEdited({ isEdited: true, prevNotesLength: watchedState?.length });
   };
 
   // navigate to status after the watched list successfully
@@ -53,21 +53,21 @@ export const useUpdatedState = (updatedStateData: UseUpdatedStateProps) => {
 
     if (
       isListEdited.isEdited &&
-      watchedState.length ===
+      watchedState?.length ===
         operationMap.get(operation)(isListEdited.prevNotesLength) &&
-      watchedState.length !== 0
+      watchedState?.length !== 0
     ) {
       const noteId =
-        usedIndex < watchedState.length - 1 // check if the last item is deleted
+        usedIndex < watchedState?.length - 1 // check if the last item is deleted
           ? watchedState[usedIndex]['id']
-          : watchedState[watchedState.length - 1]['id'];
+          : watchedState[watchedState?.length - 1]['id'];
 
       navigate(getPathname(noteId));
       setIsListEdited({
         isEdited: false,
-        prevNotesLength: watchedState.length,
+        prevNotesLength: watchedState?.length,
       });
-    } else if (watchedState.length === 0) {
+    } else if (watchedState?.length === 0) {
       navigate(getPathname('empty'));
     }
   }, [isListEdited, watchedState]);

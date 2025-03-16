@@ -33,7 +33,7 @@ const Notification: React.FC = () => {
 
   let statusClasses = '';
 
-  const visiblityClasses = showNotification ? classes.visible : '';
+  const visibilityClasses = showNotification ? classes.visible : '';
 
   if (status === 'error') {
     statusClasses = classes.error;
@@ -41,7 +41,7 @@ const Notification: React.FC = () => {
     statusClasses = classes.success;
   }
 
-  const cssClasses = `${classes.notification} ${statusClasses} ${visiblityClasses}`;
+  const cssClasses = `${classes.notification} ${statusClasses} ${visibilityClasses}`;
 
   return (
     <div className={cssClasses}>

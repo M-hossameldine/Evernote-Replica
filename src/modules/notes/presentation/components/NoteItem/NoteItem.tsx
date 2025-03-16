@@ -47,7 +47,7 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
   return (
     <Link className={noteItemClasses} to={route} onClick={noteFocusHandler}>
       <h3 className={classes['note__title']}>
-        {title.length > 0 ? title : 'Untitled'}
+        {title?.length > 0 ? title : 'Untitled'}
       </h3>
       <p className={classes['note__body']}>{text}</p>
       <small className={classes['note__timestamp']}>{noteTimestampValue}</small>

@@ -21,7 +21,7 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
   const notes = useAppSelector(selectNotes);
   const navigate = useNavigate();
 
-  const firstNote = notes.length > 0 ? notes[0].id : 'empty';
+  const firstNote = notes?.length > 0 ? notes?.[0]?.id : 'empty';
 
   const dropdownData: (SubmenuFunctionItemProps | SubmenuActionItemProps)[] = [
     {
