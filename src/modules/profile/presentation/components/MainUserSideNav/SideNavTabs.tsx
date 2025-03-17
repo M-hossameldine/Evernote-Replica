@@ -1,12 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import {
-  useAppDispatch,
-  useAppSelector,
-  fillNoteEditor,
-  selectNotes,
-  selectTrashNotes,
-} from '~store';
+import { useAppDispatch, useAppSelector, fillNoteEditor } from '~store';
+import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
 
 import DropdownList from '~components/Dropdown';
 import SideNavTab from './SideNavTab';
@@ -32,7 +27,7 @@ const TAB_CONTENT = {
 
 export const SideNavTabs: React.FC = () => {
   const navigate = useNavigate();
-  const notes = useAppSelector(selectNotes);
+  const notes = useAppSelector(selectActiveNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const dispatch = useAppDispatch();
 

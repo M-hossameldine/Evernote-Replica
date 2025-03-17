@@ -1,7 +1,8 @@
 import { v4 as uuid } from 'uuid';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAppSelector, selectNotes, sendNewNoteData } from '~store';
+import { useAppSelector, sendNewNoteData } from '~store';
+import { selectActiveNotes } from '~modules/notes/data/local';
 
 import Card from '~components/Cards/Card';
 import DropdownMenu from '~components/DropdownMenu';
@@ -18,7 +19,7 @@ import { NotesRouteVariants } from '~constants';
 type NotesWidgetProps = { className?: string };
 
 export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
-  const notes = useAppSelector(selectNotes);
+  const notes = useAppSelector(selectActiveNotes);
   const navigate = useNavigate();
 
   const firstNote = notes?.length > 0 ? notes?.[0]?.id : 'empty';

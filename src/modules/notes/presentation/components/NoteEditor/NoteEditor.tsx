@@ -8,20 +8,18 @@ import { useLocationIndicator } from '~hooks';
 import {
   editNote,
   fillNoteEditor,
-  selectNotes,
-  selectTrashNotes,
   showNotification,
   useAppDispatch,
   useAppSelector,
 } from '~store';
-
+import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
 import { AutoGrowingTextArea } from '~components/FormInputs';
 
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
 
 const NoteEditor: React.FC = () => {
   const dispatch = useAppDispatch();
-  const notes = useAppSelector(selectNotes);
+  const notes = useAppSelector(selectActiveNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const params = useParams();
   const location = useLocationIndicator();

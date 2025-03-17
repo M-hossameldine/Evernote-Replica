@@ -1,12 +1,10 @@
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+import classes from './NoteItem.module.css';
 
 import { Link, useParams } from 'react-router-dom';
-
 import { useAppDispatch } from '~store';
-
 import { setActiveNoteIndex } from '~modules/notes/data/local/noteEditor-slice';
 
-import classes from './NoteItem.module.css';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
 type PropsType = {
   note: Note | TrashNote;

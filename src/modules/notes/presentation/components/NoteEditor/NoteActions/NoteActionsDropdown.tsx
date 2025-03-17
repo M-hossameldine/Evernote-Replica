@@ -7,9 +7,8 @@ import {
   MoveToTrashAction,
   deleteItemPermanentlyAction,
   restoreItemFromTrashAction,
-  selectNotes,
-  selectTrashNotes,
 } from '~store';
+import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
 import { findNoteById } from '~helpers';
 
 import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
@@ -19,7 +18,7 @@ import { IoIosMore } from 'react-icons/io';
 
 const NoteActionsDropdown: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const notes = useAppSelector(selectNotes);
+  const notes = useAppSelector(selectActiveNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const location = useLocationIndicator();
   const params = useParams();
@@ -31,12 +30,12 @@ const NoteActionsDropdown: React.FC = () => {
     params.noteId!
   );
 
-  // sebmenu visiblity handlers
-  const toggleDropdonwHandler = () => {
+  // submenu visibility handlers
+  const toggleDropdownHandler = () => {
     setIsExpanded(prevState => !prevState);
   };
 
-  const hideDropdonwHandler = () => {
+  const hideDropdownHandler = () => {
     setIsExpanded(false);
   };
 
@@ -65,11 +64,11 @@ const NoteActionsDropdown: React.FC = () => {
   );
 
   return (
-    <ExcludeEventWrapper listenerHandler={hideDropdonwHandler}>
+    <ExcludeEventWrapper listenerHandler={hideDropdownHandler}>
       <div className="relative">
         <button
           className="m-0 p-0 text-neutral-500"
-          onClick={toggleDropdonwHandler}
+          onClick={toggleDropdownHandler}
         >
           <IoIosMore className="shrink-0 text-xl" />
         </button>
@@ -78,7 +77,7 @@ const NoteActionsDropdown: React.FC = () => {
           className={`absolute right-0 top-[150%] z-10 whitespace-nowrap rounded bg-white text-sm shadow-even-2 ${
             isExpanded ? 'scale-100' : 'scale-0'
           }`}
-          onClick={hideDropdonwHandler}
+          onClick={hideDropdownHandler}
         >
           {actionsContent}
         </button>

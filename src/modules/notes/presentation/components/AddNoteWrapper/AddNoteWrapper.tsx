@@ -1,8 +1,11 @@
-import { useAppSelector, useUpdatedState } from '~hooks';
+import { useUpdatedState } from '~hooks';
+import { useNavigate } from 'react-router-dom';
 
-import { selectNotes, sendNewNoteData } from '~store';
+import { useAddNoteMutation } from '~modules/notes/data/remote';
+import { useAppSelector, selectUser, sendNewNoteData } from '~store';
+import { selectActiveNotes } from '~modules/notes/data/local';
 
-import { NOTESPAGE } from '~constants/routes';
+import { NotesRouteVariants, NoteStatus } from '~constants';
 
 type Props = {
   children?: React.ReactNode;
@@ -12,11 +15,14 @@ type Props = {
 
 export const AddNoteWrapper = (props: Props): React.ReactElement => {
   const { actionPayload, className } = props;
-  const notes = useAppSelector(selectNotes);
+  const navigate = useNavigate();
+  const notes = useAppSelector(selectActiveNotes);
+  const user = useAppSelector(selectUser);
+  const [addNoteMutation] = useAddNoteMutation();
 
   const notesUpdatedState = useUpdatedState({
     asyncAction: sendNewNoteData,
-    route: NOTESPAGE,
+    status: NoteStatus.ACTIVE,
     usedIndex: 0,
     watchedState: notes,
     operation: 'add',
@@ -24,6 +30,20 @@ export const AddNoteWrapper = (props: Props): React.ReactElement => {
 
   const addNoteHandler = () => {
     notesUpdatedState.dispatchActionHandler({ ...actionPayload });
+
+    if (!user) return;
+
+    addNoteMutation({
+      payload: {
+        title: '',
+        text: '',
+        createdTimestamp: new Date().toISOString(),
+        updatedTimestamp: new Date().toISOString(),
+      },
+      onSuccess: note => {
+        navigate(NotesRouteVariants.notes.pathname(note.id));
+      },
+    });
   };
 
   return (

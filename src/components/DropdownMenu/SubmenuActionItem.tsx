@@ -1,12 +1,9 @@
 import { useLocationIndicator, useUpdatedState } from '~hooks';
 
 import type { AppDispatch, RootState } from '~store';
-import {
-  useAppSelector,
-  selectNoteEditor,
-  selectNotes,
-  selectTrashNotes,
-} from '~store';
+import { useAppSelector, selectNoteEditor } from '~store';
+
+import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
 
 import { NoteStatus } from '~constants';
 
@@ -26,7 +23,7 @@ const SubmenuActionItem = (
   const { content, asyncAction, asyncActionArgs, operation } = props;
 
   const editor = useAppSelector(selectNoteEditor);
-  const notes = useAppSelector(selectNotes);
+  const notes = useAppSelector(selectActiveNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const location = useLocationIndicator();
 

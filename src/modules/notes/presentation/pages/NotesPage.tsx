@@ -1,4 +1,5 @@
-import { useAppSelector, selectNotes } from '~store';
+import { useAppSelector, selectActiveNotes } from '~store';
+import { useGetActiveNotesQuery } from '~modules/notes/data/remote';
 
 import NoteEditor from '~modules/notes/presentation/components/NoteEditor/NoteEditor';
 import NoteEditorSidebar from '~modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
@@ -8,7 +9,8 @@ import { IoIosPaper } from 'react-icons/io';
 import { GiNotebook } from 'react-icons/gi';
 
 const NotesPage: React.FC = () => {
-  const notes = useAppSelector(selectNotes);
+  const notes = useAppSelector(selectActiveNotes);
+  useGetActiveNotesQuery({});
 
   return (
     <div className="flex">

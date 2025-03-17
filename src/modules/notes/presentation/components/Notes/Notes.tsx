@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector, selectNotes } from '~store';
+import { useAppSelector, selectActiveNotes } from '~store';
 
 import NoteList from '../NoteList/NoteList';
 import NoteListingOptions from '../NoteListingOperations/NoteListingOptions';
@@ -7,7 +7,7 @@ import NoteListingOptions from '../NoteListingOperations/NoteListingOptions';
 import { IoIosPaper } from 'react-icons/io';
 
 const Notes: React.FC = () => {
-  const notes = useAppSelector(selectNotes);
+  const notes = useAppSelector(selectActiveNotes);
   const notesNumber = notes?.length;
 
   return (

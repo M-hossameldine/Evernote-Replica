@@ -1,4 +1,5 @@
-import { useAppSelector, selectTrashNotes } from '~store';
+import { useAppSelector } from '~store';
+import { selectTrashNotes } from '~modules/notes/data/local';
 
 import NoteEditor from '~modules/notes/presentation/components/NoteEditor/NoteEditor';
 import NoteEditorSidebar from '~modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';

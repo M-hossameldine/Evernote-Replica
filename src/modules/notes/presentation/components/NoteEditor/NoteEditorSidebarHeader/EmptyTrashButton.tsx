@@ -1,6 +1,7 @@
 import { useUpdatedState } from '~hooks';
 
-import { useAppSelector, emptyTrashAction, selectTrashNotes } from '~store';
+import { useAppSelector, emptyTrashAction } from '~store';
+import { selectTrashNotes } from '~modules/notes/data/local';
 
 import { NoteStatus } from '~constants';
 
