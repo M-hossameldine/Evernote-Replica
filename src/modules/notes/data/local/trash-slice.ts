@@ -3,8 +3,6 @@ import type { TrashNote } from '~modules/notes/domain/interfaces';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import type { RootState } from '~store';
-
 export interface TrashSliceState {
   notes: TrashNote[];
 }
@@ -59,7 +57,5 @@ const TrashSlice = createSlice({
 
 export const { deleteItemPermanently, restoreItem, emptyTrash } =
   TrashSlice.actions;
-
-export const selectTrashNotes = (state: RootState) => state.trash.notes;
 
 export default TrashSlice.reducer;
