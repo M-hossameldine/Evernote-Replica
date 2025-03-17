@@ -2,6 +2,7 @@ import { useAppSelector, selectTrashNotes } from '~store';
 
 import NoteEditor from '~modules/notes/presentation/components/NoteEditor/NoteEditor';
 import NoteEditorSidebar from '~modules/notes/presentation/components/NoteEditor/NoteEditorSidebar/NoteEditorSidebar';
+import { EmptyStateIcon } from '~components/EmptyState';
 
 import { FaTrash } from 'react-icons/fa';
 
@@ -13,8 +14,8 @@ const TrashPage: React.FC = () => {
       <NoteEditorSidebar
         notes={trashNotes}
         header={{ title: 'Trash', icon: FaTrash }}
-        fallbackData={{
-          icon: FaTrash,
+        emptyStateProps={{
+          icon: <EmptyStateIcon Icon={FaTrash} />,
           title: 'Your Trash is empty',
           text: "When you have notes in the trash, click '...' to restore or delete them.",
         }}
