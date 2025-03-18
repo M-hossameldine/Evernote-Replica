@@ -53,7 +53,6 @@ const SideNavBar: React.FC = () => {
         <AddNewNoteTab />
       </header>
 
-      {/* <SearchBar /> */}
       <SideNavTabs />
     </div>
   );

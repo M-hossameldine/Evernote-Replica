@@ -48,7 +48,7 @@ export const useUpdatedState = (updatedStateData: UseUpdatedStateProps) => {
     const isActiveNote = status === NoteStatus.ACTIVE;
 
     const getPathname = isActiveNote
-      ? NotesRouteVariants.notes.pathname
+      ? NotesRouteVariants.activeNotes.pathname
       : NotesRouteVariants.trashNotes.pathname;
 
     if (

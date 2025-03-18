@@ -29,7 +29,7 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
       id: uuid(),
       content: 'Go to notes',
       onClick: () => {
-        navigate(NotesRouteVariants.notes.pathname(firstNote));
+        navigate(NotesRouteVariants.activeNotes.pathname(firstNote));
       },
     },
     {
@@ -46,7 +46,7 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
     <Card className={` ${notesWidgetClasses} overflow-hidden`}>
       <header className="flex items-center p-2">
         <Link
-          to={NotesRouteVariants.notes.pathname(firstNote)}
+          to={NotesRouteVariants.activeNotes.pathname(firstNote)}
           className="flex items-center rounded p-1 uppercase text-neutral-800 hover:bg-neutral-100"
         >
           Notes

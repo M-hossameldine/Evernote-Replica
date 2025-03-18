@@ -37,59 +37,77 @@ const DownloadPage = React.lazy(
 );
 
 function App() {
-  const { isAuthorized } = useInitAppAuth();
+  const { isAuthorized, isLoading: isLoadingAuth } = useInitAppAuth();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
+  const ScreenLoading = () => (
+    <div className="flex min-h-screen w-full items-center justify-center">
+      <DefaultSpinner size="h-12 w-12" borderSize="border-4" />
+    </div>
+  );
   return (
     <>
       <Notification />
 
-      <Layout>
-        <Suspense
-          fallback={
-            <div className="flex min-h-screen w-full items-center justify-center">
-              <DefaultSpinner size="h-12 w-12" borderSize="border-4" />
-            </div>
-          }
-        >
-          <Routes>
-            <Route
-              path={CommonRouteVariants.home.route}
-              element={isLoggedIn ? <UserProfile /> : <PublicHomePage />}
-            />
+      {isLoadingAuth ? (
+        <ScreenLoading />
+      ) : (
+        <Suspense fallback={<ScreenLoading />}>
+          <Layout>
+            <Routes>
+              {!isAuthorized && (
+                <>
+                  <Route
+                    path={CommonRouteVariants.publicHomePage.route}
+                    element={<PublicHomePage />}
+                  />
+                  <Route
+                    path={CommonRouteVariants.download.route}
+                    element={<DownloadPage />}
+                  />
+                  <Route
+                    path={AuthRouteVariants.auth.route}
+                    element={<UserAuthPage />}
+                  />
+                </>
+              )}
+              {isAuthorized && (
+                <>
+                  <Route
+                    path={CommonRouteVariants.userHomePage.route}
+                    element={<UserProfile />}
+                  />
+                  <Route
+                    path={NotesRouteVariants.activeNotes.route}
+                    element={<NotesPage />}
+                  />
+                  <Route
+                    path={NotesRouteVariants.note.route}
+                    element={<NotesPage />}
+                  />
+                  <Route
+                    path={NotesRouteVariants.trashNotes.route}
+                    element={<TrashPage />}
+                  />
+                </>
+              )}
 
-            {!isAuthorized && (
-              <>
-                <Route
-                  path={CommonRouteVariants.download.route}
-                  element={<DownloadPage />}
-                />
-                <Route
-                  path={AuthRouteVariants.auth.route}
-                  element={<UserAuthPage />}
-                />
-              </>
-            )}
-            {isAuthorized && (
-              <>
-                <Route
-                  path={NotesRouteVariants.notes.route}
-                  element={<NotesPage />}
-                />
-                <Route
-                  path={NotesRouteVariants.note.route}
-                  element={<NotesPage />}
-                />
-                <Route
-                  path={NotesRouteVariants.trashNotes.route}
-                  element={<TrashPage />}
-                />
-              </>
-            )}
-            <Route path="*" element={<Navigate to={`/`} />} />
-          </Routes>
+              <Route
+                path="*"
+                element={
+                  <Navigate
+                    to={
+                      isLoggedIn
+                        ? CommonRouteVariants.userHomePage.route
+                        : CommonRouteVariants.publicHomePage.route
+                    }
+                  />
+                }
+              />
+            </Routes>
+          </Layout>
         </Suspense>
-      </Layout>
+      )}
     </>
   );
 }

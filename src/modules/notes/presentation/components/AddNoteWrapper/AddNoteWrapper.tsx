@@ -41,7 +41,7 @@ export const AddNoteWrapper = (props: Props): React.ReactElement => {
         updatedTimestamp: new Date().toISOString(),
       },
       onSuccess: note => {
-        navigate(NotesRouteVariants.notes.pathname(note.id));
+        navigate(NotesRouteVariants.activeNotes.pathname(note.id));
       },
     });
   };

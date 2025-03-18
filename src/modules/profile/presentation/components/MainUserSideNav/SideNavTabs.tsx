@@ -1,69 +1,44 @@
-import { useNavigate } from 'react-router-dom';
+import { useMemo, useCallback } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector, fillNoteEditor } from '~store';
+import { useAppSelector } from '~store';
 import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
 
 import DropdownList from '~components/Dropdown';
 import SideNavTab from './SideNavTab';
-import { NavTabModel } from '~models/UI-Models';
 
-import { RiPriceTagFill, RiBookletFill } from 'react-icons/ri';
-import { AiFillHome } from 'react-icons/ai';
-import { FaUserFriends, FaTrash, FaStar } from 'react-icons/fa';
-import { IoIosCheckmarkCircle, IoIosPaper } from 'react-icons/io';
-
-import { CommonRouteVariants, NotesRouteVariants } from '~constants';
-
-const TAB_CONTENT = {
-  home: new NavTabModel('Home', AiFillHome),
-  shortcuts: new NavTabModel('Shortcuts', FaStar),
-  notes: new NavTabModel('Notes', IoIosPaper),
-  tasks: new NavTabModel('Tasks', IoIosCheckmarkCircle),
-  notebooks: new NavTabModel('Notebooks', RiBookletFill),
-  tags: new NavTabModel('Tags', RiPriceTagFill),
-  sharedWithMe: new NavTabModel('Shared with me', FaUserFriends),
-  trash: new NavTabModel('Trash', FaTrash),
-};
+import { SidebarRoutesConfig } from '~constants';
 
 export const SideNavTabs: React.FC = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const notes = useAppSelector(selectActiveNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
-  const dispatch = useAppDispatch();
 
-  const activateNotesTabHandler = () => {
-    if (notes?.length > 0) {
-      const { id } = notes[0];
-      dispatch(fillNoteEditor());
-      navigate(NotesRouteVariants.notes.pathname(id));
-    } else {
-      navigate(NotesRouteVariants.notes.pathname('empty'));
-    }
-  };
+  const firstNoteId = notes[0]?.id || 'empty';
+  const firstTrashNoteId = trashNotes[0]?.id || 'empty';
 
-  const navigateTrashHandler = () => {
-    if (trashNotes?.length > 0) {
-      const firstTrashNote = trashNotes[0].id;
-      navigate(NotesRouteVariants.trashNotes.pathname(firstTrashNote));
-    } else {
-      navigate(NotesRouteVariants.trashNotes.pathname('empty'));
-    }
-  };
+  const isActiveTab = useCallback(
+    (tabId: string) =>
+      (pathname?.substr(1)?.split?.('/') ?? []).includes(tabId),
+    [pathname]
+  );
+
+  const sidebarRoutes = useMemo(() => {
+    return SidebarRoutesConfig({ firstNoteId, firstTrashNoteId });
+  }, [firstNoteId, firstTrashNoteId]);
 
   return (
     <ul className="flex flex-col">
-      <SideNavTab
-        tab={TAB_CONTENT.home}
-        onClick={() => navigate(CommonRouteVariants.userHomePage.pathname())}
-      />
-      <div className="flex flex-col">
-        <SideNavTab tab={TAB_CONTENT.notes} onClick={activateNotesTabHandler} />
+      {sidebarRoutes.map(route => (
         <SideNavTab
-          tab={TAB_CONTENT.trash}
-          className="mt-3"
-          onClick={navigateTrashHandler}
+          key={route.title}
+          tab={route}
+          onClick={() => navigate(route.path)}
+          isActive={isActiveTab(route.id)}
         />
-      </div>
+      ))}
       <DropdownList />
     </ul>
   );

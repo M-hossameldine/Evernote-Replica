@@ -1,4 +1,6 @@
-export const CommonRouteVariants = {
+import type { NavigationRoute } from 'types/ui';
+
+export const CommonRouteVariants: Record<string, NavigationRoute> = {
   publicHomePage: {
     route: `/`,
     pathname: () => `/`,
@@ -10,5 +12,6 @@ export const CommonRouteVariants = {
   userHomePage: {
     route: `/home`,
     pathname: () => `/home`,
+    id: 'home',
   },
 };
