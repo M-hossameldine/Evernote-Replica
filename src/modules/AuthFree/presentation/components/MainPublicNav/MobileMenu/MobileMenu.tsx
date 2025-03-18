@@ -37,7 +37,7 @@ export const MobileMenu = (props: PropsType): React.ReactElement => {
         >
           <div className="mb-5 flex items-center justify-between md:mb-0">
             <Link
-              to={CommonRouteVariants.home.pathname()}
+              to={CommonRouteVariants.publicHomePage.pathname()}
               className="font-medium xs:hidden"
             >
               <img src={HorizontalLogo} alt="Evernote logo" />

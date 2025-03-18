@@ -59,7 +59,7 @@ export const UserAuthForm: React.FC = () => {
 
   const submitHandler = async (values: FormValuesInterface) => {
     const submitSuccessfully = () => {
-      navigate(CommonRouteVariants.home.pathname());
+      navigate(CommonRouteVariants.userHomePage.pathname());
     };
 
     if (isLogin) {
@@ -68,6 +68,7 @@ export const UserAuthForm: React.FC = () => {
           email: values.email,
           password: values.password,
         },
+        onSuccess: submitSuccessfully,
         onError: error => {
           setRequestErrorMessage(error.message);
         },
@@ -95,7 +96,10 @@ export const UserAuthForm: React.FC = () => {
       {({ errors, touched, handleChange }) => (
         <Form className="relative z-10 mx-auto mt-10 h-screen w-full rounded-lg bg-white p-8 py-16 shadow-even-3 md:mt-0 md:h-auto md:w-[32rem]">
           <div className="mx-auto flex max-w-[20rem] flex-col">
-            <Link to="/" className="mx-auto max-w-[11rem]">
+            <Link
+              to={CommonRouteVariants.publicHomePage.pathname()}
+              className="mx-auto max-w-[11rem]"
+            >
               <img src={VerticalLogo} alt="Evernote Logo" />
             </Link>
 

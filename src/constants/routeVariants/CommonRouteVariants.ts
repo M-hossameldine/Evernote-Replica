@@ -1,10 +1,14 @@
 export const CommonRouteVariants = {
-  home: {
+  publicHomePage: {
     route: `/`,
     pathname: () => `/`,
   },
   download: {
     route: `/download`,
     pathname: () => `/download`,
+  },
+  userHomePage: {
+    route: `/home`,
+    pathname: () => `/home`,
   },
 };

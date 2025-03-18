@@ -18,7 +18,7 @@ export const DesktopMenu = (props: Props): React.ReactElement => {
   return (
     <div className="container mx-auto flex max-w-[75rem] items-center p-5">
       <Link
-        to={CommonRouteVariants.home.pathname()}
+        to={CommonRouteVariants.publicHomePage.pathname()}
         className="title-font mr-auto flex items-center font-medium text-gray-900"
       >
         <img src={HorizontalLogo} alt="Evernote logo" />
