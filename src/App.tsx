@@ -82,7 +82,7 @@ function App() {
                     element={<NotesPage />}
                   />
                   <Route
-                    path={NotesRouteVariants.note.route}
+                    path={NotesRouteVariants.homeNote.route}
                     element={<NotesPage />}
                   />
                   <Route

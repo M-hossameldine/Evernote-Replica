@@ -83,7 +83,7 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
                 note={note}
                 index={index}
                 className="p2"
-                route={NotesRouteVariants.note.pathname(note.id)}
+                route={NotesRouteVariants.homeNote.pathname(note.id)}
               />
             </li>
           ))}

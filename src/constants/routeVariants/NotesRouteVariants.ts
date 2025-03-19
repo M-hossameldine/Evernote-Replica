@@ -7,7 +7,7 @@ export const NotesRouteVariants: Record<string, NavigationRoute> = {
     pathname: (noteId: string) => `/notes/${NoteStatus.ACTIVE}/${noteId}`,
     id: NoteStatus.ACTIVE,
   },
-  note: {
+  homeNote: {
     route: `/home/note/:noteId`,
     pathname: (noteId: string) => `/home/note/${noteId}`,
     id: 'home',
