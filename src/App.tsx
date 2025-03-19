@@ -2,9 +2,10 @@ import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useInitAppAuth } from '~modules/auth/data/remote';
-import { useAppSelector, selectIsLoggedIn } from '~store';
+import { useAppSelector } from '~store';
+import { selectIsLoggedIn } from '~modules/auth/data/local';
 
-import Layout from './components/Layout';
+import { AuthorizedLayout, PublicLayout } from './components/Layouts';
 import Notification from './components/Notification';
 import { DefaultSpinner } from './components/Spinners';
 
@@ -45,6 +46,9 @@ function App() {
       <DefaultSpinner size="h-12 w-12" borderSize="border-4" />
     </div>
   );
+
+  const Layout = isAuthorized ? AuthorizedLayout : PublicLayout;
+
   return (
     <>
       <Notification />
@@ -52,10 +56,10 @@ function App() {
       {isLoadingAuth ? (
         <ScreenLoading />
       ) : (
-        <Suspense fallback={<ScreenLoading />}>
-          <Layout>
+        <Layout>
+          <Suspense fallback={<ScreenLoading />}>
             <Routes>
-              {!isAuthorized && (
+              {!isAuthorized ? (
                 <>
                   <Route
                     path={CommonRouteVariants.publicHomePage.route}
@@ -70,8 +74,7 @@ function App() {
                     element={<UserAuthPage />}
                   />
                 </>
-              )}
-              {isAuthorized && (
+              ) : (
                 <>
                   <Route
                     path={CommonRouteVariants.userHomePage.route}
@@ -105,8 +108,8 @@ function App() {
                 }
               />
             </Routes>
-          </Layout>
-        </Suspense>
+          </Suspense>
+        </Layout>
       )}
     </>
   );
