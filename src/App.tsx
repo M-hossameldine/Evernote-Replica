@@ -73,7 +73,7 @@ function App() {
               <Route
                 path="*"
                 element={
-                  <Navigate to={CommonRouteVariants.userHomePage.route} />
+                  <Navigate to={CommonRouteVariants.publicHomePage.route} />
                 }
               />
             </Routes>
@@ -102,7 +102,7 @@ function App() {
               <Route
                 path="*"
                 element={
-                  <Navigate to={CommonRouteVariants.publicHomePage.route} />
+                  <Navigate to={CommonRouteVariants.userHomePage.route} />
                 }
               />
             </Routes>
