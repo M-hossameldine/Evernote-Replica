@@ -16,7 +16,7 @@ import {
 } from '~modules/auth/presentation/helpers/validations';
 
 import { TextLink } from '~components/Links';
-import { DefaultSpinner } from '~components/Spinners';
+import { DefaultSpinner } from '~components/Loading';
 
 import { VerticalLogo } from '~assets';
 

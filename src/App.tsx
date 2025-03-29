@@ -5,7 +5,7 @@ import { useInitAppAuth } from '~modules/auth/data/remote';
 
 import { AuthorizedLayout, PublicLayout } from './components/Layouts';
 import Notification from './components/Notification';
-import { DefaultSpinner } from './components/Spinners';
+import { ScreenLoading } from './components/Loading';
 
 import {
   CommonRouteVariants,
@@ -37,12 +37,6 @@ const DownloadPage = React.lazy(
 
 function App() {
   const { isAuthorized, isLoading: isLoadingAuth } = useInitAppAuth();
-
-  const ScreenLoading = () => (
-    <div className="flex min-h-screen w-full items-center justify-center">
-      <DefaultSpinner size="h-12 w-12" borderSize="border-4" />
-    </div>
-  );
 
   const Layout = isAuthorized ? AuthorizedLayout : PublicLayout;
 
