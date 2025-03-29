@@ -1,4 +1,4 @@
-import AddNoteWrapper from '~modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
+import { AddNoteWrapper } from '~modules/notes/presentation/components/AddNoteWrapper';
 
 import { BsPlus } from 'react-icons/bs';
 

@@ -1,12 +1,18 @@
 import { appApi, createEndpoint } from '~store';
 
-import { addNote, getActiveNotes, getTrashNotes } from './notesApis.endpoints';
+import {
+  addNote,
+  deleteNote,
+  getActiveNotes,
+  getTrashNotes,
+} from './notesApis.endpoints';
 import type {
   GetActiveNotesRequestResponse,
   GetActiveNotesRequestParams,
   GetTrashNotesRequestResponse,
   GetTrashNotesRequestParams,
   AddNoteRequestParams,
+  DeleteNoteRequestParams,
 } from './notesApis.interfaces';
 
 import { saveActiveNotes, saveTrashNotes } from '../local';
@@ -16,36 +22,52 @@ export const notesApi = appApi.injectEndpoints({
     getActiveNotes: builder.query<
       GetActiveNotesRequestResponse,
       GetActiveNotesRequestParams
-    >(
-      createEndpoint<
+    >({
+      ...createEndpoint<
         GetActiveNotesRequestResponse,
         GetActiveNotesRequestParams
       >({
         endpoint: getActiveNotes,
-        onQuerySuccess: (dispatch, mappedData) =>
-          dispatch(saveActiveNotes(mappedData)),
-      })
-    ),
+        onQuerySuccess: (dispatch, mappedData) => {
+          dispatch(saveActiveNotes(mappedData));
+        },
+      }),
+      providesTags: ['active-notes'],
+    }),
     getTrashNotes: builder.query<
       GetTrashNotesRequestResponse,
       GetTrashNotesRequestParams
-    >(
-      createEndpoint<GetTrashNotesRequestResponse, GetTrashNotesRequestParams>({
+    >({
+      ...createEndpoint<
+        GetTrashNotesRequestResponse,
+        GetTrashNotesRequestParams
+      >({
         endpoint: getTrashNotes,
         onQuerySuccess: (dispatch, mappedData) =>
           dispatch(saveTrashNotes(mappedData)),
-      })
-    ),
-    addNote: builder.mutation<any, AddNoteRequestParams>(
-      createEndpoint<any, AddNoteRequestParams>({
+      }),
+      providesTags: ['trash-notes'],
+    }),
+    addNote: builder.mutation<any, AddNoteRequestParams>({
+      ...createEndpoint<any, AddNoteRequestParams>({
         endpoint: addNote,
-      })
-    ),
+      }),
+      invalidatesTags: ['active-notes'],
+    }),
+    deleteNote: builder.mutation<any, DeleteNoteRequestParams>({
+      ...createEndpoint<any, DeleteNoteRequestParams>({
+        endpoint: deleteNote,
+      }),
+      invalidatesTags: ['trash-notes', 'active-notes'],
+    }),
   }),
+  // Define overrideExisting to ensure endpoints aren't duplicated
+  overrideExisting: false,
 });
 
 export const {
   useGetActiveNotesQuery,
   useGetTrashNotesQuery,
   useAddNoteMutation,
+  useDeleteNoteMutation,
 } = notesApi;

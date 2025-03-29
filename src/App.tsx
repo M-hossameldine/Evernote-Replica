@@ -2,7 +2,10 @@ import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useInitAppAuth } from '~modules/auth/data/remote';
-import { useGetActiveNotesQuery } from '~modules/notes/data/remote';
+import {
+  useGetActiveNotesQuery,
+  useGetTrashNotesQuery,
+} from '~modules/notes/data/remote';
 
 import { AuthorizedLayout, PublicLayout } from './components/Layouts';
 import Notification from './components/Notification';
@@ -43,8 +46,12 @@ function App() {
     {},
     { skip: !isAuthorized }
   );
+  const { isLoading: isLoadingTrashNotes } = useGetTrashNotesQuery(
+    {},
+    { skip: !isAuthorized }
+  );
 
-  const initialLoading = isLoadingAuth || isLoadingNotes;
+  const initialLoading = isLoadingAuth || isLoadingNotes || isLoadingTrashNotes;
 
   const Layout = isAuthorized ? AuthorizedLayout : PublicLayout;
 

@@ -1,4 +1,14 @@
-import { getDocs, addDoc, query, collection, db } from '~libs/firebase';
+import {
+  getDocs,
+  getDoc,
+  addDoc,
+  deleteDoc,
+  doc,
+  query,
+  collection,
+  db,
+  setDoc,
+} from '~libs/firebase';
 
 import type {
   GetActiveNotesRequestResponse,
@@ -6,6 +16,7 @@ import type {
   GetTrashNotesRequestResponse,
   GetTrashNotesEndpointParams,
   AddNoteEndpointParams,
+  DeleteNoteEndpointParams,
 } from './notesApis.interfaces';
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 export const getActiveNotes = async ({
@@ -50,4 +61,25 @@ export const addNote = async ({
   );
 
   return { id: docRef.id, ...payload };
+};
+
+export const deleteNote = async ({
+  extraParams: { noteId },
+  defaultParams: { user },
+}: DeleteNoteEndpointParams) => {
+  // Get the note data before deleting
+  const noteRef = doc(db, 'users', user.id, 'active-notes', noteId);
+  const noteDoc = await getDoc(noteRef);
+  const noteData = noteDoc.data();
+
+  // Move to trash
+  await setDoc(doc(db, 'users', user.id, 'trash-notes', noteId), {
+    ...noteData,
+    deletedAt: new Date().toISOString(),
+  });
+
+  // Delete from active
+  await deleteDoc(noteRef);
+
+  return { id: noteId };
 };

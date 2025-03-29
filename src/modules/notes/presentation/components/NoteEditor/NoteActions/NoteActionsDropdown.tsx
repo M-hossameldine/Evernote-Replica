@@ -1,36 +1,28 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useLocationIndicator } from '~hooks/use-locationIndicator';
 
-import {
-  useAppSelector,
-  MoveToTrashAction,
-  deleteItemPermanentlyAction,
-  restoreItemFromTrashAction,
-} from '~store';
-import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
-import { findNoteById } from '~helpers';
+import { useDeleteNoteMutation } from '~modules/notes/data/remote';
 
 import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
 import NoteActionsDropdownItem from './NoteActionsDropdownItem';
 
 import { IoIosMore } from 'react-icons/io';
 
-const NoteActionsDropdown: React.FC = () => {
+export type NoteActionsDropdownProps = {
+  isTrashItem: boolean;
+  onDeleteNote: (noteId: string) => void;
+  onRestoreNote: (noteId: string) => void;
+};
+
+export const NoteActionsDropdown = ({
+  isTrashItem,
+  onDeleteNote,
+  onRestoreNote,
+}: NoteActionsDropdownProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const notes = useAppSelector(selectActiveNotes);
-  const trashNotes = useAppSelector(selectTrashNotes);
-  const location = useLocationIndicator();
-  const params = useParams();
+  const params = useParams<{ noteId: string }>() as { noteId: string };
+  const [deleteNote] = useDeleteNoteMutation();
 
-  const isInTrash = location.isInCurrentPath('trash');
-
-  const selectedNote = findNoteById(
-    isInTrash ? trashNotes : notes,
-    params.noteId!
-  );
-
-  // submenu visibility handlers
   const toggleDropdownHandler = () => {
     setIsExpanded(prevState => !prevState);
   };
@@ -39,26 +31,39 @@ const NoteActionsDropdown: React.FC = () => {
     setIsExpanded(false);
   };
 
-  const actionsContent = !isInTrash ? (
+  const moveToTrashHandler = (noteToDeleteId: string) => {
+    deleteNote({
+      extraParams: {
+        noteId: noteToDeleteId,
+      },
+      onSuccess: () => {
+        onDeleteNote(noteToDeleteId);
+      },
+    });
+  };
+
+  const restoreNoteHandler = (noteToRestoreId: string) => {
+    onRestoreNote(noteToRestoreId);
+    // TODO: trigger restore note mutation
+  };
+
+  const actionsContent = !isTrashItem ? (
     <NoteActionsDropdownItem
       text="Move To Trash"
-      asyncAction={MoveToTrashAction}
-      asyncActionArgs={{ id: params.noteId, note: selectedNote! }}
-      operation="delete"
+      toggleDropdown={toggleDropdownHandler}
+      onClick={moveToTrashHandler.bind(null, params.noteId)}
     />
   ) : (
     <>
       <NoteActionsDropdownItem
         text="Delete permanently"
-        asyncAction={deleteItemPermanentlyAction}
-        asyncActionArgs={{ id: params.noteId }}
-        operation="delete"
+        toggleDropdown={toggleDropdownHandler}
+        onClick={toggleDropdownHandler}
       />
       <NoteActionsDropdownItem
         text="Restore note"
-        asyncAction={restoreItemFromTrashAction}
-        asyncActionArgs={{ id: params.noteId, note: selectedNote! }}
-        operation="delete"
+        toggleDropdown={toggleDropdownHandler}
+        onClick={restoreNoteHandler.bind(null, params.noteId)}
       />
     </>
   );
@@ -85,5 +90,3 @@ const NoteActionsDropdown: React.FC = () => {
     </ExcludeEventWrapper>
   );
 };
-
-export default NoteActionsDropdown;

@@ -1,9 +1,7 @@
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-import { useLocationIndicator } from '~hooks';
+import React, { useState } from 'react';
+import { useParams, useMatch } from 'react-router-dom';
 
 import {
   editNote,
@@ -16,36 +14,38 @@ import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
 import { AutoGrowingTextArea } from '~components/FormInputs';
 
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
+import { NotesRouteVariants } from '~constants/routeVariants';
+
+type TemporaryNoteStatus = {
+  deletedNoteId: string | null;
+  restoredNoteId: string | null;
+};
 
 const NoteEditor: React.FC = () => {
   const dispatch = useAppDispatch();
   const notes = useAppSelector(selectActiveNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const params = useParams();
-  const location = useLocationIndicator();
-  const [isDisabled, setIsDisabled] = useState(false); // disable editor fields in trash page
+  const matchTrashRoute = useMatch(NotesRouteVariants.trashNotes.route);
 
-  let notesList: (Note | TrashNote)[] = [...notes];
+  const isInTrashPage = !!matchTrashRoute;
+  const notesList: (Note | TrashNote)[] = isInTrashPage ? trashNotes : notes;
 
-  const isInTrashPage = location.isInCurrentPath('trash');
-  useEffect(() => {
-    if (isInTrashPage) {
-      // render trash list
-      notesList = trashNotes;
-
-      // prevent user from editing trash notes
-      setIsDisabled(true);
-    }
-  }, []);
-
-  if (isInTrashPage) {
-    // render trash list
-    notesList = trashNotes;
-  }
-
-  const activeId = params.noteId;
+  const activeId = params.noteId as string;
 
   const activeNote = notesList.find(note => note.id === activeId);
+
+  const [temporaryNoteStatus, setTemporaryNoteStatus] =
+    useState<TemporaryNoteStatus>({
+      deletedNoteId: null,
+      restoredNoteId: null,
+    });
+
+  const isRecentlyDeleted = temporaryNoteStatus.deletedNoteId === activeId;
+  const isRecentlyRestored = temporaryNoteStatus.restoredNoteId === activeId;
+  const isTrashItem =
+    (!isInTrashPage && isRecentlyDeleted) ||
+    (isInTrashPage && !isRecentlyRestored);
 
   let titleText = '';
   let bodyText = '';
@@ -66,7 +66,7 @@ const NoteEditor: React.FC = () => {
       editNote({
         title: titleValue,
         text: bodyText,
-        id: activeId!,
+        id: activeId,
         updatedTimestamp,
       })
     );
@@ -82,7 +82,7 @@ const NoteEditor: React.FC = () => {
       editNote({
         title: titleText,
         text: enteredText,
-        id: activeId!,
+        id: activeId,
         updatedTimestamp,
       })
     );
@@ -99,9 +99,21 @@ const NoteEditor: React.FC = () => {
     }
   };
 
+  const deleteNoteHandler = (id: string) => {
+    setTemporaryNoteStatus(prev => ({ ...prev, deletedNoteId: id }));
+  };
+
+  const restoreNoteHandler = (id: string) => {
+    setTemporaryNoteStatus(prev => ({ ...prev, restoredNoteId: id }));
+  };
+
   return (
     <div className="h-screen grow bg-white">
-      <NoteEditorHeader />
+      <NoteEditorHeader
+        isTrashItem={isTrashItem}
+        onDeleteNote={deleteNoteHandler}
+        onRestoreNote={restoreNoteHandler}
+      />
 
       <div
         className="px-10 py-5"
@@ -118,19 +130,19 @@ const NoteEditor: React.FC = () => {
                 'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold',
               fallbackClasses: 'text-3xl',
             }}
-            disabled={isDisabled}
+            disabled={isTrashItem}
           />
         </div>
 
         <AutoGrowingTextArea
           value={bodyText}
-          placeholder="Start writing"
+          placeholder={isTrashItem ? '' : 'Start writing'}
           onChange={textChangeHandler}
           className={{
             inputClasses: 'text-neutral-800',
             fallbackClasses: '',
           }}
-          disabled={isDisabled}
+          disabled={isTrashItem}
         />
       </div>
     </div>

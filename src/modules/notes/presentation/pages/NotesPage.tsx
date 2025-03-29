@@ -1,3 +1,5 @@
+import { useMatch } from 'react-router-dom';
+
 import { useAppSelector, selectActiveNotes } from '~store';
 import { useGetActiveNotesQuery } from '~modules/notes/data/remote';
 
@@ -8,24 +10,28 @@ import { EmptyStateIcon } from '~components/EmptyState';
 import { IoIosPaper } from 'react-icons/io';
 import { GiNotebook } from 'react-icons/gi';
 
+import { NotesRouteVariants } from '~constants/routeVariants';
+
 const NotesPage: React.FC = () => {
   const notes = useAppSelector(selectActiveNotes);
+  const matchHomeNoteRoute = useMatch(NotesRouteVariants.homeNote.route);
+
   useGetActiveNotesQuery({});
 
   return (
     <div className="flex">
-      {/* TODO: hide tNoteEditorSidebar when the note is opened from the homepage */}
-
-      <NoteEditorSidebar
-        notes={notes}
-        header={{ title: 'Notes', icon: IoIosPaper }}
-        emptyStateProps={{
-          icon: <EmptyStateIcon Icon={GiNotebook} />,
-          title: 'Create your first note',
-          text: '',
-          action: <NoteFallbackAction />,
-        }}
-      />
+      {!matchHomeNoteRoute && (
+        <NoteEditorSidebar
+          notes={notes}
+          header={{ title: 'Notes', icon: IoIosPaper }}
+          emptyStateProps={{
+            icon: <EmptyStateIcon Icon={GiNotebook} />,
+            title: 'Create your first note',
+            text: '',
+            action: <NoteFallbackAction />,
+          }}
+        />
+      )}
 
       {notes?.length > 0 && <NoteEditor />}
     </div>

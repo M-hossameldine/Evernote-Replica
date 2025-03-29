@@ -28,7 +28,7 @@ const NoteList = (props: PropsType): React.ReactElement => {
             route={
               isTrashNotes
                 ? NotesRouteVariants.trashNotes.pathname(note.id)
-                : NotesRouteVariants.homeNote.pathname(note.id)
+                : NotesRouteVariants.activeNotes.pathname(note.id)
             }
           />
         ))}

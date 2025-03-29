@@ -1,15 +1,16 @@
 import { v4 as uuid } from 'uuid';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAppSelector, sendNewNoteData } from '~store';
+import { useAppSelector } from '~store';
 import { selectActiveNotes } from '~modules/notes/data/local';
+import { useAddNote } from '~modules/notes/presentation/hooks';
 
 import Card from '~components/Cards/Card';
 import DropdownMenu from '~components/DropdownMenu';
-import { type SubmenuActionItemProps } from '~components/DropdownMenu/SubmenuActionItem';
 import { type SubmenuFunctionItemProps } from '~components/DropdownMenu/SubmenuFunctionItem';
-import AddNoteWrapper from '~modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
+import { AddNoteWrapper } from '~modules/notes/presentation/components/AddNoteWrapper';
 import { NoteItem } from '~modules/notes/presentation/components/NoteItem/NoteItem';
+import { AddNoteScreenLoading } from '~modules/notes/presentation/components/AddNoteWrapper/AddNoteScreenLoading';
 
 import { MdPostAdd } from 'react-icons/md';
 import { IoIosArrowForward, IoIosMore } from 'react-icons/io';
@@ -24,7 +25,9 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
 
   const firstNote = notes?.length > 0 ? notes?.[0]?.id : 'empty';
 
-  const dropdownData: (SubmenuFunctionItemProps | SubmenuActionItemProps)[] = [
+  const { addNote, isLoading: addNoteLoading } = useAddNote();
+
+  const dropdownData: SubmenuFunctionItemProps[] = [
     {
       id: uuid(),
       content: 'Go to notes',
@@ -35,8 +38,9 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
     {
       id: uuid(),
       content: 'Create new note',
-      asyncAction: sendNewNoteData,
-      operation: 'add',
+      onClick: () => {
+        addNote();
+      },
     },
   ];
 
@@ -44,6 +48,8 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
 
   return (
     <Card className={` ${notesWidgetClasses} overflow-hidden`}>
+      {addNoteLoading && <AddNoteScreenLoading />}
+
       <header className="flex items-center p-2">
         <Link
           to={NotesRouteVariants.activeNotes.pathname(firstNote)}

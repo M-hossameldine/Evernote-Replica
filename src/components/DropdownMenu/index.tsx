@@ -1,14 +1,13 @@
 import { useState } from 'react';
 
 import type { SubmenuFunctionItemProps } from './SubmenuFunctionItem';
-import type { SubmenuActionItemProps } from './SubmenuActionItem';
 
 import ExcludeEventWrapper from '../ExcludeEventWrapper';
 import Submenu from './Submenu';
 
 interface DropdownMenuProps {
   menuHeader: { content: JSX.Element; className?: string };
-  submenuItemsData: (SubmenuFunctionItemProps | SubmenuActionItemProps)[];
+  submenuItemsData: SubmenuFunctionItemProps[];
   className?: string;
   placeSubmenu?: {
     // default
