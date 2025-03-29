@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useInitAppAuth } from '~modules/auth/data/remote';
+import { useGetActiveNotesQuery } from '~modules/notes/data/remote';
 
 import { AuthorizedLayout, PublicLayout } from './components/Layouts';
 import Notification from './components/Notification';
@@ -37,6 +38,13 @@ const DownloadPage = React.lazy(
 
 function App() {
   const { isAuthorized, isLoading: isLoadingAuth } = useInitAppAuth();
+  // TODO: handle note initialization in a custom hook
+  const { isLoading: isLoadingNotes } = useGetActiveNotesQuery(
+    {},
+    { skip: !isAuthorized }
+  );
+
+  const initialLoading = isLoadingAuth || isLoadingNotes;
 
   const Layout = isAuthorized ? AuthorizedLayout : PublicLayout;
 
@@ -44,7 +52,7 @@ function App() {
     <>
       <Notification />
 
-      {isLoadingAuth ? (
+      {initialLoading ? (
         <ScreenLoading />
       ) : !isAuthorized ? (
         <Suspense fallback={<ScreenLoading />}>
