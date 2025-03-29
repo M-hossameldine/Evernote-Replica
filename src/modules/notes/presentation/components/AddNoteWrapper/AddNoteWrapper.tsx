@@ -1,36 +1,24 @@
-import { useUpdatedState } from '~hooks';
 import { useNavigate } from 'react-router-dom';
 
 import { useAddNoteMutation } from '~modules/notes/data/remote';
-import { useAppSelector, selectUser, sendNewNoteData } from '~store';
-import { selectActiveNotes } from '~modules/notes/data/local';
+import { useAppSelector, selectUser } from '~store';
 
-import { NotesRouteVariants, NoteStatus } from '~constants';
+import { AddNoteScreenLoading } from './AddNoteScreenLoading';
+
+import { NotesRouteVariants } from '~constants';
 
 type Props = {
   children?: React.ReactNode;
-  actionPayload?: object;
   className?: string;
 };
 
 export const AddNoteWrapper = (props: Props): React.ReactElement => {
-  const { actionPayload, className } = props;
+  const { className } = props;
   const navigate = useNavigate();
-  const notes = useAppSelector(selectActiveNotes);
   const user = useAppSelector(selectUser);
-  const [addNoteMutation] = useAddNoteMutation();
-
-  const notesUpdatedState = useUpdatedState({
-    asyncAction: sendNewNoteData,
-    status: NoteStatus.ACTIVE,
-    usedIndex: 0,
-    watchedState: notes,
-    operation: 'add',
-  });
+  const [addNoteMutation, { isLoading }] = useAddNoteMutation();
 
   const addNoteHandler = () => {
-    notesUpdatedState.dispatchActionHandler({ ...actionPayload });
-
     if (!user) return;
 
     addNoteMutation({
@@ -47,9 +35,13 @@ export const AddNoteWrapper = (props: Props): React.ReactElement => {
   };
 
   return (
-    <button className={className ? className : ''} onClick={addNoteHandler}>
-      {props.children}
-    </button>
+    <>
+      <button className={className ? className : ''} onClick={addNoteHandler}>
+        {props.children}
+      </button>
+
+      {isLoading && <AddNoteScreenLoading />}
+    </>
   );
 };
 

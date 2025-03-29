@@ -9,7 +9,7 @@ export const useEventListener = (
   useEffect(() => {
     window.addEventListener(event, eventCallbackFn);
 
-    // cleanup fn for boxshadow event listener
+    // cleanup fn
     return () => {
       window.removeEventListener(event, eventCallbackFn);
     };
