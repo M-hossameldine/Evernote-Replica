@@ -2,8 +2,6 @@ import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useInitAppAuth } from '~modules/auth/data/remote';
-import { useAppSelector } from '~store';
-import { selectIsLoggedIn } from '~modules/auth/data/local';
 
 import { AuthorizedLayout, PublicLayout } from './components/Layouts';
 import Notification from './components/Notification';
@@ -39,7 +37,6 @@ const DownloadPage = React.lazy(
 
 function App() {
   const { isAuthorized, isLoading: isLoadingAuth } = useInitAppAuth();
-  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
   const ScreenLoading = () => (
     <div className="flex min-h-screen w-full items-center justify-center">
@@ -55,56 +52,55 @@ function App() {
 
       {isLoadingAuth ? (
         <ScreenLoading />
+      ) : !isAuthorized ? (
+        <Suspense fallback={<ScreenLoading />}>
+          <Layout>
+            <Routes>
+              <Route
+                path={CommonRouteVariants.publicHomePage.route}
+                element={<PublicHomePage />}
+              />
+              <Route
+                path={CommonRouteVariants.download.route}
+                element={<DownloadPage />}
+              />
+              <Route
+                path={AuthRouteVariants.auth.route}
+                element={<UserAuthPage />}
+              />
+              <Route
+                path="*"
+                element={
+                  <Navigate to={CommonRouteVariants.userHomePage.route} />
+                }
+              />
+            </Routes>
+          </Layout>
+        </Suspense>
       ) : (
         <Layout>
           <Suspense fallback={<ScreenLoading />}>
             <Routes>
-              {!isAuthorized ? (
-                <>
-                  <Route
-                    path={CommonRouteVariants.publicHomePage.route}
-                    element={<PublicHomePage />}
-                  />
-                  <Route
-                    path={CommonRouteVariants.download.route}
-                    element={<DownloadPage />}
-                  />
-                  <Route
-                    path={AuthRouteVariants.auth.route}
-                    element={<UserAuthPage />}
-                  />
-                </>
-              ) : (
-                <>
-                  <Route
-                    path={CommonRouteVariants.userHomePage.route}
-                    element={<UserProfile />}
-                  />
-                  <Route
-                    path={NotesRouteVariants.activeNotes.route}
-                    element={<NotesPage />}
-                  />
-                  <Route
-                    path={NotesRouteVariants.homeNote.route}
-                    element={<NotesPage />}
-                  />
-                  <Route
-                    path={NotesRouteVariants.trashNotes.route}
-                    element={<TrashPage />}
-                  />
-                </>
-              )}
-
+              <Route
+                path={CommonRouteVariants.userHomePage.route}
+                element={<UserProfile />}
+              />
+              <Route
+                path={NotesRouteVariants.activeNotes.route}
+                element={<NotesPage />}
+              />
+              <Route
+                path={NotesRouteVariants.homeNote.route}
+                element={<NotesPage />}
+              />
+              <Route
+                path={NotesRouteVariants.trashNotes.route}
+                element={<TrashPage />}
+              />
               <Route
                 path="*"
                 element={
-                  <Navigate
-                    to={
-                      isLoggedIn
-                        ? CommonRouteVariants.userHomePage.route
-                        : CommonRouteVariants.publicHomePage.route
-                    }
-                  />
+                  <Navigate to={CommonRouteVariants.publicHomePage.route} />
                 }
               />
             </Routes>
