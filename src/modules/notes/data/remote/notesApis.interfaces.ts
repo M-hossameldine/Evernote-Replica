@@ -36,6 +36,24 @@ export type AddNoteRequestParams = MutationRequestParams<
 export type AddNoteEndpointParams =
   EndpointParamsWithAuth<AddNoteRequestParams>;
 
+// * Update Note
+export type UpdateNoteRequestPayload = Note;
+export type UpdateNoteRequestResult = Note;
+export type UpdateNoteRequestResponse = Note;
+
+export type UpdateNoteRequestExtraParams = {
+  noteId: string;
+};
+
+export type UpdateNoteRequestParams = MutationRequestParams<
+  void,
+  UpdateNoteRequestPayload,
+  void,
+  UpdateNoteRequestExtraParams
+>;
+export type UpdateNoteEndpointParams =
+  EndpointParamsWithAuth<UpdateNoteRequestParams>;
+
 // * Delete Note
 export type DeleteNoteRequestResponse = string;
 export type DeleteNoteRequestResult = DeleteNoteRequestResponse;

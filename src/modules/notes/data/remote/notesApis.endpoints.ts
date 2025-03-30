@@ -2,6 +2,7 @@ import {
   getDocs,
   getDoc,
   addDoc,
+  updateDoc,
   deleteDoc,
   doc,
   query,
@@ -16,6 +17,7 @@ import type {
   GetTrashNotesRequestResponse,
   GetTrashNotesEndpointParams,
   AddNoteEndpointParams,
+  UpdateNoteEndpointParams,
   DeleteNoteEndpointParams,
 } from './notesApis.interfaces';
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
@@ -61,6 +63,19 @@ export const addNote = async ({
   );
 
   return { id: docRef.id, ...payload };
+};
+
+export const updateNote = async ({
+  payload,
+  extraParams: { noteId },
+  defaultParams: { user },
+}: UpdateNoteEndpointParams) => {
+  await updateDoc(doc(db, 'users', user.id, 'active-notes', noteId), payload);
+
+  return {
+    ...payload,
+    id: noteId,
+  };
 };
 
 export const deleteNote = async ({

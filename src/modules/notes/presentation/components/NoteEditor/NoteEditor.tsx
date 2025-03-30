@@ -1,6 +1,4 @@
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useMatch } from 'react-router-dom';
 
 import {
@@ -11,14 +9,18 @@ import {
   useAppSelector,
 } from '~store';
 import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
-import { AutoGrowingTextArea } from '~components/FormInputs';
+import { useUpdateNoteMutation } from '~modules/notes/data/remote';
 
+import { AutoGrowingTextArea } from '~components/FormInputs';
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
+
 import { NotesRouteVariants } from '~constants/routeVariants';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
 type TemporaryNoteStatus = {
   deletedNoteId: string | null;
   restoredNoteId: string | null;
+  updatedNote: Note | null;
 };
 
 const NoteEditor: React.FC = () => {
@@ -32,13 +34,13 @@ const NoteEditor: React.FC = () => {
   const notesList: (Note | TrashNote)[] = isInTrashPage ? trashNotes : notes;
 
   const activeId = params.noteId as string;
-
   const activeNote = notesList.find(note => note.id === activeId);
 
   const [temporaryNoteStatus, setTemporaryNoteStatus] =
     useState<TemporaryNoteStatus>({
       deletedNoteId: null,
       restoredNoteId: null,
+      updatedNote: null,
     });
 
   const isRecentlyDeleted = temporaryNoteStatus.deletedNoteId === activeId;
@@ -46,6 +48,8 @@ const NoteEditor: React.FC = () => {
   const isTrashItem =
     (!isInTrashPage && isRecentlyDeleted) ||
     (isInTrashPage && !isRecentlyRestored);
+
+  const [updateNoteMutation] = useUpdateNoteMutation();
 
   let titleText = '';
   let bodyText = '';
@@ -56,37 +60,60 @@ const NoteEditor: React.FC = () => {
     bodyText = 'text' in activeNote ? activeNote!.text : activeNote!.note.text;
   }
 
-  const titleChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const titleValue = e.currentTarget.value;
-    const updatedTimestamp = new Date().toISOString();
-
-    // update store states
-    dispatch(fillNoteEditor());
-    dispatch(
-      editNote({
-        title: titleValue,
-        text: bodyText,
-        id: activeId,
-        updatedTimestamp,
-      })
-    );
-  };
-
-  const textChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const noteContentChangeHandler = (
+    e: React.FormEvent<HTMLTextAreaElement>,
+    isUpdatingTitle?: boolean
+  ) => {
     const enteredText = e.currentTarget.value;
     const updatedTimestamp = new Date().toISOString();
 
+    setTemporaryNoteStatus(prev => {
+      const hasCorrectPreviousNote =
+        prev.updatedNote?.id === (activeNote as Note).id;
+
+      return {
+        ...prev,
+        updatedNote: {
+          ...(hasCorrectPreviousNote
+            ? (prev.updatedNote as Note)
+            : (activeNote as Note)),
+          updatedTimestamp,
+          ...(isUpdatingTitle ? { title: enteredText } : { text: enteredText }),
+        },
+      };
+    });
+
     // update store states
     dispatch(fillNoteEditor());
     dispatch(
       editNote({
-        title: titleText,
-        text: enteredText,
-        id: activeId,
         updatedTimestamp,
+        id: activeId,
+        title: isUpdatingTitle ? enteredText : titleText,
+        text: isUpdatingTitle ? bodyText : enteredText,
       })
     );
   };
+
+  useEffect(() => {
+    const updateNoteHandler = async () => {
+      if (temporaryNoteStatus.updatedNote) {
+        await updateNoteMutation({
+          payload: temporaryNoteStatus.updatedNote,
+          extraParams: {
+            noteId: temporaryNoteStatus.updatedNote.id,
+          },
+        });
+      }
+    };
+
+    // * timeout to prevent spamming the server, the note will be saved after stopping typing for 2 seconds
+    const updateNoteTimeout = setTimeout(() => {
+      updateNoteHandler();
+    }, 2000);
+
+    return () => clearTimeout(updateNoteTimeout);
+  }, [temporaryNoteStatus.updatedNote]);
 
   const trashNotificationHandler = () => {
     if (isInTrashPage) {
@@ -124,12 +151,11 @@ const NoteEditor: React.FC = () => {
           <AutoGrowingTextArea
             value={titleText}
             placeholder="Title"
-            onChange={titleChangeHandler}
-            className={{
-              inputClasses:
-                'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold',
-              fallbackClasses: 'text-3xl',
-            }}
+            onChange={e => noteContentChangeHandler(e, true)}
+            inputClassName={
+              'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold'
+            }
+            autoGrowClassName="text-3xl"
             disabled={isTrashItem}
           />
         </div>
@@ -137,11 +163,8 @@ const NoteEditor: React.FC = () => {
         <AutoGrowingTextArea
           value={bodyText}
           placeholder={isTrashItem ? '' : 'Start writing'}
-          onChange={textChangeHandler}
-          className={{
-            inputClasses: 'text-neutral-800',
-            fallbackClasses: '',
-          }}
+          onChange={e => noteContentChangeHandler(e, false)}
+          inputClassName={'text-neutral-800'}
           disabled={isTrashItem}
         />
       </div>
