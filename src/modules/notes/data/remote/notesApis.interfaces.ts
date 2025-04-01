@@ -69,3 +69,10 @@ export type DeleteNoteRequestParams = MutationRequestParams<
 >;
 export type DeleteNoteEndpointParams =
   EndpointParamsWithAuth<DeleteNoteRequestParams>;
+
+// * Clear Trash Notes
+export type ClearTrashNotesRequestResponse = { success: boolean };
+export type ClearTrashNotesRequestResult = void;
+export type ClearTrashNotesRequestParams = MutationRequestParams;
+export type ClearTrashNotesEndpointParams =
+  EndpointParamsWithAuth<ClearTrashNotesRequestParams>;

@@ -22,6 +22,7 @@ import {
   setDoc,
   updateDoc,
   where,
+  writeBatch,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -61,6 +62,7 @@ export {
   getDoc,
   updateDoc,
   deleteDoc,
+  writeBatch,
   query,
   where,
 };

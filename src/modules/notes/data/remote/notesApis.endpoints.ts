@@ -9,6 +9,7 @@ import {
   collection,
   db,
   setDoc,
+  writeBatch,
 } from '~libs/firebase';
 
 import type {
@@ -19,6 +20,7 @@ import type {
   AddNoteEndpointParams,
   UpdateNoteEndpointParams,
   DeleteNoteEndpointParams,
+  ClearTrashNotesEndpointParams,
 } from './notesApis.interfaces';
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 export const getActiveNotes = async ({
@@ -97,4 +99,24 @@ export const deleteNote = async ({
   await deleteDoc(noteRef);
 
   return { id: noteId };
+};
+
+export const clearTrashNotes = async ({
+  defaultParams: { user },
+}: ClearTrashNotesEndpointParams) => {
+  const trashRef = collection(db, 'users', user.id, 'trash-notes');
+  const snapshot = await getDocs(trashRef);
+
+  // If collection is empty, nothing to do
+  if (snapshot.empty) {
+    return { success: true };
+  }
+
+  const batch = writeBatch(db);
+  snapshot.docs.forEach(doc => {
+    batch.delete(doc.ref);
+  });
+
+  await batch.commit();
+  return { success: true };
 };

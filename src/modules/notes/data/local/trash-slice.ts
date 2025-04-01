@@ -36,11 +36,6 @@ const TrashSlice = createSlice({
   name: 'Trash Slice',
   initialState,
   reducers: {
-    deleteItemPermanently: (state, action: PayloadAction<{ id: string }>) => {
-      const itemId = action.payload.id;
-
-      state.notes = state.notes.filter(item => item.id !== itemId);
-    },
     restoreItem: (
       state,
       action: PayloadAction<{ id: string; note: TrashNote }>
@@ -49,13 +44,9 @@ const TrashSlice = createSlice({
 
       state.notes = state.notes.filter(item => item.id !== itemId);
     },
-    emptyTrash: state => {
-      state.notes = [];
-    },
   },
 });
 
-export const { deleteItemPermanently, restoreItem, emptyTrash } =
-  TrashSlice.actions;
+export const { restoreItem } = TrashSlice.actions;
 
 export default TrashSlice.reducer;

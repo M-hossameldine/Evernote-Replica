@@ -6,6 +6,7 @@ import {
   getActiveNotes,
   getTrashNotes,
   updateNote,
+  clearTrashNotes,
 } from './notesApis.endpoints';
 import type {
   GetActiveNotesRequestResponse,
@@ -16,6 +17,8 @@ import type {
   UpdateNoteRequestParams,
   UpdateNoteRequestResponse,
   DeleteNoteRequestParams,
+  ClearTrashNotesRequestParams,
+  ClearTrashNotesRequestResponse,
 } from './notesApis.interfaces';
 
 import { saveActiveNotes, saveTrashNotes } from '../local';
@@ -72,6 +75,18 @@ export const notesApi = appApi.injectEndpoints({
       }),
       invalidatesTags: ['trash-notes', 'active-notes'],
     }),
+    clearTrashNotes: builder.mutation<
+      ClearTrashNotesRequestResponse,
+      ClearTrashNotesRequestParams
+    >({
+      ...createEndpoint<
+        ClearTrashNotesRequestResponse,
+        ClearTrashNotesRequestParams
+      >({
+        endpoint: clearTrashNotes,
+      }),
+      invalidatesTags: ['trash-notes'],
+    }),
   }),
   // Define overrideExisting to ensure endpoints aren't duplicated
   overrideExisting: false,
@@ -83,4 +98,5 @@ export const {
   useAddNoteMutation,
   useUpdateNoteMutation,
   useDeleteNoteMutation,
+  useClearTrashNotesMutation,
 } = notesApi;

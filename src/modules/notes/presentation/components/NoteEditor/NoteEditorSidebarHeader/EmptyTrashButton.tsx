@@ -1,23 +1,10 @@
-import { useUpdatedState } from '~hooks';
-
-import { useAppSelector, emptyTrashAction } from '~store';
-import { selectTrashNotes } from '~modules/notes/data/local';
-
-import { NoteStatus } from '~constants';
+import { useClearTrashNotesMutation } from '~modules/notes/data/remote';
 
 const EmptyTrashButton: React.FC = () => {
-  const trashNotes = useAppSelector(selectTrashNotes);
-
-  const updatedTrashState = useUpdatedState({
-    asyncAction: emptyTrashAction,
-    status: NoteStatus.TRASH,
-    usedIndex: 0,
-    watchedState: trashNotes,
-    operation: 'empty',
-  });
+  const [clearTrashNotes] = useClearTrashNotesMutation();
 
   const emptyTrashHandler = () => {
-    updatedTrashState.dispatchActionHandler();
+    clearTrashNotes({});
   };
 
   return (
