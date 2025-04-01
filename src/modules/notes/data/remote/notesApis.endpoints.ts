@@ -20,6 +20,7 @@ import type {
   AddNoteEndpointParams,
   UpdateNoteEndpointParams,
   DeleteNoteEndpointParams,
+  DeleteTrashNoteEndpointParams,
   ClearTrashNotesEndpointParams,
 } from './notesApis.interfaces';
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
@@ -99,6 +100,15 @@ export const deleteNote = async ({
   await deleteDoc(noteRef);
 
   return { id: noteId };
+};
+
+export const deleteTrashNote = async ({
+  extraParams: { noteId },
+  defaultParams: { user },
+}: DeleteTrashNoteEndpointParams) => {
+  await deleteDoc(doc(db, 'users', user.id, 'trash-notes', noteId));
+
+  return noteId;
 };
 
 export const clearTrashNotes = async ({
