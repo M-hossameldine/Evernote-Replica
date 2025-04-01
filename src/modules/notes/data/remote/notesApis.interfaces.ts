@@ -70,8 +70,24 @@ export type DeleteNoteRequestParams = MutationRequestParams<
 export type DeleteNoteEndpointParams =
   EndpointParamsWithAuth<DeleteNoteRequestParams>;
 
+// * Restore Deleted Note
+export type RestoreDeletedNoteRequestResponse = { id: string };
+export type RestoreDeletedNoteRequestResult = RestoreDeletedNoteRequestResponse;
+export type RestoreDeletedNoteRequestExtraParams = {
+  noteId: string;
+};
+
+export type RestoreDeletedNoteRequestParams = MutationRequestParams<
+  RestoreDeletedNoteRequestResult,
+  void,
+  void,
+  RestoreDeletedNoteRequestExtraParams
+>;
+export type RestoreDeletedNoteEndpointParams =
+  EndpointParamsWithAuth<RestoreDeletedNoteRequestParams>;
+
 // * Delete Trash Note
-export type DeleteTrashNoteRequestResponse = string;
+export type DeleteTrashNoteRequestResponse = { id: string };
 export type DeleteTrashNoteRequestResult = DeleteTrashNoteRequestResponse;
 export type DeleteTrashNoteRequestExtraParams = {
   noteId: string;

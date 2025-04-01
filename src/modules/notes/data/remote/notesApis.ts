@@ -1,11 +1,12 @@
 import { appApi, createEndpoint } from '~store';
 
 import {
-  addNote,
-  deleteNote,
   getActiveNotes,
   getTrashNotes,
+  addNote,
   updateNote,
+  deleteNote,
+  restoreDeletedNote,
   deleteTrashNote,
   clearTrashNotes,
 } from './notesApis.endpoints';
@@ -18,6 +19,8 @@ import type {
   UpdateNoteRequestParams,
   UpdateNoteRequestResponse,
   DeleteNoteRequestParams,
+  RestoreDeletedNoteRequestParams,
+  RestoreDeletedNoteRequestResponse,
   DeleteTrashNoteRequestParams,
   DeleteTrashNoteRequestResponse,
   ClearTrashNotesRequestParams,
@@ -78,6 +81,18 @@ export const notesApi = appApi.injectEndpoints({
       }),
       invalidatesTags: ['trash-notes', 'active-notes'],
     }),
+    restoreDeletedNote: builder.mutation<
+      RestoreDeletedNoteRequestResponse,
+      RestoreDeletedNoteRequestParams
+    >({
+      ...createEndpoint<
+        RestoreDeletedNoteRequestResponse,
+        RestoreDeletedNoteRequestParams
+      >({
+        endpoint: restoreDeletedNote,
+      }),
+      invalidatesTags: ['trash-notes', 'active-notes'],
+    }),
     deleteTrashNote: builder.mutation<
       DeleteTrashNoteRequestResponse,
       DeleteTrashNoteRequestParams
@@ -113,6 +128,7 @@ export const {
   useAddNoteMutation,
   useUpdateNoteMutation,
   useDeleteNoteMutation,
+  useRestoreDeletedNoteMutation,
   useDeleteTrashNoteMutation,
   useClearTrashNotesMutation,
 } = notesApi;

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import {
   useDeleteNoteMutation,
+  useRestoreDeletedNoteMutation,
   useDeleteTrashNoteMutation,
 } from '~modules/notes/data/remote';
 
@@ -25,6 +26,7 @@ export const NoteActionsDropdown = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const params = useParams<{ noteId: string }>() as { noteId: string };
   const [deleteNote] = useDeleteNoteMutation();
+  const [restoreDeletedNote] = useRestoreDeletedNoteMutation();
   const [deleteTrashNote] = useDeleteTrashNoteMutation();
   const toggleDropdownHandler = () => {
     setIsExpanded(prevState => !prevState);
@@ -47,7 +49,9 @@ export const NoteActionsDropdown = ({
 
   const restoreNoteHandler = (noteToRestoreId: string) => {
     onRestoreNote(noteToRestoreId);
-    // TODO: trigger restore note mutation
+    restoreDeletedNote({
+      extraParams: { noteId: noteToRestoreId },
+    });
   };
 
   const deleteNotePermanentlyHandler = (noteToDeleteId: string) => {
@@ -65,14 +69,14 @@ export const NoteActionsDropdown = ({
   ) : (
     <>
       <NoteActionsDropdownItem
-        text="Delete permanently"
-        toggleDropdown={toggleDropdownHandler}
-        onClick={deleteNotePermanentlyHandler.bind(null, params.noteId)}
-      />
-      <NoteActionsDropdownItem
         text="Restore note"
         toggleDropdown={toggleDropdownHandler}
         onClick={restoreNoteHandler.bind(null, params.noteId)}
+      />
+      <NoteActionsDropdownItem
+        text="Delete permanently"
+        toggleDropdown={toggleDropdownHandler}
+        onClick={deleteNotePermanentlyHandler.bind(null, params.noteId)}
       />
     </>
   );

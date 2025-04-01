@@ -20,6 +20,7 @@ import type {
   AddNoteEndpointParams,
   UpdateNoteEndpointParams,
   DeleteNoteEndpointParams,
+  RestoreDeletedNoteEndpointParams,
   DeleteTrashNoteEndpointParams,
   ClearTrashNotesEndpointParams,
 } from './notesApis.interfaces';
@@ -93,11 +94,33 @@ export const deleteNote = async ({
   // Move to trash
   await setDoc(doc(db, 'users', user.id, 'trash-notes', noteId), {
     ...noteData,
-    deletedAt: new Date().toISOString(),
+    deletedTimestamp: new Date().toISOString(),
   });
 
   // Delete from active
   await deleteDoc(noteRef);
+
+  return { id: noteId };
+};
+
+export const restoreDeletedNote = async ({
+  extraParams: { noteId },
+  defaultParams: { user },
+}: RestoreDeletedNoteEndpointParams) => {
+  // Get the note data before deleting
+  const noteRef = doc(db, 'users', user.id, 'trash-notes', noteId);
+  const noteDoc = await getDoc(noteRef);
+  const noteData = noteDoc.data();
+
+  if (noteData?.deletedTimestamp) {
+    delete noteData.deletedTimestamp;
+  }
+
+  // Restore to active
+  await setDoc(doc(db, 'users', user.id, 'active-notes', noteId), noteData);
+
+  // Delete from trash
+  await deleteDoc(doc(db, 'users', user.id, 'trash-notes', noteId));
 
   return { id: noteId };
 };
@@ -108,7 +131,7 @@ export const deleteTrashNote = async ({
 }: DeleteTrashNoteEndpointParams) => {
   await deleteDoc(doc(db, 'users', user.id, 'trash-notes', noteId));
 
-  return noteId;
+  return { id: noteId };
 };
 
 export const clearTrashNotes = async ({
