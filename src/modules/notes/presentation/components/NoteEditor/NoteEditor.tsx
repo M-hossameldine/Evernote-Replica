@@ -163,7 +163,7 @@ const NoteEditor: React.FC = () => {
               'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold'
             }
             autoGrowClassName="text-3xl"
-            disabled={isTrashItem}
+            readonly={isTrashItem}
           />
         </div>
 
@@ -172,7 +172,7 @@ const NoteEditor: React.FC = () => {
           placeholder={isTrashItem ? '' : 'Start writing'}
           onChange={e => noteContentChangeHandler(e, false)}
           inputClassName={'text-neutral-800'}
-          disabled={isTrashItem}
+          readonly={isTrashItem}
         />
       </div>
     </div>

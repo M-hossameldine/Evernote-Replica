@@ -9,6 +9,7 @@ type PropsType = {
   disabled?: boolean;
   onChange: (e: React.FormEvent<HTMLTextAreaElement>) => void;
   onClick?: () => void;
+  readonly?: boolean;
 };
 export const AutoGrowingTextArea = (props: PropsType): React.ReactElement => {
   const {
@@ -20,6 +21,7 @@ export const AutoGrowingTextArea = (props: PropsType): React.ReactElement => {
     disabled,
     onChange: textChangeHandler,
     onClick: inputClickedHandler,
+    readonly = false,
   } = props;
 
   const textareaClasses = `${inputClassName} absolute resize-none overflow-hidden w-full h-full min-h-[2.5rem] outline-none  `;
@@ -33,6 +35,7 @@ export const AutoGrowingTextArea = (props: PropsType): React.ReactElement => {
         placeholder={placeholder}
         value={textValue}
         disabled={disabled}
+        readOnly={readonly}
         onChange={textChangeHandler}
         onClick={inputClickedHandler}
       />
