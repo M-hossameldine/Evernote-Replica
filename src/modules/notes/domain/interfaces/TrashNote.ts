@@ -1,7 +1,5 @@
 import type { Note } from '~modules/notes/domain/interfaces/Note';
 
-export interface TrashNote {
-  note: Note;
+export type TrashNote = Note & {
   deleteTimestamp: string;
-  id: string;
-}
+};

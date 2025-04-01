@@ -11,7 +11,6 @@ import type {
   SaveTrashNotesActionPayload,
 } from './notesSlice.interfaces';
 import { createNote } from './notesSlice.helpers';
-import { restoreItem } from './trash-slice';
 
 const initialState: NotesState = {
   activeNotes: [],
@@ -69,16 +68,6 @@ const notesSlice = createSlice({
       state.activeNotes[existedNoteIndex].text = text;
       state.activeNotes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
     },
-  },
-  extraReducers: builder => {
-    builder.addCase(
-      restoreItem,
-      (state, action: PayloadAction<{ id: string; note: TrashNote }>) => {
-        const restoredNote = action.payload.note.note;
-
-        state.activeNotes.unshift(restoredNote);
-      }
-    );
   },
 });
 

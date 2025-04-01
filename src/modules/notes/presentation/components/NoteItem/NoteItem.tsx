@@ -19,7 +19,7 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
   const params = useParams();
   const { note, index, className, route } = props;
 
-  const { text, title, createdTimestamp } = 'note' in note ? note.note : note;
+  const { text, title, createdTimestamp } = note;
 
   const { id: localNoteId } = note;
 

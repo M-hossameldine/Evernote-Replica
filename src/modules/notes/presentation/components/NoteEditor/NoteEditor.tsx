@@ -55,9 +55,8 @@ const NoteEditor: React.FC = () => {
   let bodyText = '';
 
   if (activeNote) {
-    titleText =
-      'title' in activeNote ? activeNote!.title : activeNote!.note.title;
-    bodyText = 'text' in activeNote ? activeNote!.text : activeNote!.note.text;
+    titleText = activeNote.title;
+    bodyText = activeNote.text;
   }
 
   const noteContentChangeHandler = (
@@ -127,11 +126,19 @@ const NoteEditor: React.FC = () => {
   };
 
   const deleteNoteHandler = (id: string) => {
-    setTemporaryNoteStatus(prev => ({ ...prev, deletedNoteId: id }));
+    setTemporaryNoteStatus(prev => ({
+      ...prev,
+      restoredNoteId: null,
+      deletedNoteId: id,
+    }));
   };
 
   const restoreNoteHandler = (id: string) => {
-    setTemporaryNoteStatus(prev => ({ ...prev, restoredNoteId: id }));
+    setTemporaryNoteStatus(prev => ({
+      ...prev,
+      deletedNoteId: null,
+      restoredNoteId: id,
+    }));
   };
 
   return (
