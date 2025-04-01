@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useMatch } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-
-import { useLocationIndicator } from '~hooks';
 
 import {
   useSignupMutation,
@@ -42,10 +40,12 @@ const validationSchema = Yup.object().shape({
 });
 
 export const UserAuthForm: React.FC = () => {
-  const location = useLocationIndicator();
   const navigate = useNavigate();
+  const loginRouteMatch = useMatch(
+    AuthRouteVariants.auth.pathname(AuthMode.LOGIN)
+  );
+  const isLogin = !!loginRouteMatch;
 
-  const isLogin = location.isInCurrentPath('login');
   const [requestErrorMessage, setRequestErrorMessage] = useState<string | null>(
     null
   );
