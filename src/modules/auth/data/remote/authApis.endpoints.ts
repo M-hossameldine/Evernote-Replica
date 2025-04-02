@@ -7,13 +7,16 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from '~libs/firebase';
+import { mapFirebaseUserToAuthUser } from './authApis.mapping';
 
-import type { UserCredential } from 'firebase/auth';
-import type { AuthRequestParams } from './authApis.interfaces';
+import type {
+  AuthRequestParams,
+  AuthRequestResult,
+} from './authApis.interfaces';
 
 export const signUp = async ({
   payload: { email, password },
-}: AuthRequestParams): Promise<UserCredential> => {
+}: AuthRequestParams): Promise<AuthRequestResult> => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
@@ -36,13 +39,27 @@ export const signUp = async ({
     updatedTimestamp: new Date().toISOString(),
   });
 
-  return userCredential;
+  const mappedUser = mapFirebaseUserToAuthUser(user);
+
+  return {
+    user: mappedUser,
+  };
 };
 
 export const login = async ({
   payload: { email, password },
-}: AuthRequestParams): Promise<UserCredential> => {
-  return await signInWithEmailAndPassword(auth, email, password);
+}: AuthRequestParams): Promise<AuthRequestResult> => {
+  const userCredential = await signInWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+
+  const user = mapFirebaseUserToAuthUser(userCredential.user);
+
+  return {
+    user,
+  };
 };
 
 export const logout = async () => {

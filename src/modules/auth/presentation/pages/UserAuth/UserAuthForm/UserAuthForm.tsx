@@ -115,6 +115,7 @@ export const UserAuthForm: React.FC = () => {
                   handleChange(e);
                   setRequestErrorMessage(null);
                 }}
+                autoComplete={isLogin ? 'email' : 'off'}
                 placeholder="Email"
                 className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
@@ -137,6 +138,7 @@ export const UserAuthForm: React.FC = () => {
                 }}
                 type="password"
                 id="password"
+                autoComplete={isLogin ? 'current-password' : 'off'}
                 placeholder="Password"
                 className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />

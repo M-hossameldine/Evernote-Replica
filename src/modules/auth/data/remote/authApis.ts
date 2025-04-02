@@ -11,10 +11,7 @@ import type {
   AuthRequestResponse,
   LogoutRequestParams,
 } from './authApis.interfaces';
-import {
-  mapAuthRequestResult,
-  mapFirebaseUserToAuthUser,
-} from './authApis.mapping';
+import { mapFirebaseUserToAuthUser } from './authApis.mapping';
 
 export const useInitAppAuth = () => {
   const dispatch = useAppDispatch();
@@ -41,7 +38,6 @@ export const authApi = appApi.injectEndpoints({
     signup: builder.mutation<AuthRequestResponse, AuthRequestParams>(
       createEndpoint<AuthRequestResponse, AuthRequestParams, false>({
         endpoint: signUp,
-        mapData: mapAuthRequestResult,
         onQuerySuccess: (dispatch, mappedData) =>
           dispatch(saveLogin(mappedData)),
         requiresAuth: false,
@@ -51,9 +47,9 @@ export const authApi = appApi.injectEndpoints({
     login: builder.mutation<AuthRequestResponse, AuthRequestParams>(
       createEndpoint<AuthRequestResponse, AuthRequestParams, false>({
         endpoint: login,
-        mapData: mapAuthRequestResult,
-        onQuerySuccess: (dispatch, mappedData) =>
-          dispatch(saveLogin(mappedData)),
+        onQuerySuccess: (dispatch, mappedData) => {
+          dispatch(saveLogin(mappedData));
+        },
         requiresAuth: false,
       })
     ),
