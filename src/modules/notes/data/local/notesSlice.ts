@@ -5,67 +5,18 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '~store';
 
+import type {
+  NotesState,
+  SaveActiveNotesActionPayload,
+  SaveTrashNotesActionPayload,
+} from './notesSlice.interfaces';
 import { createNote } from './notesSlice.helpers';
-import { restoreItem } from './trash-slice';
-
-const DUMMY_NOTE_lIST: Note[] = [
-  {
-    id: '0',
-    title: '1st Note Title',
-    text: '1st Note text body',
-    createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
-  },
-  {
-    id: '1',
-    title: '2nd Note Title',
-    text: '2nd Note text body',
-    createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
-  },
-  {
-    id: '2',
-    title: '3rd Note Title',
-    text: '3rd Note text body',
-    createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
-  },
-  {
-    id: '3',
-    title: '4th Note Title',
-    text: '4th Note text body',
-    createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
-  },
-  {
-    id: '4',
-    title: '5th Note Title',
-    text: '5th Note text body',
-    createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
-  },
-  {
-    id: '5',
-    title: '6th Note Title',
-    text: '6th Note text body',
-    createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
-  },
-  {
-    id: '6',
-    title: '7th Note Title',
-    text: '7th Note text body',
-    createdTimestamp: new Date().toISOString(),
-    updatedTimestamp: '',
-  },
-];
-
-interface NotesState {
-  notes: Note[];
-}
 
 const initialState: NotesState = {
-  notes: DUMMY_NOTE_lIST,
+  activeNotes: [],
+  activeNoteInEditor: null,
+  trashNotes: [],
+  trashNoteInEditor: null,
 };
 
 const notesSlice = createSlice({
@@ -73,13 +24,31 @@ const notesSlice = createSlice({
   initialState,
   reducers: {
     // use the PayloadAction type to declare the contents of `action.payload`
+    saveActiveNotes(
+      state,
+      action: PayloadAction<SaveActiveNotesActionPayload>
+    ) {
+      const activeNotes = action.payload;
+      state.activeNotes = activeNotes;
+    },
+    saveTrashNotes(state, action: PayloadAction<SaveTrashNotesActionPayload>) {
+      const trashNotes = action.payload;
+      state.trashNotes = trashNotes;
+    },
+    saveActiveNoteInEditor(state, action: PayloadAction<Note>) {
+      state.activeNoteInEditor = action.payload;
+    },
+    saveTrashNoteInEditor(state, action: PayloadAction<TrashNote>) {
+      state.trashNoteInEditor = action.payload;
+    },
     addNote(state, action: PayloadAction<Note>) {
       const { title, createdTimestamp, text } = action.payload;
-      state.notes.unshift(createNote(title, text, createdTimestamp));
+      state.activeNotes?.unshift(createNote(title, text, createdTimestamp));
     },
     moveToTrash(state, action: PayloadAction<{ id: string; note: Note }>) {
       const existedId = action.payload.id;
-      state.notes = state.notes.filter(note => note.id !== existedId);
+      state.activeNotes =
+        state?.activeNotes?.filter?.(note => note.id !== existedId) || [];
     },
     editNote(
       state,
@@ -92,27 +61,32 @@ const notesSlice = createSlice({
     ) {
       const { title, text, id, updatedTimestamp } = action.payload;
 
-      const existedNoteIndex = state.notes.findIndex(note => note.id === id);
-      state.notes[existedNoteIndex].title = title;
-      state.notes[existedNoteIndex].text = text;
-      state.notes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
+      const existedNoteIndex = state.activeNotes?.findIndex(
+        note => note.id === id
+      );
+      state.activeNotes[existedNoteIndex].title = title;
+      state.activeNotes[existedNoteIndex].text = text;
+      state.activeNotes[existedNoteIndex].updatedTimestamp = updatedTimestamp;
     },
-  },
-  extraReducers: builder => {
-    builder.addCase(
-      restoreItem,
-      (state, action: PayloadAction<{ id: string; note: TrashNote }>) => {
-        const restoredNote = action.payload.note.note;
-
-        state.notes.unshift(restoredNote);
-      }
-    );
   },
 });
 
 // export const NotesActions = notesSlice.actions;
-export const { addNote, moveToTrash, editNote } = notesSlice.actions;
+export const {
+  saveActiveNotes,
+  saveTrashNotes,
+  saveActiveNoteInEditor,
+  saveTrashNoteInEditor,
+  addNote,
+  moveToTrash,
+  editNote,
+} = notesSlice.actions;
 
-export const selectNotes = (state: RootState) => state.notes.notes;
+export const selectActiveNotes = (state: RootState) => state.notes.activeNotes;
+export const selectTrashNotes = (state: RootState) => state.notes.trashNotes;
+export const selectActiveNoteInEditor = (state: RootState) =>
+  state.notes.activeNoteInEditor;
+export const selectTrashNoteInEditor = (state: RootState) =>
+  state.notes.trashNoteInEditor;
 
 export default notesSlice.reducer;

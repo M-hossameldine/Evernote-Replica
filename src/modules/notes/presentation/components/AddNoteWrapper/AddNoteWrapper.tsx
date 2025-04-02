@@ -1,35 +1,24 @@
-import { useAppSelector, useUpdatedState } from '~hooks';
+import { useAddNote } from '~modules/notes/presentation/hooks';
 
-import { selectNotes, sendNewNoteData } from '~store';
-
-import { NOTESPAGE } from '~constants/routes';
+import { AddNoteScreenLoading } from './AddNoteScreenLoading';
 
 type Props = {
   children?: React.ReactNode;
-  actionPayload?: object;
   className?: string;
 };
 
 export const AddNoteWrapper = (props: Props): React.ReactElement => {
-  const { actionPayload, className } = props;
-  const notes = useAppSelector(selectNotes);
-
-  const notesUpdatedState = useUpdatedState({
-    asyncAction: sendNewNoteData,
-    route: NOTESPAGE,
-    usedIndex: 0,
-    watchedState: notes,
-    operation: 'add',
-  });
-
-  const addNoteHandler = () => {
-    notesUpdatedState.dispatchActionHandler({ ...actionPayload });
-  };
+  const { className } = props;
+  const { addNote, isLoading } = useAddNote();
 
   return (
-    <button className={className ? className : ''} onClick={addNoteHandler}>
-      {props.children}
-    </button>
+    <>
+      <button className={className ? className : ''} onClick={addNote}>
+        {props.children}
+      </button>
+
+      {isLoading && <AddNoteScreenLoading />}
+    </>
   );
 };
 

@@ -1,90 +1,104 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useLocationIndicator } from '~hooks/use-locationIndicator';
 
-import { useAppSelector } from '~hooks/redux-hooks';
 import {
-  MoveToTrashAction,
-  deleteItemPermanentlyAction,
-  restoreItemFromTrashAction,
-  selectNotes,
-  selectTrashNotes,
-} from '~store';
-import { findNoteById } from '~helpers';
+  useDeleteNoteMutation,
+  useRestoreDeletedNoteMutation,
+  useDeleteTrashNoteMutation,
+} from '~modules/notes/data/remote';
 
 import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
 import NoteActionsDropdownItem from './NoteActionsDropdownItem';
 
 import { IoIosMore } from 'react-icons/io';
 
-const NoteActionsDropdown: React.FC = () => {
+export type NoteActionsDropdownProps = {
+  isTrashItem: boolean;
+  onDeleteNote: (noteId: string) => void;
+  onRestoreNote: (noteId: string) => void;
+};
+
+export const NoteActionsDropdown = ({
+  isTrashItem,
+  onDeleteNote,
+  onRestoreNote,
+}: NoteActionsDropdownProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const notes = useAppSelector(selectNotes);
-  const trashNotes = useAppSelector(selectTrashNotes);
-  const location = useLocationIndicator();
-  const params = useParams();
-
-  const isInTrash = location.isInCurrentPath('trash');
-
-  const selectedNote = findNoteById(
-    isInTrash ? trashNotes : notes,
-    params.noteId!
-  );
-
-  // sebmenu visiblity handlers
-  const toggleDropdonwHandler = () => {
+  const params = useParams<{ noteId: string }>() as { noteId: string };
+  const [deleteNote] = useDeleteNoteMutation();
+  const [restoreDeletedNote] = useRestoreDeletedNoteMutation();
+  const [deleteTrashNote] = useDeleteTrashNoteMutation();
+  const toggleDropdownHandler = () => {
     setIsExpanded(prevState => !prevState);
   };
 
-  const hideDropdonwHandler = () => {
+  const hideDropdownHandler = () => {
     setIsExpanded(false);
   };
 
-  const actionsContent = !isInTrash ? (
+  const moveToTrashHandler = (noteToDeleteId: string) => {
+    deleteNote({
+      extraParams: {
+        noteId: noteToDeleteId,
+      },
+      onSuccess: () => {
+        onDeleteNote(noteToDeleteId);
+      },
+    });
+  };
+
+  const restoreNoteHandler = (noteToRestoreId: string) => {
+    onRestoreNote(noteToRestoreId);
+    restoreDeletedNote({
+      extraParams: { noteId: noteToRestoreId },
+    });
+  };
+
+  const deleteNotePermanentlyHandler = (noteToDeleteId: string) => {
+    deleteTrashNote({
+      extraParams: { noteId: noteToDeleteId },
+    });
+  };
+
+  const actionsList = !isTrashItem ? (
     <NoteActionsDropdownItem
       text="Move To Trash"
-      asyncAction={MoveToTrashAction}
-      asyncActionArgs={{ id: params.noteId, note: selectedNote! }}
-      operation="delete"
+      toggleDropdown={toggleDropdownHandler}
+      onClick={moveToTrashHandler.bind(null, params.noteId)}
     />
   ) : (
     <>
       <NoteActionsDropdownItem
-        text="Delete permanently"
-        asyncAction={deleteItemPermanentlyAction}
-        asyncActionArgs={{ id: params.noteId }}
-        operation="delete"
+        text="Restore note"
+        toggleDropdown={toggleDropdownHandler}
+        onClick={restoreNoteHandler.bind(null, params.noteId)}
       />
       <NoteActionsDropdownItem
-        text="Restore note"
-        asyncAction={restoreItemFromTrashAction}
-        asyncActionArgs={{ id: params.noteId, note: selectedNote! }}
-        operation="delete"
+        text="Delete permanently"
+        toggleDropdown={toggleDropdownHandler}
+        onClick={deleteNotePermanentlyHandler.bind(null, params.noteId)}
       />
     </>
   );
 
   return (
-    <ExcludeEventWrapper listenerHandler={hideDropdonwHandler}>
+    <ExcludeEventWrapper listenerHandler={hideDropdownHandler}>
       <div className="relative">
         <button
           className="m-0 p-0 text-neutral-500"
-          onClick={toggleDropdonwHandler}
+          onClick={toggleDropdownHandler}
         >
           <IoIosMore className="shrink-0 text-xl" />
         </button>
 
-        <button
-          className={`absolute right-0 top-[150%] z-10 whitespace-nowrap rounded bg-white text-sm shadow-even-2 ${
+        <div
+          className={`absolute right-0 top-[150%] z-10 whitespace-nowrap rounded bg-white p-2 text-sm shadow-even-2 ${
             isExpanded ? 'scale-100' : 'scale-0'
           }`}
-          onClick={hideDropdonwHandler}
         >
-          {actionsContent}
-        </button>
+          {actionsList}
+        </div>
       </div>
     </ExcludeEventWrapper>
   );
 };
-
-export default NoteActionsDropdown;

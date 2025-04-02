@@ -32,7 +32,6 @@ const configuration: UserConfig = {
       '~libs/*': path.resolve(__dirname, './libs/*'),
       '~store/*': path.resolve(__dirname, './store/*'),
       '~pages/*': path.resolve(__dirname, './pages/*'),
-      '~sections/*': path.resolve(__dirname, './sections/*'),
     },
   },
 };

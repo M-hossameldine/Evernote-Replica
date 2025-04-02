@@ -1,17 +1,17 @@
+import { useMatch } from 'react-router-dom';
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
 import NoteItem from '../NoteItem/NoteItem';
+import { NotesRouteVariants } from '~constants/routeVariants';
 
 type PropsType = {
   notes: (Note | TrashNote)[];
+  onSelectNote: (note: Note | TrashNote) => void;
 };
 
 const NoteList = (props: PropsType): React.ReactElement => {
-  const { notes } = props;
-
-  const selectedNoteHandler = () => {
-    // todo: add selected note logic using noteIndex
-  };
+  const { notes, onSelectNote } = props;
+  const isTrashNotes = useMatch(NotesRouteVariants.trashNotes.route);
 
   return (
     <div className="scrollbar-box overflow-scroll overflow-x-hidden">
@@ -21,7 +21,12 @@ const NoteList = (props: PropsType): React.ReactElement => {
             key={note.id}
             note={note}
             index={index}
-            onClick={selectedNoteHandler}
+            onClick={onSelectNote.bind(null, note)}
+            route={
+              isTrashNotes
+                ? NotesRouteVariants.trashNotes.pathname(note.id)
+                : NotesRouteVariants.activeNotes.pathname(note.id)
+            }
           />
         ))}
       </ul>

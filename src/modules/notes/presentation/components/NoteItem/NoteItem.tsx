@@ -1,28 +1,25 @@
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+import classes from './NoteItem.module.css';
 
 import { Link, useParams } from 'react-router-dom';
-
-import { useAppDispatch, useLocationIndicator } from '~hooks';
-
+import { useAppDispatch } from '~store';
 import { setActiveNoteIndex } from '~modules/notes/data/local/noteEditor-slice';
 
-import classes from './NoteItem.module.css';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
 type PropsType = {
   note: Note | TrashNote;
   index: number;
   className?: string;
-  route?: string;
+  route: string;
   onClick?: (noteIndex: number) => void;
 };
 
 export const NoteItem = (props: PropsType): React.ReactElement => {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const location = useLocationIndicator();
   const { note, index, className, route } = props;
 
-  const { text, title, createdTimestamp } = 'note' in note ? note.note : note;
+  const { text, title, createdTimestamp } = note;
 
   const { id: localNoteId } = note;
 
@@ -33,11 +30,6 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
       props.onClick(index);
     }
   };
-
-  // navigation link
-  const navigationLink = route
-    ? `${route}/${localNoteId}`
-    : `/${location.locationKey}/${localNoteId}`;
 
   // date form
   const createNoteTimestamp = new Date(createdTimestamp);
@@ -51,13 +43,9 @@ export const NoteItem = (props: PropsType): React.ReactElement => {
     ${className ? className : ''}`;
 
   return (
-    <Link
-      className={noteItemClasses}
-      to={navigationLink}
-      onClick={noteFocusHandler}
-    >
+    <Link className={noteItemClasses} to={route} onClick={noteFocusHandler}>
       <h3 className={classes['note__title']}>
-        {title.length > 0 ? title : 'Untitled'}
+        {title?.length > 0 ? title : 'Untitled'}
       </h3>
       <p className={classes['note__body']}>{text}</p>
       <small className={classes['note__timestamp']}>{noteTimestampValue}</small>

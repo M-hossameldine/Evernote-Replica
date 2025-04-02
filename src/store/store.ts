@@ -1,18 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import notesReducer from '~modules/notes/data/local/notesSlice';
+import { appApi } from './Apis/appApis';
 
 import authReducer from '../modules/auth/data/local/authSlice';
+import notesReducer from '~modules/notes/data/local/notesSlice';
+
 import noteEditorReducer from '../modules/notes/data/local/noteEditor-slice';
-import trashReducer from '../modules/notes/data/local/trash-slice';
-import { appApi } from './Apis/appApis';
 import uiReducer from './ui-slice/ui-slice';
 
 export const store = configureStore({
   reducer: {
     notes: notesReducer,
     noteEditor: noteEditorReducer,
-    trash: trashReducer,
     ui: uiReducer,
     auth: authReducer,
     [appApi.reducerPath]: appApi.reducer,

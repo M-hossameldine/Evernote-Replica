@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 
-import { AuthMode } from '~constants/AppEnums/AuthEnums';
-import { AuthRouteVariants } from '~constants/routeVariants';
-import { DOWNLOADPAGE, HOMEPAGE } from '~constants/routes';
-
-import { HorizontalLogo } from '~assets';
-import { FaBars } from 'react-icons/fa';
-
 import { GhostLink } from '~components/Links';
+
+import { FaBars } from 'react-icons/fa';
+import { HorizontalLogo } from '~assets';
+
+import { AuthMode } from '~constants/AppEnums/AuthEnums';
+
+import {
+  CommonRouteVariants,
+  AuthRouteVariants,
+} from '~constants/routeVariants';
 
 type Props = { onShowMenu: () => void };
 
@@ -15,7 +18,7 @@ export const DesktopMenu = (props: Props): React.ReactElement => {
   return (
     <div className="container mx-auto flex max-w-[75rem] items-center p-5">
       <Link
-        to={HOMEPAGE}
+        to={CommonRouteVariants.publicHomePage.pathname()}
         className="title-font mr-auto flex items-center font-medium text-gray-900"
       >
         <img src={HorizontalLogo} alt="Evernote logo" />
@@ -34,7 +37,7 @@ export const DesktopMenu = (props: Props): React.ReactElement => {
           </Link>
           <GhostLink
             text="Download"
-            route={DOWNLOADPAGE}
+            route={CommonRouteVariants.download.pathname()}
             colors={{
               textClr: 'text-green-550',
               textHoverClr: 'text-green-450',

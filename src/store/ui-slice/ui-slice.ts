@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import type { RootState } from '~store';
 
-interface UI_STATE_INTERFACE {
+interface UiSliceState {
   isTrashBin: boolean;
   notification: {
     status: 'success' | 'error';
@@ -11,7 +11,7 @@ interface UI_STATE_INTERFACE {
   } | null;
 }
 
-const initialState: UI_STATE_INTERFACE = {
+const initialState: UiSliceState = {
   isTrashBin: false,
   notification: null,
 };

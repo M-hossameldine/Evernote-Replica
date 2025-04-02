@@ -2,13 +2,15 @@ export type Text = {
   text: string;
   className?: string;
 };
-interface COMPONENT_INTERFACE {
+interface SimpleFeatureBlockProps {
   title: Text;
   description: Text;
   className?: string;
 }
 
-const SimpleFeatureBlock = (props: COMPONENT_INTERFACE): React.ReactElement => {
+const SimpleFeatureBlock = (
+  props: SimpleFeatureBlockProps
+): React.ReactElement => {
   const { title, description, className } = props;
 
   const blockClasses = className ? className : '';

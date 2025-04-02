@@ -1,17 +1,15 @@
 import { v4 as uuid } from 'uuid';
 
-import { useAppSelector } from '~hooks';
-
+import { useAppSelector } from '~store';
 import { selectUser } from '~modules/auth/data/local/authSlice';
 import { useLogoutMutation } from '~modules/auth/data/remote/authApis';
 
-import { IoIosArrowDown } from 'react-icons/io';
-import { FaUserCircle } from 'react-icons/fa';
-
 import DropdownMenu from '~components/DropdownMenu';
-
 import { AddNewNoteTab } from './AddNewNoteTab';
 import { SideNavTabs } from './SideNavTabs';
+
+import { IoIosArrowDown } from 'react-icons/io';
+import { FaUserCircle } from 'react-icons/fa';
 
 const SideNavBar: React.FC = () => {
   const userInfo = useAppSelector(selectUser);
@@ -29,15 +27,17 @@ const SideNavBar: React.FC = () => {
             content: (
               <div className="flex cursor-pointer gap-2">
                 <FaUserCircle className="shrink-0 text-3xl" />
-                <div className="flex items-center gap-1">
-                  <small className="w-2/4 scale-0 overflow-hidden transition ease-out lg:scale-100">
-                    {userInfo?.email}
-                  </small>
-                  <IoIosArrowDown size="10" />
+                <div className="flex w-full items-center justify-between gap-1">
+                  <span className="w-36 scale-0 overflow-hidden truncate text-start transition ease-out lg:scale-100">
+                    <small className="scale-0 text-start transition ease-out lg:scale-100">
+                      {userInfo?.email}
+                    </small>
+                  </span>
+                  <IoIosArrowDown size="10" className="shrink-0" />
                 </div>
               </div>
             ),
-            className: 'max-w-full',
+            className: 'max-w-full w-full',
           }}
           submenuItemsData={[
             {
@@ -55,7 +55,6 @@ const SideNavBar: React.FC = () => {
         <AddNewNoteTab />
       </header>
 
-      {/* <SearchBar /> */}
       <SideNavTabs />
     </div>
   );

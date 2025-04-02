@@ -3,11 +3,11 @@ import 'tw-elements';
 import { VideoModalImg } from '~assets';
 import { IoMdClose } from 'react-icons/io';
 
-interface MODAL_INTERFACE {
+interface CenteredModalProps {
   modalContent: React.ReactNode;
 }
 
-const CenteredModal = (props: MODAL_INTERFACE): React.ReactElement => {
+const CenteredModal = (props: CenteredModalProps): React.ReactElement => {
   return (
     <div className="">
       {/* Triggering part */}

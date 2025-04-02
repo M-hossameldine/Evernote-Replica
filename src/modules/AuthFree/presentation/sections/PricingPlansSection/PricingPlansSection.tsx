@@ -5,7 +5,7 @@ import PricePlanCard from './PricePlanCard';
 import { FiArrowRight } from 'react-icons/fi';
 import { BsArrowRightCircleFill } from 'react-icons/bs';
 
-import { PRICE_PLAN_DATA } from '../../assets/StaticData';
+import { PricePlanData } from '../../assets/StaticData';
 
 interface PricingPlansSectionProps {
   className?: string;
@@ -20,7 +20,7 @@ export const PricingPlansSection = (
   return (
     <>
       <div className={accordionClasses} id="accordionExample5">
-        {PRICE_PLAN_DATA.map((card, index) => {
+        {PricePlanData.map((card, index) => {
           return <PricePlanCard key={index} cardData={card} index={index} />;
         })}
       </div>

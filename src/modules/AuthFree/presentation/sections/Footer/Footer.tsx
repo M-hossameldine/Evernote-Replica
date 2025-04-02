@@ -3,7 +3,7 @@ import classes from './Footer.module.css';
 import FooterColumn from './FooterColumn/FooterColumn';
 import FooterInfoRow from './FooterInfoRow/FooterInfoRow';
 
-import { FOOTER_DATA } from '../../constants';
+import { FooterData } from '../../assets/StaticData';
 import { HorizontalLogo } from '~assets';
 
 type FooterProps = { className: string };
@@ -24,7 +24,7 @@ export const Footer = (props: FooterProps): React.ReactElement => {
 
       {/* Footer Columns */}
       <ul className={classes['footer-cols']}>
-        {FOOTER_DATA.map((col, index) => (
+        {FooterData.map((col, index) => (
           <FooterColumn
             key={index + col.colTitle}
             title={col.colTitle}

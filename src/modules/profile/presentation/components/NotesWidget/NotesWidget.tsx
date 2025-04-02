@@ -1,44 +1,46 @@
+import { v4 as uuid } from 'uuid';
 import { Link, useNavigate } from 'react-router-dom';
 
-import type {
-  ACTION_ITEM_INTERFACE,
-  FUNCTION_ITEM_INTERFACE,
-} from 'interfaces';
-import { v4 as uuid } from 'uuid';
+import { useAppSelector } from '~store';
+import { selectActiveNotes } from '~modules/notes/data/local';
+import { useAddNote } from '~modules/notes/presentation/hooks';
 
-import { useAppSelector } from '~hooks/redux-hooks';
-
-import { selectNotes, sendNewNoteData } from '~store';
-
-import { EDITORPAGE, NOTESPAGE } from '~constants/routes';
+import Card from '~components/Cards/Card';
+import DropdownMenu from '~components/DropdownMenu';
+import { type SubmenuFunctionItemProps } from '~components/DropdownMenu/SubmenuFunctionItem';
+import { AddNoteWrapper } from '~modules/notes/presentation/components/AddNoteWrapper';
+import { NoteItem } from '~modules/notes/presentation/components/NoteItem/NoteItem';
+import { AddNoteScreenLoading } from '~modules/notes/presentation/components/AddNoteWrapper/AddNoteScreenLoading';
 
 import { MdPostAdd } from 'react-icons/md';
 import { IoIosArrowForward, IoIosMore } from 'react-icons/io';
 
-import Card from '~components/Cards/Card';
-import DropdownMenu from '~components/DropdownMenu';
-import AddNoteWrapper from '~modules/notes/presentation/components/AddNoteWrapper/AddNoteWrapper';
-import { NoteItem } from '~modules/notes/presentation/components/NoteItem/NoteItem';
+import { NotesRouteVariants } from '~constants';
 
-type Props = { className?: string };
+type NotesWidgetProps = { className?: string };
 
-export const NotesWidget = (props: Props): React.ReactElement => {
-  const notes = useAppSelector(selectNotes);
+export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
+  const notes = useAppSelector(selectActiveNotes);
   const navigate = useNavigate();
 
-  const firstNote = notes.length > 0 ? notes[0].id : 'empty';
+  const firstNote = notes?.length > 0 ? notes?.[0]?.id : 'empty';
 
-  const dropdownData: (FUNCTION_ITEM_INTERFACE | ACTION_ITEM_INTERFACE)[] = [
+  const { addNote, isLoading: addNoteLoading } = useAddNote();
+
+  const dropdownData: SubmenuFunctionItemProps[] = [
     {
       id: uuid(),
       content: 'Go to notes',
-      onClick: () => navigate(`${NOTESPAGE}/${firstNote}`),
+      onClick: () => {
+        navigate(NotesRouteVariants.activeNotes.pathname(firstNote));
+      },
     },
     {
       id: uuid(),
       content: 'Create new note',
-      asyncAction: sendNewNoteData,
-      operation: 'add',
+      onClick: () => {
+        addNote();
+      },
     },
   ];
 
@@ -46,9 +48,11 @@ export const NotesWidget = (props: Props): React.ReactElement => {
 
   return (
     <Card className={` ${notesWidgetClasses} overflow-hidden`}>
+      {addNoteLoading && <AddNoteScreenLoading />}
+
       <header className="flex items-center p-2">
         <Link
-          to={`${NOTESPAGE}/${firstNote}`}
+          to={NotesRouteVariants.activeNotes.pathname(firstNote)}
           className="flex items-center rounded p-1 uppercase text-neutral-800 hover:bg-neutral-100"
         >
           Notes
@@ -85,7 +89,7 @@ export const NotesWidget = (props: Props): React.ReactElement => {
                 note={note}
                 index={index}
                 className="p2"
-                route={EDITORPAGE}
+                route={NotesRouteVariants.homeNote.pathname(note.id)}
               />
             </li>
           ))}

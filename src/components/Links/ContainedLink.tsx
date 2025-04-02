@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ExternalLink } from '~components/Links';
 
-interface CONTAINED_LINK_INTERFACE {
+interface ContainedLinkProps {
   text: string;
   icon?: {
     Icon: IconType;
@@ -15,7 +15,7 @@ interface CONTAINED_LINK_INTERFACE {
 }
 
 export const ContainedLink = (
-  props: CONTAINED_LINK_INTERFACE
+  props: ContainedLinkProps
 ): React.ReactElement => {
   const { text, icon, className, route, isExternal } = props;
 

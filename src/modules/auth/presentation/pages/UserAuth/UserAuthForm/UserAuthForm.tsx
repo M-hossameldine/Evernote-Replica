@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate, useMatch } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-
-import { useLocationIndicator } from '~hooks';
 
 import {
   useSignupMutation,
@@ -16,15 +13,14 @@ import {
   isUserNotFoundError,
 } from '~modules/auth/presentation/helpers/validations';
 
-import { AuthMode } from '~constants/AppEnums/AuthEnums';
-import { ErrorsMap } from '~constants/errors';
-import { AuthRouteVariants } from '~constants/routeVariants';
-import { HOMEPAGE } from '~constants/routes';
+import { TextLink } from '~components/Links';
+import { DefaultSpinner } from '~components/Loading';
 
 import { VerticalLogo } from '~assets';
 
-import { TextLink } from '~components/Links';
-import { DefaultSpinner } from '~components/Spinners';
+import { AuthMode } from '~constants/AppEnums/AuthEnums';
+import { ErrorsMap } from '~constants/errors';
+import { CommonRouteVariants, AuthRouteVariants } from '~constants';
 
 interface FormValuesInterface {
   email: string;
@@ -44,10 +40,12 @@ const validationSchema = Yup.object().shape({
 });
 
 export const UserAuthForm: React.FC = () => {
-  const location = useLocationIndicator();
   const navigate = useNavigate();
+  const loginRouteMatch = useMatch(
+    AuthRouteVariants.auth.pathname(AuthMode.LOGIN)
+  );
+  const isLogin = !!loginRouteMatch;
 
-  const isLogin = location.isInCurrentPath('login');
   const [requestErrorMessage, setRequestErrorMessage] = useState<string | null>(
     null
   );
@@ -61,7 +59,7 @@ export const UserAuthForm: React.FC = () => {
 
   const submitHandler = async (values: FormValuesInterface) => {
     const submitSuccessfully = () => {
-      navigate(HOMEPAGE);
+      navigate(CommonRouteVariants.userHomePage.pathname());
     };
 
     if (isLogin) {
@@ -70,6 +68,7 @@ export const UserAuthForm: React.FC = () => {
           email: values.email,
           password: values.password,
         },
+        onSuccess: submitSuccessfully,
         onError: error => {
           setRequestErrorMessage(error.message);
         },
@@ -97,7 +96,10 @@ export const UserAuthForm: React.FC = () => {
       {({ errors, touched, handleChange }) => (
         <Form className="relative z-10 mx-auto mt-10 h-screen w-full rounded-lg bg-white p-8 py-16 shadow-even-3 md:mt-0 md:h-auto md:w-[32rem]">
           <div className="mx-auto flex max-w-[20rem] flex-col">
-            <Link to="/" className="mx-auto max-w-[11rem]">
+            <Link
+              to={CommonRouteVariants.publicHomePage.pathname()}
+              className="mx-auto max-w-[11rem]"
+            >
               <img src={VerticalLogo} alt="Evernote Logo" />
             </Link>
 
@@ -113,6 +115,7 @@ export const UserAuthForm: React.FC = () => {
                   handleChange(e);
                   setRequestErrorMessage(null);
                 }}
+                autoComplete={isLogin ? 'email' : 'off'}
                 placeholder="Email"
                 className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
@@ -135,6 +138,7 @@ export const UserAuthForm: React.FC = () => {
                 }}
                 type="password"
                 id="password"
+                autoComplete={isLogin ? 'current-password' : 'off'}
                 placeholder="Password"
                 className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />

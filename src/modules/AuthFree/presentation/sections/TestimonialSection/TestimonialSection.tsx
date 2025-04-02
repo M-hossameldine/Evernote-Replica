@@ -4,7 +4,7 @@ import DefaultCarousel from './DefaultCarousel';
 import LogoCarousel from './LogoCarousel';
 import TestimonialCard from '~components/Cards/TestimonialCard';
 
-import { Testimonial_CAROUSEL_DATA } from '../../assets/StaticData';
+import { TestimonialCarouselData } from '../../assets/StaticData';
 
 const DefaultCarouselSettings = {
   dots: true,
@@ -28,7 +28,7 @@ export const TestimonialSection = (
 ): React.ReactElement => {
   const { className, trackSettings, viewSettings } = props;
 
-  const carouselSlides = Testimonial_CAROUSEL_DATA.map((slide, index) => (
+  const carouselSlides = TestimonialCarouselData.map((slide, index) => (
     <TestimonialCard
       key={index + slide.reviewer}
       review={slide.review}

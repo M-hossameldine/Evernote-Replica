@@ -50,5 +50,7 @@ Evernote is an app designed for note taking, organizing, task management, and ar
 
 ### Todo <a name="todo"></a>
 
-- [ ] add authenticated database using Firestore.
-- [ ] handle error senarios
+- [ ] Add authenticated database using Firestore.
+- [ ] Handle error scenarios
+- [ ] Add Arabic localization.
+- [ ] Add RTL support.

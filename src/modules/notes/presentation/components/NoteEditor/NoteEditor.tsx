@@ -1,99 +1,139 @@
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
-
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-import { useAppDispatch, useAppSelector, useLocationIndicator } from '~hooks';
+import React, { useEffect } from 'react';
+import { useParams, useMatch } from 'react-router-dom';
 
 import {
   editNote,
   fillNoteEditor,
-  selectNotes,
-  selectTrashNotes,
   showNotification,
+  useAppDispatch,
+  useAppSelector,
 } from '~store';
+import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
+import { useUpdateNoteMutation } from '~modules/notes/data/remote';
 
 import { AutoGrowingTextArea } from '~components/FormInputs';
-
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
 
-const NoteEditor: React.FC = () => {
+import { NotesRouteVariants } from '~constants/routeVariants';
+import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+
+export type TemporaryNoteStatus = {
+  tempNote: Note | TrashNote | null; // * since activeNote can be undefined, at some cases this state will save its value
+  isRecentlyDeleted: boolean;
+  isRecentlyRestoredFromTrash: boolean;
+  updatedNote: Note | TrashNote | null;
+};
+
+export type NoteEditorProps = {
+  temporaryNoteStatus: TemporaryNoteStatus;
+  setTemporaryNoteStatus: React.Dispatch<
+    React.SetStateAction<TemporaryNoteStatus>
+  >;
+};
+
+export const NoteEditor = ({
+  temporaryNoteStatus,
+  setTemporaryNoteStatus,
+}: NoteEditorProps) => {
   const dispatch = useAppDispatch();
-  const notes = useAppSelector(selectNotes);
+  const notes = useAppSelector(selectActiveNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
   const params = useParams();
-  const location = useLocationIndicator();
-  const [isDisabled, setIsDisabled] = useState(false); // disable editor fields in trash page
+  const matchTrashRoute = useMatch(NotesRouteVariants.trashNotes.route);
 
-  let notesList: (Note | TrashNote)[] = [...notes];
+  const isInTrashPage = !!matchTrashRoute;
 
-  const isInTrashPage = location.isInCurrentPath('trash');
-  useEffect(() => {
-    if (isInTrashPage) {
-      // render trash list
-      notesList = trashNotes;
+  const activeId = params.noteId as string;
 
-      // prevent user from editing trash notes
-      setIsDisabled(true);
-    }
-  }, []);
+  const isTrashItem =
+    (!isInTrashPage && temporaryNoteStatus.isRecentlyDeleted) ||
+    (isInTrashPage && !temporaryNoteStatus.isRecentlyRestoredFromTrash);
 
-  if (isInTrashPage) {
-    // render trash list
-    notesList = trashNotes;
-  }
-
-  const activeId = params.noteId;
-
+  const notesList: (Note | TrashNote)[] = isTrashItem ? trashNotes : notes;
   const activeNote = notesList.find(note => note.id === activeId);
 
   let titleText = '';
   let bodyText = '';
 
-  if (activeNote) {
-    titleText =
-      'title' in activeNote ? activeNote!.title : activeNote!.note.title;
-    bodyText = 'text' in activeNote ? activeNote!.text : activeNote!.note.text;
+  if (temporaryNoteStatus.tempNote) {
+    titleText = temporaryNoteStatus.tempNote.title;
+    bodyText = temporaryNoteStatus.tempNote.text;
   }
-  // useEffect(() => {
-  // }, [activeNote]);
 
-  // if (defaultActive) {
-  //   titleText = notes[0].title;
-  //   bodyText = notes[0].text;
-  // }
+  const [updateNoteMutation] = useUpdateNoteMutation();
 
-  const titleChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const titleValue = e.currentTarget.value;
-    const updatedTimestamp = new Date().toISOString();
-
-    // update store states
-    dispatch(fillNoteEditor());
-    dispatch(
-      editNote({
-        title: titleValue,
-        text: bodyText,
-        id: activeId!,
-        updatedTimestamp,
-      })
-    );
-  };
-
-  const textChangeHandler = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const noteContentChangeHandler = (
+    e: React.FormEvent<HTMLTextAreaElement>,
+    isUpdatingTitle?: boolean
+  ) => {
     const enteredText = e.currentTarget.value;
     const updatedTimestamp = new Date().toISOString();
 
+    setTemporaryNoteStatus(prev => {
+      const hasCorrectPreviousNote = prev.updatedNote?.id === activeId;
+
+      return {
+        ...prev,
+        updatedNote: {
+          ...(hasCorrectPreviousNote
+            ? (prev.updatedNote as Note)
+            : (prev.tempNote as Note)),
+          updatedTimestamp,
+          ...(isUpdatingTitle ? { title: enteredText } : { text: enteredText }),
+        },
+      };
+    });
+
     // update store states
     dispatch(fillNoteEditor());
     dispatch(
       editNote({
-        title: titleText,
-        text: enteredText,
-        id: activeId!,
         updatedTimestamp,
+        id: activeId,
+        title: isUpdatingTitle ? enteredText : titleText,
+        text: isUpdatingTitle ? bodyText : enteredText,
       })
     );
   };
+
+  useEffect(() => {
+    const updateNoteHandler = async () => {
+      if (temporaryNoteStatus.updatedNote) {
+        await updateNoteMutation({
+          payload: temporaryNoteStatus.updatedNote,
+          extraParams: {
+            noteId: temporaryNoteStatus.updatedNote.id,
+          },
+        });
+      }
+    };
+
+    // * timeout to prevent spamming the server, the note will be saved after stopping typing for 2 seconds
+    const updateNoteTimeout = setTimeout(() => {
+      updateNoteHandler();
+    }, 2000);
+
+    return () => clearTimeout(updateNoteTimeout);
+  }, [temporaryNoteStatus.updatedNote]);
+
+  useEffect(() => {
+    // * initialize the note editor with the active note
+    if (activeNote) {
+      setTemporaryNoteStatus(prev => {
+        const isDifferentNote = prev.tempNote?.id !== activeNote.id;
+
+        return {
+          ...prev,
+          tempNote: activeNote,
+          ...(isDifferentNote && {
+            isRecentlyDeleted: false,
+            isRecentlyRestoredFromTrash: false,
+            updatedNote: null,
+          }),
+        };
+      });
+    }
+  }, [activeNote]);
 
   const trashNotificationHandler = () => {
     if (isInTrashPage) {
@@ -106,38 +146,59 @@ const NoteEditor: React.FC = () => {
     }
   };
 
+  const deleteNoteHandler = () => {
+    setTemporaryNoteStatus(prev => ({
+      ...prev,
+      updatedNote: null,
+      isRecentlyDeleted: true,
+      isRecentlyRestoredFromTrash: false,
+    }));
+  };
+
+  const restoreNoteHandler = () => {
+    setTemporaryNoteStatus(prev => ({
+      ...prev,
+      updatedNote: null,
+      isRecentlyDeleted: false,
+      isRecentlyRestoredFromTrash: true,
+    }));
+  };
+
   return (
     <div className="h-screen grow bg-white">
-      <NoteEditorHeader />
+      <NoteEditorHeader
+        isTrashItem={isTrashItem}
+        onDeleteNote={deleteNoteHandler}
+        onRestoreNote={restoreNoteHandler}
+      />
 
       <div
         className="px-10 py-5"
-        onClick={trashNotificationHandler}
+        onClick={() => {
+          if (isTrashItem) {
+            trashNotificationHandler();
+          }
+        }}
         role="presentation"
       >
-        <div className="mb-4">
-          <AutoGrowingTextArea
-            value={titleText}
-            placeholder="Title"
-            onChange={titleChangeHandler}
-            className={{
-              inputClasses:
-                'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold',
-              fallbackClasses: 'text-3xl',
-            }}
-            disabled={isDisabled}
-          />
-        </div>
+        <AutoGrowingTextArea
+          className="mb-4"
+          value={titleText}
+          placeholder="Title"
+          onChange={e => noteContentChangeHandler(e, true)}
+          inputClassName={
+            'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold'
+          }
+          autoGrowClassName="text-3xl"
+          readonly={isTrashItem}
+        />
 
         <AutoGrowingTextArea
           value={bodyText}
-          placeholder="Start writing"
-          onChange={textChangeHandler}
-          className={{
-            inputClasses: 'text-neutral-800',
-            fallbackClasses: '',
-          }}
-          disabled={isDisabled}
+          placeholder={isTrashItem ? '' : 'Start writing'}
+          onChange={e => noteContentChangeHandler(e, false)}
+          inputClassName={'text-neutral-800'}
+          readonly={isTrashItem}
         />
       </div>
     </div>

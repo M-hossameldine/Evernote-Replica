@@ -21,9 +21,7 @@
       "~store/*": ["./store/*"],
       "~store": ["./store"],
       "~pages/*": ["./pages/*"],
-      "~pages": ["./pages"],
-      "~sections/*": ["./sections/*"],
-      "~sections": ["./sections"]
+      "~pages": ["./pages"]
     },
     "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],

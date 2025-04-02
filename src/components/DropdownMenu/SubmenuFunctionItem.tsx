@@ -1,7 +1,11 @@
-import type { FUNCTION_ITEM_INTERFACE } from 'interfaces/submenu-item-interfaces';
+export interface SubmenuFunctionItemProps {
+  id: string;
+  content: string | JSX.Element;
+  onClick: () => void;
+}
 
 const SubmenuFunctionItem = (
-  props: FUNCTION_ITEM_INTERFACE
+  props: SubmenuFunctionItemProps
 ): React.ReactElement => {
   return (
     <button

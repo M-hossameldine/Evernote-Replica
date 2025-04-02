@@ -1,3 +1,5 @@
+import type { User } from '~modules/auth/domain/models';
+
 export enum RequestMethods {
   GET = 'GET',
   POST = 'POST',
@@ -64,3 +66,11 @@ export type QueryRequestParams<
         extraParams: EXTRA_PARAMS;
         queryParams: QUERY_PARAMS;
       }; // If both provided
+
+export type EndpointParamsWithAuth<T> = T & {
+  defaultParams: {
+    user: User;
+  };
+};
+
+export type EndpointParamsWithoutAuth<T> = T;

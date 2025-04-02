@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch } from '~hooks';
 
 import { auth, onAuthStateChanged } from '~libs/firebase';
 import type { User } from '~modules/auth/domain/models';
-import { appApi, createEndpoint } from '~store';
+import { appApi, createEndpoint, useAppDispatch } from '~store';
 
 import { saveLogin, saveLogout } from '../local/authSlice';
 import { login, logout, signUp } from './authApis.endpoints';
@@ -12,10 +11,7 @@ import type {
   AuthRequestResponse,
   LogoutRequestParams,
 } from './authApis.interfaces';
-import {
-  mapAuthRequestResult,
-  mapFirebaseUserToAuthUser,
-} from './authApis.mapping';
+import { mapFirebaseUserToAuthUser } from './authApis.mapping';
 
 export const useInitAppAuth = () => {
   const dispatch = useAppDispatch();
@@ -40,20 +36,21 @@ export const useInitAppAuth = () => {
 export const authApi = appApi.injectEndpoints({
   endpoints: builder => ({
     signup: builder.mutation<AuthRequestResponse, AuthRequestParams>(
-      createEndpoint<AuthRequestResponse, AuthRequestParams>({
+      createEndpoint<AuthRequestResponse, AuthRequestParams, false>({
         endpoint: signUp,
-        mapData: mapAuthRequestResult,
         onQuerySuccess: (dispatch, mappedData) =>
           dispatch(saveLogin(mappedData)),
+        requiresAuth: false,
       })
     ),
 
     login: builder.mutation<AuthRequestResponse, AuthRequestParams>(
-      createEndpoint<AuthRequestResponse, AuthRequestParams>({
+      createEndpoint<AuthRequestResponse, AuthRequestParams, false>({
         endpoint: login,
-        mapData: mapAuthRequestResult,
-        onQuerySuccess: (dispatch, mappedData) =>
-          dispatch(saveLogin(mappedData)),
+        onQuerySuccess: (dispatch, mappedData) => {
+          dispatch(saveLogin(mappedData));
+        },
+        requiresAuth: false,
       })
     ),
 

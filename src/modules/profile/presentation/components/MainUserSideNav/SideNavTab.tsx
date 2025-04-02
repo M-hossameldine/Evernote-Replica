@@ -1,9 +1,15 @@
-import type { NavTabModel } from '~models/UI-Models';
-
 import type { ReactElement } from 'react';
+import type { IconType } from 'react-icons';
+
+type SidebarTabMeta = {
+  title: string;
+  path: string;
+  icon: IconType;
+};
 
 type SideNavTabProps = {
-  tab: NavTabModel;
+  tab: SidebarTabMeta;
+  isActive: boolean;
   className?: string;
   iconStyle?: string;
   textStyle?: string;
@@ -13,15 +19,16 @@ type SideNavTabProps = {
 const SideNavTab = (props: SideNavTabProps): ReactElement => {
   const {
     tab,
+    isActive,
     className,
     iconStyle,
     textStyle,
     onClick: tabClickHandler,
   } = props;
 
-  const tabClasses = `relative flex justify-center lg:justify-start items-center h-9 gap-[6px] lg:pl-5 py-1 hover:bg-neutral-700 cursor-pointer group w-full  ${
-    className ? className : ''
-  } `;
+  const tabClasses = `relative flex justify-center lg:justify-start items-center h-9 gap-[6px] lg:pl-5 py-1 cursor-pointer group w-full  ${
+    isActive ? 'bg-neutral-700' : 'hover:bg-neutral-700'
+  } ${className ? className : ''} `;
 
   const iconsClasses = `${iconStyle ? iconStyle : 'text-lg'}`;
 
@@ -38,7 +45,7 @@ const SideNavTab = (props: SideNavTabProps): ReactElement => {
             textClasses
           }
         >
-          {tab.text}
+          {tab.title}
         </span>
       </button>
     </li>

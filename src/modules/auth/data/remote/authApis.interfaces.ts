@@ -1,15 +1,15 @@
-import type { UserCredential } from '~libs/firebase';
+import type { User } from '~modules/auth/domain/models';
 
 import type { MutationRequestParams } from '~store/Apis/appApis.interfaces';
-
-import type { SaveLoginActionPayload } from '../local/authSlice.interfaces';
 
 export type AuthRequestPayload = {
   email: string;
   password: string;
 };
-export type AuthRequestResponse = UserCredential;
-export type AuthRequestResult = SaveLoginActionPayload;
+export type AuthRequestResponse = {
+  user: User | null;
+};
+export type AuthRequestResult = AuthRequestResponse;
 export type AuthRequestParams = MutationRequestParams<
   AuthRequestResult,
   AuthRequestPayload

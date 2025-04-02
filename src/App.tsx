@@ -2,24 +2,33 @@ import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useInitAppAuth } from '~modules/auth/data/remote';
-
-import { AuthRouteVariants } from '~constants/routeVariants';
 import {
-  DOWNLOADPAGE,
-  EDITORPAGE,
-  HOMEPAGE,
-  NOTESPAGE,
-  TRASHPAGE,
-} from '~constants/routes';
+  useGetActiveNotesQuery,
+  useGetTrashNotesQuery,
+} from '~modules/notes/data/remote';
 
-import Layout from './components/Layout';
+import { AuthorizedLayout, PublicLayout } from './components/Layouts';
 import Notification from './components/Notification';
-import { DefaultSpinner } from './components/Spinners';
+import { ScreenLoading } from './components/Loading';
 
+import {
+  CommonRouteVariants,
+  AuthRouteVariants,
+  NotesRouteVariants,
+} from '~constants/routeVariants';
+
+const PublicHomePage = React.lazy(
+  () =>
+    import(
+      './modules/AuthFree/presentation/pages/PublicHomePage/PublicHomePage'
+    )
+);
+const UserProfile = React.lazy(
+  () => import('./modules/profile/presentation/pages/UserProfile')
+);
 const UserAuthPage = React.lazy(
   () => import('./modules/auth/presentation/pages/UserAuth/UserAuth')
 );
-const HomePage = React.lazy(() => import('./pages/HomePage'));
 const NotesPage = React.lazy(
   () => import('./modules/notes/presentation/pages/NotesPage')
 );
@@ -31,43 +40,82 @@ const DownloadPage = React.lazy(
 );
 
 function App() {
-  const { isAuthorized } = useInitAppAuth();
+  const { isAuthorized, isLoading: isLoadingAuth } = useInitAppAuth();
+  // TODO: handle note initialization in a custom hook
+  const { isLoading: isLoadingNotes } = useGetActiveNotesQuery(
+    {},
+    { skip: !isAuthorized }
+  );
+  const { isLoading: isLoadingTrashNotes } = useGetTrashNotesQuery(
+    {},
+    { skip: !isAuthorized }
+  );
+
+  const initialLoading = isLoadingAuth || isLoadingNotes || isLoadingTrashNotes;
+
+  const Layout = isAuthorized ? AuthorizedLayout : PublicLayout;
 
   return (
     <>
       <Notification />
 
-      <Layout>
-        <Suspense
-          fallback={
-            <div className="flex min-h-screen w-full items-center justify-center">
-              <DefaultSpinner size="h-12 w-12" borderSize="border-4" />
-            </div>
-          }
-        >
-          <Routes>
-            <Route path={HOMEPAGE} element={<HomePage />} />
-
-            {!isAuthorized && (
-              <>
-                <Route path={DOWNLOADPAGE} element={<DownloadPage />} />
-                <Route
-                  path={AuthRouteVariants.auth.route}
-                  element={<UserAuthPage />}
-                />
-              </>
-            )}
-            {isAuthorized && (
-              <>
-                <Route path={`${NOTESPAGE}/:noteId`} element={<NotesPage />} />
-                <Route path={`${EDITORPAGE}/:noteId`} element={<NotesPage />} />
-                <Route path={`${TRASHPAGE}/:noteId`} element={<TrashPage />} />
-              </>
-            )}
-            <Route path="*" element={<Navigate to={`/`} />} />
-          </Routes>
+      {initialLoading ? (
+        <ScreenLoading />
+      ) : !isAuthorized ? (
+        <Suspense fallback={<ScreenLoading />}>
+          <Layout>
+            <Routes>
+              <Route
+                path={CommonRouteVariants.publicHomePage.route}
+                element={<PublicHomePage />}
+              />
+              <Route
+                path={CommonRouteVariants.download.route}
+                element={<DownloadPage />}
+              />
+              <Route
+                path={AuthRouteVariants.auth.route}
+                element={<UserAuthPage />}
+              />
+              <Route
+                path="*"
+                element={
+                  <Navigate to={CommonRouteVariants.publicHomePage.route} />
+                }
+              />
+            </Routes>
+          </Layout>
         </Suspense>
-      </Layout>
+      ) : (
+        <Layout>
+          <Suspense fallback={<ScreenLoading />}>
+            <Routes>
+              <Route
+                path={CommonRouteVariants.userHomePage.route}
+                element={<UserProfile />}
+              />
+              <Route
+                path={NotesRouteVariants.activeNotes.route}
+                element={<NotesPage />}
+              />
+              <Route
+                path={NotesRouteVariants.homeNote.route}
+                element={<NotesPage />}
+              />
+              <Route
+                path={NotesRouteVariants.trashNotes.route}
+                element={<TrashPage />}
+              />
+              <Route
+                path="*"
+                element={
+                  <Navigate to={CommonRouteVariants.userHomePage.route} />
+                }
+              />
+            </Routes>
+          </Suspense>
+        </Layout>
+      )}
     </>
   );
 }
