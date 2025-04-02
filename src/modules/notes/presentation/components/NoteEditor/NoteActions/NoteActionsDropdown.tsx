@@ -60,7 +60,7 @@ export const NoteActionsDropdown = ({
     });
   };
 
-  const actionsContent = !isTrashItem ? (
+  const actionsList = !isTrashItem ? (
     <NoteActionsDropdownItem
       text="Move To Trash"
       toggleDropdown={toggleDropdownHandler}
@@ -91,14 +91,13 @@ export const NoteActionsDropdown = ({
           <IoIosMore className="shrink-0 text-xl" />
         </button>
 
-        <button
-          className={`absolute right-0 top-[150%] z-10 whitespace-nowrap rounded bg-white text-sm shadow-even-2 ${
+        <div
+          className={`absolute right-0 top-[150%] z-10 whitespace-nowrap rounded bg-white p-2 text-sm shadow-even-2 ${
             isExpanded ? 'scale-100' : 'scale-0'
           }`}
-          onClick={hideDropdownHandler}
         >
-          {actionsContent}
-        </button>
+          {actionsList}
+        </div>
       </div>
     </ExcludeEventWrapper>
   );

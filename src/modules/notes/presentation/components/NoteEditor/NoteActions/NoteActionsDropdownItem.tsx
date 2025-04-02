@@ -15,14 +15,12 @@ const NoteActionsDropdownItem = (
   };
 
   return (
-    <div className="flex justify-between gap-4 py-2">
-      <button
-        className="flex gap-4 px-4 py-1 text-neutral-700 hover:bg-neutral-100"
-        onClick={itemActionHandler}
-      >
-        {text}
-      </button>
-    </div>
+    <button
+      className="flex w-full gap-4 px-4 py-1 text-neutral-700 hover:bg-neutral-100"
+      onClick={itemActionHandler}
+    >
+      {text}
+    </button>
   );
 };
 
