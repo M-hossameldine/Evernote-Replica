@@ -11,12 +11,13 @@ type NoteEditorSidebarProps = {
   notes: (Note | TrashNote)[];
   header: NoteEditorSidebarHeaderProps['headerData'];
   emptyStateProps: EmptyStateProps;
+  onSelectNote: (note: Note | TrashNote) => void;
 };
 
 const NoteEditorSidebar = (
   props: NoteEditorSidebarProps
 ): React.ReactElement => {
-  const { notes, header, emptyStateProps } = props;
+  const { notes, header, emptyStateProps, onSelectNote } = props;
 
   return (
     <div className="flex h-screen min-w-[18rem] max-w-[24rem] flex-col bg-neutral-100">
@@ -24,8 +25,11 @@ const NoteEditorSidebar = (
       <NoteEditorSidebarHeader notes={notes} headerData={header} />
 
       {/* Sidebar note list */}
-      {notes?.length > 0 && <NoteList notes={notes} />}
-      {notes?.length === 0 && <EmptyState {...emptyStateProps} />}
+      {notes?.length > 0 ? (
+        <NoteList onSelectNote={onSelectNote} notes={notes} />
+      ) : (
+        <EmptyState {...emptyStateProps} />
+      )}
     </div>
   );
 };

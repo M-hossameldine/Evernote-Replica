@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useMatch } from 'react-router-dom';
 
 import {
@@ -17,13 +17,24 @@ import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
 import { NotesRouteVariants } from '~constants/routeVariants';
 import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
 
-type TemporaryNoteStatus = {
-  deletedNoteId: string | null;
-  restoredNoteId: string | null;
-  updatedNote: Note | null;
+export type TemporaryNoteStatus = {
+  tempNote: Note | TrashNote | null; // * since activeNote can be undefined, at some cases this state will save its value
+  isRecentlyDeleted: boolean;
+  isRecentlyRestoredFromTrash: boolean;
+  updatedNote: Note | TrashNote | null;
 };
 
-const NoteEditor: React.FC = () => {
+export type NoteEditorProps = {
+  temporaryNoteStatus: TemporaryNoteStatus;
+  setTemporaryNoteStatus: React.Dispatch<
+    React.SetStateAction<TemporaryNoteStatus>
+  >;
+};
+
+export const NoteEditor = ({
+  temporaryNoteStatus,
+  setTemporaryNoteStatus,
+}: NoteEditorProps) => {
   const dispatch = useAppDispatch();
   const notes = useAppSelector(selectActiveNotes);
   const trashNotes = useAppSelector(selectTrashNotes);
@@ -31,33 +42,25 @@ const NoteEditor: React.FC = () => {
   const matchTrashRoute = useMatch(NotesRouteVariants.trashNotes.route);
 
   const isInTrashPage = !!matchTrashRoute;
-  const notesList: (Note | TrashNote)[] = isInTrashPage ? trashNotes : notes;
 
   const activeId = params.noteId as string;
-  const activeNote = notesList.find(note => note.id === activeId);
 
-  const [temporaryNoteStatus, setTemporaryNoteStatus] =
-    useState<TemporaryNoteStatus>({
-      deletedNoteId: null,
-      restoredNoteId: null,
-      updatedNote: null,
-    });
-
-  const isRecentlyDeleted = temporaryNoteStatus.deletedNoteId === activeId;
-  const isRecentlyRestored = temporaryNoteStatus.restoredNoteId === activeId;
   const isTrashItem =
-    (!isInTrashPage && isRecentlyDeleted) ||
-    (isInTrashPage && !isRecentlyRestored);
+    (!isInTrashPage && temporaryNoteStatus.isRecentlyDeleted) ||
+    (isInTrashPage && !temporaryNoteStatus.isRecentlyRestoredFromTrash);
 
-  const [updateNoteMutation] = useUpdateNoteMutation();
+  const notesList: (Note | TrashNote)[] = isTrashItem ? trashNotes : notes;
+  const activeNote = notesList.find(note => note.id === activeId);
 
   let titleText = '';
   let bodyText = '';
 
-  if (activeNote) {
-    titleText = activeNote.title;
-    bodyText = activeNote.text;
+  if (temporaryNoteStatus.tempNote) {
+    titleText = temporaryNoteStatus.tempNote.title;
+    bodyText = temporaryNoteStatus.tempNote.text;
   }
+
+  const [updateNoteMutation] = useUpdateNoteMutation();
 
   const noteContentChangeHandler = (
     e: React.FormEvent<HTMLTextAreaElement>,
@@ -67,15 +70,14 @@ const NoteEditor: React.FC = () => {
     const updatedTimestamp = new Date().toISOString();
 
     setTemporaryNoteStatus(prev => {
-      const hasCorrectPreviousNote =
-        prev.updatedNote?.id === (activeNote as Note).id;
+      const hasCorrectPreviousNote = prev.updatedNote?.id === activeId;
 
       return {
         ...prev,
         updatedNote: {
           ...(hasCorrectPreviousNote
             ? (prev.updatedNote as Note)
-            : (activeNote as Note)),
+            : (prev.tempNote as Note)),
           updatedTimestamp,
           ...(isUpdatingTitle ? { title: enteredText } : { text: enteredText }),
         },
@@ -114,6 +116,25 @@ const NoteEditor: React.FC = () => {
     return () => clearTimeout(updateNoteTimeout);
   }, [temporaryNoteStatus.updatedNote]);
 
+  useEffect(() => {
+    // * initialize the note editor with the active note
+    if (activeNote) {
+      setTemporaryNoteStatus(prev => {
+        const isDifferentNote = prev.tempNote?.id !== activeNote.id;
+
+        return {
+          ...prev,
+          tempNote: activeNote,
+          ...(isDifferentNote && {
+            isRecentlyDeleted: false,
+            isRecentlyRestoredFromTrash: false,
+            updatedNote: null,
+          }),
+        };
+      });
+    }
+  }, [activeNote]);
+
   const trashNotificationHandler = () => {
     if (isInTrashPage) {
       dispatch(
@@ -125,19 +146,21 @@ const NoteEditor: React.FC = () => {
     }
   };
 
-  const deleteNoteHandler = (id: string) => {
+  const deleteNoteHandler = () => {
     setTemporaryNoteStatus(prev => ({
       ...prev,
-      restoredNoteId: null,
-      deletedNoteId: id,
+      updatedNote: null,
+      isRecentlyDeleted: true,
+      isRecentlyRestoredFromTrash: false,
     }));
   };
 
-  const restoreNoteHandler = (id: string) => {
+  const restoreNoteHandler = () => {
     setTemporaryNoteStatus(prev => ({
       ...prev,
-      deletedNoteId: null,
-      restoredNoteId: id,
+      updatedNote: null,
+      isRecentlyDeleted: false,
+      isRecentlyRestoredFromTrash: true,
     }));
   };
 
@@ -151,21 +174,24 @@ const NoteEditor: React.FC = () => {
 
       <div
         className="px-10 py-5"
-        onClick={trashNotificationHandler}
+        onClick={() => {
+          if (isTrashItem) {
+            trashNotificationHandler();
+          }
+        }}
         role="presentation"
       >
-        <div className="mb-4">
-          <AutoGrowingTextArea
-            value={titleText}
-            placeholder="Title"
-            onChange={e => noteContentChangeHandler(e, true)}
-            inputClassName={
-              'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold'
-            }
-            autoGrowClassName="text-3xl"
-            readonly={isTrashItem}
-          />
-        </div>
+        <AutoGrowingTextArea
+          className="mb-4"
+          value={titleText}
+          placeholder="Title"
+          onChange={e => noteContentChangeHandler(e, true)}
+          inputClassName={
+            'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold'
+          }
+          autoGrowClassName="text-3xl"
+          readonly={isTrashItem}
+        />
 
         <AutoGrowingTextArea
           value={bodyText}
