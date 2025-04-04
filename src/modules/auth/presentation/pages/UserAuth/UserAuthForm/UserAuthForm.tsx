@@ -49,6 +49,7 @@ export const UserAuthForm: React.FC = () => {
   const [requestErrorMessage, setRequestErrorMessage] = useState<string | null>(
     null
   );
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const isEmailAlreadyUsed = isEmailAlreadyUsedError(requestErrorMessage ?? '');
   const isUserNotFound = isUserNotFoundError(requestErrorMessage ?? '');
 
@@ -58,6 +59,8 @@ export const UserAuthForm: React.FC = () => {
   const isLoading = loginLoading || signupLoading;
 
   const submitHandler = async (values: FormValuesInterface) => {
+    setIsSubmitted(true);
+
     const submitSuccessfully = () => {
       navigate(CommonRouteVariants.userHomePage.pathname());
     };
@@ -92,9 +95,11 @@ export const UserAuthForm: React.FC = () => {
       initialValues={{ email: '', password: '' }}
       validationSchema={validationSchema}
       onSubmit={submitHandler}
+      validateOnChange={isSubmitted}
+      validateOnBlur={isSubmitted}
     >
       {({ errors, touched, handleChange }) => (
-        <Form className="relative z-10 mx-auto mt-10 h-screen w-full rounded-lg bg-white p-8 py-16 shadow-even-3 md:mt-0 md:h-auto md:w-[32rem]">
+        <Form className="relative z-10 mx-auto mt-10 h-screen w-full rounded-lg bg-white p-8 shadow-even-3 md:mt-0 md:h-auto md:w-[32rem]">
           <div className="mx-auto flex max-w-[20rem] flex-col">
             <Link
               to={CommonRouteVariants.publicHomePage.pathname()}
@@ -120,9 +125,10 @@ export const UserAuthForm: React.FC = () => {
                 className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
 
-              {(errors.email && touched.email) ||
-              isEmailAlreadyUsed ||
-              isUserNotFound ? (
+              {isSubmitted &&
+              ((errors.email && touched.email) ||
+                isEmailAlreadyUsed ||
+                isUserNotFound) ? (
                 <div className="mt-1 text-xs text-red-700">
                   {errors.email ?? ErrorsMap[requestErrorMessage ?? '']}
                 </div>
@@ -143,13 +149,14 @@ export const UserAuthForm: React.FC = () => {
                 className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
               />
 
-              {errors.password && touched.password ? (
+              {isSubmitted && errors.password && touched.password ? (
                 <div className="mt-1 text-xs text-red-700">
                   {errors.password}
                 </div>
               ) : null}
 
-              {requestErrorMessage &&
+              {isSubmitted &&
+                requestErrorMessage &&
                 !(isEmailAlreadyUsed || isUserNotFound) && (
                   <div className="mt-1 text-xs text-red-700">
                     {ErrorsMap[requestErrorMessage]}
@@ -162,6 +169,9 @@ export const UserAuthForm: React.FC = () => {
               type={isLoading ? 'button' : 'submit'}
               aria-label={'Form Submit'}
               className="flex items-center justify-center rounded border-0 bg-green-500 px-6 py-2 text-lg text-white hover:bg-green-600 focus:outline-none"
+              onClick={() => {
+                setIsSubmitted(true);
+              }}
             >
               {!isLoading && (!isLogin ? 'Sign up' : 'Sign in')}
               {isLoading && <DefaultSpinner borderColor="border-white" />}
