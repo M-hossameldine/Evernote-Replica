@@ -1,49 +1,34 @@
 import classes from './NoteItem.module.css';
 
 import { Link, useParams } from 'react-router-dom';
-import { useAppDispatch } from '~store';
-import { setActiveNoteIndex } from '~modules/notes/data/local/noteEditor-slice';
 
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+import type { Note } from '~modules/notes/domain/interfaces';
 
 type PropsType = {
-  note: Note | TrashNote;
-  index: number;
+  note: Note;
   className?: string;
   route: string;
-  onClick?: (noteIndex: number) => void;
 };
 
 export const NoteItem = (props: PropsType): React.ReactElement => {
-  const dispatch = useAppDispatch();
   const params = useParams();
-  const { note, index, className, route } = props;
+  const { note, className, route } = props;
 
-  const { text, title, createdTimestamp } = note;
+  const { id: noteId, text, title, createdAt } = note;
 
-  const { id: localNoteId } = note;
-
-  const noteFocusHandler = () => {
-    dispatch(setActiveNoteIndex({ index }));
-
-    if (props.onClick) {
-      props.onClick(index);
-    }
-  };
-
-  // date form
-  const createNoteTimestamp = new Date(createdTimestamp);
-  const noteTimestampValue = `${createNoteTimestamp.toLocaleString('default', {
+  // e.g. "Nov 24", in the user's local time zone
+  const noteTimestampValue = new Date(createdAt).toLocaleDateString('default', {
     month: 'short',
-  })} ${createNoteTimestamp.getUTCDate()}`;
+    day: 'numeric',
+  });
 
   // style
   const noteItemClasses = ` ${classes.note} block
-    ${localNoteId === params.noteId ? classes.active : ''} 
+    ${noteId === params.noteId ? classes.active : ''}
     ${className ? className : ''}`;
 
   return (
-    <Link className={noteItemClasses} to={route} onClick={noteFocusHandler}>
+    <Link className={noteItemClasses} to={route}>
       <h3 className={classes['note__title']}>
         {title?.length > 0 ? title : 'Untitled'}
       </h3>

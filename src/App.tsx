@@ -41,15 +41,13 @@ const DownloadPage = React.lazy(
 
 function App() {
   const { isAuthorized, isLoading: isLoadingAuth } = useInitAppAuth();
-  // TODO: handle note initialization in a custom hook
-  const { isLoading: isLoadingNotes } = useGetActiveNotesQuery(
-    {},
-    { skip: !isAuthorized }
-  );
-  const { isLoading: isLoadingTrashNotes } = useGetTrashNotesQuery(
-    {},
-    { skip: !isAuthorized }
-  );
+  // Load both note lists up front; pages read them from the RTK Query cache.
+  const { isLoading: isLoadingNotes } = useGetActiveNotesQuery(undefined, {
+    skip: !isAuthorized,
+  });
+  const { isLoading: isLoadingTrashNotes } = useGetTrashNotesQuery(undefined, {
+    skip: !isAuthorized,
+  });
 
   const initialLoading = isLoadingAuth || isLoadingNotes || isLoadingTrashNotes;
 

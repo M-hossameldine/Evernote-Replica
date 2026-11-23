@@ -2,9 +2,9 @@ import { NoteActionsDropdown } from '../NoteActions/NoteActionsDropdown';
 import type { NoteActionsDropdownProps } from '../NoteActions/NoteActionsDropdown';
 
 export const NoteEditorHeader = ({
+  noteId,
   isTrashItem,
-  onDeleteNote,
-  onRestoreNote,
+  onBeforeAction,
 }: NoteActionsDropdownProps) => {
   return (
     <header className="h-[6.2rem] border-b-[1px] border-l-[1px] border-neutral-300 bg-neutral-100 px-3 py-3 text-neutral-400">
@@ -15,9 +15,9 @@ export const NoteEditorHeader = ({
           Share
         </button>
         <NoteActionsDropdown
+          noteId={noteId}
           isTrashItem={isTrashItem}
-          onDeleteNote={onDeleteNote}
-          onRestoreNote={onRestoreNote}
+          onBeforeAction={onBeforeAction}
         />
       </div>
       <div className=""></div>

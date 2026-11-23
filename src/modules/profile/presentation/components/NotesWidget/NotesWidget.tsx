@@ -1,9 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '~store';
-import { selectActiveNotes } from '~modules/notes/data/local';
-import { useAddNote } from '~modules/notes/presentation/hooks';
+import { useActiveNotes, useAddNote } from '~modules/notes/presentation/hooks';
 
 import Card from '~components/Cards/Card';
 import DropdownMenu from '~components/DropdownMenu';
@@ -20,7 +18,7 @@ import { NotesRouteVariants } from '~constants';
 type NotesWidgetProps = { className?: string };
 
 export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
-  const notes = useAppSelector(selectActiveNotes);
+  const { notes } = useActiveNotes();
   const navigate = useNavigate();
 
   const firstNote = notes?.length > 0 ? notes?.[0]?.id : 'empty';
@@ -80,14 +78,13 @@ export const NotesWidget = (props: NotesWidgetProps): React.ReactElement => {
       {/* notes list */}
       <div className="scrollbar-box overflow-hidden overflow-x-scroll p-3">
         <ul className="flex gap-3">
-          {notes.map((note, index) => (
+          {notes.map(note => (
             <li
               key={note.id}
               className="min-w-[11rem] rounded-md shadow-even-1"
             >
               <NoteItem
                 note={note}
-                index={index}
                 className="p2"
                 route={NotesRouteVariants.homeNote.pathname(note.id)}
               />

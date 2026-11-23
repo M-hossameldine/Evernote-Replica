@@ -6,10 +6,10 @@ import EmptyTrashButton from './EmptyTrashButton';
 import type { IconType } from 'react-icons';
 import { NotesRouteVariants } from '~constants';
 
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+import type { Note } from '~modules/notes/domain/interfaces';
 
 export type NoteEditorSidebarHeaderProps = {
-  notes: (Note | TrashNote)[];
+  notes: Note[];
   headerData: {
     title: string;
     icon: IconType;

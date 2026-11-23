@@ -1,191 +1,78 @@
-import React, { useEffect } from 'react';
-import { useParams, useMatch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
+import { showNotification, useAppDispatch } from '~store';
+import { patchCachedActiveNote } from '~modules/notes/data/remote';
 import {
-  editNote,
-  fillNoteEditor,
-  showNotification,
-  useAppDispatch,
-  useAppSelector,
-} from '~store';
-import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
-import { useUpdateNoteMutation } from '~modules/notes/data/remote';
+  useNoteAutosave,
+  useNoteById,
+} from '~modules/notes/presentation/hooks';
 
 import { AutoGrowingTextArea } from '~components/FormInputs';
 import { NoteEditorHeader } from './NoteEditorHeader/NoteEditorHeader';
 
-import { NotesRouteVariants } from '~constants/routeVariants';
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
+import type { Note } from '~modules/notes/domain/interfaces';
 
-export type TemporaryNoteStatus = {
-  tempNote: Note | TrashNote | null; // * since activeNote can be undefined, at some cases this state will save its value
-  isRecentlyDeleted: boolean;
-  isRecentlyRestoredFromTrash: boolean;
-  updatedNote: Note | TrashNote | null;
+/** Shows the note from the route (`:noteId`), editable unless it is trashed. */
+export const NoteEditor = () => {
+  const { noteId } = useParams();
+  const note = useNoteById(noteId);
+
+  if (!note) return <div className="h-screen grow bg-white" />;
+
+  // Keyed by id: switching notes remounts the body, which flushes pending
+  // saves of the previous note and starts a fresh draft.
+  return <NoteEditorBody key={note.id} note={note} />;
 };
 
-export type NoteEditorProps = {
-  temporaryNoteStatus: TemporaryNoteStatus;
-  setTemporaryNoteStatus: React.Dispatch<
-    React.SetStateAction<TemporaryNoteStatus>
-  >;
-};
+type NoteEditorBodyProps = { note: Note };
 
-export const NoteEditor = ({
-  temporaryNoteStatus,
-  setTemporaryNoteStatus,
-}: NoteEditorProps) => {
+const NoteEditorBody = ({ note }: NoteEditorBodyProps) => {
   const dispatch = useAppDispatch();
-  const notes = useAppSelector(selectActiveNotes);
-  const trashNotes = useAppSelector(selectTrashNotes);
-  const params = useParams();
-  const matchTrashRoute = useMatch(NotesRouteVariants.trashNotes.route);
+  const isTrashItem = note.status === 'trash';
 
-  const isInTrashPage = !!matchTrashRoute;
+  // Local draft: what the user typed, not overwritten by cache updates.
+  const [draft, setDraft] = useState({ title: note.title, text: note.text });
+  const { scheduleSave, flush } = useNoteAutosave(note.id);
 
-  const activeId = params.noteId as string;
+  const changeHandler =
+    (field: 'title' | 'text') => (e: React.FormEvent<HTMLTextAreaElement>) => {
+      const value = e.currentTarget.value;
 
-  const isTrashItem =
-    (!isInTrashPage && temporaryNoteStatus.isRecentlyDeleted) ||
-    (isInTrashPage && !temporaryNoteStatus.isRecentlyRestoredFromTrash);
-
-  const notesList: (Note | TrashNote)[] = isTrashItem ? trashNotes : notes;
-  const activeNote = notesList.find(note => note.id === activeId);
-
-  let titleText = '';
-  let bodyText = '';
-
-  if (temporaryNoteStatus.tempNote) {
-    titleText = temporaryNoteStatus.tempNote.title;
-    bodyText = temporaryNoteStatus.tempNote.text;
-  }
-
-  const [updateNoteMutation] = useUpdateNoteMutation();
-
-  const noteContentChangeHandler = (
-    e: React.FormEvent<HTMLTextAreaElement>,
-    isUpdatingTitle?: boolean
-  ) => {
-    const enteredText = e.currentTarget.value;
-    const updatedTimestamp = new Date().toISOString();
-
-    setTemporaryNoteStatus(prev => {
-      const hasCorrectPreviousNote = prev.updatedNote?.id === activeId;
-
-      return {
-        ...prev,
-        updatedNote: {
-          ...(hasCorrectPreviousNote
-            ? (prev.updatedNote as Note)
-            : (prev.tempNote as Note)),
-          updatedTimestamp,
-          ...(isUpdatingTitle ? { title: enteredText } : { text: enteredText }),
-        },
-      };
-    });
-
-    // update store states
-    dispatch(fillNoteEditor());
-    dispatch(
-      editNote({
-        updatedTimestamp,
-        id: activeId,
-        title: isUpdatingTitle ? enteredText : titleText,
-        text: isUpdatingTitle ? bodyText : enteredText,
-      })
-    );
-  };
-
-  useEffect(() => {
-    const updateNoteHandler = async () => {
-      if (temporaryNoteStatus.updatedNote) {
-        await updateNoteMutation({
-          payload: temporaryNoteStatus.updatedNote,
-          extraParams: {
-            noteId: temporaryNoteStatus.updatedNote.id,
-          },
-        });
-      }
+      setDraft(prev => ({ ...prev, [field]: value }));
+      patchCachedActiveNote(dispatch, note.id, { [field]: value });
+      scheduleSave({ [field]: value });
     };
 
-    // * timeout to prevent spamming the server, the note will be saved after stopping typing for 2 seconds
-    const updateNoteTimeout = setTimeout(() => {
-      updateNoteHandler();
-    }, 2000);
-
-    return () => clearTimeout(updateNoteTimeout);
-  }, [temporaryNoteStatus.updatedNote]);
-
-  useEffect(() => {
-    // * initialize the note editor with the active note
-    if (activeNote) {
-      setTemporaryNoteStatus(prev => {
-        const isDifferentNote = prev.tempNote?.id !== activeNote.id;
-
-        return {
-          ...prev,
-          tempNote: activeNote,
-          ...(isDifferentNote && {
-            isRecentlyDeleted: false,
-            isRecentlyRestoredFromTrash: false,
-            updatedNote: null,
-          }),
-        };
-      });
-    }
-  }, [activeNote]);
-
   const trashNotificationHandler = () => {
-    if (isInTrashPage) {
-      dispatch(
-        showNotification({
-          status: 'error',
-          message: 'You can not update a note in the Trash',
-        })
-      );
-    }
-  };
-
-  const deleteNoteHandler = () => {
-    setTemporaryNoteStatus(prev => ({
-      ...prev,
-      updatedNote: null,
-      isRecentlyDeleted: true,
-      isRecentlyRestoredFromTrash: false,
-    }));
-  };
-
-  const restoreNoteHandler = () => {
-    setTemporaryNoteStatus(prev => ({
-      ...prev,
-      updatedNote: null,
-      isRecentlyDeleted: false,
-      isRecentlyRestoredFromTrash: true,
-    }));
+    dispatch(
+      showNotification({
+        status: 'error',
+        message: 'You can not update a note in the Trash',
+      })
+    );
   };
 
   return (
     <div className="h-screen grow bg-white">
       <NoteEditorHeader
+        noteId={note.id}
         isTrashItem={isTrashItem}
-        onDeleteNote={deleteNoteHandler}
-        onRestoreNote={restoreNoteHandler}
+        onBeforeAction={flush}
       />
 
       <div
         className="px-10 py-5"
         onClick={() => {
-          if (isTrashItem) {
-            trashNotificationHandler();
-          }
+          if (isTrashItem) trashNotificationHandler();
         }}
         role="presentation"
       >
         <AutoGrowingTextArea
           className="mb-4"
-          value={titleText}
+          value={draft.title}
           placeholder="Title"
-          onChange={e => noteContentChangeHandler(e, true)}
+          onChange={changeHandler('title')}
           inputClassName={
             'text-3xl font-semibold text-neutral-700 placeholder:text-3xl placeholder:font-semibold'
           }
@@ -194,9 +81,9 @@ export const NoteEditor = ({
         />
 
         <AutoGrowingTextArea
-          value={bodyText}
+          value={draft.text}
           placeholder={isTrashItem ? '' : 'Start writing'}
-          onChange={e => noteContentChangeHandler(e, false)}
+          onChange={changeHandler('text')}
           inputClassName={'text-neutral-800'}
           readonly={isTrashItem}
         />

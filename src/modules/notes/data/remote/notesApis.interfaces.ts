@@ -1,110 +1,61 @@
-import type { Note, TrashNote } from '~modules/notes/domain/interfaces';
-import type {
-  MutationRequestParams,
-  QueryRequestParams,
-  EndpointParamsWithAuth,
-} from '~store/Apis/appApis.interfaces';
-import type {
-  SaveActiveNotesActionPayload,
-  SaveTrashNotesActionPayload,
-} from '../local';
+import type { Note, NoteContent } from '~modules/notes/domain/interfaces';
+import type { MutationRequestParams } from '~store/Apis/appApis.interfaces';
 
-// * Get Active Notes List
-export type GetActiveNotesRequestResponse = Note[];
-export type GetActiveNotesRequestResult = SaveActiveNotesActionPayload;
-export type GetActiveNotesRequestParams =
-  QueryRequestParams<SaveActiveNotesActionPayload>;
-export type GetActiveNotesEndpointParams =
-  EndpointParamsWithAuth<GetActiveNotesRequestParams>;
+// * Backend DTO (shape returned by the REST API)
+export type NoteDto = {
+  id: string;
+  title: string;
+  text: string;
+  tags: string[];
+  status: 'active' | 'trash';
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+};
 
-// * Get Trash Notes List
-export type GetTrashNotesRequestResponse = TrashNote[];
-export type GetTrashNotesRequestResult = SaveTrashNotesActionPayload;
-export type GetTrashNotesRequestParams =
-  QueryRequestParams<SaveTrashNotesActionPayload>;
-export type GetTrashNotesEndpointParams =
-  EndpointParamsWithAuth<GetTrashNotesRequestParams>;
+export type NoteIdParams = { noteId: string };
 
-// * Add New Note
-export type AddNoteRequestPayload = Omit<Note, 'id'>;
-export type AddNoteRequestResult = Note;
-
+// * Add Note: POST /notes
+export type AddNoteRequestPayload = Partial<NoteContent>;
 export type AddNoteRequestParams = MutationRequestParams<
-  AddNoteRequestResult,
+  Note,
   AddNoteRequestPayload
 >;
-export type AddNoteEndpointParams =
-  EndpointParamsWithAuth<AddNoteRequestParams>;
 
-// * Update Note
-export type UpdateNoteRequestPayload = Note;
-export type UpdateNoteRequestResult = Note;
-export type UpdateNoteRequestResponse = Note;
-
-export type UpdateNoteRequestExtraParams = {
-  noteId: string;
-};
-
+// * Update Note: PATCH /notes/:id (only the fields being changed)
+export type UpdateNoteRequestPayload = Partial<NoteContent>;
 export type UpdateNoteRequestParams = MutationRequestParams<
-  void,
+  Note,
   UpdateNoteRequestPayload,
   void,
-  UpdateNoteRequestExtraParams
+  NoteIdParams
 >;
-export type UpdateNoteEndpointParams =
-  EndpointParamsWithAuth<UpdateNoteRequestParams>;
 
-// * Delete Note
-export type DeleteNoteRequestResponse = string;
-export type DeleteNoteRequestResult = DeleteNoteRequestResponse;
-export type DeleteNoteRequestExtraParams = {
-  noteId: string;
-};
-
-export type DeleteNoteRequestParams = MutationRequestParams<
-  DeleteNoteRequestResult,
+// * Move To Trash: POST /notes/:id/trash
+export type MoveNoteToTrashRequestParams = MutationRequestParams<
+  Note,
   void,
   void,
-  DeleteNoteRequestExtraParams
+  NoteIdParams
 >;
-export type DeleteNoteEndpointParams =
-  EndpointParamsWithAuth<DeleteNoteRequestParams>;
 
-// * Restore Deleted Note
-export type RestoreDeletedNoteRequestResponse = { id: string };
-export type RestoreDeletedNoteRequestResult = RestoreDeletedNoteRequestResponse;
-export type RestoreDeletedNoteRequestExtraParams = {
-  noteId: string;
-};
-
-export type RestoreDeletedNoteRequestParams = MutationRequestParams<
-  RestoreDeletedNoteRequestResult,
+// * Restore From Trash: POST /notes/:id/restore
+export type RestoreNoteRequestParams = MutationRequestParams<
+  Note,
   void,
   void,
-  RestoreDeletedNoteRequestExtraParams
+  NoteIdParams
 >;
-export type RestoreDeletedNoteEndpointParams =
-  EndpointParamsWithAuth<RestoreDeletedNoteRequestParams>;
 
-// * Delete Trash Note
-export type DeleteTrashNoteRequestResponse = { id: string };
-export type DeleteTrashNoteRequestResult = DeleteTrashNoteRequestResponse;
-export type DeleteTrashNoteRequestExtraParams = {
-  noteId: string;
-};
-
-export type DeleteTrashNoteRequestParams = MutationRequestParams<
-  DeleteTrashNoteRequestResult,
+// * Delete Permanently: DELETE /notes/:id (trashed notes only)
+export type DeleteNotePermanentlyRequestParams = MutationRequestParams<
+  null,
   void,
   void,
-  DeleteTrashNoteRequestExtraParams
+  NoteIdParams
 >;
-export type DeleteTrashNoteEndpointParams =
-  EndpointParamsWithAuth<DeleteTrashNoteRequestParams>;
 
-// * Clear Trash Notes
-export type ClearTrashNotesRequestResponse = { success: boolean };
-export type ClearTrashNotesRequestResult = void;
-export type ClearTrashNotesRequestParams = MutationRequestParams;
-export type ClearTrashNotesEndpointParams =
-  EndpointParamsWithAuth<ClearTrashNotesRequestParams>;
+// * Empty Trash: DELETE /notes/trash
+export type EmptyTrashRequestResult = { deletedCount: number };
+export type EmptyTrashRequestParams =
+  MutationRequestParams<EmptyTrashRequestResult>;

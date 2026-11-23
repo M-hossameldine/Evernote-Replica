@@ -1,8 +1,10 @@
 import { useMemo, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { useAppSelector } from '~store';
-import { selectActiveNotes, selectTrashNotes } from '~modules/notes/data/local';
+import {
+  useActiveNotes,
+  useTrashNotes,
+} from '~modules/notes/presentation/hooks';
 
 import DropdownList from '~components/Dropdown';
 import SideNavTab from './SideNavTab';
@@ -13,8 +15,8 @@ export const SideNavTabs: React.FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const notes = useAppSelector(selectActiveNotes);
-  const trashNotes = useAppSelector(selectTrashNotes);
+  const { notes } = useActiveNotes();
+  const { notes: trashNotes } = useTrashNotes();
 
   const firstNoteId = notes[0]?.id || 'empty';
   const firstTrashNoteId = trashNotes[0]?.id || 'empty';

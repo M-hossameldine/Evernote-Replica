@@ -1,10 +1,10 @@
-import { useClearTrashNotesMutation } from '~modules/notes/data/remote';
+import { useEmptyTrashMutation } from '~modules/notes/data/remote';
 
 const EmptyTrashButton: React.FC = () => {
-  const [clearTrashNotes] = useClearTrashNotesMutation();
+  const [emptyTrash] = useEmptyTrashMutation();
 
   const emptyTrashHandler = () => {
-    clearTrashNotes({});
+    emptyTrash({});
   };
 
   return (

@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import {
-  useDeleteNoteMutation,
-  useRestoreDeletedNoteMutation,
-  useDeleteTrashNoteMutation,
+  useMoveNoteToTrashMutation,
+  useRestoreNoteMutation,
+  useDeleteNotePermanentlyMutation,
 } from '~modules/notes/data/remote';
 
 import ExcludeEventWrapper from '~components/ExcludeEventWrapper';
@@ -13,21 +12,22 @@ import NoteActionsDropdownItem from './NoteActionsDropdownItem';
 import { IoIosMore } from 'react-icons/io';
 
 export type NoteActionsDropdownProps = {
+  noteId: string;
   isTrashItem: boolean;
-  onDeleteNote: (noteId: string) => void;
-  onRestoreNote: (noteId: string) => void;
+  /** Runs before trash / restore / delete, e.g. to save pending edits. */
+  onBeforeAction?: () => Promise<unknown>;
 };
 
 export const NoteActionsDropdown = ({
+  noteId,
   isTrashItem,
-  onDeleteNote,
-  onRestoreNote,
+  onBeforeAction,
 }: NoteActionsDropdownProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const params = useParams<{ noteId: string }>() as { noteId: string };
-  const [deleteNote] = useDeleteNoteMutation();
-  const [restoreDeletedNote] = useRestoreDeletedNoteMutation();
-  const [deleteTrashNote] = useDeleteTrashNoteMutation();
+  const [moveNoteToTrash] = useMoveNoteToTrashMutation();
+  const [restoreNote] = useRestoreNoteMutation();
+  const [deleteNotePermanently] = useDeleteNotePermanentlyMutation();
+
   const toggleDropdownHandler = () => {
     setIsExpanded(prevState => !prevState);
   };
@@ -36,47 +36,40 @@ export const NoteActionsDropdown = ({
     setIsExpanded(false);
   };
 
-  const moveToTrashHandler = (noteToDeleteId: string) => {
-    deleteNote({
-      extraParams: {
-        noteId: noteToDeleteId,
-      },
-      onSuccess: () => {
-        onDeleteNote(noteToDeleteId);
-      },
-    });
+  // The note stays open: the editor reads its new `status` from the cache.
+  const moveToTrashHandler = async () => {
+    // Save pending edits first: a trashed note can't be updated.
+    await onBeforeAction?.();
+    moveNoteToTrash({ extraParams: { noteId } });
   };
 
-  const restoreNoteHandler = (noteToRestoreId: string) => {
-    onRestoreNote(noteToRestoreId);
-    restoreDeletedNote({
-      extraParams: { noteId: noteToRestoreId },
-    });
+  const restoreNoteHandler = async () => {
+    await onBeforeAction?.();
+    restoreNote({ extraParams: { noteId } });
   };
 
-  const deleteNotePermanentlyHandler = (noteToDeleteId: string) => {
-    deleteTrashNote({
-      extraParams: { noteId: noteToDeleteId },
-    });
+  const deleteNotePermanentlyHandler = async () => {
+    await onBeforeAction?.();
+    deleteNotePermanently({ extraParams: { noteId } });
   };
 
   const actionsList = !isTrashItem ? (
     <NoteActionsDropdownItem
       text="Move To Trash"
       toggleDropdown={toggleDropdownHandler}
-      onClick={moveToTrashHandler.bind(null, params.noteId)}
+      onClick={moveToTrashHandler}
     />
   ) : (
     <>
       <NoteActionsDropdownItem
         text="Restore note"
         toggleDropdown={toggleDropdownHandler}
-        onClick={restoreNoteHandler.bind(null, params.noteId)}
+        onClick={restoreNoteHandler}
       />
       <NoteActionsDropdownItem
         text="Delete permanently"
         toggleDropdown={toggleDropdownHandler}
-        onClick={deleteNotePermanentlyHandler.bind(null, params.noteId)}
+        onClick={deleteNotePermanentlyHandler}
       />
     </>
   );
