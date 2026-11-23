@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useMatch } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
 
 import {
-  useSignupMutation,
+  useRegisterMutation,
   useLoginMutation,
 } from '~modules/auth/data/remote/authApis';
 
 import {
   isEmailAlreadyUsedError,
-  isUserNotFoundError,
+  loginValidationSchema,
+  registerValidationSchema,
 } from '~modules/auth/presentation/helpers/validations';
+import type { ApiError } from '~store/Apis/appApis.interfaces';
 
 import { TextLink } from '~components/Links';
 import { DefaultSpinner } from '~components/Loading';
@@ -19,25 +20,17 @@ import { DefaultSpinner } from '~components/Loading';
 import { VerticalLogo } from '~assets';
 
 import { AuthMode } from '~constants/AppEnums/AuthEnums';
-import { ErrorsMap } from '~constants/errors';
+import { getErrorMessage } from '~constants/errors';
 import { CommonRouteVariants, AuthRouteVariants } from '~constants';
 
 interface FormValuesInterface {
+  name: string;
   email: string;
   password: string;
 }
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Email is required!'),
-  password: Yup.string()
-    .min(8, 'Too Short, Min 8 Characters!')
-    .max(25, 'Too Long! Max 25 Characters')
-    .required('Password is required!')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-      'Must contain lowercase, uppercase, numbers and special characters'
-    ),
-});
+const inputClassName =
+  'w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200';
 
 export const UserAuthForm: React.FC = () => {
   const navigate = useNavigate();
@@ -46,54 +39,52 @@ export const UserAuthForm: React.FC = () => {
   );
   const isLogin = !!loginRouteMatch;
 
-  const [requestErrorMessage, setRequestErrorMessage] = useState<string | null>(
-    null
-  );
+  const [requestError, setRequestError] = useState<ApiError | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const isEmailAlreadyUsed = isEmailAlreadyUsedError(requestErrorMessage ?? '');
-  const isUserNotFound = isUserNotFoundError(requestErrorMessage ?? '');
+  const isEmailAlreadyUsed = isEmailAlreadyUsedError(requestError?.code);
+  const requestErrorMessage = requestError ? getErrorMessage(requestError) : '';
 
-  const [signupMutation, { isLoading: signupLoading }] = useSignupMutation();
+  const [registerMutation, { isLoading: registerLoading }] =
+    useRegisterMutation();
   const [loginMutation, { isLoading: loginLoading }] = useLoginMutation();
 
-  const isLoading = loginLoading || signupLoading;
+  const isLoading = loginLoading || registerLoading;
 
   const submitHandler = async (values: FormValuesInterface) => {
     setIsSubmitted(true);
 
-    const submitSuccessfully = () => {
-      navigate(CommonRouteVariants.userHomePage.pathname());
+    const callbacks = {
+      onSuccess: () => {
+        navigate(CommonRouteVariants.userHomePage.pathname());
+      },
+      onError: (error: ApiError) => {
+        setRequestError(error);
+      },
     };
 
     if (isLogin) {
       loginMutation({
-        payload: {
-          email: values.email,
-          password: values.password,
-        },
-        onSuccess: submitSuccessfully,
-        onError: error => {
-          setRequestErrorMessage(error.message);
-        },
+        payload: { email: values.email, password: values.password },
+        ...callbacks,
       });
     } else {
-      signupMutation({
+      registerMutation({
         payload: {
+          name: values.name.trim(),
           email: values.email,
           password: values.password,
         },
-        onSuccess: submitSuccessfully,
-        onError: error => {
-          setRequestErrorMessage(error.message);
-        },
+        ...callbacks,
       });
     }
   };
 
   return (
     <Formik
-      initialValues={{ email: '', password: '' }}
-      validationSchema={validationSchema}
+      initialValues={{ name: '', email: '', password: '' }}
+      validationSchema={
+        isLogin ? loginValidationSchema : registerValidationSchema
+      }
       onSubmit={submitHandler}
       validateOnChange={isSubmitted}
       validateOnBlur={isSubmitted}
@@ -111,6 +102,28 @@ export const UserAuthForm: React.FC = () => {
             <p className="mx-auto mb-12 mt-5 text-neutral-600">
               Remember everything important.
             </p>
+
+            {!isLogin && (
+              <div className="relative mb-4">
+                <Field
+                  type="text"
+                  id="name"
+                  name="name"
+                  onChange={(e: React.ChangeEvent<any>) => {
+                    handleChange(e);
+                    setRequestError(null);
+                  }}
+                  autoComplete="name"
+                  placeholder="Name"
+                  className={inputClassName}
+                />
+
+                {isSubmitted && errors.name && touched.name ? (
+                  <div className="mt-1 text-xs text-red-700">{errors.name}</div>
+                ) : null}
+              </div>
+            )}
+
             <div className="relative mb-4">
               <Field
                 type="email"
@@ -118,19 +131,17 @@ export const UserAuthForm: React.FC = () => {
                 name="email"
                 onChange={(e: React.ChangeEvent<any>) => {
                   handleChange(e);
-                  setRequestErrorMessage(null);
+                  setRequestError(null);
                 }}
-                autoComplete={isLogin ? 'email' : 'off'}
+                autoComplete="email"
                 placeholder="Email"
-                className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+                className={inputClassName}
               />
 
               {isSubmitted &&
-              ((errors.email && touched.email) ||
-                isEmailAlreadyUsed ||
-                isUserNotFound) ? (
+              ((errors.email && touched.email) || isEmailAlreadyUsed) ? (
                 <div className="mt-1 text-xs text-red-700">
-                  {errors.email ?? ErrorsMap[requestErrorMessage ?? '']}
+                  {errors.email ?? requestErrorMessage}
                 </div>
               ) : null}
             </div>
@@ -140,13 +151,13 @@ export const UserAuthForm: React.FC = () => {
                 name="password"
                 onChange={(e: React.ChangeEvent<any>) => {
                   handleChange(e);
-                  setRequestErrorMessage(null);
+                  setRequestError(null);
                 }}
                 type="password"
                 id="password"
-                autoComplete={isLogin ? 'current-password' : 'off'}
+                autoComplete={isLogin ? 'current-password' : 'new-password'}
                 placeholder="Password"
-                className="w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+                className={inputClassName}
               />
 
               {isSubmitted && errors.password && touched.password ? (
@@ -155,13 +166,11 @@ export const UserAuthForm: React.FC = () => {
                 </div>
               ) : null}
 
-              {isSubmitted &&
-                requestErrorMessage &&
-                !(isEmailAlreadyUsed || isUserNotFound) && (
-                  <div className="mt-1 text-xs text-red-700">
-                    {ErrorsMap[requestErrorMessage]}
-                  </div>
-                )}
+              {isSubmitted && requestError && !isEmailAlreadyUsed && (
+                <div className="mt-1 text-xs text-red-700">
+                  {requestErrorMessage}
+                </div>
+              )}
             </div>
 
             {/* Call to action */}

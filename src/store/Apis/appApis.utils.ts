@@ -87,9 +87,11 @@ type MappedResult<TParams, TResponse> = TParams extends
 
 interface EndpointMappingOptions<TResponse, TParams> {
   mapData?: (data: TResponse) => MappedResult<TParams, TResponse>;
+  /** Runs before the caller's `onSuccess`. `rawData` is the unmapped response. */
   onQuerySuccess?: (
     dispatch: any,
-    mappedData: MappedResult<TParams, TResponse>
+    mappedData: MappedResult<TParams, TResponse>,
+    rawData: TResponse
   ) => void;
 }
 
@@ -105,7 +107,7 @@ const createMappedOnQueryStarted =
   ) => {
     const onSuccessCustom = (data: TResponse) => {
       const mappedData = mapData(data);
-      onQuerySuccess?.(dispatch, mappedData);
+      onQuerySuccess?.(dispatch, mappedData, data);
       successHandler?.(mappedData);
     };
 

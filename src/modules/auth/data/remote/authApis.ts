@@ -1,67 +1,122 @@
 import { useEffect, useState } from 'react';
-
-import { auth, onAuthStateChanged } from '~libs/firebase';
-import type { User } from '~modules/auth/domain/models';
-import { appApi, createEndpoint, useAppDispatch } from '~store';
-
-import { saveLogin, saveLogout } from '../local/authSlice';
-import { login, logout, signUp } from './authApis.endpoints';
 import type {
-  AuthRequestParams,
-  AuthRequestResponse,
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+} from '@reduxjs/toolkit/query';
+
+import {
+  appApi,
+  createOnQueryStarted,
+  refreshSession,
+  useAppSelector,
+} from '~store';
+import type { AppDispatch } from '~store/store';
+
+import { selectIsLoggedIn } from '../local/authSlice';
+import type {
+  AuthRequestResult,
+  AuthResponseDto,
+  LoginRequestParams,
   LogoutRequestParams,
+  RegisterRequestParams,
+  RestoreSessionResult,
 } from './authApis.interfaces';
-import { mapFirebaseUserToAuthUser } from './authApis.mapping';
+import { mapAuthResponse } from './authApis.mapping';
+import { endSession, startSession } from './authSession';
 
-export const useInitAppAuth = () => {
-  const dispatch = useAppDispatch();
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const isAuthorized = !!user;
+/** The app base query (`baseQueryWithReauth`); `queryFn` gets it bound. */
+type ApiBaseQuery = BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+>;
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      const authUser = user ? mapFirebaseUserToAuthUser(user) : null;
-      setUser(authUser);
-      dispatch(saveLogin({ user: authUser }));
-      setIsLoading(false);
-    });
+/**
+ * Sends an auth request, starts the session from the response and returns
+ * only the user. The access token never enters the RTK Query cache.
+ */
+const authRequest =
+  <TParams extends LoginRequestParams | RegisterRequestParams>(url: string) =>
+  async (
+    { payload }: TParams,
+    api: { dispatch: AppDispatch },
+    _extraOptions: unknown,
+    baseQuery: (args: string | FetchArgs) => ReturnType<ApiBaseQuery>
+  ) => {
+    const result = await baseQuery({ url, method: 'POST', body: payload });
+    if (result.error) return { error: result.error };
 
-    return () => unsubscribe();
-  }, []);
-
-  return { isAuthorized, isLoading };
-};
+    const dto = result.data as AuthResponseDto;
+    startSession(api.dispatch, dto);
+    return { data: mapAuthResponse(dto) };
+  };
 
 export const authApi = appApi.injectEndpoints({
   endpoints: builder => ({
-    signup: builder.mutation<AuthRequestResponse, AuthRequestParams>(
-      createEndpoint<AuthRequestResponse, AuthRequestParams, false>({
-        endpoint: signUp,
-        onQuerySuccess: (dispatch, mappedData) =>
-          dispatch(saveLogin(mappedData)),
-        requiresAuth: false,
-      })
-    ),
+    register: builder.mutation<AuthRequestResult, RegisterRequestParams>({
+      queryFn: authRequest<RegisterRequestParams>('/auth/register'),
+      onQueryStarted: createOnQueryStarted(),
+    }),
 
-    login: builder.mutation<AuthRequestResponse, AuthRequestParams>(
-      createEndpoint<AuthRequestResponse, AuthRequestParams, false>({
-        endpoint: login,
-        onQuerySuccess: (dispatch, mappedData) => {
-          dispatch(saveLogin(mappedData));
-        },
-        requiresAuth: false,
-      })
-    ),
+    login: builder.mutation<AuthRequestResult, LoginRequestParams>({
+      queryFn: authRequest<LoginRequestParams>('/auth/login'),
+      onQueryStarted: createOnQueryStarted(),
+    }),
 
-    logout: builder.mutation<void, LogoutRequestParams>(
-      createEndpoint<void, LogoutRequestParams>({
-        endpoint: logout,
-        onQuerySuccess: dispatch => dispatch(saveLogout()),
-      })
-    ),
+    logout: builder.mutation<null, LogoutRequestParams>({
+      query: () => ({ url: '/auth/logout', method: 'POST' }),
+      // The local session ends even if the server call fails.
+      onQueryStarted: async (
+        { onSuccess, onError, onSettled },
+        { dispatch, queryFulfilled }
+      ) => {
+        await createOnQueryStarted()(
+          {
+            onSuccess,
+            onError,
+            onSettled: () => {
+              endSession(dispatch);
+              onSettled?.();
+            },
+          },
+          { queryFulfilled }
+        );
+      },
+    }),
+
+    /** Exchanges the refresh cookie for a session. Replaces onAuthStateChanged. */
+    restoreSession: builder.mutation<RestoreSessionResult, void>({
+      queryFn: async (_arg, api) => {
+        const session = await refreshSession(api);
+        if (!session) return { data: null };
+
+        const dto = session as AuthResponseDto;
+        startSession(api.dispatch as AppDispatch, dto);
+        return { data: mapAuthResponse(dto) };
+      },
+    }),
   }),
 });
 
-export const { useSignupMutation, useLoginMutation, useLogoutMutation } =
-  authApi;
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useLogoutMutation,
+  useRestoreSessionMutation,
+} = authApi;
+
+/** Restores the session once on app start (the page may have been reloaded). */
+export const useInitAppAuth = () => {
+  const isAuthorized = useAppSelector(selectIsLoggedIn);
+  const [restoreSession] = useRestoreSessionMutation();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Safe under StrictMode's double effect: concurrent refreshes share one
+    // request (see refreshSession).
+    restoreSession().finally(() => setIsLoading(false));
+  }, [restoreSession]);
+
+  return { isAuthorized, isLoading };
+};
