@@ -7,10 +7,39 @@ export enum RequestMethods {
   DELETE = 'DELETE',
 }
 
+/** One field-level problem from a backend `VALIDATION_ERROR`. */
+export type ApiErrorDetail = {
+  location: string;
+  path: string;
+  message: string;
+};
+
+/**
+ * Normalized error handed to `onError` callbacks.
+ * `code` is a backend `ErrorCode` (e.g. `AUTH_INVALID_CREDENTIALS`) or a
+ * `ClientErrorCode` when the request never got a valid backend response.
+ */
 export type ApiError = {
   code: string;
   message: string;
+  details?: ApiErrorDetail[];
+  requestId?: string;
 };
+
+/** Error codes produced on the client, never by the backend. */
+export const ClientErrorCode = {
+  NETWORK_ERROR: 'NETWORK_ERROR',
+  TIMEOUT_ERROR: 'TIMEOUT_ERROR',
+  PARSING_ERROR: 'PARSING_ERROR',
+  HTTP_ERROR: 'HTTP_ERROR',
+  UNKNOWN_ERROR: 'UNKNOWN_ERROR',
+} as const;
+
+/** Successful backend responses are wrapped as `{ data: ... }`. */
+export type ApiSuccessEnvelope<T> = { data: T };
+
+/** Backend error responses are wrapped as `{ error: {...} }`. */
+export type ApiErrorEnvelope = { error: ApiError };
 
 export type RequestCallbacks<RESULT = any> = {
   onSuccess?: (result: RESULT) => void;

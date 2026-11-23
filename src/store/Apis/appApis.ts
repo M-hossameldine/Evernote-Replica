@@ -1,8 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+
+import { baseQueryWithReauth } from './baseQuery';
 
 export const appApi = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: '/' }), // the base url is not used in the app but it is required by the createApi function
+  // Used by `createHttpEndpoint` endpoints. Firebase endpoints built with
+  // `createEndpoint` use `queryFn` and bypass it until they are migrated.
+  baseQuery: baseQueryWithReauth,
   tagTypes: [
     // notes
     'active-notes',
