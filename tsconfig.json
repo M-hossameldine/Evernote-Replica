@@ -16,8 +16,6 @@
       "~models": ["./models"],
       "~modules/*": ["./modules/*"],
       "~modules": ["./modules"],
-      "~libs/*": ["./libs/*"],
-      "~libs": ["./libs"],
       "~store/*": ["./store/*"],
       "~store": ["./store"],
       "~pages/*": ["./pages/*"],

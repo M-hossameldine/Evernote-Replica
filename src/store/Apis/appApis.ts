@@ -4,8 +4,7 @@ import { baseQueryWithReauth } from './baseQuery';
 
 export const appApi = createApi({
   reducerPath: 'api',
-  // Used by `createHttpEndpoint` endpoints. Firebase endpoints built with
-  // `createEndpoint` use `queryFn` and bypass it until they are migrated.
+  // REST API client: bearer token, envelope unwrapping, token refresh.
   baseQuery: baseQueryWithReauth,
   tagTypes: [
     // notes

@@ -29,7 +29,6 @@ const configuration: UserConfig = {
       '~hooks/*': path.resolve(__dirname, './hooks/*'),
       '~models/*': path.resolve(__dirname, './models/*'),
       '~modules/*': path.resolve(__dirname, './modules/*'),
-      '~libs/*': path.resolve(__dirname, './libs/*'),
       '~store/*': path.resolve(__dirname, './store/*'),
       '~pages/*': path.resolve(__dirname, './pages/*'),
     },
