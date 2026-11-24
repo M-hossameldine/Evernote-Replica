@@ -1,4 +1,4 @@
-import { appApi, clearAccessToken, setAccessToken } from '~store/Apis';
+import { setAccessToken } from '~store/Apis';
 import type { AppDispatch } from '~store/store';
 
 import { saveLogin, saveLogout } from '../local/authSlice';
@@ -15,9 +15,10 @@ export const startSession = (dispatch: AppDispatch, dto: AuthResponseDto) => {
   dispatch(saveLogin({ user: mapUserDtoToUser(dto.user) }));
 };
 
-/** Ends the session locally and drops every cached API result. */
+/**
+ * Ends the session locally. The `saveLogout` listener (store/listeners.ts)
+ * clears the access token and drops every cached API result.
+ */
 export const endSession = (dispatch: AppDispatch) => {
-  clearAccessToken();
   dispatch(saveLogout());
-  dispatch(appApi.util.resetApiState());
 };

@@ -4,7 +4,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { saveLogout } from '~modules/auth/data/local/authSlice';
 
 import { API_BASE_URL, REFRESH_PATH } from './apiConfig';
-import { baseQueryWithReauth, envelopeBaseQuery } from './baseQuery';
+import { showNotification } from '../ui-slice/ui-slice';
+import {
+  SESSION_EXPIRED_MESSAGE,
+  baseQueryWithReauth,
+  envelopeBaseQuery,
+} from './baseQuery';
 import { clearAccessToken, getAccessToken, setAccessToken } from './tokenStore';
 
 type Handler = (request: Request) => Response | Promise<Response>;
@@ -213,8 +218,31 @@ describe('baseQueryWithReauth', () => {
     });
     expect(getAccessToken()).toBeNull();
     expect(api.dispatch).toHaveBeenCalledWith(saveLogout());
+    expect(api.dispatch).toHaveBeenCalledWith(
+      showNotification({ status: 'error', message: SESSION_EXPIRED_MESSAGE })
+    );
     expect(requestsTo('/notes')).toHaveLength(1);
   });
+
+  it.each(['TOKEN_INVALID', 'UNAUTHENTICATED'])(
+    'also refreshes and retries on %s',
+    async code => {
+      setAccessToken('bad');
+      useHandler(request => {
+        if (pathOf(request) === REFRESH_PATH) {
+          return json(200, session('fresh'));
+        }
+        return request.headers.get('Authorization') === 'Bearer fresh'
+          ? json(200, { data: 'ok' })
+          : json(401, { error: { code, message: 'Unauthorized' } });
+      });
+
+      const result = await baseQueryWithReauth('/notes', createApi(), {});
+
+      expect(result).toMatchObject({ data: 'ok' });
+      expect(requestsTo(REFRESH_PATH)).toHaveLength(1);
+    }
+  );
 
   it('does not refresh on other 401 errors', async () => {
     useHandler(() =>

@@ -169,6 +169,24 @@ describe('notesApi', () => {
     );
   });
 
+  it('drops the note instead of restoring it when the server says it is gone', async () => {
+    await loadLists([note('a'), note('b')], []);
+    useHandler(() =>
+      json(404, {
+        error: { code: 'NOTE_NOT_FOUND', message: 'Note not found' },
+      })
+    );
+
+    await store.dispatch(
+      notesApi.endpoints.moveNoteToTrash.initiate({
+        extraParams: { noteId: 'a' },
+      })
+    );
+
+    expect(activeList()?.map(n => n.id)).toEqual(['b']);
+    expect(trashList()).toEqual([]);
+  });
+
   it('restoreNote moves the note back to the active list', async () => {
     const trashed = note('t', {
       status: 'trash',

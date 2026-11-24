@@ -1,4 +1,5 @@
 import { appApi, createOnQueryStarted } from '~store';
+import type { ApiError } from '~store/Apis/appApis.interfaces';
 import type { AppDispatch, RootState } from '~store/store';
 import type { Note, NoteContent } from '~modules/notes/domain/interfaces';
 
@@ -71,7 +72,7 @@ export const notesApi = appApi.injectEndpoints({
                 if (cached) cached.updatedAt = note.updatedAt;
               })
             ),
-          () => undefined
+          onNoteMutationFailed(dispatch, params.extraParams.noteId)
         );
         await createOnQueryStarted()(params, { queryFulfilled });
       },
@@ -104,7 +105,7 @@ export const notesApi = appApi.injectEndpoints({
 
         queryFulfilled.then(
           ({ data: note }) => dispatch(updateTrashNotes(upsertFirst(note))),
-          () => undoAll(patches)
+          onNoteMutationFailed(dispatch, noteId, patches)
         );
         await createOnQueryStarted()(params, { queryFulfilled });
       },
@@ -135,7 +136,7 @@ export const notesApi = appApi.injectEndpoints({
 
         queryFulfilled.then(
           ({ data: note }) => dispatch(updateActiveNotes(upsertFirst(note))),
-          () => undoAll(patches)
+          onNoteMutationFailed(dispatch, noteId, patches)
         );
         await createOnQueryStarted()(params, { queryFulfilled });
       },
@@ -153,7 +154,7 @@ export const notesApi = appApi.injectEndpoints({
         const { noteId } = params.extraParams;
         const patch = dispatch(updateTrashNotes(removeNote(noteId)));
 
-        queryFulfilled.catch(() => patch.undo());
+        queryFulfilled.catch(onNoteMutationFailed(dispatch, noteId, [patch]));
         await createOnQueryStarted()(params, { queryFulfilled });
       },
     }),
@@ -194,8 +195,33 @@ const upsertFirst = (note: Note) => (list: Note[]) => {
   else list[index] = note;
 };
 
-const undoAll = (patches: { undo: () => void }[]) =>
+type Patch = { undo: () => void };
+
+const undoAll = (patches: Patch[]) =>
   [...patches].reverse().forEach(patch => patch.undo());
+
+const errorCodeOf = (rejection: unknown) =>
+  (rejection as { error?: { data?: Partial<ApiError> } })?.error?.data?.code;
+
+/**
+ * Rejection handler for a note mutation: rolls back the optimistic patches,
+ * except when the server says the note no longer exists (e.g. deleted on
+ * another device). Then it is dropped from both lists instead of being put
+ * back. The error itself is reported by the caller or the error toast.
+ */
+const onNoteMutationFailed =
+  (
+    dispatch: (action: ReturnType<typeof updateActiveNotes>) => unknown,
+    noteId: string,
+    patches: Patch[] = []
+  ) =>
+  (rejection: unknown) => {
+    undoAll(patches);
+    if (errorCodeOf(rejection) === 'NOTE_NOT_FOUND') {
+      dispatch(updateActiveNotes(removeNote(noteId)));
+      dispatch(updateTrashNotes(removeNote(noteId)));
+    }
+  };
 
 /**
  * Applies unsaved edits to the cached active list right away, so the sidebar

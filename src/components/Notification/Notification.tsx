@@ -25,10 +25,12 @@ const Notification: React.FC = () => {
   };
 
   useEffect(() => {
-    if (notification) {
-      setShowNotification(true);
-      setTimeout(closeNotificationHandler, 2500);
-    }
+    if (!notification) return;
+
+    setShowNotification(true);
+    // Each new notification gets its own full display time.
+    const hideTimer = setTimeout(closeNotificationHandler, 2500);
+    return () => clearTimeout(hideTimer);
   }, [notification]);
 
   let statusClasses = '';

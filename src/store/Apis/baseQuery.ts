@@ -8,6 +8,8 @@ import type {
 
 import { saveLogout } from '~modules/auth/data/local/authSlice';
 
+import { showNotification } from '../ui-slice/ui-slice';
+
 import { API_BASE_URL, REFRESH_LOCK_NAME, REFRESH_PATH } from './apiConfig';
 import { ClientErrorCode } from './appApis.interfaces';
 import type { ApiError, ApiErrorEnvelope } from './appApis.interfaces';
@@ -152,15 +154,31 @@ export const refreshSession = (
   return refreshPromise;
 };
 
-const isTokenExpired = (error: FetchBaseQueryError) =>
-  error.status === 401 && (error.data as ApiError)?.code === 'TOKEN_EXPIRED';
+/**
+ * 401 codes from the `authenticate` middleware: the access token is expired,
+ * invalid (e.g. the server rotated its signing secret) or missing. All of them
+ * are worth one refresh; if that fails too, the session is over.
+ */
+export const SESSION_ERROR_CODES: readonly string[] = [
+  'TOKEN_EXPIRED',
+  'TOKEN_INVALID',
+  'UNAUTHENTICATED',
+];
+
+export const SESSION_EXPIRED_MESSAGE =
+  'Your session has expired, please log in again';
+
+const isSessionError = (error: FetchBaseQueryError) =>
+  error.status === 401 &&
+  SESSION_ERROR_CODES.includes((error.data as ApiError)?.code);
 
 const isRefreshRequest = (args: string | FetchArgs) =>
   (typeof args === 'string' ? args : args.url) === REFRESH_PATH;
 
 /**
- * App base query: on `401 TOKEN_EXPIRED`, refreshes the access token once and
- * retries the request. If the refresh fails, the user is logged out locally.
+ * App base query: on a 401 session error (see `SESSION_ERROR_CODES`),
+ * refreshes the access token once and retries the request. If the refresh
+ * fails, the user is logged out and told why.
  */
 export const baseQueryWithReauth: ApiBaseQuery = async (
   args,
@@ -177,7 +195,7 @@ export const baseQueryWithReauth: ApiBaseQuery = async (
 
   if (
     !result.error ||
-    !isTokenExpired(result.error) ||
+    !isSessionError(result.error) ||
     isRefreshRequest(args)
   ) {
     return result;
@@ -191,7 +209,11 @@ export const baseQueryWithReauth: ApiBaseQuery = async (
 
   const session = await refreshSession(api, extraOptions);
   if (!session) {
+    // The saveLogout listener clears the token and the API cache.
     api.dispatch(saveLogout());
+    api.dispatch(
+      showNotification({ status: 'error', message: SESSION_EXPIRED_MESSAGE })
+    );
     return result;
   }
 

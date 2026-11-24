@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useMatch } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
+import type { FormikHelpers } from 'formik';
 
 import {
   useRegisterMutation,
@@ -12,6 +13,7 @@ import {
   loginValidationSchema,
   registerValidationSchema,
 } from '~modules/auth/presentation/helpers/validations';
+import { getFieldErrors } from '~store/Apis/apiErrors';
 import type { ApiError } from '~store/Apis/appApis.interfaces';
 
 import { TextLink } from '~components/Links';
@@ -28,6 +30,8 @@ interface FormValuesInterface {
   email: string;
   password: string;
 }
+
+const FORM_FIELDS = ['name', 'email', 'password'] as const;
 
 const inputClassName =
   'w-full rounded border border-gray-300 bg-white px-3 py-1 text-base leading-8 text-gray-700 shadow-even-1 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200';
@@ -50,7 +54,10 @@ export const UserAuthForm: React.FC = () => {
 
   const isLoading = loginLoading || registerLoading;
 
-  const submitHandler = async (values: FormValuesInterface) => {
+  const submitHandler = async (
+    values: FormValuesInterface,
+    { setErrors }: FormikHelpers<FormValuesInterface>
+  ) => {
     setIsSubmitted(true);
 
     const callbacks = {
@@ -58,7 +65,14 @@ export const UserAuthForm: React.FC = () => {
         navigate(CommonRouteVariants.userHomePage.pathname());
       },
       onError: (error: ApiError) => {
-        setRequestError(error);
+        // Server-side validation errors go under their fields; anything
+        // else is shown as one message under the form.
+        const fieldErrors = getFieldErrors(error, FORM_FIELDS);
+        if (Object.keys(fieldErrors).length > 0) {
+          setErrors(fieldErrors);
+        } else {
+          setRequestError(error);
+        }
       },
     };
 
